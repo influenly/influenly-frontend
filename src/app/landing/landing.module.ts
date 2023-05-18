@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LandingRoutingModule } from './landing-routing.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -11,7 +12,8 @@ import { LandingRoutingModule } from './landing-routing.module';
   ],
   imports: [
     CommonModule,
-    LandingRoutingModule
+    LandingRoutingModule,
+    MatIconModule
   ]
 })
 export class LandingModule { }

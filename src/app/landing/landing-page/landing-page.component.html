@@ -1,16 +1,20 @@
-<div class="container-fluid d-flex justify-content-between">
+<div class="container-fluid d-flex justify-content-space-between h-100">
     <div class="d-flex align-items-center w-50">
-        <div class="m-auto">
+        <div class="container box">
             <h1 class="font-weight-bold"><span class="primary-color">Contenido</span> para cada audiencia</h1>
-            <span>Una plataforma donde creadores y anunciantes se encuentran.</span>
-            <span>Consigue visivilidad ante miles de anunciantes. Encuentra al creador de contenido indicado utilizando nuestras analíticas avanzadas.</span>
-            <div>
-                <button>Soy creador</button>
-                <button>Busco creadores</button>
+            <div class="d-grid paragraph">
+                <span>Una plataforma donde creadores y anunciantes se encuentran.</span>
+                <span>Consigue visivilidad ante miles de anunciantes. Encuentra al creador de contenido indicado utilizando nuestras analíticas avanzadas.</span>
+            </div>
+            <div class="mt-4">
+                <button class="main-button-primary" (click)="goToSignUp('creator')">Soy creador 
+                    <mat-icon fontIcon="trending_up"></mat-icon>
+                </button>
+                <button class="main-button" (click)="goToSignUp('bussiness')">Busco creadores</button>
             </div>
         </div>
     </div>
-    <div class="w-50">
-        <img src="../../../assets/images/landing-page-person.svg" />
+    <div class="d-flex justify-content-center align-items-center">
+        <img class="home-image" src="../../../assets/images/landing-page-person.svg" />
     </div>
 </div>
