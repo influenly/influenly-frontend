@@ -1,3 +1,4 @@
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 import { NgModule } from '@angular/core';
@@ -13,6 +14,11 @@ const routes: Routes = [
             {
                 path: '',
                 component: LandingPageComponent
+            },
+            {
+                path: 'sign-up/creator',
+
+                component: SignUpComponent
             }
         ]
     }
