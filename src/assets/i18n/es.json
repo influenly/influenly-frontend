@@ -1,6 +1,11 @@
 {
     "general":{
-
+        "countries":{
+            "AR":"Argentina",
+            "CA":"Canadá",
+            "CO":"Colombia",
+            "PE":"Perú"
+        }
     },
     "landing":{
         "title_1":"Contenido",

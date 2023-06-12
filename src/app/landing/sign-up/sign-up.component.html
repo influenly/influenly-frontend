@@ -44,10 +44,16 @@
 				<label class="d-block">{{ 'landing.sign_up.country.label' | translate }}</label>
 				<mat-form-field class="w-100">
 					<mat-select formControlName="country" [placeholder]="'landing.sign_up.country.placeholder' | translate">
+						<mat-select-trigger>
+							<div>
+								<span class="fi" [ngClass]="'fi-' + country?.value.toLowerCase()"></span>
+								{{ 'general.countries.' + country?.value | translate }}
+							</div>
+						</mat-select-trigger>
 						<div *ngFor="let country of countries">
-                            <span class="flag-icon flag-icon-ru"></span>
-							<mat-option value="country">
-								{{ country }}
+							<mat-option [value]="country">
+								<span class="fi" [ngClass]="'fi-' + country.toLowerCase()"></span>
+								{{ 'general.countries.' + country | translate }}
 							</mat-option>
 						</div>
 					</mat-select>
