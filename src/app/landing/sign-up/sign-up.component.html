@@ -1,49 +1,49 @@
 <div class="container-box">
 	<div class="d-flex justify-content-center card">
 		<div class="text-center mt-4">
-			<h2>Registrarse</h2>
+			<h2>{{ 'landing.sign_up.title' | translate }}</h2>
 		</div>
 		<form [formGroup]="signUpForm" class="pt-3 px-5 pb-5">
 			<div>
-				<label class="d-block">Email</label>
+				<label class="d-block">{{ 'landing.sign_up.email.label' | translate }}</label>
 				<mat-form-field class="w-100">
 					<input
 						matInput
 						[type]="'email'"
 						autocomplete="off"
 						formControlName="email"
-						placeholder="Ingresa tu Email"
+						[placeholder]="'landing.sign_up.email.placeholder' | translate"
 					/>
 					<mat-error *ngIf="email?.hasError('required')">
-						<mat-icon>warning</mat-icon> Requerido
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.required_error' | translate }}
 					</mat-error>
 					<mat-error *ngIf="email?.hasError('pattern')">
-						<mat-icon>warning</mat-icon> Debe ser un email válido
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.pattern_error' | translate }}
 					</mat-error>
 				</mat-form-field>
 			</div>
 			<div>
-				<label class="d-block">Contraseña</label>
+				<label class="d-block">{{ 'landing.sign_up.password.label' | translate }}</label>
 				<mat-form-field class="w-100">
 					<input
 						matInput
 						[type]="'text'"
 						autocomplete="off"
 						formControlName="password"
-						placeholder="Ingresa tu contraseña"
+						[placeholder]="'landing.sign_up.password.placeholder' | translate"
 					/>
 					<mat-error *ngIf="password?.hasError('required')">
-						<mat-icon>warning</mat-icon> Requerido
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.required_error' | translate }}
 					</mat-error>
 					<mat-error *ngIf="password?.hasError('minlength')">
-						<mat-icon>warning</mat-icon> La contraseña debe tener al menos 8 carácteres
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.minlength_error' | translate }}
 					</mat-error>
 				</mat-form-field>
 			</div>
 			<div>
-				<label class="d-block">País</label>
+				<label class="d-block">{{ 'landing.sign_up.country.label' | translate }}</label>
 				<mat-form-field class="w-100">
-					<mat-select formControlName="country" placeholder="Selecciona tu país">
+					<mat-select formControlName="country" [placeholder]="'landing.sign_up.country.placeholder' | translate">
 						<div *ngFor="let country of countries">
                             <span class="flag-icon flag-icon-ru"></span>
 							<mat-option value="country">
@@ -52,18 +52,18 @@
 						</div>
 					</mat-select>
 					<mat-error *ngIf="country?.hasError('required')">
-						<mat-icon>warning</mat-icon> Requerido
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.country.required_error' | translate }}
 					</mat-error>
 				</mat-form-field>
 			</div>
 
 			<div class="mt-4">
-				<button class="main-button w-100 p-3" (click)="submit()">Regístrate</button>
+				<button class="main-button w-100 p-3" (click)="submit()">{{ 'landing.sign_up.btn_signup' | translate }}</button>
 			</div>
 
 			<div class="text-center mt-3">
-				<p class="terms-cond-text">Al continuar, aceptas nuestros <a href="terms&conditions">términos y condiciones</a> y a nuestra <a href="privacy-politicies">política de privacidad</a>.</p>
-				<p class="login-text">¿Ya tienes una cuenta? <a href="sign-in">Inicia sesión</a></p>
+				<p class="terms-cond-text">{{ 'landing.sign_up.text_1' | translate }}<a href="terms&conditions">{{ 'landing.sign_up.terms_conditions' | translate }}</a>{{ 'landing.sign_up.text_2' | translate }} <a href="privacy-politicies">{{ 'landing.sign_up.privacy_policies' | translate }}</a>.</p>
+				<p class="login-text">{{ 'landing.sign_up.already_registered' | translate }}<a href="sign-in">{{ 'landing.sign_up.login' | translate }}</a></p>
 			</div>
 		</form>
 	</div>

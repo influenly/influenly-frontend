@@ -1,16 +1,16 @@
 <div class="container-fluid d-flex justify-content-space-between h-100">
     <div class="d-flex align-items-center w-50">
         <div class="container box">
-            <h1 class="font-weight-bold"><span class="primary-color">Contenido</span> para cada audiencia</h1>
+            <h1 class="font-weight-bold"><span class="primary-color">{{ 'landing.title_1' | translate }}</span>{{ 'landing.title_2' | translate }}</h1>
             <div class="d-grid paragraph">
-                <span>Una plataforma donde creadores y anunciantes se encuentran.</span>
-                <span>Consigue visivilidad ante miles de anunciantes. Encuentra al creador de contenido indicado utilizando nuestras analíticas avanzadas.</span>
+                <span>{{ 'landing.paragraph_1' | translate }}</span>
+                <span>{{ 'landing.paragraph_2' | translate }}</span>
             </div>
             <div class="mt-4">
-                <button class="main-button-primary" (click)="goToSignUp('creator')">Soy creador 
+                <button class="main-button-primary" (click)="goToSignUp('creator')">{{ 'landing.btn_creator' | translate }}
                     <mat-icon fontIcon="trending_up"></mat-icon>
                 </button>
-                <button class="main-button" (click)="goToSignUp('bussiness')">Busco creadores</button>
+                <button class="main-button" (click)="goToSignUp('bussiness')">{{ 'landing.btn_company' | translate }}</button>
             </div>
         </div>
     </div>

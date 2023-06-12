@@ -1,0 +1,40 @@
+{
+    "general":{
+
+    },
+    "landing":{
+        "title_1":"Content",
+        "title_2":" for each audience",
+        "paragraph_1":"A platform where creators and advertisers meet.",
+        "paragraph_2":"Gain visibility to thousands of advertisers. Find the right content creator using our advanced analytics.",
+        "btn_creator":"I am a creator",
+        "btn_company":"I'm looking for creators",
+        "sign_up":{
+            "title":"Sign Up",
+            "email":{
+                "label":"Email",
+                "placeholder":"Enter your email",
+                "required_error":"Email is required",
+                "pattern_error":"Must be a valid email"
+            },
+            "password":{
+                "label":"Password",
+                "placeholder":"Enter your password",
+                "required_error":"Password is required",
+                "minlength_error":"Password must have at least 8 characters"
+            },
+            "country":{
+                "label":"Country",
+                "placeholder":"Enter your country",
+                "required_error":"Country is required"
+            },
+            "btn_signup":"Signup",
+            "text_1":"By continuing, you agree to our ",
+            "terms_conditions":"terms and conditions",
+            "text_2":" and our",
+            "privacy_policies":"privacy policy",
+            "already_registered":"Already have an account? ",
+            "login":"Login"
+        }
+    }
+}

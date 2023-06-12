@@ -1,0 +1,40 @@
+{
+    "general":{
+
+    },
+    "landing":{
+        "title_1":"Contenido",
+        "title_2":" para cada audiencia",
+        "paragraph_1":"Una plataforma donde creadores y anunciantes se encuentran.",
+        "paragraph_2":"Consigue visivilidad ante miles de anunciantes. Encuentra al creador de contenido indicado utilizando nuestras analíticas avanzadas.",
+        "btn_creator":"Soy creador ",
+        "btn_company":"Busco creadores",
+        "sign_up":{
+            "title":"Registrarse",
+            "email":{
+                "label":"Email",
+                "placeholder":"Ingresa tu email",
+                "required_error":"Email es requerido",
+                "pattern_error":"Debe ser un email válido"
+            },
+            "password":{
+                "label":"Contraseña",
+                "placeholder":"Ingresa tu contraseña",
+                "required_error":"Contraseña es requerida",
+                "minlength_error":"La contraseña debe tener al menos 8 carácteres"
+            },
+            "country":{
+                "label":"País",
+                "placeholder":"Ingresa tu país",
+                "required_error":"País es requerido"
+            },
+            "btn_signup":"Regístrate",
+            "text_1":"Al continuar, aceptas nuestros ",
+            "terms_conditions":"términos y condiciones",
+            "text_2":" y nuestra",
+            "privacy_policies":"política de privacidad",
+            "already_registered":"¿Ya tienes una cuenta? ",
+            "login":"Inicia sesión"
+        }
+    }
+}
