@@ -6,6 +6,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { RestApiClient } from './services/rest-api/rest-api.client';
 import { HttpClientModule } from '@angular/common/http';
 import { InformationModalComponent } from './components/UI/information-modal/information-modal.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { InformationModalComponent } from './components/UI/information-modal/inf
   imports: [
     CommonModule,
     CoreRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
   ],
   providers: [
     RestApiClient

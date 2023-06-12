@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-information-modal',
@@ -7,10 +8,12 @@ import { Component, Input } from '@angular/core';
 })
 export class InformationModalComponent {
 
-  @Input() title: string = "";
-  @Input() textButtonOk: string = "";
+  @Output() response: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(public dialogRef: MatDialogRef<InformationModalComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: { icon: string, title: string, text: string, textButtonOk: string }) {}
 
   accept() {
-    
+    this.response.emit(true);
   }
 }

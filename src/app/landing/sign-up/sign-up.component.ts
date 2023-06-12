@@ -39,14 +39,23 @@ export class SignUpComponent {
       type: 'CREATOR'
     }
     this.authService.signUp$(payload).subscribe(res => {
-        console.log(res);
-        this.dialog.open(InformationModalComponent, {
-          width: '250px',
-          data: {
-            title: 'Te enviamos un email de confirmación',
-            textButtonOk: 'Volver a enviar'
-          }
-        });
+      let dialogRef = this.dialog.open(InformationModalComponent, {
+        width: '600px',
+        data: {
+          icon: 'mail',
+          text: 'Puedes cerrar esta ventana al confirmar el email',
+          title: 'Te enviamos un email de confirmación',
+          textButtonOk: 'Volver a enviar',
+        }
+      });
+      const subs = dialogRef.componentInstance.response.subscribe(res => {
+        if (res) {
+          console.log('reenviar');
+        } else {
+          subs.unsubscribe();
+          dialogRef.close();
+        }
+      });
     });
   }
 }

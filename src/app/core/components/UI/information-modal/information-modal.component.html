@@ -1,7 +1,14 @@
-<h1 mat-dialog-title>{{ title }}</h1>
-<div mat-dialog-content>Would you like to delete cat.jpeg?</div>
-<div mat-dialog-actions>
-	<div class="mt-4">
-		<button class="main-button w-100 p-3" (click)="accept()">{{ textButtonOk }}</button>
+<div class="container">
+	<div *ngIf="data.icon" class="d-flex justify-content-center mt-4">
+		<mat-icon class="icon" [fontIcon]="data.icon"></mat-icon>
+	</div>
+	<div class="text-center mt-3">
+		<h2>{{ data.title }}</h2>
+		<span *ngIf="data.text">{{ data.text }}</span>
+	</div>
+	<div mat-dialog-actions class="mt-5">
+		<div>
+			<button class="main-button w-100 p-3" (click)="accept()">{{ data.textButtonOk }}</button>
+		</div>
 	</div>
 </div>

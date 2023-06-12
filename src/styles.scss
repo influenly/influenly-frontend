@@ -58,3 +58,13 @@ mat-icon {
 ::placeholder {
     color: #ccc;
 }
+
+//dialog styling
+.mat-mdc-dialog-container {
+    --mdc-dialog-container-shape: 16px !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+    padding: 1rem;
+}
+//dialog styling
