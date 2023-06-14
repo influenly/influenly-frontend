@@ -8,7 +8,8 @@
 	</div>
 	<div mat-dialog-actions class="mt-5">
 		<div>
-			<button class="main-button w-100 p-3" (click)="accept()">{{ data.textButtonOk }}</button>
+			<button *ngIf="data.textButtonOk" class="main-button w-100 p-3" (click)="accept()">{{ data.textButtonOk }}</button>
+			<button *ngIf="data.textButtonClose" class="main-button w-100 p-3" (click)="close()">{{ data.textButtonClose }}</button>
 		</div>
 	</div>
 </div>

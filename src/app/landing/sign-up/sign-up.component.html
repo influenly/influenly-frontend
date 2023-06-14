@@ -20,6 +20,9 @@
 					<mat-error *ngIf="email?.hasError('pattern')">
 						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.pattern_error' | translate }}
 					</mat-error>
+					<mat-error *ngIf="email?.hasError('already_exists')">
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.already_exists_error' | translate }}
+					</mat-error>
 				</mat-form-field>
 			</div>
 			<div>

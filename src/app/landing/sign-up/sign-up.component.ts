@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { InformationModalComponent } from 'src/app/core/components/UI/information-modal/information-modal.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,7 +26,8 @@ export class SignUpComponent {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private translate: TranslateService) { }
 
   submit() {
     if (!this.signUpForm.valid) {
@@ -38,24 +40,49 @@ export class SignUpComponent {
       country: this.country?.value,
       type: 'CREATOR'
     }
-    this.authService.signUp$(payload).subscribe(res => {
-      let dialogRef = this.dialog.open(InformationModalComponent, {
-        width: '600px',
-        data: {
-          icon: 'mail',
-          text: 'Puedes cerrar esta ventana al confirmar el email',
-          title: 'Te enviamos un email de confirmación',
-          textButtonOk: 'Volver a enviar',
-        }
-      });
-      const subs = dialogRef.componentInstance.response.subscribe(res => {
-        if (res) {
-          console.log('reenviar');
+    this.authService.signUp$(payload).subscribe({
+      next: (v) => {
+        let dialogRef = this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'mail',
+            text: this.translate.instant('landing.sign_up.modal_messages.confirm_email'),
+            title: this.translate.instant('landing.sign_up.modal_messages.confirm_email_desc'),
+            textButtonOk: this.translate.instant('landing.sign_up.modal_messages.confirm_email_btn'),
+          }
+        });
+        const subs = dialogRef.componentInstance.response.subscribe(res => {
+          if (res) {
+            console.log('reenviar');
+          } else {
+            subs.unsubscribe();
+            dialogRef.close();
+          }
+        });
+      },
+      error: (e) => {
+        if (e.error.message === 'EMAIL_ALREADY_EXISTS') {
+          this.email?.setErrors({already_exists: true});
         } else {
-          subs.unsubscribe();
-          dialogRef.close();
+          let dialogRef = this.dialog.open(InformationModalComponent, {
+            width: '600px',
+            data: {
+              icon: 'warning',
+              text: this.translate.instant('landing.sign_up.modal_messages.error_desc'),
+              title: this.translate.instant('landing.sign_up.modal_messages.error'),
+              textButtonClose: this.translate.instant('general.btn_back')
+            }
+          });
+          const subs = dialogRef.componentInstance.response.subscribe(res => {
+            if (res) {
+              console.log('reenviar');
+            } else {
+              subs.unsubscribe();
+              dialogRef.close();
+            }
+          });
         }
-      });
+      }
     });
   }
 }

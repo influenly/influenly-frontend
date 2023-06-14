@@ -1,5 +1,6 @@
 {
     "general":{
+        "btn_back":"Back",
         "country":{
             "AR":"Argentina",
             "CA":"Canada",
@@ -20,7 +21,8 @@
                 "label":"Email",
                 "placeholder":"Enter your email",
                 "required_error":"Email is required",
-                "pattern_error":"Must be a valid email"
+                "pattern_error":"Must be a valid email",
+                "already_exists_error":"Email already in use, log in or recover your password"
             },
             "password":{
                 "label":"Password",
@@ -32,6 +34,13 @@
                 "label":"Country",
                 "placeholder":"Enter your country",
                 "required_error":"Country is required"
+            },
+            "modal_messages":{
+                "confirm_email":"You can close this window by confirming the email",
+                "confirm_email_desc":"We send you a confirmation email",
+                "confirm_email_btn":"Resend",
+                "error":"Error registering user",
+                "error_desc":"Please try again later"
             },
             "btn_signup":"Signup",
             "text_1":"By continuing, you agree to our ",
