@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../services/auth.service';
 import { InformationModalComponent } from 'src/app/core/components/UI/information-modal/information-modal.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -27,7 +28,8 @@ export class SignUpComponent {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private dialog: MatDialog,
-              private translate: TranslateService) { }
+              private translate: TranslateService,
+              private router: Router) { }
 
   submit() {
     if (!this.signUpForm.valid) {
@@ -38,27 +40,28 @@ export class SignUpComponent {
       email: this.email?.value,
       password: this.password?.value,
       country: this.country?.value,
-      type: 'CREATOR'
+      type: window.location.href.split('/').pop()?.toUpperCase()
     }
     this.authService.signUp$(payload).subscribe({
       next: (v) => {
-        let dialogRef = this.dialog.open(InformationModalComponent, {
-          width: '600px',
-          data: {
-            icon: 'mail',
-            text: this.translate.instant('landing.sign_up.modal_messages.confirm_email'),
-            title: this.translate.instant('landing.sign_up.modal_messages.confirm_email_desc'),
-            textButtonOk: this.translate.instant('landing.sign_up.modal_messages.confirm_email_btn'),
-          }
-        });
-        const subs = dialogRef.componentInstance.response.subscribe(res => {
-          if (res) {
-            console.log('reenviar');
-          } else {
-            subs.unsubscribe();
-            dialogRef.close();
-          }
-        });
+        this.router.navigate(['landing/sign-in']);
+        // let dialogRef = this.dialog.open(InformationModalComponent, {
+        //   width: '600px',
+        //   data: {
+        //     icon: 'mail',
+        //     text: this.translate.instant('landing.sign_up.modal_messages.confirm_email'),
+        //     title: this.translate.instant('landing.sign_up.modal_messages.confirm_email_desc'),
+        //     textButtonOk: this.translate.instant('landing.sign_up.modal_messages.confirm_email_btn'),
+        //   }
+        // });
+        // const subs = dialogRef.componentInstance.response.subscribe(res => {
+        //   if (res) {
+        //     console.log('reenviar');
+        //   } else {
+        //     subs.unsubscribe();
+        //     dialogRef.close();
+        //   }
+        // });
       },
       error: (e) => {
         if (e.error.message === 'EMAIL_ALREADY_EXISTS') {

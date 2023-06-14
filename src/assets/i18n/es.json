@@ -14,7 +14,7 @@
         "paragraph_1":"Una plataforma donde creadores y anunciantes se encuentran.",
         "paragraph_2":"Consigue visivilidad ante miles de anunciantes. Encuentra al creador de contenido indicado utilizando nuestras analíticas avanzadas.",
         "btn_creator":"Soy creador ",
-        "btn_company":"Busco creadores",
+        "btn_advertiser":"Busco creadores",
         "sign_up":{
             "title":"Registrarse",
             "email":{
@@ -49,6 +49,15 @@
             "privacy_policies":"política de privacidad",
             "already_registered":"¿Ya tienes una cuenta? ",
             "login":"Inicia sesión"
+        },
+        "sign_in":{
+            "title":"Inicia sesión",
+            "modal_messages":{
+                "error":"Error al iniciar sesión",
+                "error_desc":"Vuelve a intentarlo más tarde"
+            },
+            "btn_signin":"Iniciar sesión",
+            "not_registered":"¿Todavía no tienes cuenta? "
         }
     }
 }

@@ -11,12 +11,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from './services/auth.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
   declarations: [
     LandingPageComponent,
-    SignUpComponent
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     CommonModule,

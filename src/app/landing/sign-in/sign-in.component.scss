@@ -1,0 +1,32 @@
+.container-box {
+    height: 100vh;
+    background: url('../../../assets/images/background-1.svg');
+    background-color: #f2f2f2;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    width: 540px;
+    border-radius: 2rem;
+    border: none;
+}
+
+h2 {
+    font-weight: bold;
+}
+
+.login-text {
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+}
+
+a:link {
+    color: black;
+    background-color: transparent;
+}

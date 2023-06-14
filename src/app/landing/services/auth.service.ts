@@ -13,4 +13,10 @@ export class AuthService {
             endPoint: '/auth/sign-up'
         });
     }
+
+    public signIn$(payload: any): Observable<HttpResponse<any>>{
+        return this.restApiClient.post<any>(payload, {
+            endPoint: '/auth/sign-in'
+        });
+    }
 }

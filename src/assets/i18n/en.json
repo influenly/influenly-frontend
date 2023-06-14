@@ -14,7 +14,7 @@
         "paragraph_1":"A platform where creators and advertisers meet.",
         "paragraph_2":"Gain visibility to thousands of advertisers. Find the right content creator using our advanced analytics.",
         "btn_creator":"I am a creator",
-        "btn_company":"I'm looking for creators",
+        "btn_advertiser":"I'm looking for creators",
         "sign_up":{
             "title":"Sign Up",
             "email":{
@@ -49,6 +49,15 @@
             "privacy_policies":"privacy policy",
             "already_registered":"Already have an account? ",
             "login":"Login"
+        },
+        "sign_in":{
+            "title":"Login",
+            "modal_messages":{
+                "error":"Login failed",
+                "error_desc":"Please try again later"
+            },
+            "btn_signin":"Sign in",
+            "not_registered":"Don't have an account yet? "
         }
     }
 }
