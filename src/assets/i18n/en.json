@@ -22,13 +22,15 @@
                 "placeholder":"Enter your email",
                 "required_error":"Email is required",
                 "pattern_error":"Must be a valid email",
-                "already_exists_error":"Email already in use, log in or recover your password"
+                "already_exists_error":"Email already in use, log in or recover your password",
+                "invalid_error":"Invalid email"
             },
             "password":{
                 "label":"Password",
                 "placeholder":"Enter your password",
                 "required_error":"Password is required",
-                "minlength_error":"Password must have at least 8 characters"
+                "minlength_error":"Password must have at least 8 characters",
+                "invalid_error":"Invalid password"
             },
             "country":{
                 "label":"Country",

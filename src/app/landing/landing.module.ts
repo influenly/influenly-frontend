@@ -12,6 +12,7 @@ import { AuthService } from './services/auth.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { LocalStorageService } from '../core/services/storages/local-storage.service';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
-    AuthService
+    AuthService,
+    LocalStorageService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

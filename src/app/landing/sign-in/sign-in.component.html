@@ -20,6 +20,9 @@
 					<mat-error *ngIf="email?.hasError('pattern')">
 						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.pattern_error' | translate }}
 					</mat-error>
+					<mat-error *ngIf="email?.hasError('invalid')">
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.invalid_error' | translate }}
+					</mat-error>
 				</mat-form-field>
 			</div>
 			<div>
@@ -34,6 +37,12 @@
 					/>
 					<mat-error *ngIf="password?.hasError('required')">
 						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.required_error' | translate }}
+					</mat-error>
+					<mat-error *ngIf="password?.hasError('minlength')">
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.minlength_error' | translate }}
+					</mat-error>
+					<mat-error *ngIf="password?.hasError('invalid')">
+						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.invalid_error' | translate }}
 					</mat-error>
 				</mat-form-field>
 			</div>

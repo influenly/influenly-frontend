@@ -22,13 +22,15 @@
                 "placeholder":"Ingresa tu email",
                 "required_error":"Email es requerido",
                 "pattern_error":"Debe ser un email válido",
-                "already_exists_error":"Email ya en uso, inicia sesión o recupera tu contraseña"
+                "already_exists_error":"Email ya en uso, inicia sesión o recupera tu contraseña",
+                "invalid_error":"Email incorrecto"
             },
             "password":{
                 "label":"Contraseña",
                 "placeholder":"Ingresa tu contraseña",
                 "required_error":"Contraseña es requerida",
-                "minlength_error":"La contraseña debe tener al menos 8 carácteres"
+                "minlength_error":"La contraseña debe tener al menos 8 carácteres",
+                "invalid_error":"Contraseña incorrecta"
             },
             "country":{
                 "label":"País",
