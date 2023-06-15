@@ -1,9 +1,4 @@
 import { Injectable } from '@angular/core';
-
-export const LOCAL_STORAGE_KEYS = {
-    token: 'token'
-}
-
 @Injectable()
 export class LocalStorageService {
 

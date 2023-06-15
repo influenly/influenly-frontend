@@ -1,4 +1,3 @@
-import { LOCAL_STORAGE_KEYS, LocalStorageService } from '../../shared/services/storages/local-storage.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
@@ -6,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
+import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -27,7 +27,7 @@ export class SignInComponent {
               private dialog: MatDialog,
               private translate: TranslateService,
               private router: Router,
-              private localStorage: LocalStorageService) { }
+              private sessionStorage: SessionStorageService) { }
 
   submit() {
     if (!this.signInForm.valid) {
@@ -40,7 +40,7 @@ export class SignInComponent {
     }
     this.authService.signIn$(payload).subscribe({
       next: (v) => {
-        this.localStorage.set(LOCAL_STORAGE_KEYS.token, v.body.token);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.token, v.body.token);
         this.router.navigate(['home']);
       },
       error: (e) => {

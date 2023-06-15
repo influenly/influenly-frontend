@@ -8,6 +8,12 @@
             "PE":"Perú"
         }
     },
+    "core":{
+        "user_options":{
+            "account_info":"Mi perfil",
+            "logout":"Cerrar sesión"
+        }
+    },
     "landing":{
         "title_1":"Contenido",
         "title_2":" para cada audiencia",

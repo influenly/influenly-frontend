@@ -8,6 +8,12 @@
             "PE":"Peru"
         }
     },
+    "core":{
+        "user_options":{
+            "account_info":"Account info",
+            "logout":"Logout"
+        }
+    },
     "landing":{
         "title_1":"Content",
         "title_2":" for each audience",
