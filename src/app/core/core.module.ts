@@ -3,25 +3,17 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { CoreRoutingModule } from './core-routing.module';
-import { RestApiClient } from './services/rest-api/rest-api.client';
-import { HttpClientModule } from '@angular/common/http';
-import { InformationModalComponent } from './components/UI/information-modal/information-modal.component';
-import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    MainLayoutComponent,
-    InformationModalComponent
+    MainLayoutComponent
   ],
   imports: [
     CommonModule,
     CoreRoutingModule,
-    HttpClientModule,
-    MatIconModule
-  ],
-  providers: [
-    RestApiClient
+    SharedModule
   ]
 })
 export class CoreModule { }

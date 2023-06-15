@@ -12,7 +12,7 @@ import { AuthService } from './services/auth.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { LocalStorageService } from '../core/services/storages/local-storage.service';
+import { LocalStorageService } from '../shared/services/storages/local-storage.service';
 
 
 @NgModule({

@@ -1,12 +1,11 @@
-import { LOCAL_STORAGE_KEYS } from './../../core/services/storages/local-storage.service';
+import { LOCAL_STORAGE_KEYS, LocalStorageService } from '../../shared/services/storages/local-storage.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { InformationModalComponent } from 'src/app/core/components/UI/information-modal/information-modal.component';
-import { LocalStorageService } from 'src/app/core/services/storages/local-storage.service';
+import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 
 @Component({
   selector: 'app-sign-in',
