@@ -47,4 +47,5 @@ export class SessionStorageService extends StorageService {
 
 export const SESSION_STORAGE_KEYS = {
 	token: 'token',
+	user_type: 'user_type'
 };

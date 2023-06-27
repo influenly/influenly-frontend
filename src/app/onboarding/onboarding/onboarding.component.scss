@@ -1,0 +1,30 @@
+.onboarding-box {
+    position: relative;
+    height: 500px;
+    width: 80%;
+    margin-top: 2rem;
+    border-radius: 1rem;
+}
+
+.box-tag {
+    position: absolute;
+    left: 0;
+    transform: translate(0px, -35px);
+    height: 3.5rem;
+    width: 8rem;
+    display: flex;
+    // align-items: center;
+    padding-top: 0.5rem;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color);
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.card {
+    height: 500px;
+    border-radius: 1rem;
+    border: none;
+}

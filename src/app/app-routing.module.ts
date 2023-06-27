@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
   },
   {
+    path: 'onboarding',
+    loadChildren: () => import('./onboarding/onboarding.module').then(m => m.OnboardingModule)
+  },
+  {
     path: '**',
 		redirectTo: '404',
 		pathMatch: 'full'

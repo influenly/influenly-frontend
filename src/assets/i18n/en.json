@@ -1,6 +1,8 @@
 {
     "general":{
         "btn_back":"Back",
+        "creator":"Creator",
+        "advertiser":"Advertiser",
         "country":{
             "AR":"Argentina",
             "CA":"Canada",

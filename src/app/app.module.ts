@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SessionStorageService } from './shared/services/storages/session-storage.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -20,6 +22,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatMenuModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -28,7 +31,9 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [],
+  providers: [
+    SessionStorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

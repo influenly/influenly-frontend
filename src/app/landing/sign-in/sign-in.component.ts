@@ -41,7 +41,12 @@ export class SignInComponent {
     this.authService.signIn$(payload).subscribe({
       next: (v) => {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.token, v.body.token);
-        this.router.navigate(['home']);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, v.body.type);
+        if (!v.body.onboardingCompleted) {
+          this.router.navigate(['onboarding']);
+        } else {
+          this.router.navigate(['home']);
+        }
       },
       error: (e) => {
         if (e.error.message === 'INVALID_PASSWORD') {

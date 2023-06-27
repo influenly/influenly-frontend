@@ -25,6 +25,19 @@ mat-icon {
     vertical-align: middle;
 }
 
+//background image
+.container-box {
+    height: 100vh;
+    background: url('./assets/images/background-1.svg');
+    background-color: #f2f2f2;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .main-button {
     background-color: var(--secondary-color);
     border-radius: 0.5rem;
@@ -68,3 +81,7 @@ mat-icon {
     padding: 1rem;
 }
 //dialog styling
+
+.card {
+    box-shadow: 3px 2px 2px #f2f2f2;
+}
