@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'onboarding',
-    loadChildren: () => import('./onboarding/onboarding.module').then(m => m.OnboardingModule)
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
     path: '**',

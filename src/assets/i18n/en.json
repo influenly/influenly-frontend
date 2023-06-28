@@ -1,6 +1,7 @@
 {
     "general":{
         "btn_back":"Back",
+        "btn_return":"Return",
         "creator":"Creator",
         "advertiser":"Advertiser",
         "country":{

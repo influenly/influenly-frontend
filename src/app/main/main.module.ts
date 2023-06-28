@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { OnboardingRoutingModule } from './onboarding-routing.module';
-import { OnboardingComponent } from './onboarding/onboarding.component';
-import { StepsVisualizerComponent } from './onboarding/steps-visualizer/steps-visualizer.component';
+import { MainRoutingModule } from './main-routing.module';
+import { OnboardingComponent } from './pages/onboarding/onboarding.component';
+import { StepsVisualizerComponent } from './pages/onboarding/steps-visualizer/steps-visualizer.component';
 
 
 
@@ -16,9 +16,9 @@ import { StepsVisualizerComponent } from './onboarding/steps-visualizer/steps-vi
   ],
   imports: [
     CommonModule,
-    OnboardingRoutingModule,
+    MainRoutingModule,
     TranslateModule,
     MatIconModule
   ]
 })
-export class OnboardingModule { }
+export class MainModule { }

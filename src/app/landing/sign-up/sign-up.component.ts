@@ -73,7 +73,7 @@ export class SignUpComponent {
               icon: 'warning',
               text: this.translate.instant('landing.sign_up.modal_messages.error_desc'),
               title: this.translate.instant('landing.sign_up.modal_messages.error'),
-              textButtonClose: this.translate.instant('general.btn_back')
+              textButtonClose: this.translate.instant('general.btn_return')
             }
           });
           const subs = dialogRef.componentInstance.response.subscribe(res => {
