@@ -1,5 +1,6 @@
 {
     "general":{
+        "btn_continue":"Continue",
         "btn_back":"Back",
         "btn_return":"Return",
         "creator":"Creator",
@@ -73,9 +74,29 @@
     },
     "onboarding":{
         "steps":{
-            "personal_information":"Personal information",
-            "social_media":"Social medias",
+            "personal_information":"Personal Information",
+            "social_media":"Networks",
             "content":"Content"
+        },
+        "personal_information":{
+            "username":{
+                "label":"Username",
+                "placeholder":"Enter your username",
+                "required_error":"Username is required",
+                "pattern_error":"Must only contain letters and numbers",
+                "already_exists_error":"Username already in use"
+            },
+            "birthday":{
+                "label":"Date of birth",
+                "placeholder":"dd/mm/yyyy",
+                "required_error":"Date of birth is required"
+            },
+            "description":{
+                "label":"Description",
+                "desc":"Max. 300 characters",
+                "placeholder":"Tell us about yourself. What do you do and what are your goals.",
+                "required_error":"Description is required"
+            }
         }
     }
 }

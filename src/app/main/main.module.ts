@@ -6,19 +6,34 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MainRoutingModule } from './main-routing.module';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { StepsVisualizerComponent } from './pages/onboarding/steps-visualizer/steps-visualizer.component';
+import { PersonalInformationComponent } from './pages/onboarding/personal-information/personal-information.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
 @NgModule({
   declarations: [
     OnboardingComponent,
-    StepsVisualizerComponent
+    StepsVisualizerComponent,
+    PersonalInformationComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     TranslateModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  providers: [
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
   ]
 })
 export class MainModule { }

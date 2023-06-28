@@ -1,8 +1,11 @@
+.container-box {
+    align-items: baseline;
+}
+
 .onboarding-box {
     position: relative;
-    height: 500px;
     width: 80%;
-    margin-top: 2rem;
+    margin-top: 8rem;
     border-radius: 1rem;
 }
 
@@ -24,7 +27,6 @@
 }
 
 .card {
-    height: 500px;
     border-radius: 1rem;
     border: none;
 }
@@ -33,4 +35,11 @@
     height: 15px;
     width: 15px;
     font-size: 15px;
+}
+
+img {
+    width: 40%;
+    max-height: 540px;
+    transform: translate(0px, -40px);
+    margin-right: 3rem;
 }

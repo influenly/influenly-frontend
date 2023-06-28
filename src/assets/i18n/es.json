@@ -1,5 +1,6 @@
 {
     "general":{
+        "btn_continue":"Continuar",
         "btn_back":"Atrás",
         "btn_return":"Volver",
         "creator":"Creador",
@@ -76,6 +77,26 @@
             "personal_information":"Información personal",
             "social_media":"Redes",
             "content":"Contenido"
+        },
+        "personal_information":{
+            "username":{
+                "label":"Nombre de usuario",
+                "placeholder":"Ingresa tu nombre de usuario",
+                "required_error":"Nombre de usuario es requerido",
+                "pattern_error":"Solo debe contener letras y números",
+                "already_exists_error":"Nombre de usuario ya en uso"
+            },
+            "birthdate":{
+                "label":"Fecha de nacimiento",
+                "placeholder":"dd/mm/yyyy",
+                "required_error":"Fecha de nacimiento es requerida"
+            },
+            "description":{
+                "label":"Descripción",
+                "desc":"Máx. 300 caracteres",
+                "placeholder":"Cuéntanos sobre ti. Qué haces y cuáles son tus metas.",
+                "required_error":"Descripción es requerida"
+            }
         }
     }
 }

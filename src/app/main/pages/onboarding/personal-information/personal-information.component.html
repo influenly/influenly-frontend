@@ -1,0 +1,70 @@
+<div class="container">
+    <h3>Queremos saber más sobre ti...</h3>
+    <span class="paragraph">Necesitamos algunos datos tuyos para ayudarte a conseguir los anunciantes perfectos para tu contenido.</span>
+    
+    <form [formGroup]="personalInfoForm" class="w-75 mt-4">
+        <div>
+            <label class="d-block">{{ 'onboarding.personal_information.username.label' | translate }}</label>
+            <mat-form-field class="w-100">
+                <input
+                    matInput
+                    [type]="'text'"
+                    autocomplete="off"
+                    formControlName="username"
+                    [placeholder]="'onboarding.personal_information.username.placeholder' | translate"
+                />
+                <mat-icon matPrefix class="text-muted">person</mat-icon>
+                <mat-error *ngIf="username?.hasError('required')">
+                    <mat-icon>warning</mat-icon>{{ 'onboarding.personal_information.username.required_error' | translate }}
+                </mat-error>
+                <mat-error *ngIf="username?.hasError('pattern')">
+                    <mat-icon>warning</mat-icon>{{ 'onboarding.personal_information.username.pattern_error' | translate }}
+                </mat-error>
+                <mat-error *ngIf="username?.hasError('already_exists')">
+                    <mat-icon>warning</mat-icon>{{ 'onboarding.personal_information.username.already_exists_error' | translate }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <label class="d-block">{{ 'onboarding.personal_information.birthdate.label' | translate }}</label>
+            <mat-form-field class="w-100">
+                <input 
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="birthdate"
+                    [placeholder]="'onboarding.personal_information.birthdate.placeholder' | translate"
+                >
+                <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-icon matSuffix>calendar</mat-icon>
+                <mat-error *ngIf="birthdate?.hasError('required')">
+                    <mat-icon>warning</mat-icon>{{ 'onboarding.personal_information.birthdate.required_error' | translate }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <div class="d-flex justify-content-between">
+                <label class="d-block">{{ 'onboarding.personal_information.description.label' | translate }}</label>
+                <span class="paragraph">{{ 'onboarding.personal_information.description.desc' | translate }}</span>
+            </div>
+            <mat-form-field class="w-100">
+                <textarea
+                    matInput
+                    [type]="'text'"
+                    autocomplete="off"
+                    formControlName="description"
+                    [placeholder]="'onboarding.personal_information.description.placeholder' | translate"
+                    cdkTextareaAutosize
+                    cdkAutosizeMinRows="3"
+                ></textarea>
+                <mat-error *ngIf="description?.hasError('required')">
+                    <mat-icon>warning</mat-icon>{{ 'onboarding.personal_information.description.required_error' | translate }}
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="mt-4">
+            <button class="main-button w-100 p-3" (click)="submit()" [disabled]="personalInfoForm.invalid">{{ 'general.btn_continue' | translate }}</button>
+        </div>
+    </form>
+</div>
