@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class StepsVisualizerComponent {
 
+  firstStepCompleted: boolean = false;
+  secondStepCompleted: boolean = false;
+  thirdStepCompleted: boolean = false;
+
 }

@@ -69,5 +69,12 @@
             "btn_signin":"Sign in",
             "not_registered":"Don't have an account yet? "
         }
+    },
+    "onboarding":{
+        "steps":{
+            "personal_information":"Personal information",
+            "social_media":"Social medias",
+            "content":"Content"
+        }
     }
 }

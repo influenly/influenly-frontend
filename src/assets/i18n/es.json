@@ -69,5 +69,12 @@
             "btn_signin":"Iniciar sesión",
             "not_registered":"¿Todavía no tienes cuenta? "
         }
+    },
+    "onboarding":{
+        "steps":{
+            "personal_information":"Información personal",
+            "social_media":"Redes",
+            "content":"Contenido"
+        }
     }
 }

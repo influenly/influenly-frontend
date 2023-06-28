@@ -1,0 +1,17 @@
+.indicator {
+    width: 13rem;
+    height: 0.5rem;
+    border-radius: 3px;
+}
+
+.non-check {
+    background-color: #f2f2f2;
+}
+
+.check {
+    background-color: var(--primary-color);
+}
+
+span {
+    font-size: 12px;
+}

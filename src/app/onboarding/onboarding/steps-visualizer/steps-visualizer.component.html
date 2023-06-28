@@ -1,1 +1,14 @@
-<p>steps-visualizer works!</p>
+<div class="d-flex justify-content-between p-3">
+    <div class="p-2">
+        <span>{{ 'onboarding.steps.personal_information' | translate }}</span>
+        <div class="indicator" [ngClass]="{ 'non-check': !firstStepCompleted, 'check': firstStepCompleted }"></div>
+    </div>
+    <div class="p-2">
+        <span>{{ 'onboarding.steps.social_media' | translate }}</span>
+        <div class="indicator" [ngClass]="{ 'non-check': !secondStepCompleted, 'check': secondStepCompleted }"></div>
+    </div>
+    <div class="p-2">
+        <span>{{ 'onboarding.steps.content' | translate }}</span>
+        <div class="indicator" [ngClass]="{ 'non-check': !thirdStepCompleted, 'check': thirdStepCompleted }"></div>
+    </div>
+</div>
