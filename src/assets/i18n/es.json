@@ -1,5 +1,6 @@
 {
     "general":{
+        "btn_add":"Agregar",
         "btn_continue":"Continuar",
         "btn_back":"Atrás",
         "btn_return":"Volver",
@@ -79,6 +80,8 @@
             "content":"Contenido"
         },
         "personal_information":{
+            "title":"Queremos saber más sobre ti...",
+            "paragraph":"Necesitamos algunos datos tuyos para ayudarte a conseguir los anunciantes perfectos para tu contenido.",
             "username":{
                 "label":"Nombre de usuario",
                 "placeholder":"Ingresa tu nombre de usuario",
@@ -96,6 +99,14 @@
                 "desc":"Máx. 300 caracteres",
                 "placeholder":"Cuéntanos sobre ti. Qué haces y cuáles son tus metas.",
                 "required_error":"Descripción es requerida"
+            }
+        },
+        "networks":{
+            "title":"Dejanos conocer tus redes!",
+            "paragraph":"Amplía tu alcance como creador de contenido. Conecta tus redes a nuestra plataforma y descubre nuevas oportunidades para potenciar tu presencia en línea, conectar con audiencias más amplias y colaborar con otros anunciantes",
+            "url":{
+                "placeholder":"URL de tu canal",
+                "pattern_error":"URL inválida"
             }
         }
     }

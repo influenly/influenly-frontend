@@ -11,4 +11,16 @@ export class StepsVisualizerComponent {
   secondStepCompleted: boolean = false;
   thirdStepCompleted: boolean = false;
 
+  setFirstStepCompleted(check: boolean) {
+    this.firstStepCompleted = check;
+  }
+
+  setSecondStepCompleted(check: boolean) {
+    this.secondStepCompleted = check;
+  }
+
+  setThirdStepCompleted(check: boolean) {
+    this.thirdStepCompleted = check;
+  }
+
 }

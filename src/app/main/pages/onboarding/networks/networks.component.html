@@ -1,0 +1,60 @@
+<div class="container d-flex flex-column h-100">
+    <h3>{{ 'onboarding.networks.title' | translate }}</h3>
+    <span class="paragraph">{{ 'onboarding.networks.paragraph' | translate }}</span>
+    
+    <form [formGroup]="networksForm" class="w-100 mt-4">
+        <div class="d-flex flex-row justify-content-between">
+            <div class="select-icons mr-2">
+                <mat-form-field class="w-100">
+                    <mat-select formControlName="icon">
+                        <mat-select-trigger>
+                            <div>
+                                <i class="fa-brands fa-facebook"></i>
+                                <mat-icon>{{ icon?.value }}</mat-icon>
+                            </div>
+                        </mat-select-trigger>
+                        <div *ngFor="let icon of icons">
+                            <mat-option [value]="icon">
+                                <mat-icon>{{ icon }}</mat-icon>
+                            </mat-option>
+                        </div>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="select-url pr-2">
+                <mat-form-field class="w-100">
+                    <input
+                        matInput
+                        [type]="'text'"
+                        autocomplete="off"
+                        formControlName="url"
+                        [placeholder]="'onboarding.networks.url.placeholder' | translate"
+                        (input)="selectNetworkIcon($event)"
+                    />
+                    <mat-error *ngIf="url?.hasError('pattern')">
+                        <mat-icon>warning</mat-icon>{{ 'onboarding.networks.url.pattern_error' | translate }}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="">
+                <button class="main-button p-3" (click)="add()" [disabled]="url?.value == '' || url?.invalid">{{ '+' + ('general.btn_add' | translate) }}</button>
+            </div>
+        </div>
+    </form>
+
+    <div>
+        <mat-chip-listbox aria-label="Networks">
+            <mat-chip *ngFor="let network of networks">
+                <mat-icon>{{ network.icon }}</mat-icon>
+                {{ network.url }}
+                <button matChipRemove [attr.aria-label]="'Remove' + network.url" (click)="remove(network)">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+            </mat-chip>
+          </mat-chip-listbox>
+    </div>
+
+    <div class="mt-4">
+        <button class="main-button w-50 p-3" (click)="submit()" [disabled]="networks.length === 0">{{ 'general.btn_continue' | translate }}</button>
+    </div>
+</div>

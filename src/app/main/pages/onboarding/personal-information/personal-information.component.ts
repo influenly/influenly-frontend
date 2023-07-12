@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SLIDE } from '../onboarding.component';
 
 @Component({
   selector: 'app-personal-information',
@@ -7,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./personal-information.component.scss']
 })
 export class PersonalInformationComponent {
+
+  @Output() continue: EventEmitter<any> = new EventEmitter();
 
   personalInfoForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.pattern('^[a-z0-9]+$')]],
@@ -21,6 +24,12 @@ export class PersonalInformationComponent {
   constructor(private fb: FormBuilder) {}
 
   submit() {
-    
+    const personalInfoData = {
+      slide: SLIDE.PERSONAL_INFO,
+      username: this.username?.value,
+      birthdate: this.birthdate?.value,
+      description: this.description?.value
+    }
+    this.continue.emit(personalInfoData);
   }
 }

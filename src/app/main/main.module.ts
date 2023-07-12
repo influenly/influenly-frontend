@@ -12,14 +12,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
-
+import { NetworksComponent } from './pages/onboarding/networks/networks.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
     OnboardingComponent,
     StepsVisualizerComponent,
-    PersonalInformationComponent
+    PersonalInformationComponent,
+    NetworksComponent
   ],
   imports: [
     CommonModule,
@@ -29,8 +31,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}

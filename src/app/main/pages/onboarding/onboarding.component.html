@@ -12,9 +12,26 @@
                 <app-steps-visualizer />
             </div>
 
-            <div class="d-flex justify-content-between p-4">
-                <app-personal-information />
-                <img src="../../../../assets/images/onboarding-person-1.svg" />
+            <div [@personalInfoSlide]="personalInfoSlide" (@personalInfoSlide.start)="animationStarted($event)"
+            (@personalInfoSlide.done)="animationDone($event)">
+                <div *ngIf="slide === SLIDE.PERSONAL_INFO" class="d-flex justify-content-between p-4">
+                    <app-personal-information (continue)="submitEvent($event)" />
+                    <img src="../../../../assets/images/onboarding-person-1.svg" />
+                </div>
+            </div>
+            <div [@networksSlide]="networksSlide" (@networksSlide.start)="animationStarted($event)"
+            (@networksSlide.done)="animationDone($event)">
+                <div *ngIf="slide === SLIDE.NETWORKS" class="d-flex justify-content-between p-4">
+                    <app-networks (continue)="submitEvent($event)" />
+                    <img src="../../../../assets/images/onboarding-person-2.svg" />
+                </div>
+            </div>
+            <div [@contentSlide]="contentSlide" (@contentSlide.start)="animationStarted($event)"
+            (@contentSlide.done)="animationDone($event)">
+                <div *ngIf="slide === SLIDE.CONTENT" class="d-flex justify-content-between p-4">
+                    <app-networks (continue)="submitEvent($event)" />
+                    <img src="../../../../assets/images/onboarding-person-2.svg" />
+                </div>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 {
     "general":{
+        "btn_add":"Add",
         "btn_continue":"Continue",
         "btn_back":"Back",
         "btn_return":"Return",
@@ -79,6 +80,8 @@
             "content":"Content"
         },
         "personal_information":{
+            "title":"We want to know more about you...",
+            "paragraph":"We need some data from you to help you find the perfect advertisers for your content.",
             "username":{
                 "label":"Username",
                 "placeholder":"Enter your username",
@@ -96,6 +99,14 @@
                 "desc":"Max. 300 characters",
                 "placeholder":"Tell us about yourself. What do you do and what are your goals.",
                 "required_error":"Description is required"
+            }
+        },
+        "networks":{
+            "title":"Let us know your networks!",
+            "paragraph":"Extend your reach as a content creator. Connect your networks to our platform and discover new opportunities to boost your online presence, connect with broader audiences and collaborate with other advertisers",
+            "url":{
+                "placeholder":"URL of your channel",
+                "pattern_error":"Invalid URL"
             }
         }
     }
