@@ -3,10 +3,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 import { SessionStorageService, SESSION_STORAGE_KEYS } from 'src/app/shared/services/storages/session-storage.service';
-import { PersonalInformationComponent } from './personal-information/personal-information.component';
 import { StepsVisualizerComponent } from './steps-visualizer/steps-visualizer.component';
 
-export enum SLIDE { PERSONAL_INFO, NETWORKS, CONTENT };
+
+export enum SLIDE {
+  PERSONAL_INFO, NETWORKS, CONTENT, YOUTUBE_CONNECTION
+};
 @Component({
   selector: 'app-onboarding',
   templateUrl: './onboarding.component.html',
@@ -27,6 +29,11 @@ export enum SLIDE { PERSONAL_INFO, NETWORKS, CONTENT };
       state('in', style({ transform: 'translateX(0)' })),
       state('out', style({ transform: 'translateX(-100%)' })),
       transition('* => *', animate(300))
+    ]),
+    trigger('youtubeSlide', [
+      state('in', style({ transform: 'translateX(0)' })),
+      state('out', style({ transform: 'translateX(-100%)' })),
+      transition('* => *', animate(300))
     ])
   ]
 })
@@ -42,6 +49,7 @@ export class OnboardingComponent implements OnInit {
   personalInfoSlide: string = 'in';
   networksSlide: string = 'out';
   contentSlide: string = 'out';
+  youtubeSlide: string = 'out'
   animationDoneSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(private sessionStorage: SessionStorageService) { }
@@ -69,6 +77,27 @@ export class OnboardingComponent implements OnInit {
     }
   }
 
+  goBack() {
+    if (this.slide === SLIDE.NETWORKS) {
+      this.personalInfoSlide = 'in';
+      this.networksSlide = 'out';
+      this.slide = SLIDE.PERSONAL_INFO;
+      this.stepsVisualizer?.setFirstStepCompleted(false);
+    }
+    if (this.slide === SLIDE.CONTENT) {
+      this.networksSlide = 'in';
+      this.contentSlide = 'out';
+      this.slide = SLIDE.NETWORKS;
+      this.stepsVisualizer?.setSecondStepCompleted(false);
+    }
+    if (this.slide === SLIDE.YOUTUBE_CONNECTION) {
+      this.contentSlide = 'in';
+      this.youtubeSlide = 'out';
+      this.slide = SLIDE.CONTENT;
+      this.stepsVisualizer?.setThirdStepCompleted(false);
+    }
+  }
+
   submitEvent($event: any) {
     this.data = {...$event};
     if ($event.slide === SLIDE.PERSONAL_INFO) {
@@ -83,6 +112,11 @@ export class OnboardingComponent implements OnInit {
       this.slide = SLIDE.CONTENT;
       this.stepsVisualizer?.setSecondStepCompleted(true);
     }
-
+    if ($event.slide === SLIDE.CONTENT) {
+      this.contentSlide = 'out';
+      this.youtubeSlide = 'in';
+      this.slide = SLIDE.YOUTUBE_CONNECTION;
+      this.stepsVisualizer?.setThirdStepCompleted(true);
+    }
   }
 }

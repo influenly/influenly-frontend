@@ -108,6 +108,32 @@
                 "placeholder":"URL of your channel",
                 "pattern_error":"Invalid URL"
             }
+        },
+        "content":{
+            "title":"Tell us what type of content you generate",
+            "paragraph":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
+            "tags":{
+                "label":"Tags",
+                "desc":"Choose at least 1",
+                "required_error":"You must select at least one tag"
+            },
+            "tag_list":{
+                "gaming":"Gaming",
+                "music":"Music",
+                "education":"Education",
+                "comedy":"Humour",
+                "sports":"Sports",
+                "cooking":"Cooking",
+                "art":"Art",
+                "news":"News",
+                "trips":"Trips",
+                "finances":"Finances",
+                "culture":"Culture",
+                "business":"Business",
+                "tech":"Technology",
+                "creative":"Creatives",
+                "others":"Others"
+            }
         }
     }
 }

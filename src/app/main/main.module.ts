@@ -15,13 +15,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { NetworksComponent } from './pages/onboarding/networks/networks.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
+import { ContentComponent } from './pages/onboarding/content/content.component';
 
 @NgModule({
   declarations: [
     OnboardingComponent,
     StepsVisualizerComponent,
     PersonalInformationComponent,
-    NetworksComponent
+    NetworksComponent,
+    ContentComponent
   ],
   imports: [
     CommonModule,

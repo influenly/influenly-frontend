@@ -108,6 +108,32 @@
                 "placeholder":"URL de tu canal",
                 "pattern_error":"URL inválida"
             }
+        },
+        "content":{
+            "title":"Cuéntanos qué tipo de contenido generas",
+            "paragraph":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
+            "tags":{
+                "label":"Tags",
+                "desc":"Elige mínimo 1",
+                "required_error":"Debes seleccionar al menos un tag"
+            },
+            "tag_list":{
+                "gaming":"Gaming",
+                "music":"Música",
+                "education":"Educación",
+                "comedy":"Humor",
+                "sports":"Deportes",
+                "cooking":"Cocina",
+                "art":"Arte",
+                "news":"Noticias",
+                "trips":"Viajes",
+                "finances":"Finanzas",
+                "culture":"Cultura",
+                "business":"Negocios",
+                "tech":"Tecnología",
+                "creative":"Creativos",
+                "others":"Otros"
+            }
         }
     }
 }

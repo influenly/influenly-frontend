@@ -5,9 +5,11 @@
         </div>
         <div class="card">
             <div class="d-flex justify-content-between">
-                <div class="d-flex align-items-center p-4">
-                    <mat-icon class="icon">arrow_back_ios</mat-icon>
-                    <span>{{ 'general.btn_back' | translate }}</span>
+                <div class="back-btn">
+                    <div class="d-flex align-items-center p-4" *ngIf="slide != SLIDE.PERSONAL_INFO" (click)="goBack()">
+                        <mat-icon class="icon">arrow_back_ios</mat-icon>
+                        <span>{{ 'general.btn_back' | translate }}</span>
+                    </div>
                 </div>
                 <app-steps-visualizer />
             </div>
@@ -29,7 +31,7 @@
             <div [@contentSlide]="contentSlide" (@contentSlide.start)="animationStarted($event)"
             (@contentSlide.done)="animationDone($event)">
                 <div *ngIf="slide === SLIDE.CONTENT" class="d-flex justify-content-between p-4">
-                    <app-networks (continue)="submitEvent($event)" />
+                    <app-content (continue)="submitEvent($event)" />
                     <img src="../../../../assets/images/onboarding-person-2.svg" />
                 </div>
             </div>
