@@ -7,7 +7,7 @@ import { StepsVisualizerComponent } from './steps-visualizer/steps-visualizer.co
 
 
 export enum SLIDE {
-  PERSONAL_INFO, NETWORKS, CONTENT, YOUTUBE_CONNECTION
+  PERSONAL_INFO, NETWORKS, CONTENT, YOUTUBE_INTEGRATION
 };
 @Component({
   selector: 'app-onboarding',
@@ -16,7 +16,7 @@ export enum SLIDE {
   animations: [
     trigger('personalInfoSlide', [
       state('in', style({ transform: 'translateX(0)' })),
-      state('out', style({ transform: 'translateX(100%)' })),
+      state('out', style({ transform: 'translateX(-100%)' })),
       transition('* => *', animate(300)),
       transition('void => *', animate(0))
     ]),
@@ -43,13 +43,13 @@ export class OnboardingComponent implements OnInit {
 
   userType: string|undefined;
   data: any = {};
-  slide: SLIDE = SLIDE.PERSONAL_INFO;
+  slide: SLIDE = SLIDE.YOUTUBE_INTEGRATION;
   SLIDE = SLIDE;
 
-  personalInfoSlide: string = 'in';
+  personalInfoSlide: string = 'out';
   networksSlide: string = 'out';
   contentSlide: string = 'out';
-  youtubeSlide: string = 'out'
+  youtubeSlide: string = 'in'
   animationDoneSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(private sessionStorage: SessionStorageService) { }
@@ -90,7 +90,7 @@ export class OnboardingComponent implements OnInit {
       this.slide = SLIDE.NETWORKS;
       this.stepsVisualizer?.setSecondStepCompleted(false);
     }
-    if (this.slide === SLIDE.YOUTUBE_CONNECTION) {
+    if (this.slide === SLIDE.YOUTUBE_INTEGRATION) {
       this.contentSlide = 'in';
       this.youtubeSlide = 'out';
       this.slide = SLIDE.CONTENT;
@@ -115,7 +115,7 @@ export class OnboardingComponent implements OnInit {
     if ($event.slide === SLIDE.CONTENT) {
       this.contentSlide = 'out';
       this.youtubeSlide = 'in';
-      this.slide = SLIDE.YOUTUBE_CONNECTION;
+      this.slide = SLIDE.YOUTUBE_INTEGRATION;
       this.stepsVisualizer?.setThirdStepCompleted(true);
     }
   }

@@ -35,6 +35,13 @@
                     <img src="../../../../assets/images/onboarding-person-2.svg" />
                 </div>
             </div>
+            <div [@youtubeSlide]="youtubeSlide" (@youtubeSlide.start)="animationStarted($event)"
+            (@youtubeSlide.done)="animationDone($event)">
+                <div *ngIf="slide === SLIDE.YOUTUBE_INTEGRATION" class="d-flex justify-content-between p-4">
+                    <app-youtube-integration (continue)="submitEvent($event)" />
+                    <img src="../../../../assets/images/onboarding-person-2.svg" />
+                </div>
+            </div>
         </div>
     </div>
 </div>

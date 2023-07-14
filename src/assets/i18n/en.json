@@ -89,7 +89,7 @@
                 "pattern_error":"Must only contain letters and numbers",
                 "already_exists_error":"Username already in use"
             },
-            "birthday":{
+            "birthdate":{
                 "label":"Date of birth",
                 "placeholder":"dd/mm/yyyy",
                 "required_error":"Date of birth is required"
@@ -134,6 +134,11 @@
                 "creative":"Creatives",
                 "others":"Others"
             }
+        },
+        "youtube_integration":{
+            "title":"You are just one step away from joining Content...",
+            "paragraph":"To finish with the creation of your account, we need you to integrate at least one of the platforms where you upload your content. In this way, we will be able to access the necessary information to generate the analytics that brands want to know about you. ",
+            "button_connect":"Connect with YouTube"
         }
     }
 }

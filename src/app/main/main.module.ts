@@ -16,6 +16,7 @@ import { NetworksComponent } from './pages/onboarding/networks/networks.componen
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { ContentComponent } from './pages/onboarding/content/content.component';
+import { YoutubeIntegrationComponent } from './pages/onboarding/youtube-integration/youtube-integration.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ContentComponent } from './pages/onboarding/content/content.component';
     StepsVisualizerComponent,
     PersonalInformationComponent,
     NetworksComponent,
-    ContentComponent
+    ContentComponent,
+    YoutubeIntegrationComponent
   ],
   imports: [
     CommonModule,
