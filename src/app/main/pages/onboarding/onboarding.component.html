@@ -37,9 +37,9 @@
             </div>
             <div [@youtubeSlide]="youtubeSlide" (@youtubeSlide.start)="animationStarted($event)"
             (@youtubeSlide.done)="animationDone($event)">
-                <div *ngIf="slide === SLIDE.YOUTUBE_INTEGRATION" class="d-flex justify-content-between p-4">
+                <div *ngIf="slide === SLIDE.YOUTUBE_INTEGRATION" class="d-flex p-4" [ngClass]="{'justify-content-between': !integrationLoading, 'justify-content-center': integrationLoading}">
                     <app-youtube-integration (continue)="submitEvent($event)" />
-                    <img src="../../../../assets/images/onboarding-person-2.svg" />
+                    <img *ngIf="!integrationLoading" src="../../../../assets/images/onboarding-person-2.svg" />
                 </div>
             </div>
         </div>

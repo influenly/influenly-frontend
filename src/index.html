@@ -12,6 +12,25 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,400;0,600;1,100;1,400;1,600&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"/>
+
+  <script src="https://accounts.google.com/gsi/client" onload="console.log('TODO: add onload function')"></script>
+
+  <script>
+    var client;
+
+    function initTokenClient(callback) {
+      client = google.accounts.oauth2.initCodeClient({
+        client_id: '988507716791-ev1t2cfe2o1agb2upqa99i21f4a4afak.apps.googleusercontent.com',
+        scope: 'https://www.googleapis.com/auth/yt-analytics.readonly',
+        ux_mode: 'popup',
+        callback: callback
+      });
+    }
+
+    function getToken() {
+      return client.requestCode();
+    }
+  </script>
 </head>
 <body>
   <app-root></app-root>

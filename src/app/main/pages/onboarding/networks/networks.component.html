@@ -3,19 +3,20 @@
     <span class="paragraph">{{ 'onboarding.networks.paragraph' | translate }}</span>
     
     <form [formGroup]="networksForm" class="w-100 mt-4">
-        <div class="d-flex flex-row justify-content-between">
+        <div class="d-flex flex-row justify-content-between row-box">
             <div class="select-icons mr-2">
                 <mat-form-field class="w-100">
                     <mat-select formControlName="icon">
                         <mat-select-trigger>
-                            <div>
-                                <i class="fa-brands fa-facebook"></i>
-                                <mat-icon>{{ icon?.value }}</mat-icon>
+                            <div class="d-flex">
+                                <app-svg-icon [path]="'assets/icons/' + icon?.value + '.svg'"></app-svg-icon>
                             </div>
                         </mat-select-trigger>
                         <div *ngFor="let icon of icons">
                             <mat-option [value]="icon">
-                                <mat-icon>{{ icon }}</mat-icon>
+                                <div  class="d-flex">
+                                    <app-svg-icon [path]="'assets/icons/' + icon + '.svg'"></app-svg-icon>
+                                </div>
                             </mat-option>
                         </div>
                     </mat-select>
@@ -45,8 +46,10 @@
     <div>
         <mat-chip-listbox aria-label="Networks">
             <mat-chip *ngFor="let network of networks">
-                <mat-icon>{{ network.icon }}</mat-icon>
-                {{ network.url }}
+                <div  class="d-flex justify-content-between align-items-center">
+                    <app-svg-icon [path]="'assets/icons/' + network.icon + '.svg'"></app-svg-icon>
+                    <span class="align-middle">{{ network.url }}</span>
+                </div>
                 <button matChipRemove [attr.aria-label]="'Remove' + network.url" (click)="remove(network)">
                     <mat-icon>cancel</mat-icon>
                 </button>

@@ -5,12 +5,14 @@ import { InformationModalComponent } from './components/UI/information-modal/inf
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { SessionStorageService } from './services/storages/session-storage.service';
+import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 
 
 
 @NgModule({
   declarations: [
-    InformationModalComponent
+    InformationModalComponent,
+    SvgIconComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +23,9 @@ import { SessionStorageService } from './services/storages/session-storage.servi
     RestApiClient,
     SessionStorageService
   ],
-  exports: [InformationModalComponent]
+  exports: [
+    InformationModalComponent,
+    SvgIconComponent
+  ]
 })
 export class SharedModule { }

@@ -11,12 +11,12 @@ export class NetworksComponent {
 
   @Output() continue: EventEmitter<any> = new EventEmitter();
 
-  icons: string[] = ['smart_display', 'photo_camera'];
+  icons: string[] = ['youtube', 'instagram', 'twitter'];
   networks: any = [];
 
   networksForm: FormGroup = this.fb.group({
-    icon: ['smart_display'],
-    url: ['', Validators.pattern('^(?:https?:\/\/)?(www\.)?(instagram|youtube)\.com\/(channel\/)?@?(?<person>[A-z0-9_-]+\/?)$')]
+    icon: ['youtube'],
+    url: ['', Validators.pattern('^(?:https?:\/\/)?(www\.)?(instagram|youtube|twitter)\.com\/(channel\/)?@?(?<person>[A-z0-9_-]+\/?)$')]
   });
 
   get icon() { return this.networksForm.get('icon'); }
@@ -43,17 +43,20 @@ export class NetworksComponent {
 
   selectNetworkIcon(event: Event) {
     if ((event.target as HTMLInputElement).value.includes('youtube')) {
-      this.icon?.setValue('smart_display');
+      this.icon?.setValue('youtube');
     }
     if ((event.target as HTMLInputElement).value.includes('instagram')) {
-      this.icon?.setValue('photo_camera');
+      this.icon?.setValue('instagram');
+    }
+    if ((event.target as HTMLInputElement).value.includes('twitter')) {
+      this.icon?.setValue('twitter');
     }
   }
   
   submit() {
     const networksData = {
       slide: SLIDE.NETWORKS,
-      networks: this.networks?.value
+      networks: this.networks
     }
     this.continue.emit(networksData);
   }

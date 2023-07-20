@@ -1,8 +1,16 @@
-<div class="container d-flex flex-column h-100">
+<div *ngIf="!loading"class="container d-flex flex-column h-100">
     <h3>{{ 'onboarding.youtube_integration.title' | translate }}</h3>
     <span class="paragraph">{{ 'onboarding.youtube_integration.paragraph' | translate }}</span>
     
     <div class="mt-4">
-        <button class="main-button p-3" (click)="submit()">{{ 'onboarding.youtube_integration.button_connect' | translate }}</button>
+        <button class="main-button p-3" (click)="submit()">
+            <app-svg-icon [path]="'assets/icons/youtube_add.svg'"></app-svg-icon>
+            {{ 'onboarding.youtube_integration.button_connect' | translate }}
+        </button>
     </div>
+</div>
+
+<div *ngIf="loading" class="d-grid justify-content-center w-100">
+    <h3 class="my-5">{{ 'onboarding.youtube_integration.loading_text' | translate }}</h3>
+    <img src="../../../../../assets/images/onboarding-loading-image.svg" />
 </div>

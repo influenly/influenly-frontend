@@ -4,6 +4,9 @@ import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 import { SessionStorageService, SESSION_STORAGE_KEYS } from 'src/app/shared/services/storages/session-storage.service';
 import { StepsVisualizerComponent } from './steps-visualizer/steps-visualizer.component';
+import { OnboardingService } from './services/onboarding.service';
+import { OnboardingModel } from './models/onboarding.model';
+import { Router } from '@angular/router';
 
 
 export enum SLIDE {
@@ -43,16 +46,19 @@ export class OnboardingComponent implements OnInit {
 
   userType: string|undefined;
   data: any = {};
-  slide: SLIDE = SLIDE.YOUTUBE_INTEGRATION;
+  slide: SLIDE = SLIDE.PERSONAL_INFO;
   SLIDE = SLIDE;
 
-  personalInfoSlide: string = 'out';
+  personalInfoSlide: string = 'in';
   networksSlide: string = 'out';
   contentSlide: string = 'out';
-  youtubeSlide: string = 'in'
+  youtubeSlide: string = 'out'
+  integrationLoading: boolean = false;
   animationDoneSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private sessionStorage: SessionStorageService) { }
+  constructor(private sessionStorage: SessionStorageService,
+              private onboardingService: OnboardingService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getUserType();
@@ -99,24 +105,57 @@ export class OnboardingComponent implements OnInit {
   }
 
   submitEvent($event: any) {
-    this.data = {...$event};
     if ($event.slide === SLIDE.PERSONAL_INFO) {
+      this.data = {...$event};
       this.personalInfoSlide = 'out';
       this.networksSlide = 'in';
       this.slide = SLIDE.NETWORKS;
       this.stepsVisualizer?.setFirstStepCompleted(true);
     }
     if ($event.slide === SLIDE.NETWORKS) {
+      this.data = {...$event, ...this.data};
       this.networksSlide = 'out';
       this.contentSlide = 'in';
       this.slide = SLIDE.CONTENT;
       this.stepsVisualizer?.setSecondStepCompleted(true);
     }
     if ($event.slide === SLIDE.CONTENT) {
+      this.data = {...$event, ...this.data};
       this.contentSlide = 'out';
       this.youtubeSlide = 'in';
       this.slide = SLIDE.YOUTUBE_INTEGRATION;
       this.stepsVisualizer?.setThirdStepCompleted(true);
     }
+    if ($event.slide === SLIDE.YOUTUBE_INTEGRATION) {
+      if ($event.state === 'loading') {
+        this.integrationLoading = true;
+      }
+      if ($event.state === 'completed') {
+        const payload: OnboardingModel = {
+          birthDate: this.data.birthdate.toISOString().substring(0, 10),
+          description: this.data.description,
+          userName: this.data.username,
+          contentType: this.data.tags,
+          socialNetworks: this.generateSocialNetworkObject(this.data.networks)
+        }
+        this.onboardingService.completeOnboarding$(payload).subscribe({
+          next: (v) => {
+            this.router.navigate(['/profile']);
+            alert('profile component no creado');
+          },
+          error: (e) => {
+            //TODO: falla el save de los datos. Implementar lógica de reintento
+          }
+        });
+      }
+    }
+  }
+
+  private generateSocialNetworkObject(networks: any) {
+    let object: any = {};
+    networks.forEach((network: any) => {
+      object[network.icon + 'Url'] = network.url;
+    });
+    return object;
   }
 }

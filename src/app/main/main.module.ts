@@ -17,6 +17,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { ContentComponent } from './pages/onboarding/content/content.component';
 import { YoutubeIntegrationComponent } from './pages/onboarding/youtube-integration/youtube-integration.component';
+import { SharedModule } from '../shared/shared.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from '../shared/services/rest-api/http-auth-interceptor';
+import { OnboardingService } from './pages/onboarding/services/onboarding.service';
 
 @NgModule({
   declarations: [
@@ -38,10 +42,13 @@ import { YoutubeIntegrationComponent } from './pages/onboarding/youtube-integrat
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatChipsModule
+    MatChipsModule,
+    SharedModule
   ],
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    OnboardingService
   ]
 })
 export class MainModule { }
