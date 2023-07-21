@@ -80,10 +80,13 @@
             "content":"Contenido"
         },
         "personal_information":{
-            "title":"Queremos saber más sobre ti...",
-            "paragraph":"Necesitamos algunos datos tuyos para ayudarte a conseguir los anunciantes perfectos para tu contenido.",
+            "title_creator":"Queremos saber más sobre ti...",
+            "title_advertiser":"Queremos saber más sobre tu marca...",
+            "paragraph_creator":"Necesitamos algunos datos tuyos para ayudarte a conseguir los anunciantes perfectos para tu contenido.",
+            "paragraph_advertiser":"Necesitamos algunos datos para poder ayudarte a conseguir los creadores de contenido que estás buscando.",
             "username":{
-                "label":"Nombre de usuario",
+                "label_creator":"Nombre de usuario",
+                "label_advertiser":"Nombre de la marca",
                 "placeholder":"Ingresa tu nombre de usuario",
                 "required_error":"Nombre de usuario es requerido",
                 "pattern_error":"Solo debe contener letras y números",
@@ -97,7 +100,8 @@
             "description":{
                 "label":"Descripción",
                 "desc":"Máx. 300 caracteres",
-                "placeholder":"Cuéntanos sobre ti. Qué haces y cuáles son tus metas.",
+                "placeholder_creator":"Cuéntanos sobre ti. Qué haces y cuáles son tus metas.",
+                "placeholder_advertiser":"Cuéntanos sobre tu marca.",
                 "required_error":"Descripción es requerida"
             }
         },

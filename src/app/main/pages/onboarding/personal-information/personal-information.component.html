@@ -1,10 +1,10 @@
 <div class="container">
-    <h3>{{ 'onboarding.personal_information.title' | translate }}</h3>
-    <span class="paragraph">{{ 'onboarding.personal_information.paragraph' | translate }}</span>
+    <h3>{{ textObject.title }}</h3>
+    <span class="paragraph">{{ textObject.paragraph }}</span>
     
     <form [formGroup]="personalInfoForm" class="w-75 mt-4">
         <div>
-            <label class="d-block">{{ 'onboarding.personal_information.username.label' | translate }}</label>
+            <label class="d-block">{{ textObject.username_label }}</label>
             <mat-form-field class="w-100">
                 <input
                     matInput
@@ -25,7 +25,7 @@
                 </mat-error>
             </mat-form-field>
         </div>
-        <div>
+        <div *ngIf="isCreator">
             <label class="d-block">{{ 'onboarding.personal_information.birthdate.label' | translate }}</label>
             <mat-form-field class="w-100">
                 <input 
@@ -53,7 +53,7 @@
                     [type]="'text'"
                     autocomplete="off"
                     formControlName="description"
-                    [placeholder]="'onboarding.personal_information.description.placeholder' | translate"
+                    [placeholder]="textObject.description_placeholder"
                     cdkTextareaAutosize
                     cdkAutosizeMinRows="3"
                 ></textarea>

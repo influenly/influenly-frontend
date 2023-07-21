@@ -1,7 +1,7 @@
 <div class="container-box">
     <div class="onboarding-box">
-        <div class="box-tag">
-            <span>{{ 'general.' + userType?.toLowerCase()| translate }}</span>
+        <div class="box-tag" [ngClass]="{'advertiser': !isCreator}">
+            <span>{{ 'general.' + userTypeString.toLowerCase()| translate }}</span>
         </div>
         <div class="card">
             <div class="d-flex justify-content-between">
@@ -17,7 +17,7 @@
             <div [@personalInfoSlide]="personalInfoSlide" (@personalInfoSlide.start)="animationStarted($event)"
             (@personalInfoSlide.done)="animationDone($event)">
                 <div *ngIf="slide === SLIDE.PERSONAL_INFO" class="d-flex justify-content-between p-4">
-                    <app-personal-information (continue)="submitEvent($event)" />
+                    <app-personal-information [userType]="userType" (continue)="submitEvent($event)" />
                     <img src="../../../../assets/images/onboarding-person-1.svg" />
                 </div>
             </div>

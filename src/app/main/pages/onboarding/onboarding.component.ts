@@ -7,6 +7,7 @@ import { StepsVisualizerComponent } from './steps-visualizer/steps-visualizer.co
 import { OnboardingService } from './services/onboarding.service';
 import { OnboardingModel } from './models/onboarding.model';
 import { Router } from '@angular/router';
+import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 
 
 export enum SLIDE {
@@ -44,7 +45,9 @@ export class OnboardingComponent implements OnInit {
 
   @ViewChild(StepsVisualizerComponent) stepsVisualizer: StepsVisualizerComponent | undefined = undefined;
 
-  userType: string|undefined;
+  userType: USER_TYPE|undefined;
+  userTypeString: string = '';
+  isCreator: boolean = true;
   data: any = {};
   slide: SLIDE = SLIDE.PERSONAL_INFO;
   SLIDE = SLIDE;
@@ -67,7 +70,9 @@ export class OnboardingComponent implements OnInit {
   private async getUserType() {
     const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
     if (userTypeObs) {
-      this.userType = await firstValueFrom(userTypeObs);
+      this.userTypeString = await firstValueFrom(userTypeObs);
+      this.userType = USER_TYPE[this.userTypeString as keyof typeof USER_TYPE];
+      if (this.userType === USER_TYPE.ADVERTISER) this.isCreator = false;
     }
   }
 

@@ -80,10 +80,13 @@
             "content":"Content"
         },
         "personal_information":{
-            "title":"We want to know more about you...",
-            "paragraph":"We need some data from you to help you find the perfect advertisers for your content.",
+            "title_creator":"We want to know more about you...",
+            "title_advertiser":"We want to know more about your brand...",
+            "paragraph_creator":"We need some data from you to help you find the perfect advertisers for your content.",
+            "paragraph_advertiser":"We need some data so we can help you get the content creators you're looking for.",
             "username":{
-                "label":"Username",
+                "label_creator":"Username",
+                "label_advertiser":"Brand",
                 "placeholder":"Enter your username",
                 "required_error":"Username is required",
                 "pattern_error":"Must only contain letters and numbers",
@@ -97,7 +100,8 @@
             "description":{
                 "label":"Description",
                 "desc":"Max. 300 characters",
-                "placeholder":"Tell us about yourself. What do you do and what are your goals.",
+                "placeholder_creator":"Tell us about yourself. What do you do and what are your goals.",
+                "placeholder_advertiser":"Tell us about your brand.",
                 "required_error":"Description is required"
             }
         },
