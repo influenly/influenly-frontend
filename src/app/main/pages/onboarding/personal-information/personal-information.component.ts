@@ -1,15 +1,16 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SLIDE } from '../onboarding.component';
 import { TranslateService } from '@ngx-translate/core';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-personal-information',
   templateUrl: './personal-information.component.html',
   styleUrls: ['./personal-information.component.scss']
 })
-export class PersonalInformationComponent implements OnChanges {
+export class PersonalInformationComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() userType: USER_TYPE|undefined;
   @Output() continue: EventEmitter<any> = new EventEmitter();
@@ -21,6 +22,8 @@ export class PersonalInformationComponent implements OnChanges {
     description_placeholder: ''
   }
   isCreator: boolean = false;
+
+  formStatusChangeSubs: Subscription|undefined;
 
   personalInfoForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.pattern('^[a-z0-9]+$')]],
@@ -34,6 +37,16 @@ export class PersonalInformationComponent implements OnChanges {
 
   constructor(private fb: FormBuilder,
               private translate: TranslateService) {}
+
+  ngOnInit() {
+    this.formStatusChangeSubs = this.personalInfoForm.statusChanges.subscribe(status => {
+      if (status === 'VALID') {
+        this.continue.emit({ isStepCompleteOnly: true, slide: SLIDE.PERSONAL_INFO, valid: true});
+      } else {
+        this.continue.emit({ isStepCompleteOnly: true, slide: SLIDE.PERSONAL_INFO, valid: false });
+      }
+    });
+  }
 
   ngOnChanges() {
     this.loadTextByUserType();
@@ -63,5 +76,9 @@ export class PersonalInformationComponent implements OnChanges {
       description: this.description?.value
     }
     this.continue.emit(personalInfoData);
+  }
+
+  ngOnDestroy() {
+    if (this.formStatusChangeSubs) this.formStatusChangeSubs.unsubscribe();
   }
 }

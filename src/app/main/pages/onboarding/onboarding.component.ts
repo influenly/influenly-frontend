@@ -110,6 +110,10 @@ export class OnboardingComponent implements OnInit {
   }
 
   submitEvent($event: any) {
+    if ($event.isStepCompleteOnly) {
+      this.completeStepVisualizer($event);
+      return;
+    }
     if ($event.slide === SLIDE.PERSONAL_INFO) {
       this.data = {...$event};
       this.personalInfoSlide = 'out';
@@ -126,18 +130,13 @@ export class OnboardingComponent implements OnInit {
     }
     if ($event.slide === SLIDE.CONTENT) {
       this.data = {...$event, ...this.data};
-      this.contentSlide = 'out';
-      this.youtubeSlide = 'in';
-      this.slide = SLIDE.YOUTUBE_INTEGRATION;
-      this.stepsVisualizer?.setThirdStepCompleted(true);
-    }
-    if ($event.slide === SLIDE.YOUTUBE_INTEGRATION) {
-      if ($event.state === 'loading') {
-        this.integrationLoading = true;
-      }
-      if ($event.state === 'completed') {
+      if (this.userType === USER_TYPE.CREATOR) {
+        this.contentSlide = 'out';
+        this.youtubeSlide = 'in';
+        this.slide = SLIDE.YOUTUBE_INTEGRATION;
+        this.stepsVisualizer?.setThirdStepCompleted(true);
+      } else {
         const payload: OnboardingModel = {
-          birthDate: this.data.birthdate.toISOString().substring(0, 10),
           description: this.data.description,
           userName: this.data.username,
           contentType: this.data.tags,
@@ -153,6 +152,41 @@ export class OnboardingComponent implements OnInit {
           }
         });
       }
+    }
+    if ($event.slide === SLIDE.YOUTUBE_INTEGRATION) {
+      if ($event.state === 'loading') {
+        this.integrationLoading = true;
+      }
+      if ($event.state === 'completed') {
+        const payload: OnboardingModel = {
+          birthDate: this.data.birthdate?.toISOString().substring(0, 10),
+          description: this.data.description,
+          userName: this.data.username,
+          contentType: this.data.tags,
+          socialNetworks: this.generateSocialNetworkObject(this.data.networks)
+        }
+        this.onboardingService.completeOnboarding$(payload).subscribe({
+          next: (v) => {
+            this.router.navigate(['/profile']);
+            alert('profile component no creado');
+          },
+          error: (e) => {
+            //TODO: falla el save de los datos. Implementar lógica de reintento
+          }
+        });
+      }
+    }
+  }
+
+  private completeStepVisualizer($event: any) {
+    if ($event.slide === SLIDE.PERSONAL_INFO) {
+      this.stepsVisualizer?.setFirstStepCompleted($event.valid);
+    }
+    if ($event.slide === SLIDE.NETWORKS) {
+      this.stepsVisualizer?.setSecondStepCompleted($event.valid);
+    }
+    if ($event.slide === SLIDE.CONTENT) {
+      this.stepsVisualizer?.setThirdStepCompleted($event.valid);
     }
   }
 

@@ -1,18 +1,24 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SLIDE } from '../onboarding.component';
+import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-networks',
   templateUrl: './networks.component.html',
   styleUrls: ['./networks.component.scss']
 })
-export class NetworksComponent {
+export class NetworksComponent implements OnInit {
 
+  @Input() userType: USER_TYPE|undefined;
   @Output() continue: EventEmitter<any> = new EventEmitter();
 
   icons: string[] = ['youtube', 'instagram', 'twitter'];
   networks: any = [];
+  textObject = {
+    paragraph: ''
+  }
 
   networksForm: FormGroup = this.fb.group({
     icon: ['youtube'],
@@ -22,7 +28,20 @@ export class NetworksComponent {
   get icon() { return this.networksForm.get('icon'); }
   get url() { return this.networksForm.get('url'); }
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private translate: TranslateService) { }
+
+  ngOnInit() {
+    this.loadTextByUserType();
+  }
+
+  private loadTextByUserType() {
+    if (this.userType === USER_TYPE.CREATOR) {
+      this.textObject.paragraph = this.translate.instant('onboarding.networks.paragraph_creator');
+    } else {
+      this.textObject.paragraph = this.translate.instant('onboarding.networks.paragraph_advertiser');
+    }
+  }
 
   add() {
     const network = {
@@ -31,6 +50,7 @@ export class NetworksComponent {
     }
     this.networks.push(network);
     this.url?.setValue('');
+    this.continue.emit({ isStepCompleteOnly: true, slide: SLIDE.NETWORKS, valid: true});
   }
 
   remove(network: any) {
@@ -38,6 +58,10 @@ export class NetworksComponent {
     if (index > -1) {
       this.networks.splice(index, 1);
     }
+    if (this.networks.length === 0) {
+      this.continue.emit({ isStepCompleteOnly: true, slide: SLIDE.NETWORKS, valid: false});
+    }
+    
     return network;
   }
 

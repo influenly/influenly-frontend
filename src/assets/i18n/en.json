@@ -107,15 +107,18 @@
         },
         "networks":{
             "title":"Let us know your networks!",
-            "paragraph":"Extend your reach as a content creator. Connect your networks to our platform and discover new opportunities to boost your online presence, connect with broader audiences and collaborate with other advertisers",
+            "paragraph_creator":"Extend your reach as a content creator. Connect your networks to our platform and discover new opportunities to boost your online presence, connect with broader audiences and collaborate with other advertisers",
+            "paragraph_advertiser":"Expand your opportunities by connecting your networks with our platform. Boost your online presence by connecting and collaborating with content creators.",
             "url":{
                 "placeholder":"URL of your channel",
                 "pattern_error":"Invalid URL"
             }
         },
         "content":{
-            "title":"Tell us what type of content you generate",
-            "paragraph":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
+            "title_creator":"Tell us what type of content you generate",
+            "title_advertiser":"Tell us what type of content you are looking for",
+            "paragraph_creator":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
+            "paragraph_advertiser":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
             "tags":{
                 "label":"Tags",
                 "desc":"Choose at least 1",
