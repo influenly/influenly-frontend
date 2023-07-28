@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, firstValueFrom } from 'rxjs';
 
 import { SessionStorageService, SESSION_STORAGE_KEYS } from 'src/app/shared/services/storages/session-storage.service';
@@ -45,6 +45,16 @@ export class OnboardingComponent implements OnInit {
 
   @ViewChild(StepsVisualizerComponent) stepsVisualizer: StepsVisualizerComponent | undefined = undefined;
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState() {
+    if (location.pathname === "/onboarding") {
+      if (document.getElementById('cdk-overlay-0')) {
+        document.getElementById('cdk-overlay-0')!.innerHTML = ''; //close overlays of select, tooltips, etc
+      }
+      this.goBack();
+    }
+  }
+
   userType: USER_TYPE|undefined;
   userTypeString: string = '';
   isCreator: boolean = true;
@@ -59,12 +69,25 @@ export class OnboardingComponent implements OnInit {
   integrationLoading: boolean = false;
   animationDoneSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private sessionStorage: SessionStorageService,
-              private onboardingService: OnboardingService,
-              private router: Router) { }
+  constructor(
+    private sessionStorage: SessionStorageService,
+    private onboardingService: OnboardingService,
+    private router: Router
+  ) {
+    this.changePreviousPage(window, location);
+  }
 
   ngOnInit() {
     this.getUserType();
+  }
+
+  private changePreviousPage(window: any, location: any) {
+    history.pushState(null, document.title, location.pathname);
+    window.addEventListener("popstate", function() {
+      if(location.pathname === "/onboarding") {
+        history.pushState(null, document.title, location.pathname);
+      }
+    }, false);
   }
 
   private async getUserType() {
@@ -94,12 +117,14 @@ export class OnboardingComponent implements OnInit {
       this.networksSlide = 'out';
       this.slide = SLIDE.PERSONAL_INFO;
       this.stepsVisualizer?.setFirstStepCompleted(false);
+      this.stepsVisualizer?.setSecondStepCompleted(false);
     }
     if (this.slide === SLIDE.CONTENT) {
       this.networksSlide = 'in';
       this.contentSlide = 'out';
       this.slide = SLIDE.NETWORKS;
       this.stepsVisualizer?.setSecondStepCompleted(false);
+      this.stepsVisualizer?.setThirdStepCompleted(false);
     }
     if (this.slide === SLIDE.YOUTUBE_INTEGRATION) {
       this.contentSlide = 'in';
