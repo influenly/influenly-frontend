@@ -59,3 +59,23 @@ img {
     transform: translate(0px, -40px);
     margin-right: 3rem;
 }
+
+@media (max-width: 768px) {
+    app-steps-visualizer {
+        display: none;
+    }
+
+    img {
+        display: none;
+    }
+
+    .back-btn {
+        display: none;
+    }
+
+    .onboarding-box {
+        width: 97%;
+        margin-bottom: auto;
+    }
+
+}

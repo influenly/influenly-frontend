@@ -1,0 +1,9 @@
+.form-box {
+    width: 75% !important;
+}
+
+@media (max-width: 768px) {
+    .form-box {
+        width: 100% !important;
+    }
+}

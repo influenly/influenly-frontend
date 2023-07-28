@@ -6,6 +6,10 @@
     width: 57%;
 }
 
+.main-button {
+    width: 50% !important;
+}
+
 app-svg-icon {
     height: 24px;
     width: 24px;
@@ -27,4 +31,26 @@ app-svg-icon.instagram {
 
 app-svg-icon.twitter {
     background-color: #1d9bf0;
+}
+
+@media (max-width: 768px) {
+    .row-box {
+        display: block !important;
+    }
+
+    .select-icons {
+        width: 100%;
+    }
+    
+    .select-url {
+        width: 100%;
+    }
+
+    .main-button {
+        width: 100% !important;
+    }
+
+    mat-chip-listbox {
+        margin-top: 20px;
+    }
 }
