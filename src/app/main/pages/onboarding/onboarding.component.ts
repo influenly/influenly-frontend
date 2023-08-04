@@ -47,7 +47,7 @@ export class OnboardingComponent implements OnInit {
 
   @HostListener('window:popstate', ['$event'])
   onPopState() {
-    if (location.pathname === "/onboarding") {
+    if (location.pathname === "/app/onboarding") {
       if (document.getElementById('cdk-overlay-0')) {
         document.getElementById('cdk-overlay-0')!.innerHTML = ''; //close overlays of select, tooltips, etc
       }
@@ -84,7 +84,7 @@ export class OnboardingComponent implements OnInit {
   private changePreviousPage(window: any, location: any) {
     history.pushState(null, document.title, location.pathname);
     window.addEventListener("popstate", function() {
-      if(location.pathname === "/onboarding") {
+      if(location.pathname === "/app/onboarding") {
         history.pushState(null, document.title, location.pathname);
       }
     }, false);
@@ -169,8 +169,7 @@ export class OnboardingComponent implements OnInit {
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
-            this.router.navigate(['/profile']);
-            alert('profile component no creado');
+            this.router.navigate(['app/profile']);
           },
           error: (e) => {
             //TODO: falla el save de los datos. Implementar lógica de reintento
@@ -192,7 +191,7 @@ export class OnboardingComponent implements OnInit {
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
-            this.router.navigate(['/profile']);
+            this.router.navigate(['app/profile']);
             alert('profile component no creado');
           },
           error: (e) => {

@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./core/core.module').then(m => m.CoreModule)
   },
   {
-    path: 'onboarding',
+    path: 'app',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {

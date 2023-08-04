@@ -43,9 +43,9 @@ export class SignInComponent {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.token, v.body.token);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, v.body.type);
         if (!v.body.onboardingCompleted) {
-          this.router.navigate(['onboarding']);
+          this.router.navigate(['app/onboarding']);
         } else {
-          this.router.navigate(['home']);
+          this.router.navigate(['app/profile']);
         }
       },
       error: (e) => {

@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="d-flex top p-3">
+        <div class="">
+            <img src="../../../../../assets/images/profile/default-picture.svg" class="profile-picture" />
+        </div>
+
+        <div class="primary-info">
+            <div class="username">
+                <span>Username</span>
+            </div>
+            <div class="country">
+                <span>Argentina</span>
+            </div>
+            <div class="content-tags">
+                <mat-chip *ngFor="let tag of tags" class="tag">
+                    {{ 'onboarding.content.tag_list.' + tag | translate }}
+                </mat-chip>
+            </div>
+            <div class="networks-button">
+                <mat-chip>Redes</mat-chip>
+            </div>
+        </div>
+
+        <div class="position-relative flex-grow-1">
+            <button class="main-button-secondary">Editar perfil <mat-icon>edit</mat-icon></button>
+        </div>
+    </div>
+
+    <div class="d-grid description-box">
+        <span class="text-title-16">Acerca de mi</span>
+        <span class="text-14">Lorem ipsum dolor sit amet consectetur. Duis in viverra aliquet massa. Mattis blandit sed sagittis at tincidunt tincidunt. Pharetra libero vitae at habitasse fames. Auctor porttitor ac nunc donec.</span>
+    </div>
+</div>

@@ -4,6 +4,7 @@
 :root {
     --primary-color: #7250F8;
 	--secondary-color: black;
+    --ternary-color: #FFF;
     --disabled-color: #bfbfbf;
 }
 
@@ -79,6 +80,39 @@ button[disabled] {
     padding: 0.5rem;
 }
 
+.main-button-secondary {
+    background-color: var(--ternary-color);
+    border-radius: 0.5rem;
+    border: none;
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 12px 16px;
+    overflow: hidden;
+    &:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 50%;
+        left: 50%;
+        transform-style: flat;
+        transform: translate3d(-50%,-50%,0);
+        background: rgba(white,.3);
+        border-radius: 100%;
+        transition: width .3s ease, height .3s ease;
+    }
+    //&:focus,
+    &:hover {
+        background: darken(#DDD,7%);
+    }
+    &:active {
+        &:after {
+            width: 300px;
+            height: 300px;
+        }
+    }
+}
 
 .mdc-notched-outline {
     color: #ccc;
@@ -105,4 +139,13 @@ button[disabled] {
 
 .card {
     box-shadow: 3px 2px 2px #f2f2f2;
+}
+
+.text-title-16 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.text-14 {
+    font-size: 14px;
 }

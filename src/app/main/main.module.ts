@@ -21,6 +21,9 @@ import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../shared/services/rest-api/http-auth-interceptor';
 import { OnboardingService } from './pages/onboarding/services/onboarding.service';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { UserDataComponent } from './pages/profile/user-data/user-data.component';
+import { NetworkBasicInfoComponent } from './pages/profile/network-basic-info/network-basic-info.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { OnboardingService } from './pages/onboarding/services/onboarding.servic
     PersonalInformationComponent,
     NetworksComponent,
     ContentComponent,
-    YoutubeIntegrationComponent
+    YoutubeIntegrationComponent,
+    ProfileComponent,
+    UserDataComponent,
+    NetworkBasicInfoComponent
   ],
   imports: [
     CommonModule,

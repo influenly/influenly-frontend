@@ -1,0 +1,60 @@
+.card {
+    border-radius: 1rem;
+    border: none;
+    overflow: hidden;
+}
+
+.profile-picture {
+    height: 130px;
+    width: 130px;
+    background-color: white;
+}
+
+.top {
+    background-color: #222;
+}
+
+.primary-info {
+    position: relative;
+    padding-left: 10px;
+}
+
+.username {
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    line-height: 0.7;
+}
+
+.country {
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 4px 0px;
+}
+
+.tag {
+    background-color: var(--primary-color) !important;
+    --mdc-chip-label-text-color: white !important;
+    margin-right: 6px;
+    font-size: 16px;
+}
+
+.main-button-secondary {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.mat-icon {
+    font-size: 20px;
+}
+
+.networks-button {
+    position: absolute;
+    bottom: 0;
+}
+
+.description-box {
+    padding: 1rem;
+}
