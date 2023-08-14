@@ -1,1 +1,39 @@
-<p>network-basic-info works!</p>
+<div class="networks-box">
+    <div class="box-tag">
+        <div class="d-flex">
+            <app-svg-icon class="youtube" [path]="'assets/icons/youtube.svg'"></app-svg-icon>
+        </div>
+        <span>{{ 'Youtube' }}</span>
+    </div>
+    <div class="card">
+        <div class="accounts-button">
+            <button class="main-button px-3">{{ 'rissotonews' }}</button>
+        </div>
+        <div class="d-flex justify-content-between w-100">
+            <div class="data-box">
+                <div class="data-text">
+                    <span class="d-block data-number">{{ data.subs }}</span>
+                    <span class="data-label">{{ 'profile.networks.subscribers' | translate }}</span>
+                </div>
+            </div>
+            <div class="data-box">
+                <div class="data-text">
+                    <span class="d-block data-number">{{ data.videos }}</span>
+                    <span class="data-label">{{ 'profile.networks.videos' | translate }}</span>
+                </div>
+            </div>
+            <div class="data-box">
+                <div class="data-text">
+                    <span class="d-block data-number">{{ data.visits }}</span>
+                    <span class="data-label">{{ 'profile.networks.avg_visits' | translate }}</span>
+                </div>
+            </div>
+            <div class="data-box">
+                <div class="data-text">
+                    <span class="d-block data-number">{{ data.likes }}</span>
+                    <span class="data-label">{{ 'profile.networks.avg_likes' | translate }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

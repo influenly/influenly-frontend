@@ -1,0 +1,71 @@
+.networks-box {
+    position: relative;
+}
+
+.box-tag {
+    position: absolute;
+    left: 0;
+    transform: translate(0px, -35px);
+    height: 3.5rem;
+    width: 8rem;
+    display: flex;
+    // align-items: center;
+    padding-top: 0.5rem;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.card {
+    margin-top: 5rem;
+    padding: 16px;
+    border-radius: 1rem;
+    border: none;
+    overflow: hidden;
+}
+
+.accounts-button {
+    margin: 10px 5px;
+}
+
+.data-box {
+    height: 5rem;
+    width: 100%;
+    background-color: #EAEDF2;
+    margin: 0 5px;
+    border: 1px solid #CBD2E0;
+    border-radius: 8px;
+    text-align: center;
+    display: table;
+}
+
+.data-text {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.data-number {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.data-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #808080;
+}
+
+app-svg-icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 5px;
+    display: list-item;
+}
+
+app-svg-icon.youtube {
+    background-color: #ea2a2a;
+}
+

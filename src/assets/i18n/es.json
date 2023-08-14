@@ -148,5 +148,13 @@
             "button_connect":"Conectar con YouTube",
             "loading_text":"Estamos preparando todo para tí"
         }
+    },
+    "profile":{
+        "networks":{
+            "subscribers":"Suscriptores",
+            "videos":"Videos",
+            "avg_visits":"Promedio de Visitas",
+            "avg_likes":"Promedio de Likes"
+        }
     }
 }
