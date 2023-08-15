@@ -24,6 +24,7 @@ import { OnboardingService } from './pages/onboarding/services/onboarding.servic
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserDataComponent } from './pages/profile/user-data/user-data.component';
 import { NetworkBasicInfoComponent } from './pages/profile/network-basic-info/network-basic-info.component';
+import { ScoreComponent } from './pages/profile/score/score.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { NetworkBasicInfoComponent } from './pages/profile/network-basic-info/ne
     YoutubeIntegrationComponent,
     ProfileComponent,
     UserDataComponent,
-    NetworkBasicInfoComponent
+    NetworkBasicInfoComponent,
+    ScoreComponent
   ],
   imports: [
     CommonModule,

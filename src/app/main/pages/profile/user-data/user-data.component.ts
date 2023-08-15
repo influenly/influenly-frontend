@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { UserDataModel } from '../models/user-data.model';
 
 @Component({
   selector: 'app-user-data',
@@ -7,6 +8,6 @@ import { Component } from '@angular/core';
 })
 export class UserDataComponent {
 
-  tags = ['sports','business']
+    @Input() userData: UserDataModel|undefined;
 
 }

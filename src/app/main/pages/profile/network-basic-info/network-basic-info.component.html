@@ -3,11 +3,13 @@
         <div class="d-flex">
             <app-svg-icon class="youtube" [path]="'assets/icons/youtube.svg'"></app-svg-icon>
         </div>
-        <span>{{ 'Youtube' }}</span>
+        <span>{{ 'general.networks.' + selectedNetwork?.network | translate }}</span>
     </div>
     <div class="card">
-        <div class="accounts-button">
-            <button class="main-button px-3">{{ 'rissotonews' }}</button>
+        <div class="d-flex justify-content-start">
+            <div class="accounts-button" *ngFor="let channel of selectedNetwork?.channels">
+                <button class="main-button px-3" (click)="selectChannel(channel)">{{ channel.name }}</button>
+            </div>
         </div>
         <div class="d-flex justify-content-between w-100">
             <div class="data-box">
@@ -28,12 +30,12 @@
                     <span class="data-label">{{ 'profile.networks.avg_visits' | translate }}</span>
                 </div>
             </div>
-            <div class="data-box">
+            <!-- <div class="data-box">
                 <div class="data-text">
                     <span class="d-block data-number">{{ data.likes }}</span>
                     <span class="data-label">{{ 'profile.networks.avg_likes' | translate }}</span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>

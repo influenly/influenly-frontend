@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ChannelAnalyticModel, IntegratedNetworkModel, UserDataModel } from '../models/user-data.model';
 
 @Component({
   selector: 'app-network-basic-info',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NetworkBasicInfoComponent implements OnInit {
 
+  @Input() userData: UserDataModel|undefined;
+
   youtube = {
     subs: 88756,
     videos: 106,
@@ -14,16 +17,35 @@ export class NetworkBasicInfoComponent implements OnInit {
     likes: 14454
   }
 
+  selectedNetwork: IntegratedNetworkModel|undefined;
+  selectedChannel: ChannelAnalyticModel|undefined;
   data : any = {};
 
   ngOnInit() {
-    this.data.subs = this.transformNumbers(this.youtube.subs);
-    this.data.videos = this.transformNumbers(this.youtube.videos);
-    this.data.visits = this.transformNumbers(this.youtube.visits);
-    this.data.likes = this.transformNumbers(this.youtube.likes);
+    this.selectedNetwork = this.userData?.integratedNetworks[0];
+    this.selectedChannel = this.selectedNetwork?.channels[0];
+    this.setTransformedData();
   }
 
-  transformNumbers(number: number): string {
-    return number > 1000 ? Math.floor(number / 1000) + 'K' : number + '';
+  private setTransformedData() {
+    if (this.selectedChannel) {
+      this.data.subs = this.transformNumbers(this.selectedChannel.totalSubs);
+      this.data.videos = this.transformNumbers(this.selectedChannel.totalVideos);
+      this.data.visits = this.transformNumbers(this.selectedChannel.totalViews);
+    }
+  }
+
+  private transformNumbers(number: number): string {
+    if (number > 1000000) {
+      return `${Math.round((number / 1000000))}M`;
+    } else if (number > 1000) {
+      return `${Math.round((number / 1000))}K`;
+    }
+    return number + '';
+  }
+
+  selectChannel(channel: ChannelAnalyticModel) {
+    this.selectedChannel = channel;
+    this.setTransformedData();
   }
 }
