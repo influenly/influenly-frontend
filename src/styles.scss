@@ -62,7 +62,7 @@ h1 {
     padding: 0.3rem 0.5rem;
 }
 
-main-button:hover {
+.main-button:hover {
     cursor: pointer;
 }
 
@@ -151,3 +151,28 @@ button[disabled] {
 .text-14 {
     font-size: 14px;
 }
+
+//social media icons
+app-svg-icon {
+    height: 24px !important;
+    width: 24px !important;
+    margin-right: 5px;
+    display: list-item;
+}
+
+app-svg-icon.youtube {
+    background-color: #ea2a2a;
+}
+
+app-svg-icon.instagram {
+    background: #f09433; 
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+}
+
+app-svg-icon.twitter {
+    background-color: #1d9bf0;
+}
+//social media icons

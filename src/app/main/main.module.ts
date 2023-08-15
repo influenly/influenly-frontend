@@ -25,6 +25,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { UserDataComponent } from './pages/profile/user-data/user-data.component';
 import { NetworkBasicInfoComponent } from './pages/profile/network-basic-info/network-basic-info.component';
 import { ScoreComponent } from './pages/profile/score/score.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ScoreComponent } from './pages/profile/score/score.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatChipsModule,
-    SharedModule
+    SharedModule,
+    MatMenuModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },

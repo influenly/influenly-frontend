@@ -153,6 +153,9 @@
         }
     },
     "profile":{
+        "networks_label":"Redes",
+        "about_me":"Acerca de mi",
+        "btn_edit":"Editar perfil",
         "networks":{
             "subscribers":"Suscriptores",
             "videos":"Videos",

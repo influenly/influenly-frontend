@@ -17,17 +17,25 @@
                 </mat-chip>
             </div>
             <div class="networks-button">
-                <mat-chip>Redes</mat-chip>
+                <mat-chip [matMenuTriggerFor]="menu" aria-label="Social networks">{{ 'profile.networks_label' | translate }} <mat-icon [ngStyle]="{'font-size': '24px'}">expand_more</mat-icon></mat-chip>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item *ngFor="let network of socialNetworks" (click)="openSocialMediaLink(network.link)">
+                        <div class="d-flex">
+                            <app-svg-icon class="{{ network.icon }}" [path]="'assets/icons/' + network.icon + '.svg'"></app-svg-icon>
+                            <span>{{ network.name }}</span>
+                        </div>
+                    </button>
+                </mat-menu>
             </div>
         </div>
 
         <div class="position-relative flex-grow-1">
-            <button class="main-button-secondary">Editar perfil <mat-icon>edit</mat-icon></button>
+            <button class="main-button-secondary">{{ 'profile.btn_edit' | translate }} <mat-icon>edit</mat-icon></button>
         </div>
     </div>
 
     <div class="d-grid description-box">
-        <span class="text-title-16">Acerca de mi</span>
+        <span class="text-title-16">{{ 'profile.about_me' | translate }}</span>
         <span class="text-14">{{ userData?.description }}</span>
     </div>
 </div>
