@@ -52,6 +52,24 @@ h1 {
     margin-top: -3rem;
 }
 
+//tag upper card
+.box-tag {
+    position: absolute;
+    left: 0;
+    transform: translate(0px, -35px);
+    height: 3.5rem;
+    width: 8rem;
+    display: flex;
+    // align-items: center;
+    padding-top: 0.5rem;
+    justify-content: center;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: none;
+}
+
 .main-button {
     background-color: var(--secondary-color);
     border-radius: 0.5rem;

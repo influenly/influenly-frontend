@@ -1,0 +1,34 @@
+.score-box {
+    position: relative;
+}
+
+.box-tag {
+    width: 10rem;
+}
+
+.card {
+    margin-top: 5rem;
+    padding: 16px;
+    border-radius: 1rem;
+    border: none;
+    overflow: hidden;
+}
+
+.data-box {
+    height: 3rem;
+    width: 100%;
+    background-color: #EAEDF2;
+    border: 1px solid #CBD2E0;
+    border-radius: 8px;
+}
+
+.message {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+mat-icon {
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-left: 5px;
+}

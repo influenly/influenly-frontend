@@ -162,5 +162,9 @@
             "avg_visits":"Views",
             "avg_likes":"Average Likes"
         }
+    },
+    "score":{
+        "title":"Reputation",
+        "no_score_yet":"It has not yet received enough scores to display information"
     }
 }

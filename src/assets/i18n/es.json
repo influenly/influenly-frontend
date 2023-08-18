@@ -161,6 +161,10 @@
             "videos":"Videos",
             "avg_visits":"Visitas",
             "avg_likes":"Promedio de Likes"
+        },
+        "score":{
+            "title":"Reputación",
+            "no_score_yet":"Aún no has recibido suficientes valoraciones para mostrar información"
         }
     }
 }

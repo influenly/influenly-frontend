@@ -10,13 +10,6 @@ export class NetworkBasicInfoComponent implements OnInit {
 
   @Input() userData: UserDataModel|undefined;
 
-  youtube = {
-    subs: 88756,
-    videos: 106,
-    visits: 165590,
-    likes: 14454
-  }
-
   selectedNetwork: IntegratedNetworkModel|undefined;
   selectedChannel: ChannelAnalyticModel|undefined;
   data : any = {};
