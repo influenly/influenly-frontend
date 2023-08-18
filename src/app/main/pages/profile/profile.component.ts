@@ -31,6 +31,29 @@ export class ProfileComponent {
             totalViews: 100231
           }
         ]
+      },
+      {
+        network: 'INSTAGRAM',
+        channels: [
+          {
+            name: 'pejeriders',
+            totalSubs: 347991,
+            totalVideos: 577,
+            totalViews: 1499504234
+          },
+          {
+            name: 'electro_mov_original',
+            totalSubs: 34791,
+            totalVideos: 517,
+            totalViews: 19504234
+          },
+          {
+            name: 'pampatech',
+            totalSubs: 20032,
+            totalVideos: 104,
+            totalViews: 10023122
+          }
+        ]
       }
     ]
   }

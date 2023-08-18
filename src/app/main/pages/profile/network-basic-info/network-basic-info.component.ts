@@ -41,4 +41,10 @@ export class NetworkBasicInfoComponent implements OnInit {
     this.selectedChannel = channel;
     this.setTransformedData();
   }
+
+  changeSelectedNetwork($event: IntegratedNetworkModel) {
+    this.selectedNetwork = $event;
+    this.selectedChannel = this.selectedNetwork?.channels[0];
+    this.setTransformedData();
+  }
 }

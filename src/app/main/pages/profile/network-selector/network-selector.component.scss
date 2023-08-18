@@ -1,0 +1,24 @@
+.container-tags {
+    position: absolute;
+    width: 100%;
+    display: flex;
+}
+
+.box-tag {
+    position: relative;
+    margin-right: 4px;
+}
+
+.box-tag:hover {
+    cursor: pointer;
+}
+
+.box-tag.non-selected {
+    width: 3rem;
+    background-color: #ededed;
+}
+
+.add-tag {
+    width: 3rem;
+    background-color: #ededed;
+}

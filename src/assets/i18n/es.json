@@ -13,8 +13,10 @@
             "PE":"Perú"
         },
         "networks":{
-            "YOUTUBE":"Youtube"
-        }
+            "YOUTUBE":"Youtube",
+            "INSTAGRAM":"Instagram"
+        },
+        "comming_soon":"Muy pronto..."
     },
     "core":{
         "user_options":{

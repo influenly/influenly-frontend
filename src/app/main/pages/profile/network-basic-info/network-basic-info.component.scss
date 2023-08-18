@@ -14,6 +14,10 @@
     margin: 10px 5px;
 }
 
+.main-button.selected {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
 .data-box {
     height: 5rem;
     width: 100%;

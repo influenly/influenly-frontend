@@ -26,6 +26,8 @@ import { UserDataComponent } from './pages/profile/user-data/user-data.component
 import { NetworkBasicInfoComponent } from './pages/profile/network-basic-info/network-basic-info.component';
 import { ScoreComponent } from './pages/profile/score/score.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { NetworkSelectorComponent } from './pages/profile/network-selector/network-selector.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ProfileComponent,
     UserDataComponent,
     NetworkBasicInfoComponent,
-    ScoreComponent
+    ScoreComponent,
+    NetworkSelectorComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +56,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatNativeDateModule,
     MatChipsModule,
     SharedModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
