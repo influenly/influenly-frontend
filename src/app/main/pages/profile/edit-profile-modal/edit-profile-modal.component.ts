@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { NetworksFormComponent } from '../../onboarding/networks/networks-form/networks-form.component';
+import { ContentFormComponent } from '../../onboarding/content/content-form/content-form.component';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -12,6 +13,7 @@ import { NetworksFormComponent } from '../../onboarding/networks/networks-form/n
 export class EditProfileModalComponent implements OnInit {
 
   @ViewChild(NetworksFormComponent) networksForm: NetworksFormComponent | undefined = undefined;
+  @ViewChild(ContentFormComponent) contentForm: ContentFormComponent | undefined = undefined;
 
   isCreatorView: boolean|undefined;
   textObject = {
@@ -57,6 +59,7 @@ export class EditProfileModalComponent implements OnInit {
       username: this.username?.value,
       description: this.description?.value,
       networks: this.networksForm?.networks,
+      tags: this.contentForm?.tags?.value
     }
     console.log(data)
   }

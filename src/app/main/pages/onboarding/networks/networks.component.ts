@@ -19,11 +19,17 @@ export class NetworksComponent implements OnInit {
   textObject = {
     paragraph: ''
   }
+  disabledButton = true;
 
   constructor(private translate: TranslateService) { }
 
   ngOnInit() {
     this.loadTextByUserType();
+  }
+
+  networksEvent(valid: boolean) {
+    this.continue.emit({ isStepCompleteOnly: true, slide: SLIDE.NETWORKS, valid: valid });
+    this.disabledButton = !valid;
   }
 
   private loadTextByUserType() {

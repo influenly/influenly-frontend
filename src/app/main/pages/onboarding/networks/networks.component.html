@@ -2,9 +2,9 @@
     <h3>{{ 'onboarding.networks.title' | translate }}</h3>
     <span class="paragraph">{{ textObject.paragraph }}</span>
     
-    <app-networks-form />
+    <app-networks-form (atLeastOne)="networksEvent($event)" />
 
     <div class="mt-4">
-        <button class="main-button p-3" (click)="submit()" [disabled]="networksForm?.networks.length === 0">{{ 'general.btn_continue' | translate }}</button>
+        <button class="main-button p-3" (click)="submit()" [disabled]="disabledButton">{{ 'general.btn_continue' | translate }}</button>
     </div>
 </div>

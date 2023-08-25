@@ -53,6 +53,9 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
   }
 
   private loadTextByUserType() {
+    if (typeof this.userType == 'undefined') {
+      return;
+    }
     if (this.userType === USER_TYPE.CREATOR) {
       this.isCreator = true;
       this.textObject.title = this.translate.instant('onboarding.personal_information.title_creator');

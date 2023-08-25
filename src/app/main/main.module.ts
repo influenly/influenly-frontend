@@ -32,6 +32,7 @@ import { AdvancedAnalyticsComponent } from './pages/profile/advanced-analytics/a
 import { EditProfileModalComponent } from './pages/profile/edit-profile-modal/edit-profile-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NetworksFormComponent } from './pages/onboarding/networks/networks-form/networks-form.component';
+import { ContentFormComponent } from './pages/onboarding/content/content-form/content-form.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { NetworksFormComponent } from './pages/onboarding/networks/networks-form
     NetworkSelectorComponent,
     AdvancedAnalyticsComponent,
     EditProfileModalComponent,
-    NetworksFormComponent
+    NetworksFormComponent,
+    ContentFormComponent
   ],
   imports: [
     CommonModule,

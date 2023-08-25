@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./networks-form.component.scss']
 })
 export class NetworksFormComponent {
+
+  @Output() atLeastOne: EventEmitter<boolean> = new EventEmitter();
 
   icons: string[] = ['youtube', 'instagram', 'twitter'];
   networks: any = [];
@@ -28,12 +30,16 @@ export class NetworksFormComponent {
     }
     this.networks.push(network);
     this.url?.setValue('');
+    this.atLeastOne.emit(true);
   }
 
   remove(network: any) {
     var index = this.networks.indexOf(network);
     if (index > -1) {
       this.networks.splice(index, 1);
+    }
+    if (this.networks.length === 0) {
+      this.atLeastOne.emit(false);
     }
     return network;
   }
