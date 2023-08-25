@@ -33,6 +33,7 @@ import { EditProfileModalComponent } from './pages/profile/edit-profile-modal/ed
 import { MatDialogModule } from '@angular/material/dialog';
 import { NetworksFormComponent } from './pages/onboarding/networks/networks-form/networks-form.component';
 import { ContentFormComponent } from './pages/onboarding/content/content-form/content-form.component';
+import { ProfileService } from './pages/profile/services/profile.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { ContentFormComponent } from './pages/onboarding/content/content-form/co
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    OnboardingService
+    OnboardingService,
+    ProfileService
   ]
 })
 export class MainModule { }

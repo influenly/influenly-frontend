@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UserDataModel } from '../models/user-data.model';
 import { EditProfileModalComponent } from '../edit-profile-modal/edit-profile-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-user-data',
@@ -15,39 +16,11 @@ export class UserDataComponent implements OnInit {
 
   socialNetworks: any[] = [];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+              private profileService: ProfileService) {}
 
   ngOnInit() {
-    this.loadSocialNetworks(this.userData?.socialNetworks);
-  }
-
-  private loadSocialNetworks(socialNetworks: string[] | undefined) {
-    if (socialNetworks) {
-      for (const network of socialNetworks) {
-        const networkElement = {
-          link: network,
-          icon: this.getPlatformOnLink(network),
-          name: network.substring(network.lastIndexOf('/') + 1)
-        };
-        this.socialNetworks.push(networkElement);
-      }
-    }
-  }
-
-  private getPlatformOnLink(network: string): string {
-    if (network.includes('youtube')) {
-      return 'youtube';
-    }
-    if (network.includes('instagram')) {
-      return 'instagram';
-    }
-    if (network.includes('tiktok')) {
-      return 'tiktok';
-    }
-    if (network.includes('twitter')) {
-      return 'twitter';
-    }
-    return 'web';
+    this.socialNetworks = this.profileService.loadSocialNetworks(this.userData?.socialNetworks);
   }
 
   openSocialMediaLink(link: string) {
@@ -57,6 +30,7 @@ export class UserDataComponent implements OnInit {
   public editProfile() {
     this.dialog.open(EditProfileModalComponent, {
       width: '600px',
+      data: this.userData
     });
   }
 
