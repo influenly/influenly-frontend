@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserDataModel } from '../models/user-data.model';
+import { EditProfileModalComponent } from '../edit-profile-modal/edit-profile-modal.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-data',
@@ -12,6 +14,8 @@ export class UserDataComponent implements OnInit {
   @Input() isCreatorView: boolean|undefined;
 
   socialNetworks: any[] = [];
+
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit() {
     this.loadSocialNetworks(this.userData?.socialNetworks);
@@ -48,6 +52,12 @@ export class UserDataComponent implements OnInit {
 
   openSocialMediaLink(link: string) {
     window.open(link.includes('https://') ? link : 'https://' + link, '_blank');
+  }
+
+  public editProfile() {
+    this.dialog.open(EditProfileModalComponent, {
+      width: '600px',
+    });
   }
 
 }

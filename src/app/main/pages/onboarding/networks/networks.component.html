@@ -2,62 +2,9 @@
     <h3>{{ 'onboarding.networks.title' | translate }}</h3>
     <span class="paragraph">{{ textObject.paragraph }}</span>
     
-    <form [formGroup]="networksForm" class="w-100 mt-4">
-        <div class="d-flex flex-row justify-content-between row-box">
-            <div class="select-icons mr-2">
-                <mat-form-field class="w-100">
-                    <mat-select formControlName="icon">
-                        <mat-select-trigger>
-                            <div class="d-flex">
-                                <app-svg-icon class="{{ icon?.value }}" [path]="'assets/icons/' + icon?.value + '.svg'"></app-svg-icon>
-                            </div>
-                        </mat-select-trigger>
-                        <div *ngFor="let icon of icons">
-                            <mat-option [value]="icon">
-                                <div  class="d-flex">
-                                    <app-svg-icon class="{{ icon }}" [path]="'assets/icons/' + icon + '.svg'"></app-svg-icon>
-                                </div>
-                            </mat-option>
-                        </div>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="select-url pr-2">
-                <mat-form-field class="w-100">
-                    <input
-                        matInput
-                        [type]="'text'"
-                        autocomplete="off"
-                        formControlName="url"
-                        [placeholder]="'onboarding.networks.url.placeholder' | translate"
-                        (input)="selectNetworkIcon($event)"
-                    />
-                    <mat-error *ngIf="url?.hasError('pattern')">
-                        <mat-icon>warning</mat-icon>{{ 'onboarding.networks.url.pattern_error' | translate }}
-                    </mat-error>
-                </mat-form-field>
-            </div>
-            <div class="">
-                <button class="main-button p-3" (click)="add()" [disabled]="url?.value == '' || url?.invalid">{{ '+' + ('general.btn_add' | translate) }}</button>
-            </div>
-        </div>
-    </form>
-
-    <div>
-        <mat-chip-listbox aria-label="Networks">
-            <mat-chip *ngFor="let network of networks">
-                <div  class="d-flex justify-content-between align-items-center">
-                    <app-svg-icon class="{{ network.icon }}" [path]="'assets/icons/' + network.icon + '.svg'"></app-svg-icon>
-                    <span class="align-middle">{{ network.url }}</span>
-                </div>
-                <button matChipRemove [attr.aria-label]="'Remove' + network.url" (click)="remove(network)">
-                    <mat-icon>cancel</mat-icon>
-                </button>
-            </mat-chip>
-          </mat-chip-listbox>
-    </div>
+    <app-networks-form />
 
     <div class="mt-4">
-        <button class="main-button p-3" (click)="submit()" [disabled]="networks.length === 0">{{ 'general.btn_continue' | translate }}</button>
+        <button class="main-button p-3" (click)="submit()" [disabled]="networksForm?.networks.length === 0">{{ 'general.btn_continue' | translate }}</button>
     </div>
 </div>

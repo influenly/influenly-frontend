@@ -4,6 +4,7 @@
         "btn_continue":"Continue",
         "btn_back":"Back",
         "btn_return":"Return",
+        "btn_cancel":"Cancel",
         "creator":"Creator",
         "advertiser":"Advertiser",
         "country":{
@@ -159,6 +160,10 @@
         "about_me":"About me",
         "btn_edit":"Edit profile",
         "btn_talk":"Talk",
+        "edit":{
+            "title":"Edit profile",
+            "btn_save":"Save changes"
+        },
         "networks":{
             "subscribers":"Subscribers",
             "videos":"Videos",

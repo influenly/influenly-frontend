@@ -29,6 +29,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { NetworkSelectorComponent } from './pages/profile/network-selector/network-selector.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AdvancedAnalyticsComponent } from './pages/profile/advanced-analytics/advanced-analytics.component';
+import { EditProfileModalComponent } from './pages/profile/edit-profile-modal/edit-profile-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NetworksFormComponent } from './pages/onboarding/networks/networks-form/networks-form.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,9 @@ import { AdvancedAnalyticsComponent } from './pages/profile/advanced-analytics/a
     NetworkBasicInfoComponent,
     ScoreComponent,
     NetworkSelectorComponent,
-    AdvancedAnalyticsComponent
+    AdvancedAnalyticsComponent,
+    EditProfileModalComponent,
+    NetworksFormComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +64,8 @@ import { AdvancedAnalyticsComponent } from './pages/profile/advanced-analytics/a
     MatChipsModule,
     SharedModule,
     MatMenuModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },

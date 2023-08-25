@@ -30,7 +30,7 @@
         </div>
 
         <div *ngIf="isCreatorView" class="position-relative flex-grow-1">
-            <button class="main-button-secondary">
+            <button class="main-button-secondary" (click)="editProfile()">
                 {{ 'profile.btn_edit' | translate }} 
                 <mat-icon>edit</mat-icon>
             </button>
