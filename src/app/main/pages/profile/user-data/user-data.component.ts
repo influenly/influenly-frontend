@@ -9,6 +9,7 @@ import { UserDataModel } from '../models/user-data.model';
 export class UserDataComponent implements OnInit {
 
   @Input() userData: UserDataModel|undefined;
+  @Input() isCreatorView: boolean|undefined;
 
   socialNetworks: any[] = [];
 

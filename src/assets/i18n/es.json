@@ -158,11 +158,15 @@
         "networks_label":"Redes",
         "about_me":"Acerca de mi",
         "btn_edit":"Editar perfil",
+        "btn_talk":"Conversar",
         "networks":{
             "subscribers":"Suscriptores",
             "videos":"Videos",
             "avg_visits":"Visitas",
             "avg_likes":"Promedio de Likes"
+        },
+        "advanced_analytics":{
+            "title":"Analíticas avanzadas"
         },
         "score":{
             "title":"Reputación",

@@ -3,6 +3,20 @@
 }
 
 .profile-delimiter {
-    width: 90%;
+    max-width: 750px;
     margin-top: 7rem;
+}
+
+.card {
+    padding: 12px;
+    border-radius: 1rem;
+    border: none;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+
+    .profile-delimiter {
+        width: 90%;
+    }
 }

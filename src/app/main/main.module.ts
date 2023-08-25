@@ -28,6 +28,7 @@ import { ScoreComponent } from './pages/profile/score/score.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { NetworkSelectorComponent } from './pages/profile/network-selector/network-selector.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { AdvancedAnalyticsComponent } from './pages/profile/advanced-analytics/advanced-analytics.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     UserDataComponent,
     NetworkBasicInfoComponent,
     ScoreComponent,
-    NetworkSelectorComponent
+    NetworkSelectorComponent,
+    AdvancedAnalyticsComponent
   ],
   imports: [
     CommonModule,

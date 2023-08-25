@@ -1,7 +1,8 @@
 <div class="container-box">
     <div class="profile-delimiter">
-        <app-user-data [userData]="userData" />
+        <app-user-data [userData]="userData" [isCreatorView]="isCreatorView"/>
         <app-network-basic-info [userData]="userData" />
+        <app-advanced-analytics *ngIf="!isCreatorView"/>
         <app-score />
     </div>
 </div>

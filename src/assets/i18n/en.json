@@ -158,12 +158,16 @@
         "networks_label":"Networks",
         "about_me":"About me",
         "btn_edit":"Edit profile",
+        "btn_talk":"Talk",
         "networks":{
             "subscribers":"Subscribers",
             "videos":"Videos",
             "avg_visits":"Views",
             "avg_likes":"Average Likes"
         }
+    },
+    "advanced_analytics":{
+        "title":"Advanced analytics"
     },
     "score":{
         "title":"Reputation",

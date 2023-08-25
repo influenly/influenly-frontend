@@ -29,8 +29,17 @@
             </div>
         </div>
 
-        <div class="position-relative flex-grow-1">
-            <button class="main-button-secondary">{{ 'profile.btn_edit' | translate }} <mat-icon>edit</mat-icon></button>
+        <div *ngIf="isCreatorView" class="position-relative flex-grow-1">
+            <button class="main-button-secondary">
+                {{ 'profile.btn_edit' | translate }} 
+                <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <div *ngIf="!isCreatorView" class="position-relative flex-grow-1">
+            <button class="main-button-secondary">
+                {{ 'profile.btn_talk' | translate }}
+                <mat-icon>mail</mat-icon>
+            </button>
         </div>
     </div>
 

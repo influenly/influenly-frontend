@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
 
   userData = {
     username: "Pampa",
@@ -56,6 +57,19 @@ export class ProfileComponent {
         ]
       }
     ]
+  }
+
+  isCreatorView: boolean = false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.getComponentView();
+  }
+
+  private getComponentView() {
+    let href = this.router.url;
+    this.isCreatorView = href.includes('profile');
   }
     
 }

@@ -1,0 +1,32 @@
+.card {
+    position: relative;
+    margin-top: 5rem;
+    padding: 12px;
+    border-radius: 1rem;
+    border: none;
+    overflow: hidden;
+}
+
+.image-blur {
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+}
+
+.lock-icon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 100px;
+    height: 100px;
+    width: 100px;
+    color: rgba(255, 255, 255, 0.5);
+    z-index: 1000;
+}
+
+mat-icon {
+    font-size: 20px;
+    margin-left: 5px;
+}
