@@ -18,6 +18,12 @@
     background-color: rgba(0, 0, 0, 0.6);
 }
 
+.networks-button-box {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .data-box {
     height: 5rem;
     width: 100%;

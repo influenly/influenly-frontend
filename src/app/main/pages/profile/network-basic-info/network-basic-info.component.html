@@ -1,7 +1,7 @@
 <div class="networks-box">
     <app-network-selector [integratedNetworks]="userData?.integratedNetworks" (changeSelected)="changeSelectedNetwork($event)"/>
     <div class="card">
-        <div class="d-flex justify-content-start">
+        <div class="networks-button-box">
             <div class="accounts-button" *ngFor="let channel of selectedNetwork?.channels">
                 <button class="main-button px-3"  [ngClass]="{ 'non-selected': channel != selectedChannel }" (click)="selectChannel(channel)">{{ channel.name }}</button>
             </div>
