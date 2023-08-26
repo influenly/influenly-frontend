@@ -168,6 +168,15 @@
             "content_you_are_looking_for":"Content you are looking for",
             "btn_save":"Save changes"
         },
+        "init_talk":{
+            "title":"Start conversation",
+            "paragraph_1":"Enter your proposal to start a collaboration with the content creator.",
+            "placeholder":"Write your proposal here...",
+            "btn_send":"Send",
+            "message":{
+                "required_error":"You must enter a message"
+            }
+        },
         "networks":{
             "subscribers":"Subscribers",
             "videos":"Videos",

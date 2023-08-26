@@ -37,7 +37,7 @@
             </button>
         </div>
         <div *ngIf="!isOwnView" class="position-relative flex-grow-1">
-            <button class="main-button-secondary">
+            <button class="main-button-secondary" (click)="initTalk()">
                 {{ 'profile.btn_talk' | translate }}
                 <mat-icon>mail</mat-icon>
             </button>

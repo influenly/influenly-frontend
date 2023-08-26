@@ -4,6 +4,7 @@ import { EditProfileModalComponent } from '../edit-profile-modal/edit-profile-mo
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from '../services/profile.service';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
+import { InitTalkModalComponent } from './init-talk-modal/init-talk-modal.component';
 
 @Component({
   selector: 'app-user-data',
@@ -34,6 +35,12 @@ export class UserDataComponent implements OnInit {
     this.dialog.open(EditProfileModalComponent, {
       width: '600px',
       data: this.userData
+    });
+  }
+
+  public initTalk() {
+    this.dialog.open(InitTalkModalComponent, {
+      width: '500px'
     });
   }
 

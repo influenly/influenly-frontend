@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="text-center mt-3">
+        <h4>{{ 'profile.init_talk.title' | translate }}</h4>
+    </div>
+    <div class="mb-3">
+        <span>{{ 'profile.init_talk.paragraph_1' | translate }}</span>
+    </div>
+
+    <form [formGroup]="talkForm">
+        <div class="d-flex justify-content-end">
+            <span class="paragraph">{{ 'onboarding.personal_information.description.desc' | translate }}</span>
+        </div>
+        <mat-form-field class="w-100">
+            <textarea
+                matInput
+                [type]="'text'"
+                autocomplete="off"
+                formControlName="message"
+                [placeholder]="'profile.init_talk.placeholder' | translate"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="3"
+                maxlength="300"
+            ></textarea>
+            <mat-error *ngIf="message?.hasError('required')">
+                <mat-icon>warning</mat-icon>{{ 'profile.init_talk.message.required_error' | translate }}
+            </mat-error>
+        </mat-form-field>
+
+        <div class="button-box">
+            <button type="submit" class="main-button" (click)="onSubmit()" [disabled]="!message?.valid">{{ 'profile.init_talk.btn_send' | translate }}</button>
+            <button class="main-button-secondary" (click)="close()">{{ 'general.btn_cancel' | translate }}</button>
+        </div>
+    </form>
+</div>

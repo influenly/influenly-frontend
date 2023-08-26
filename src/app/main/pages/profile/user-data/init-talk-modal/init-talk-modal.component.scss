@@ -1,0 +1,26 @@
+h4 {
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+}
+
+.main-button {
+    margin-right: 10px;
+}
+
+.main-button-secondary {
+    border: 1px solid black;
+    &:active {
+        &:after {
+            width: 0px;
+            height: 0px;
+        }
+    }
+}
+
+.button-box {
+    display: flex;
+    justify-content: space-between;
+}

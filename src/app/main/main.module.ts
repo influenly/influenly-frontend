@@ -34,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NetworksFormComponent } from './pages/onboarding/networks/networks-form/networks-form.component';
 import { ContentFormComponent } from './pages/onboarding/content/content-form/content-form.component';
 import { ProfileService } from './pages/profile/services/profile.service';
+import { InitTalkModalComponent } from './pages/profile/user-data/init-talk-modal/init-talk-modal.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ProfileService } from './pages/profile/services/profile.service';
     AdvancedAnalyticsComponent,
     EditProfileModalComponent,
     NetworksFormComponent,
-    ContentFormComponent
+    ContentFormComponent,
+    InitTalkModalComponent
   ],
   imports: [
     CommonModule,
