@@ -56,6 +56,7 @@
                     [placeholder]="textObject.description_placeholder"
                     cdkTextareaAutosize
                     cdkAutosizeMinRows="3"
+                    maxlength="300"
                 ></textarea>
                 <mat-error *ngIf="description?.hasError('required')">
                     <mat-icon>warning</mat-icon>{{ 'onboarding.personal_information.description.required_error' | translate }}

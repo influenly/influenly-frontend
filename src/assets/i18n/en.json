@@ -164,6 +164,8 @@
         "btn_talk":"Talk",
         "edit":{
             "title":"Edit profile",
+            "content_you_make":"Content you make",
+            "content_you_are_looking_for":"Content you are looking for",
             "btn_save":"Save changes"
         },
         "networks":{

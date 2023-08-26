@@ -3,3 +3,10 @@
     border: 1px solid black;
     color: black;
 }
+
+@media (max-width: 768px) {
+
+    .label-max-char {
+        display: none;
+    }
+}

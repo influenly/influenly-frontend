@@ -26,7 +26,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
   formStatusChangeSubs: Subscription|undefined;
 
   personalInfoForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9]+$')]],
+    username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\']+$')]],
     birthdate: ['', [Validators.required]],
     description: ['', [Validators.required]]
   });
