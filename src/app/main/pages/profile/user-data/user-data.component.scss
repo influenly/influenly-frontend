@@ -12,6 +12,7 @@
 
 .top {
     background-color: #222;
+    display: flex;
 }
 
 .primary-info {
@@ -57,4 +58,43 @@
 
 .description-box {
     padding: 1rem;
+}
+
+@media (max-width: 768px) {
+
+    .top {
+        display: block;
+    }
+
+    .profile-picture {
+        height: auto;
+        width: 100%;
+        background-color: white;
+    }
+
+    .primary-info {
+        text-align: center;
+        margin-top: 16px;
+    }
+
+    .content-tags {
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .tag {
+        margin-bottom: 5px;
+    }
+
+    .networks-button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 16px;
+    }
+
+    .main-button-secondary {
+        position: inherit;
+        width: 100%;
+    }
 }

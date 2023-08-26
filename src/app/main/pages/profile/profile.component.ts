@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   //   profileImg: undefined,
   //   country: "AR",
   //   socialNetworks: ["www.instagram.com/pampaibaceta", "www.youtube.com/channel/soytribu"],
-  //   contentTags: ["sports", "business"],
+  //   contentTags: ["sports", "business","others","creative"],
   //   description: "Descripción del perfil para ser usado en content y asi generar interacciones con distintas empresas a traves de la actividad en la plataforma. De manera tal de conseguir mejor remuneración.",
   //   integratedNetworks: [
   //     {
