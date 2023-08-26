@@ -1,3 +1,5 @@
+import { USER_TYPE } from "src/app/shared/models/user-type.enum";
+
 export interface UserDataModel {
     username: string,
     profileImg?: string,
@@ -5,7 +7,8 @@ export interface UserDataModel {
     socialNetworks: string[],
     contentTags: string[],
     description: string,
-    integratedNetworks: IntegratedNetworkModel[];
+    integratedNetworks?: IntegratedNetworkModel[];
+    type: USER_TYPE
 }
 
 export interface IntegratedNetworkModel {

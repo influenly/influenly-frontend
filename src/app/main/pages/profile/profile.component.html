@@ -1,8 +1,16 @@
 <div class="container-box">
     <div class="profile-delimiter">
-        <app-user-data [userData]="userData" [isCreatorView]="isCreatorView"/>
-        <app-network-basic-info [userData]="userData" />
-        <app-advanced-analytics *ngIf="!isCreatorView"/>
+        <app-user-data [userData]="userData" [isOwnView]="isOwnView"/>
+        <app-network-basic-info *ngIf="isCreatorUser" [userData]="userData" />
+        <app-advanced-analytics *ngIf="!isOwnView && isCreatorUser"/>
+        <div *ngIf="!isCreatorUser" class="card tags">
+            <span style="font-weight: 500;">{{ 'profile.content_advertiser_label' | translate }}</span>
+            <div class="d-flex justify-content-right">
+                <mat-chip *ngFor="let tag of userData?.contentTags" class="tag">
+                    {{ 'onboarding.content.tag_list.' + tag | translate }}
+                </mat-chip>
+            </div>
+        </div>
         <app-score />
     </div>
 </div>

@@ -15,7 +15,7 @@ export class NetworkBasicInfoComponent implements OnInit {
   data : any = {};
 
   ngOnInit() {
-    this.selectedNetwork = this.userData?.integratedNetworks[0];
+    this.selectedNetwork = this.userData?.integratedNetworks ? this.userData.integratedNetworks[0] : undefined;
     this.selectedChannel = this.selectedNetwork?.channels[0];
     this.setTransformedData();
   }

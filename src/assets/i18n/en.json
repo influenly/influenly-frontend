@@ -158,6 +158,8 @@
     "profile":{
         "networks_label":"Networks",
         "about_me":"About me",
+        "about_us":"About us",
+        "content_advertiser_label":"Content we are looking for",
         "btn_edit":"Edit profile",
         "btn_talk":"Talk",
         "edit":{

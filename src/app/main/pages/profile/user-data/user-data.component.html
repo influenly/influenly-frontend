@@ -1,7 +1,8 @@
 <div class="card">
     <div class="d-flex top p-3">
         <div class="">
-            <img src="../../../../../assets/images/profile/default-picture.svg" class="profile-picture" />
+            <img *ngIf="isCreatorUser" src="../../../../../assets/images/profile/default-picture-creator.svg" class="profile-picture" />
+            <img *ngIf="!isCreatorUser" src="../../../../../assets/images/profile/default-picture-advertiser.svg" class="profile-picture" />
         </div>
 
         <div class="primary-info">
@@ -11,7 +12,7 @@
             <div class="country">
                 <span>{{ 'general.countries.' + userData?.country | translate }}</span>
             </div>
-            <div class="content-tags">
+            <div *ngIf="isCreatorUser" class="content-tags">
                 <mat-chip *ngFor="let tag of userData?.contentTags" class="tag">
                     {{ 'onboarding.content.tag_list.' + tag | translate }}
                 </mat-chip>
@@ -29,13 +30,13 @@
             </div>
         </div>
 
-        <div *ngIf="isCreatorView" class="position-relative flex-grow-1">
+        <div *ngIf="isOwnView" class="position-relative flex-grow-1">
             <button class="main-button-secondary" (click)="editProfile()">
                 {{ 'profile.btn_edit' | translate }} 
                 <mat-icon>edit</mat-icon>
             </button>
         </div>
-        <div *ngIf="!isCreatorView" class="position-relative flex-grow-1">
+        <div *ngIf="!isOwnView" class="position-relative flex-grow-1">
             <button class="main-button-secondary">
                 {{ 'profile.btn_talk' | translate }}
                 <mat-icon>mail</mat-icon>
@@ -44,7 +45,7 @@
     </div>
 
     <div class="d-grid description-box">
-        <span class="text-title-16">{{ 'profile.about_me' | translate }}</span>
+        <span class="text-title-16">{{ (isCreatorUser ? 'profile.about_me' : 'profile.about_us') | translate }}</span>
         <span class="text-14">{{ userData?.description }}</span>
     </div>
 </div>
