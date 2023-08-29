@@ -3,6 +3,7 @@
 }
 
 .profile-delimiter {
+    min-width: 750px;
     max-width: 750px;
     margin-top: 7rem;
 }
@@ -28,6 +29,7 @@
 @media (max-width: 768px) {
 
     .profile-delimiter {
+        min-width: auto;
         width: 90%;
     }
 }

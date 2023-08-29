@@ -8,7 +8,7 @@ import { ChannelAnalyticModel, IntegratedNetworkModel, UserDataModel } from '../
 })
 export class NetworkBasicInfoComponent implements OnInit {
 
-  @Input() userData: UserDataModel|undefined;
+  @Input() userData: UserDataModel|null = null;
 
   selectedNetwork: IntegratedNetworkModel|undefined;
   selectedChannel: ChannelAnalyticModel|undefined;

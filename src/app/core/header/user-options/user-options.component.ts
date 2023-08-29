@@ -6,7 +6,7 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 @Component({
   selector: 'app-user-options',
   templateUrl: './user-options.component.html',
-  styleUrls: ['./user-options.component.scss']
+  styleUrls: ['./user-options.component.scss'],
 })
 export class UserOptionsComponent {
 
@@ -24,7 +24,7 @@ export class UserOptionsComponent {
     //TODO: send logout to backend to expire token
     this.token = undefined;
     this.tokenSubs?.unsubscribe();
-    this.sessionStorage.remove(SESSION_STORAGE_KEYS.token);
+    this.sessionStorage.clear();
     this.router.navigate(['landing']);
   }
 

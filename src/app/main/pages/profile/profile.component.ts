@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
+import { ProfileService } from './services/profile.service';
+import { UserDataModel } from './models/user-data.model';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +13,7 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 })
 export class ProfileComponent implements OnInit {
 
-  userData = {
+  userDataMock = {
     username: "Pampa",
     profileImg: undefined,
     country: "AR",
@@ -73,31 +75,39 @@ export class ProfileComponent implements OnInit {
   //   type: USER_TYPE.ADVERTISER
   // }
 
+  userData: UserDataModel| null = null;
   isOwnView: boolean = false;
   isCreatorUser: boolean = false;
 
   constructor(private router: Router,
-              private sessionStorage: SessionStorageService) {}
+              private sessionStorage: SessionStorageService,
+              private profileService: ProfileService) {}
 
   ngOnInit() {
     this.getComponentView();
   }
 
   private async getComponentView() {
-    // const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
-    // if (userTypeObs) {
-    //   let userTypeString = await firstValueFrom(userTypeObs);
-    //   let userType = USER_TYPE[userTypeString as keyof typeof USER_TYPE];
-    //   if (userType === USER_TYPE.CREATOR) this.isCreatorUser = true;
-    // }
-
-    // let userType = USER_TYPE[this.userData.type as keyof typeof USER_TYPE];
-    // if (userType === USER_TYPE.CREATOR) this.isCreatorUser = true;
-
-    this.isCreatorUser = this.userData.type === USER_TYPE.CREATOR;
-
     let href = this.router.url;
     this.isOwnView = href.includes('profile');
+    if (this.isOwnView) {
+      const userId = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_id);
+      this.profileService.getCachedProfileData(userId).subscribe(async (userProfile) => {
+        this.userData = userProfile;
+        if (typeof this.userData?.type == 'undefined') {
+          const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
+          if (userTypeObs) {
+            let userTypeString = await firstValueFrom(userTypeObs);
+            let userType = USER_TYPE[userTypeString as keyof typeof USER_TYPE];
+            if (this.userData) this.userData.type = userType;
+          }
+        }
+        if (this.userData) {
+          this.userData.integratedNetworks = this.userDataMock.integratedNetworks;
+          this.isCreatorUser = this.userData.type  == USER_TYPE.CREATOR;
+        }
+      });
+    }
   }
     
 }

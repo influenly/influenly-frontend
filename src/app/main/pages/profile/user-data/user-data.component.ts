@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UserDataModel } from '../models/user-data.model';
 import { EditProfileModalComponent } from '../edit-profile-modal/edit-profile-modal.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,9 +11,9 @@ import { InitTalkModalComponent } from './init-talk-modal/init-talk-modal.compon
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.scss']
 })
-export class UserDataComponent implements OnInit {
+export class UserDataComponent implements OnInit, OnChanges {
 
-  @Input() userData: UserDataModel|undefined;
+  @Input() userData: UserDataModel|null = null;
   @Input() isOwnView: boolean|undefined;
 
   socialNetworks: any[] = [];
@@ -23,8 +23,11 @@ export class UserDataComponent implements OnInit {
               private profileService: ProfileService) {}
 
   ngOnInit() {
-    this.socialNetworks = this.profileService.loadSocialNetworks(this.userData?.socialNetworks);
+  }
+
+  ngOnChanges() {
     this.isCreatorUser = this.userData?.type === USER_TYPE.CREATOR;
+    this.socialNetworks = this.profileService.loadSocialNetworks(this.userData?.socialNetworks);
   }
 
   openSocialMediaLink(link: string) {

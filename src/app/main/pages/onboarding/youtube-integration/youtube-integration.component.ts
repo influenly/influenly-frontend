@@ -37,6 +37,10 @@ export class YoutubeIntegrationComponent {
           this.continue.emit(integrationData);
         },
         error: (e) => {
+          if (e.error?.message === 'User already has integration for YOUTUBE') {
+            integrationData.state = 'completed';
+            this.continue.emit(integrationData);
+          }
           //TODO: falla el save de la integracion. Notificar el error
         }
       });

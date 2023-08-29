@@ -35,6 +35,7 @@ import { NetworksFormComponent } from './pages/onboarding/networks/networks-form
 import { ContentFormComponent } from './pages/onboarding/content/content-form/content-form.component';
 import { ProfileService } from './pages/profile/services/profile.service';
 import { InitTalkModalComponent } from './pages/profile/user-data/init-talk-modal/init-talk-modal.component';
+import { ProfileRequestService } from './pages/profile/services/profile-request.service';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { InitTalkModalComponent } from './pages/profile/user-data/init-talk-moda
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     OnboardingService,
-    ProfileService
+    ProfileService,
+    ProfileRequestService
   ]
 })
 export class MainModule { }

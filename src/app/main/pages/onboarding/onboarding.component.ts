@@ -8,6 +8,7 @@ import { OnboardingService } from './services/onboarding.service';
 import { OnboardingModel } from './models/onboarding.model';
 import { Router } from '@angular/router';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
+import { ProfileService } from '../profile/services/profile.service';
 
 
 export enum SLIDE {
@@ -56,7 +57,6 @@ export class OnboardingComponent implements OnInit {
   }
 
   userType: USER_TYPE|undefined;
-  userTypeString: string = '';
   isCreator: boolean = true;
   data: any = {};
   slide: SLIDE = SLIDE.PERSONAL_INFO;
@@ -72,7 +72,8 @@ export class OnboardingComponent implements OnInit {
   constructor(
     private sessionStorage: SessionStorageService,
     private onboardingService: OnboardingService,
-    private router: Router
+    private router: Router,
+    private profileService: ProfileService
   ) {
     this.changePreviousPage(window, location);
   }
@@ -93,8 +94,7 @@ export class OnboardingComponent implements OnInit {
   private async getUserType() {
     const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
     if (userTypeObs) {
-      this.userTypeString = await firstValueFrom(userTypeObs);
-      this.userType = USER_TYPE[this.userTypeString as keyof typeof USER_TYPE];
+      this.userType = await firstValueFrom(userTypeObs);
       if (this.userType === USER_TYPE.ADVERTISER) this.isCreator = false;
     }
   }
@@ -163,12 +163,14 @@ export class OnboardingComponent implements OnInit {
       } else {
         const payload: OnboardingModel = {
           description: this.data.description,
-          userName: this.data.username,
-          contentType: this.data.tags,
-          socialNetworks: this.generateSocialNetworkObject(this.data.networks)
+          username: this.data.username,
+          contentTags: this.data.tags,
+          socialNetworks: this.data.networks.map((network: any) => network.url)
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
+            this.profileService.setProfileData(v.body);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.userId);
             this.router.navigate(['app/profile']);
           },
           error: (e) => {
@@ -185,14 +187,15 @@ export class OnboardingComponent implements OnInit {
         const payload: OnboardingModel = {
           birthDate: this.data.birthdate?.toISOString().substring(0, 10),
           description: this.data.description,
-          userName: this.data.username,
-          contentType: this.data.tags,
-          socialNetworks: this.generateSocialNetworkObject(this.data.networks)
+          username: this.data.username,
+          contentTags: this.data.tags,
+          socialNetworks: this.data.networks.map((network: any) => network.url)
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
+            this.profileService.setProfileData(v.body);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.userId);
             this.router.navigate(['app/profile']);
-            alert('profile component no creado');
           },
           error: (e) => {
             //TODO: falla el save de los datos. Implementar lógica de reintento
@@ -214,11 +217,4 @@ export class OnboardingComponent implements OnInit {
     }
   }
 
-  private generateSocialNetworkObject(networks: any) {
-    let object: any = {};
-    networks.forEach((network: any) => {
-      object[network.icon + 'Url'] = network.url;
-    });
-    return object;
-  }
 }

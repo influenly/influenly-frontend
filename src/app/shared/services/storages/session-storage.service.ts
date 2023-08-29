@@ -1,6 +1,6 @@
 // Dependencies
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { take } from 'rxjs/operators';
 import StorageService from './storage.service';
 
@@ -43,9 +43,19 @@ export class SessionStorageService extends StorageService {
 		);
 	}
 
+	async getFirst(key: string): Promise<any> {
+		let response = undefined;
+		const obs = super.getItem(key);
+		if (obs) {
+			response = await firstValueFrom(obs);
+		}
+		return response;
+	}
+
 }
 
 export const SESSION_STORAGE_KEYS = {
 	token: 'token',
-	user_type: 'user_type'
+	user_type: 'user_type',
+	user_id: 'user_id'
 };

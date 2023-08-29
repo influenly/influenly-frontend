@@ -42,6 +42,7 @@ export class SignInComponent {
       next: (v) => {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.token, v.body.token);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, v.body.type);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.id);
         if (!v.body.onboardingCompleted) {
           this.router.navigate(['app/onboarding']);
         } else {

@@ -1,7 +1,7 @@
 <div class="container-box">
     <div class="onboarding-box">
         <div class="box-tag" [ngClass]="{'advertiser': !isCreator}">
-            <span>{{ 'general.' + userTypeString.toLowerCase()| translate }}</span>
+            <span>{{ 'general.' + userType?.toString()?.toLowerCase()| translate }}</span>
         </div>
         <div class="card">
             <div class="d-flex justify-content-between">
