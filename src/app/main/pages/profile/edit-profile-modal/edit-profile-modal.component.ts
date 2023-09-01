@@ -1,11 +1,13 @@
 import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 import { NetworksFormComponent } from '../../onboarding/networks/networks-form/networks-form.component';
 import { ContentFormComponent } from '../../onboarding/content/content-form/content-form.component';
 import { ProfileService } from '../services/profile.service';
 import { Subscription } from 'rxjs';
+import { ProfileRequestService } from '../services/profile-request.service';
+import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -41,7 +43,9 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
               private translate: TranslateService,
               public dialogRef: MatDialogRef<EditProfileModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private profileService: ProfileService) {}
+              private profileService: ProfileService,
+              private profileRequestService: ProfileRequestService,
+              private dialog: MatDialog) {}
 
   ngOnInit() {
     this.loadTranslations();
@@ -83,12 +87,46 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
 
   public save() {
     let data = {
-      username: this.username?.value,
-      description: this.description?.value,
-      networks: this.networksForm?.networks,
-      tags: this.contentForm?.tags?.value
+      username: this.data.username != this.username?.value ? this.username?.value : undefined,
+      description: this.data.description != this.description?.value ? this.description?.value : undefined,
+      socialNetworks: this.getNewArrayIfExistsChanges(this.data.socialNetworks, this.networksForm?.networks.map((net: any) => net.url)),
+      contentTags: this.data.contentTags != this.contentForm?.tags?.value ? this.contentForm?.tags?.value : undefined
     }
+    this.profileRequestService.updateProfileData$(data).subscribe({
+      next: (v) => {
+        this.profileService.setProfileData(v.body);
+        this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'check',
+            title: this.translate.instant('profile.edit.success_title'),
+            textButtonClose: this.translate.instant('general.bnt_accept')
+          }
+        });
+        this.dialogRef.close();
+      },
+      error: (e) => {
+        this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'warning',
+            title: this.translate.instant('profile.edit.error_title'),
+            textButtonClose: this.translate.instant('general.bnt_accept')
+          }
+        });
+        //TODO: falla el save de los datos. Implementar lógica de reintento
+      }
+    });
     console.log(data)
+  }
+
+  private getNewArrayIfExistsChanges(arr1: any[], arr2: any[]): any[]|undefined {
+    arr1.sort();
+    arr2.sort();
+    if (arr1.length == arr2.length && arr1.every(function(v,i) { return v === arr2[i] } )) {
+      return undefined;
+    }
+    return arr2;
   }
 
   public close() {

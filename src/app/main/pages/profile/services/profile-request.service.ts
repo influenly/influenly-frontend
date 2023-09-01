@@ -15,4 +15,10 @@ export class ProfileRequestService {
         });
     };
 
+    public updateProfileData$(payload: any): Observable<HttpResponse<UserDataModel>> {
+        return this.restApiClient.patch<UserDataModel>(payload, {
+            endPoint: '/user/profile'
+        });
+    }
+
 }

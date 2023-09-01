@@ -6,7 +6,7 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 @Component({
   selector: 'app-user-options',
   templateUrl: './user-options.component.html',
-  styleUrls: ['./user-options.component.scss'],
+  styleUrls: ['./user-options.component.scss']
 })
 export class UserOptionsComponent {
 

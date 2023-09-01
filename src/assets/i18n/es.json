@@ -1,6 +1,7 @@
 {
     "general":{
         "btn_add":"Agregar",
+        "bnt_accept":"Aceptar",
         "btn_continue":"Continuar",
         "btn_back":"Atrás",
         "btn_return":"Volver",
@@ -166,7 +167,9 @@
             "title":"Editar perfil",
             "content_you_make":"Contenido que generas",
             "content_you_are_looking_for":"Contenido que buscas",
-            "btn_save":"Guardar cambios"
+            "btn_save":"Guardar cambios",
+            "success_title":"Datos de perfil actualizados correctamente",
+            "error_title":"Error al actualizar los datos del perfil"
         },
         "init_talk":{
             "title":"Iniciar conversación",

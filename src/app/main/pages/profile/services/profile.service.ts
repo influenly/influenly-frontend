@@ -10,6 +10,10 @@ export class ProfileService {
 
   private userProfileData: BehaviorSubject<UserDataModel|null> = new BehaviorSubject<UserDataModel|null>(null);
 
+  getProfileData(): Observable<UserDataModel | null> {
+    return this.userProfileData.asObservable();
+  }
+
   public setProfileData(profileData: UserDataModel|null) {
     this.userProfileData.next(profileData);
   }

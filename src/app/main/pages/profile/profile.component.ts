@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 import { ProfileService } from './services/profile.service';
@@ -11,7 +11,7 @@ import { UserDataModel } from './models/user-data.model';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   userDataMock = {
     username: "Pampa",
@@ -75,9 +75,11 @@ export class ProfileComponent implements OnInit {
   //   type: USER_TYPE.ADVERTISER
   // }
 
-  userData: UserDataModel| null = null;
+  userData: UserDataModel | null = null;
   isOwnView: boolean = false;
   isCreatorUser: boolean = false;
+
+  profileDataSubs: Subscription | undefined;
 
   constructor(private router: Router,
               private sessionStorage: SessionStorageService,
@@ -93,21 +95,33 @@ export class ProfileComponent implements OnInit {
     if (this.isOwnView) {
       const userId = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_id);
       this.profileService.getCachedProfileData(userId).subscribe(async (userProfile) => {
-        this.userData = userProfile;
-        if (typeof this.userData?.type == 'undefined') {
-          const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
-          if (userTypeObs) {
-            let userTypeString = await firstValueFrom(userTypeObs);
-            let userType = USER_TYPE[userTypeString as keyof typeof USER_TYPE];
-            if (this.userData) this.userData.type = userType;
-          }
-        }
-        if (this.userData) {
-          this.userData.integratedNetworks = this.userDataMock.integratedNetworks;
-          this.isCreatorUser = this.userData.type  == USER_TYPE.CREATOR;
-        }
+        this.loadUserData(userProfile);
+      });
+
+      this.profileDataSubs = this.profileService.getProfileData().subscribe(data => {
+        this.loadUserData(data);
       });
     }
+  }
+
+  private async loadUserData(data: UserDataModel | null) {
+    this.userData = data;
+    if (typeof this.userData?.type == 'undefined') {
+      const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
+      if (userTypeObs) {
+        let userTypeString = await firstValueFrom(userTypeObs);
+        let userType = USER_TYPE[userTypeString as keyof typeof USER_TYPE];
+        if (this.userData) this.userData.type = userType;
+      }
+    }
+    if (this.userData) {
+      this.userData.integratedNetworks = this.userDataMock.integratedNetworks;
+      this.isCreatorUser = this.userData.type  == USER_TYPE.CREATOR;
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.profileDataSubs) this.profileDataSubs.unsubscribe();
   }
     
 }

@@ -1,6 +1,7 @@
 {
     "general":{
         "btn_add":"Add",
+        "bnt_accept":"Accept",
         "btn_continue":"Continue",
         "btn_back":"Back",
         "btn_return":"Return",
@@ -166,7 +167,9 @@
             "title":"Edit profile",
             "content_you_make":"Content you make",
             "content_you_are_looking_for":"Content you are looking for",
-            "btn_save":"Save changes"
+            "btn_save":"Save changes",
+            "success_title":"Profile data updated successfully",
+            "error_title":"Error trying to update profile data"
         },
         "init_talk":{
             "title":"Start conversation",
@@ -182,13 +185,13 @@
             "videos":"Videos",
             "avg_visits":"Views",
             "avg_likes":"Average Likes"
+        },
+        "advanced_analytics":{
+            "title":"Advanced analytics"
+        },
+        "score":{
+            "title":"Reputation",
+            "no_score_yet":"It has not yet received enough scores to display information"
         }
-    },
-    "advanced_analytics":{
-        "title":"Advanced analytics"
-    },
-    "score":{
-        "title":"Reputation",
-        "no_score_yet":"It has not yet received enough scores to display information"
     }
 }

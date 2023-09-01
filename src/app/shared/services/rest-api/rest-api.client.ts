@@ -194,6 +194,33 @@ export class RestApiClient {
 		);
 	}
 
+	patch<T>(
+		body: any,
+		options: {
+			endPoint: string,
+			headers?: HttpHeaders | {
+				[header: string]: string | string[]
+			},
+			params?: HttpParams | {
+				[param: string]: string | string[];
+			};
+			useLocal?:boolean;
+			microservice?: string;
+			responseType?: string;
+		}) {
+		return this.http.patch<T>(
+			env.hostname + options.endPoint, body, {
+			headers: options.headers ? options.headers : new HttpHeaders({
+				'Content-Type': 'application/json'
+			}),
+			params: options.params ? options.params : undefined,
+			observe: 'response'
+		}).pipe(
+			retry(0),
+			catchError(this.handleError)
+		);
+	}
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 0) {
           // A client-side or network error occurred. Handle it accordingly.

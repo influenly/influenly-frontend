@@ -1,5 +1,23 @@
 .icon {
     font-size: 48px;
-    height: 48px;
-    width: 48px;
+    height: 70px;
+    width: 70px;
+}
+
+.check {
+    border: 1px solid #23B920;
+    border-radius: 50%;
+    color: white;
+    background-color: #23B920;
+}
+
+.check::before {
+    margin: 11px 11px;
+    display: block;
+}
+
+
+.warning {
+    color: red;
+    font-size: 70px;
 }

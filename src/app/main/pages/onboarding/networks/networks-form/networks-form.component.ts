@@ -40,6 +40,8 @@ export class NetworksFormComponent {
     }
     if (this.networks.length === 0) {
       this.atLeastOne.emit(false);
+    } else {
+      this.atLeastOne.emit(true);
     }
     return network;
   }
