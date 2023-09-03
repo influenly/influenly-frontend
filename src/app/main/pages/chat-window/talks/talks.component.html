@@ -1,0 +1,31 @@
+<div class="framework">
+    <div class="title">
+        <span>Conversaciones</span>
+    </div>
+    <div>
+        <div class="mt-4">
+            <span>Pendientes</span>
+            <div *ngFor="let user of talks.pending" class="talk">
+                <img class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
+                <span>{{ user.username }}</span>
+            </div>
+            <span *ngIf="!talks?.pending || talks?.pending.length == 0">Nada para mostrar aquí</span>
+        </div>
+        <div class="mt-4">
+            <span>En curso</span>
+            <div *ngFor="let user of talks.inProgress">
+                <img class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
+                <span>{{ user.username }}</span>
+            </div>
+            <span *ngIf="!talks?.inProgress || talks?.inProgress.length == 0" class="none-talks">Nada para mostrar aquí</span>
+        </div>
+        <div class="mt-4">
+            <span>Finalizadas</span>
+            <div *ngFor="let user of talks.ended">
+                <img class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
+                <span>{{ user.username }}</span>
+            </div>
+            <span *ngIf="!talks?.ended || talks?.ended.length == 0" class="none-talks">Nada para mostrar aquí</span>
+        </div>
+    </div>
+</div>

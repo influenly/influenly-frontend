@@ -9,12 +9,15 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
+import { ChatComponent } from './header/chat/chat.component';
+import { ChatService } from './header/chat/services/chat.service';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     MainLayoutComponent,
-    UserOptionsComponent
+    UserOptionsComponent,
+    ChatComponent
   ],
   imports: [
     CommonModule,
@@ -24,6 +27,9 @@ import { TranslateModule } from '@ngx-translate/core';
     MatButtonModule,
     MatMenuModule,
     TranslateModule
+  ],
+  providers: [
+    ChatService
   ]
 })
 export class CoreModule { }

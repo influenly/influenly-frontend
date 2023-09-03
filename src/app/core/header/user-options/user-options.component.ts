@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 
 @Component({
@@ -8,22 +8,34 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
   templateUrl: './user-options.component.html',
   styleUrls: ['./user-options.component.scss']
 })
-export class UserOptionsComponent {
+export class UserOptionsComponent implements OnInit {
 
   isMenuOpened: boolean = false;
   token: string|undefined = undefined;
 
-  tokenSubs: Subscription|undefined = undefined;
 
   constructor(private sessionStorage: SessionStorageService,
               private router: Router) {
-    this.tokenSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token)?.subscribe(token => this.token = token);
+  }
+
+  ngOnInit() {
+    this.getToken();
+  }
+
+  private async getToken() {
+    const tokenSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token);
+    if (tokenSubs) {
+      this.token = await firstValueFrom(tokenSubs);
+    }
+  }
+
+  goToProfile() {
+    this.router.navigate(['app/profile']);
   }
 
   logout() {
     //TODO: send logout to backend to expire token
     this.token = undefined;
-    this.tokenSubs?.unsubscribe();
     this.sessionStorage.clear();
     this.router.navigate(['landing']);
   }

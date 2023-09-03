@@ -36,6 +36,9 @@ import { ContentFormComponent } from './pages/onboarding/content/content-form/co
 import { ProfileService } from './pages/profile/services/profile.service';
 import { InitTalkModalComponent } from './pages/profile/user-data/init-talk-modal/init-talk-modal.component';
 import { ProfileRequestService } from './pages/profile/services/profile-request.service';
+import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
+import { ChatService } from '../core/header/chat/services/chat.service';
+import { TalksComponent } from './pages/chat-window/talks/talks.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { ProfileRequestService } from './pages/profile/services/profile-request.
     EditProfileModalComponent,
     NetworksFormComponent,
     ContentFormComponent,
-    InitTalkModalComponent
+    InitTalkModalComponent,
+    ChatWindowComponent,
+    TalksComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +83,8 @@ import { ProfileRequestService } from './pages/profile/services/profile-request.
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     OnboardingService,
     ProfileService,
-    ProfileRequestService
+    ProfileRequestService,
+    ChatService
   ]
 })
 export class MainModule { }

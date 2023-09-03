@@ -4,7 +4,7 @@ class="icon-container" (menuOpened)="isMenuOpened = true" (menuClosed)="isMenuOp
     <i class="icon" [ngClass]="{ 'material-icons-outlined': !isMenuOpened, 'material-icons-round': isMenuOpened }">account_circle</i>
 </button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="goToProfile()">
         <mat-icon class="material-icons-outlined">person</mat-icon>
         <span>{{ 'core.user_options.account_info' | translate }}</span>
     </button>
