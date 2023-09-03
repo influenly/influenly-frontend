@@ -5,6 +5,7 @@ import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 import { ProfileService } from './services/profile.service';
 import { UserDataModel } from './models/user-data.model';
+import { ProfileRequestService } from './services/profile-request.service';
 
 @Component({
   selector: 'app-profile',
@@ -83,7 +84,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private sessionStorage: SessionStorageService,
-              private profileService: ProfileService) {}
+              private profileService: ProfileService,
+              private profileRequestService: ProfileRequestService) {}
 
   ngOnInit() {
     this.getComponentView();
@@ -97,21 +99,28 @@ export class ProfileComponent implements OnInit, OnDestroy {
       this.profileService.getCachedProfileData(userId).subscribe(async (userProfile) => {
         this.loadUserData(userProfile);
       });
-
-      this.profileDataSubs = this.profileService.getProfileData().subscribe(data => {
-        this.loadUserData(data);
+    } else {
+      const userId = href.substring(href.lastIndexOf('/') + 1);
+      this.profileRequestService.getProfileData$(userId).subscribe(async (userProfile) => {
+        this.loadUserData(userProfile.body);
       });
     }
+
+    this.profileDataSubs = this.profileService.getProfileData().subscribe(data => {
+      this.loadUserData(data);
+    });
   }
 
   private async loadUserData(data: UserDataModel | null) {
     this.userData = data;
     if (typeof this.userData?.type == 'undefined') {
-      const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
-      if (userTypeObs) {
-        let userTypeString = await firstValueFrom(userTypeObs);
-        let userType = USER_TYPE[userTypeString as keyof typeof USER_TYPE];
-        if (this.userData) this.userData.type = userType;
+      if (this.isOwnView) {
+        const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
+        if (userTypeObs) {
+          let userTypeString = await firstValueFrom(userTypeObs);
+          let userType = USER_TYPE[userTypeString as keyof typeof USER_TYPE];
+          if (this.userData) this.userData.type = userType;
+        }
       }
     }
     if (this.userData) {
