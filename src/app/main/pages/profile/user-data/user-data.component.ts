@@ -43,7 +43,8 @@ export class UserDataComponent implements OnInit, OnChanges {
 
   public initTalk() {
     this.dialog.open(InitTalkModalComponent, {
-      width: '500px'
+      width: '500px',
+      data: this.userData
     });
   }
 

@@ -2,8 +2,13 @@ import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client';
 import { environment as env } from '../../../../environments/environment';
 
+export enum TOPIC {
+    SEND = 'sendMessage',
+    RECEIVE = 'recMessage-'
+};
 @Injectable({providedIn: 'root'})
 export class SocketService {
+
     private socket: any;
 
     public connectSocket() {

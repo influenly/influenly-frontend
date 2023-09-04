@@ -39,6 +39,7 @@ import { ProfileRequestService } from './pages/profile/services/profile-request.
 import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
 import { ChatService } from '../core/header/chat/services/chat.service';
 import { TalksComponent } from './pages/chat-window/talks/talks.component';
+import { ChatRequestService } from './pages/profile/services/chat-request.service';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { TalksComponent } from './pages/chat-window/talks/talks.component';
     OnboardingService,
     ProfileService,
     ProfileRequestService,
-    ChatService
+    ChatService,
+    ChatRequestService
   ]
 })
 export class MainModule { }
