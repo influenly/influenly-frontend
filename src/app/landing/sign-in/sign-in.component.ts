@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
+import { SocketService } from 'src/app/shared/services/socket/socket.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -27,7 +28,8 @@ export class SignInComponent {
               private dialog: MatDialog,
               private translate: TranslateService,
               private router: Router,
-              private sessionStorage: SessionStorageService) { }
+              private sessionStorage: SessionStorageService,
+              private socketService: SocketService) { }
 
   submit() {
     if (!this.signInForm.valid) {
@@ -43,6 +45,7 @@ export class SignInComponent {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.token, v.body.token);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, v.body.type);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.id);
+        this.socketService.connectSocket();
         if (!v.body.onboardingCompleted) {
           this.router.navigate(['app/onboarding']);
         } else {

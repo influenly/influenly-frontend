@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription, firstValueFrom } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 import { ChatService } from './services/chat.service';
 
@@ -14,6 +14,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   isChatOpened: boolean = false
   token: string|undefined;
 
+  tokenSubs: Subscription|undefined;
   chatClosedEventSubs: Subscription|undefined;
 
   constructor(private sessionStorage: SessionStorageService,
@@ -22,15 +23,13 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.info('chat-option init');
     this.getToken();
     this.chatClosedEventSubs = this.chatService.getChatClosedEvent().subscribe(() => this.isChatOpened = false);
   }
 
   private async getToken() {
-    const tokenSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token);
-    if (tokenSubs) {
-      this.token = await firstValueFrom(tokenSubs);
-    }
+    this.tokenSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token)?.subscribe(token => this.token = token);
   }
 
   openChat() {
@@ -39,6 +38,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.info('chat-option destroy');
+    if (this.tokenSubs) this.tokenSubs.unsubscribe();
     if (this.chatClosedEventSubs) this.chatClosedEventSubs.unsubscribe();
   }
 
