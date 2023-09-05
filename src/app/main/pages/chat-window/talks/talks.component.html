@@ -1,31 +1,34 @@
 <div class="framework">
     <div class="title">
-        <span>Conversaciones</span>
+        <span>{{ 'chat.conversation.title' | translate }}</span>
     </div>
     <div>
         <div class="mt-4">
-            <span>Pendientes</span>
-            <div *ngFor="let user of talks.pending" class="talk">
-                <img class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
-                <span>{{ user.username }}</span>
+            <span>{{ 'chat.conversation.pending' | translate }}</span>
+            <div *ngFor="let conversation of conversations?.pending" class="conversation-btn">
+                <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
+                <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
+                <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
             </div>
-            <span *ngIf="!talks?.pending || talks?.pending.length == 0">Nada para mostrar aquí</span>
+            <span *ngIf="!conversations?.pending || conversations?.pending?.length == 0"  class="none-talks">{{ 'chat.conversation.none' | translate }}</span>
         </div>
         <div class="mt-4">
-            <span>En curso</span>
-            <div *ngFor="let user of talks.inProgress">
-                <img class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
-                <span>{{ user.username }}</span>
+            <span>{{ 'chat.conversation.in_progress' | translate }}</span>
+            <div *ngFor="let conversation of conversations?.inProgress">
+                <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
+                <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
+                <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
             </div>
-            <span *ngIf="!talks?.inProgress || talks?.inProgress.length == 0" class="none-talks">Nada para mostrar aquí</span>
+            <span *ngIf="!conversations?.inProgress || conversations?.inProgress?.length == 0" class="none-talks">{{ 'chat.conversation.none' | translate }}</span>
         </div>
         <div class="mt-4">
-            <span>Finalizadas</span>
-            <div *ngFor="let user of talks.ended">
-                <img class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
-                <span>{{ user.username }}</span>
+            <span>{{ 'chat.conversation.finished' | translate }}</span>
+            <div *ngFor="let conversation of conversations?.finished">
+                <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
+                <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
+                <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
             </div>
-            <span *ngIf="!talks?.ended || talks?.ended.length == 0" class="none-talks">Nada para mostrar aquí</span>
+            <span *ngIf="!conversations?.finished || conversations?.finished?.length == 0" class="none-talks">{{ 'chat.conversation.none' | translate }}</span>
         </div>
     </div>
 </div>

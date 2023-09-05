@@ -1,6 +1,6 @@
 .framework {
     width: 20rem;
-    padding-left: 1rem;
+    padding: 0 1rem;
 }
 
 .title {
@@ -9,8 +9,13 @@
     font-weight: 600;
 }
 
-.talk {
-    margin: 0.5rem 0;
+.conversation-btn {
+    padding: 0.5rem 0.5rem;
+}
+
+.conversation-btn:hover {
+    cursor: pointer;
+    background-color: var(--mat-menu-item-hover-state-layer-color);
 }
 
 .picture {

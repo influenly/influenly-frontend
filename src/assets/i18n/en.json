@@ -193,5 +193,14 @@
             "title":"Reputation",
             "no_score_yet":"It has not yet received enough scores to display information"
         }
+    },
+    "chat":{
+        "conversation":{
+            "title":"Conversations",
+            "pending":"Pending",
+            "in_progress":"In progress",
+            "finished":"Finished",
+            "none":"Nothing to show here"
+        }
     }
 }

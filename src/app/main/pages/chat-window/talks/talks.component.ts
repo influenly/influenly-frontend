@@ -1,18 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+import { ConversationModel } from '../../profile/models/conversation.model';
 
 @Component({
   selector: 'app-talks',
   templateUrl: './talks.component.html',
   styleUrls: ['./talks.component.scss']
 })
-export class TalksComponent {
+export class TalksComponent implements OnChanges {
 
-  talks: any|undefined = {
-    pending: [
-      {
-        picture: undefined,
-        username: 'Pepsi'
-      }
-    ]
-  };
+  @Input() conversations: { pending: ConversationModel[], inProgress: ConversationModel[], finished: ConversationModel[] }|undefined;
+
+  ngOnChanges() {
+    this.getConversationsData();
+  }
+
+  private getConversationsData() {
+  }
 }

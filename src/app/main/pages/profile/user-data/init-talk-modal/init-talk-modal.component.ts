@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { ChatRequestService } from '../../services/chat-request.service';
+import { firstValueFrom } from 'rxjs';
+import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 
 @Component({
   selector: 'app-init-talk-modal',
@@ -16,25 +17,30 @@ export class InitTalkModalComponent implements OnInit {
     message: ['', Validators.required],
   });
 
-  userId: string = '0';
+  userId: number|undefined;
 
   get message() { return this.talkForm.get('message'); }
 
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<InitTalkModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private router: Router,
-              private chatRequestService: ChatRequestService) {}
+              private chatRequestService: ChatRequestService,
+              private sessionStorage: SessionStorageService) {}
 
   ngOnInit() {
-    let href = this.router.url;
-    this.userId = href.substring(href.lastIndexOf('/') + 1);
+    this.getUserId();
+  }
+
+  private async getUserId() {
+    const userIdObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id);
+    if (userIdObs) {
+      this.userId = parseInt(await firstValueFrom(userIdObs));
+    }
   }
 
   onSubmit() {
     const message = {
-      advertiserUserId: this.data.type === USER_TYPE.CREATOR ? parseInt(this.userId) : this.data.userId,
-      creatorUserId: this.data.type === USER_TYPE.CREATOR ? this.data.userId : parseInt(this.userId),
+      creatorUserId: this.data.userId,
       message: this.message?.value
     }
     console.log(message)
