@@ -5,7 +5,7 @@
     <div>
         <div class="mt-4">
             <span>{{ 'chat.conversation.pending' | translate }}</span>
-            <div *ngFor="let conversation of conversations?.pending" class="conversation-btn">
+            <div *ngFor="let conversation of conversations?.pending" class="conversation-btn" (click)="selectConversation(conversation)">
                 <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
                 <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
                 <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>

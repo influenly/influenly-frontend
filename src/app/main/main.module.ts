@@ -40,6 +40,7 @@ import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
 import { ChatService } from '../core/header/chat/services/chat.service';
 import { TalksComponent } from './pages/chat-window/talks/talks.component';
 import { ChatRequestService } from './pages/profile/services/chat-request.service';
+import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-messages.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { ChatRequestService } from './pages/profile/services/chat-request.servic
     ContentFormComponent,
     InitTalkModalComponent,
     ChatWindowComponent,
-    TalksComponent
+    TalksComponent,
+    ChatMessagesComponent
   ],
   imports: [
     CommonModule,

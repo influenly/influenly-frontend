@@ -137,6 +137,12 @@ button[disabled] {
     }
 }
 
+.other-button {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
 .mdc-notched-outline {
     color: #ccc;
 }

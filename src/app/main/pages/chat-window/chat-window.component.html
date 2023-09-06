@@ -1,6 +1,6 @@
 <div class="container-chat">
-    <app-talks [conversations]="conversationsClassified" />
+    <app-talks class="shadow bg-white" [conversations]="conversationsClassified" (selectedConversation)="openConversationMessages($event)" />
     <div class="chat-box">
-        
+        <app-chat-messages [conversation]="selectedConversation"/>
     </div>
 </div>

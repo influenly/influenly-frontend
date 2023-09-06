@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ConversationModel } from '../../profile/models/conversation.model';
 
 @Component({
@@ -6,14 +6,13 @@ import { ConversationModel } from '../../profile/models/conversation.model';
   templateUrl: './talks.component.html',
   styleUrls: ['./talks.component.scss']
 })
-export class TalksComponent implements OnChanges {
+export class TalksComponent {
 
   @Input() conversations: { pending: ConversationModel[], inProgress: ConversationModel[], finished: ConversationModel[] }|undefined;
+  @Output() selectedConversation: EventEmitter<ConversationModel> = new EventEmitter();
 
-  ngOnChanges() {
-    this.getConversationsData();
+  selectConversation(conversation: ConversationModel) {
+    this.selectedConversation.emit(conversation);
   }
 
-  private getConversationsData() {
-  }
 }

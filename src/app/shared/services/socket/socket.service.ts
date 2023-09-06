@@ -28,6 +28,9 @@ export class SocketService {
     }
 
     public emitMessage(topic: string, message: any) {
+        if (!this.socket) {
+            this.connectSocket();
+        }
         this.socket.emit(topic, message);
     }
     

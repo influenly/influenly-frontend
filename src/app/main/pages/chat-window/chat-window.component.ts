@@ -11,6 +11,7 @@ import { CONVERSATION_STATUS, ConversationModel } from '../profile/models/conver
 export class ChatWindowComponent implements OnInit, OnDestroy {
 
   conversations: ConversationModel[]|null = null;
+  selectedConversation: ConversationModel|undefined;
   conversationsClassified: { pending: ConversationModel[], inProgress: ConversationModel[], finished: ConversationModel[] } = {
     pending: [],
     inProgress: [],
@@ -43,6 +44,10 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  openConversationMessages(conversation: ConversationModel) {
+    this.selectedConversation = conversation;
   }
 
   ngOnDestroy(): void {

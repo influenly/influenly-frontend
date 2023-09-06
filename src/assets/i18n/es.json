@@ -201,6 +201,13 @@
             "in_progress":"En curso",
             "finished":"Finalizadas",
             "none":"Nada para mostrar aquí"
+        },
+        "messages":{
+            "btn_finish":"Finalizar conversación",
+            "btn_init":"Iniciar conversación",
+            "btn_reject":"Rechazar",
+            "input_placeholder":"Escribe tu mensaje",
+            "btn_send":"Enviar"
         }
     }
 }

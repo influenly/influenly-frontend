@@ -201,6 +201,13 @@
             "in_progress":"In progress",
             "finished":"Finished",
             "none":"Nothing to show here"
+        },
+        "messages":{
+            "btn_finish":"Finish conversation",
+            "btn_init":"Start conversation",
+            "btn_reject":"Reject",
+            "input_placeholder":"Write your message",
+            "btn_send":"Send"
         }
     }
 }
