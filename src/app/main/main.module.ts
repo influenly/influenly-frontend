@@ -8,7 +8,7 @@ import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { StepsVisualizerComponent } from './pages/onboarding/steps-visualizer/steps-visualizer.component';
 import { PersonalInformationComponent } from './pages/onboarding/personal-information/personal-information.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -79,7 +79,8 @@ import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-me
     SharedModule,
     MatMenuModule,
     MatTooltipModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },

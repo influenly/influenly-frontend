@@ -9,5 +9,6 @@ export interface ConversationModel {
 }
 
 export enum CONVERSATION_STATUS {
-    APPROVAL_PENDING = "APPROVAL_PENDING"
+    APPROVAL_PENDING = "APPROVAL_PENDING",
+    ACEPTED = "ACEPTED"
 }

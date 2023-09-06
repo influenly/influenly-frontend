@@ -1,25 +1,32 @@
-<div class="d-relative">
     <div class="chat-header">
         <img *ngIf="conversation?.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
         <img *ngIf="conversation?.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
     
         <button *ngIf="messages && messages.length > 1" class="main-button-secondary">{{ 'chat.messages.btn_finish' | translate }} <mat-icon class="material-icons-outlined">chat_close</mat-icon></button>
     </div>
-    <div>
-        <div *ngFor="let message of messages">
-            <div class="bubble" [ngClass]="{'bubble-received': message.isReceived, 'buble-sended': !message.isReceived}">
-                <span>{{ message.content }}</span>
-                <div *ngIf="message.type == 'INITIALIZER'" class="mt-3">
-                    <button class="main-button" (click)="initConversation(message)">{{ 'chat.messages.btn_init' | translate }}</button>
-                    <button class="other-button" (click)="rejectConversation(message)">{{ 'chat.messages.btn_reject' | translate }}</button>
-                </div>
+    <div #messagesContainer class="messages-box">
+        <div *ngFor="let message of messages" class="bubble" [ngClass]="{'bubble-received': message.isReceived, 'bubble-sended': !message.isReceived}">
+            <span *ngFor="let msg of message.content.split(enterRegex)">{{ msg }} <br></span>
+            <div *ngIf="message.type == 'INITIALIZER' && conversation?.status == 'APPROVAL_PENDING'" class="mt-3">
+                <button class="main-button" (click)="initConversation(message)">{{ 'chat.messages.btn_init' | translate }}</button>
+                <button class="other-button" (click)="rejectConversation(message)">{{ 'chat.messages.btn_reject' | translate }}</button>
             </div>
         </div>
     </div>
     <div class="write-box">
         <div class="d-flex">
-            <input class="input-message" [placeholder]="'chat.messages.input_placeholder' | translate" [disabled]="!enabledChat"/>
-            <button class="main-button-secondary button-send" [disabled]="!enabledChat">{{ 'chat.messages.btn_send' | translate }}<mat-icon>arrow_forward</mat-icon></button>
+            <textarea #textInput class="input-message" 
+                [(ngModel)]="inputValue"
+                (keydown)="onKeyDown($event)"
+                (keyup)="onKeyUp($event)"
+                [placeholder]="'chat.messages.input_placeholder' | translate"
+                [disabled]="!enabledChat">
+            </textarea>
+            <button class="main-button-secondary button-send"
+                [disabled]="!enabledChat"
+                (click)="sendMessage()">
+                    {{ 'chat.messages.btn_send' | translate }}
+                    <mat-icon>arrow_forward</mat-icon>
+            </button>
         </div>
     </div>
-</div>

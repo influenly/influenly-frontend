@@ -9,3 +9,9 @@
     width: 100%;
     background-color: #EAEDF2;
 }
+
+app-chat-messages {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+}

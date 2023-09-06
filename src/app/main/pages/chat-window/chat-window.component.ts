@@ -41,6 +41,10 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
             this.conversationsClassified.pending.push(conversation);
             break;
           }
+          case CONVERSATION_STATUS.ACEPTED: {
+            this.conversationsClassified.inProgress.push(conversation);
+            break;
+          }
         }
       });
     }

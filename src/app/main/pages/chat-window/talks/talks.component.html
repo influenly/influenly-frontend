@@ -14,7 +14,7 @@
         </div>
         <div class="mt-4">
             <span>{{ 'chat.conversation.in_progress' | translate }}</span>
-            <div *ngFor="let conversation of conversations?.inProgress">
+            <div *ngFor="let conversation of conversations?.inProgress" class="conversation-btn" (click)="selectConversation(conversation)">
                 <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
                 <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
                 <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
@@ -23,7 +23,7 @@
         </div>
         <div class="mt-4">
             <span>{{ 'chat.conversation.finished' | translate }}</span>
-            <div *ngFor="let conversation of conversations?.finished">
+            <div *ngFor="let conversation of conversations?.finished" class="conversation-btn" (click)="selectConversation(conversation)">
                 <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
                 <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
                 <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
