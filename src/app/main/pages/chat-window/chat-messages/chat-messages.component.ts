@@ -1,3 +1,5 @@
+import { MESSAGE_TYPE } from './../../profile/models/message.model';
+import { CONVERSATION_STATUS } from './../../profile/models/conversation.model';
 import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { ConversationModel } from '../../profile/models/conversation.model';
 import { MessageModel } from '../../profile/models/message.model';
@@ -18,6 +20,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
 
   @Input() conversation: ConversationModel|undefined;
 
+  CONVERSATION_STATUS = CONVERSATION_STATUS;
   userId: number|undefined;
   messages: MessageModel[]|undefined;
   enabledChat: boolean = false;
@@ -26,7 +29,16 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
 
   constructor(private chatRequestService: ChatRequestService,
               private sessionStorage: SessionStorageService,
-              private socketService: SocketService) {}
+              private socketService: SocketService) {
+    socketService.outEvent.subscribe(message => {
+      console.log(message)
+      message.isReceived = message.senderUserId !=  this.userId;
+      this.messages?.push(message);
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 0);
+    });
+  }
 
   ngOnInit() {
     this.getUserId();
@@ -39,20 +51,30 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   }
   
   private async getUserId() {
-    const userIdObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
+    const userIdObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id);
     if (userIdObs) {
       this.userId = await firstValueFrom(userIdObs);
+      this.prepareSocket();
     }
+  }
+
+  private async prepareSocket() {
+    await this.socketService.connectSocket();
+    this.socketService.subscribeTopic('recMessage-' + this.userId);
   }
 
   private getMessages(conversationId: number) {
     this.chatRequestService.getMessages$(conversationId.toString()).subscribe({
       next: (v) => {
         this.messages = v.body ? v.body : undefined;
-        this.messages?.forEach(message => message.isReceived = message.senderUserId != this.userId);
-        if (this.messages && this.messages.length > 1 || this.conversation?.status != 'APPROVAL_PENDING') {
+        this.messages?.forEach(message => message.isReceived = message.senderUserId !=  this.userId);
+        if (this.messages && this.messages.length > 1 || this.conversation?.status != CONVERSATION_STATUS.INIT_APPROVAL_PENDING) {
           this.enabledChat = true;
         }
+        this.messages?.sort((m1, m2) => m1.id - m2.id);
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 0);
       },
       error: (e) => {
         //TODO: Flujo de error
@@ -63,12 +85,12 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   initConversation(message: MessageModel) {
     const payload = {
       id: this.conversation?.id,
-      status: 'ACEPTED'
+      status: CONVERSATION_STATUS.ACTIVE
     }
     this.chatRequestService.updateConversation$(payload).subscribe({
       next: (v) => {
         this.enabledChat = true;
-        message.type = 'REGULAR';
+        message.type = MESSAGE_TYPE.REGULAR;
       },
       error: (e) => {
         //TODO: Flujo de error
@@ -79,7 +101,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   rejectConversation(message: MessageModel) {
     const payload = {
       id: this.conversation?.id,
-      status: 'REJECTED'
+      status: CONVERSATION_STATUS.FINISHED
     }
     this.chatRequestService.updateConversation$(payload).subscribe({
       next: (v) => {
@@ -98,16 +120,14 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
 
     const message = {
       conversationId: this.conversation?.id,
-      receiverUserId: this.messages ? this.messages[0].senderUserId : undefined,
+      receiverUserId: this.userId == this.conversation?.advertiserUserId ? this.conversation?.creatorUserId : this.conversation?.advertiserUserId,
       content: this.inputValue,
-      type: 'REGULAR'
+      type: MESSAGE_TYPE.REGULAR
     }
     this.socketService.emitMessage('sendMessage', message);
     this.messages?.push({
+      ...message,
       id: 0,
-      content: this.inputValue,
-      type: 'REGULAR',
-      senderUserId: this.messages ? this.messages[0].senderUserId : 0,
       isReceived: false
     });
     this.inputValue = '';

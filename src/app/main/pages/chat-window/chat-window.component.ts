@@ -37,12 +37,20 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     if (this.conversations) {
       this.conversations.forEach((conversation) => {
         switch(conversation.status) {
-          case CONVERSATION_STATUS.APPROVAL_PENDING: {
+          case CONVERSATION_STATUS.INIT_APPROVAL_PENDING: {
             this.conversationsClassified.pending.push(conversation);
             break;
           }
-          case CONVERSATION_STATUS.ACEPTED: {
+          case CONVERSATION_STATUS.ACTIVE: {
             this.conversationsClassified.inProgress.push(conversation);
+            break;
+          }
+          case CONVERSATION_STATUS.FINISH_APPROVAL_PENDING: {
+            this.conversationsClassified.inProgress.push(conversation);
+            break;
+          }
+          case CONVERSATION_STATUS.FINISHED: {
+            this.conversationsClassified.finished.push(conversation);
             break;
           }
         }

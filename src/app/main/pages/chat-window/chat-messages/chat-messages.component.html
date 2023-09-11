@@ -7,9 +7,12 @@
     <div #messagesContainer class="messages-box">
         <div *ngFor="let message of messages" class="bubble" [ngClass]="{'bubble-received': message.isReceived, 'bubble-sended': !message.isReceived}">
             <span *ngFor="let msg of message.content.split(enterRegex)">{{ msg }} <br></span>
-            <div *ngIf="message.type == 'INITIALIZER' && conversation?.status == 'APPROVAL_PENDING'" class="mt-3">
+            <div *ngIf="message.type == 'INITIALIZER' && conversation?.status == CONVERSATION_STATUS.INIT_APPROVAL_PENDING && message.isReceived" class="mt-3">
                 <button class="main-button" (click)="initConversation(message)">{{ 'chat.messages.btn_init' | translate }}</button>
                 <button class="other-button" (click)="rejectConversation(message)">{{ 'chat.messages.btn_reject' | translate }}</button>
+            </div>
+            <div *ngIf="message.type == 'INITIALIZER' && conversation?.status == CONVERSATION_STATUS.INIT_APPROVAL_PENDING && !message.isReceived" class="mt-1">
+                <span class="info-message">Pendiente <mat-icon>info_outline</mat-icon></span>
             </div>
         </div>
     </div>

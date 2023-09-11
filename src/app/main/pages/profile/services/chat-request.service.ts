@@ -24,7 +24,7 @@ export class ChatRequestService {
 
     public updateConversation$(payload: any): Observable<HttpResponse<any>> {
         return this.restApiClient.patch<any>(payload, {
-            endPoint: '/chat/conversation'
+            endPoint: '/chat/conversation/' + payload.id
         });
     };
 

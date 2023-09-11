@@ -1,7 +1,14 @@
 export interface MessageModel {
     id: number;
     content: string;
-    type: string;
-    senderUserId: number;
+    type: MESSAGE_TYPE;
+    receiverUserId?: number;
+    senderUserId?: number;
     isReceived?: boolean;
+}
+
+export enum MESSAGE_TYPE {
+    REGULAR = 'REGULAR',
+    INITIALIZER = 'INITIALIZER',
+    FINISHER = 'FINISHER'
 }
