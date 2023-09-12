@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { SessionStorageService } from './services/storages/session-storage.service';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
-import { SocketService } from './services/socket/socket.service';
 
 
 
@@ -22,8 +21,7 @@ import { SocketService } from './services/socket/socket.service';
   ],
   providers: [
     RestApiClient,
-    SessionStorageService,
-    SocketService
+    SessionStorageService
   ],
   exports: [
     InformationModalComponent,

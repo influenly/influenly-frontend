@@ -37,7 +37,6 @@ import { ProfileService } from './pages/profile/services/profile.service';
 import { InitTalkModalComponent } from './pages/profile/user-data/init-talk-modal/init-talk-modal.component';
 import { ProfileRequestService } from './pages/profile/services/profile-request.service';
 import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
-import { ChatService } from '../core/header/chat/services/chat.service';
 import { TalksComponent } from './pages/chat-window/talks/talks.component';
 import { ChatRequestService } from './pages/profile/services/chat-request.service';
 import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-messages.component';
@@ -88,7 +87,6 @@ import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-me
     OnboardingService,
     ProfileService,
     ProfileRequestService,
-    ChatService,
     ChatRequestService
   ]
 })

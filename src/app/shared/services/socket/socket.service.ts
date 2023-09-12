@@ -51,9 +51,6 @@ export class SocketService {
     }
 
     public async emitMessage(topic: string, message: any) {
-        if (!this.socket) {
-            await this.connectSocket();
-        }
         this.socket.emit(topic, message);
     }
     

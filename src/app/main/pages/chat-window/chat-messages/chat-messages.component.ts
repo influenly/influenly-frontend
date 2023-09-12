@@ -54,13 +54,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     const userIdObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id);
     if (userIdObs) {
       this.userId = await firstValueFrom(userIdObs);
-      this.prepareSocket();
     }
-  }
-
-  private async prepareSocket() {
-    await this.socketService.connectSocket();
-    this.socketService.subscribeTopic('recMessage-' + this.userId);
   }
 
   private getMessages(conversationId: number) {
@@ -91,6 +85,9 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
       next: (v) => {
         this.enabledChat = true;
         message.type = MESSAGE_TYPE.REGULAR;
+        if (this.conversation) {
+          this.conversation.status = CONVERSATION_STATUS.ACTIVE;
+        }
       },
       error: (e) => {
         //TODO: Flujo de error

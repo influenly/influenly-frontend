@@ -9,6 +9,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SessionStorageService } from './shared/services/storages/session-storage.service';
 import { MatMenuModule } from '@angular/material/menu';
+import { ChatService } from './core/header/chat/services/chat.service';
+import { SocketService } from './shared/services/socket/socket.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,7 +34,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     })
   ],
   providers: [
-    SessionStorageService
+    SessionStorageService,
+    ChatService,
+    SocketService
   ],
   bootstrap: [AppComponent]
 })

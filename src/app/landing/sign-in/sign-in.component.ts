@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
-import { SocketService } from 'src/app/shared/services/socket/socket.service';
+import { SocketService, TOPIC } from 'src/app/shared/services/socket/socket.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -41,11 +41,12 @@ export class SignInComponent {
       password: this.password?.value
     }
     this.authService.signIn$(payload).subscribe({
-      next: (v) => {
+      next: async (v) => {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.token, v.body.token);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, v.body.type);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.id);
-        this.socketService.connectSocket();
+        await this.socketService.connectSocket();
+        this.socketService.subscribeTopic(TOPIC.RECEIVE + v.body.id);
         if (!v.body.onboardingCompleted) {
           this.router.navigate(['app/onboarding']);
         } else {

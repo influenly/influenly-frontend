@@ -25,7 +25,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit() {
     console.info('chat-option init');
     this.getToken();
-    this.chatClosedEventSubs = this.chatService.getChatClosedEvent().subscribe(() => this.isChatOpened = false);
+    this.chatClosedEventSubs = this.chatService.getChatClosedEvent().subscribe(() => {
+      this.isChatOpened = false
+    });
   }
 
   private async getToken() {
