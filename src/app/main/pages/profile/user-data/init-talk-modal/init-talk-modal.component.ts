@@ -1,11 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { ChatRequestService } from '../../services/chat-request.service';
 import { firstValueFrom } from 'rxjs';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
-import { SocketService } from 'src/app/shared/services/socket/socket.service';
 
 @Component({
   selector: 'app-init-talk-modal',
@@ -26,8 +24,7 @@ export class InitTalkModalComponent implements OnInit {
               private dialogRef: MatDialogRef<InitTalkModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private chatRequestService: ChatRequestService,
-              private sessionStorage: SessionStorageService,
-              private socketService: SocketService) {}
+              private sessionStorage: SessionStorageService) {}
 
   ngOnInit() {
     this.getUserId();
@@ -48,7 +45,6 @@ export class InitTalkModalComponent implements OnInit {
     console.log(message)
     this.chatRequestService.newConversation$(message).subscribe({
       next: (v) => {
-        // this.socketService.emitMessage('sendMEssage', message);
         this.dialogRef.close();
       },
       error: (e) => {

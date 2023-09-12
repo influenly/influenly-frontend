@@ -2,6 +2,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ChatService } from 'src/app/core/header/chat/services/chat.service';
 import { ChatRequestService } from '../profile/services/chat-request.service';
 import { CONVERSATION_STATUS, ConversationModel } from '../profile/models/conversation.model';
+import { SocketService, TOPIC } from 'src/app/shared/services/socket/socket.service';
+import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-chat-window',
@@ -17,11 +20,34 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     inProgress: [],
     finished: []
   }
+  userId: number|undefined;
 
   constructor(private chatService: ChatService,
-              private chatRequestService: ChatRequestService) {}
+              private chatRequestService: ChatRequestService,
+              private socketService: SocketService,
+              private sessionStorage: SessionStorageService) {}
 
   ngOnInit() {
+    this.checkSocketConnection();
+    this.getConversations();
+  }
+
+  private async checkSocketConnection() {
+    await this.getUserId();
+    if (!this.socketService.socketConnected()) {
+      await this.socketService.connectSocket();
+      this.socketService.subscribeTopic(TOPIC.RECEIVE + this.userId);
+    }
+  }
+
+  private async getUserId() {
+    const userIdObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id);
+    if (userIdObs) {
+      this.userId = await firstValueFrom(userIdObs);
+    }
+  }
+
+  private getConversations() {
     this.chatRequestService.getConversations$().subscribe({
       next: (v) => {
         this.conversations = v.body;
@@ -33,7 +59,12 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     });
   }
 
-  private classifyConversations() {
+  classifyConversations() {
+    this.conversationsClassified = {
+      pending: [],
+      inProgress: [],
+      finished: []
+    };
     if (this.conversations) {
       this.conversations.forEach((conversation) => {
         switch(conversation.status) {

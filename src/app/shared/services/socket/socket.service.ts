@@ -20,6 +20,10 @@ export class SocketService {
 
     constructor(private sessionStorage: SessionStorageService) {}
 
+    public socketConnected(): boolean {
+        return this.socket;
+    }
+
     public async connectSocket() {
         if (!this.token) {
             const tokenObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token);

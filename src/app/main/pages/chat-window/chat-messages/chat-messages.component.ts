@@ -1,11 +1,9 @@
 import { MESSAGE_TYPE } from './../../profile/models/message.model';
 import { CONVERSATION_STATUS } from './../../profile/models/conversation.model';
-import { Component, ElementRef, Input, OnChanges, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { ConversationModel } from '../../profile/models/conversation.model';
 import { MessageModel } from '../../profile/models/message.model';
 import { ChatRequestService } from '../../profile/services/chat-request.service';
-import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
-import { firstValueFrom } from 'rxjs';
 import { SocketService } from 'src/app/shared/services/socket/socket.service';
 
 @Component({
@@ -19,16 +17,16 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   @ViewChild('textInput') private textInput: ElementRef|undefined;
 
   @Input() conversation: ConversationModel|undefined;
+  @Input() userId: number|undefined;
+  @Output() conversationChange: EventEmitter<null> = new EventEmitter();
 
   CONVERSATION_STATUS = CONVERSATION_STATUS;
-  userId: number|undefined;
   messages: MessageModel[]|undefined;
   enabledChat: boolean = false;
   inputValue: string = '';
   enterRegex = /\r?\n/;
 
   constructor(private chatRequestService: ChatRequestService,
-              private sessionStorage: SessionStorageService,
               private socketService: SocketService) {
     socketService.outEvent.subscribe(message => {
       console.log(message)
@@ -41,7 +39,6 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   }
 
   ngOnInit() {
-    this.getUserId();
   }
 
   ngOnChanges() {
@@ -50,13 +47,6 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     }
   }
   
-  private async getUserId() {
-    const userIdObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id);
-    if (userIdObs) {
-      this.userId = await firstValueFrom(userIdObs);
-    }
-  }
-
   private getMessages(conversationId: number) {
     this.chatRequestService.getMessages$(conversationId.toString()).subscribe({
       next: (v) => {
@@ -87,6 +77,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
         message.type = MESSAGE_TYPE.REGULAR;
         if (this.conversation) {
           this.conversation.status = CONVERSATION_STATUS.ACTIVE;
+          this.conversationChange.emit();
         }
       },
       error: (e) => {
