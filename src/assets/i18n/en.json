@@ -1,7 +1,7 @@
 {
     "general":{
         "btn_add":"Add",
-        "bnt_accept":"Accept",
+        "btn_accept":"Accept",
         "btn_continue":"Continue",
         "btn_back":"Back",
         "btn_return":"Return",
@@ -206,10 +206,15 @@
             "btn_finish":"Finish conversation",
             "btn_init":"Start conversation",
             "btn_yes_finish":"Yes, finish",
+            "pending":"Pending",
+            "finisher_message_advertiser":"Waiting for the creator to finish the chat.",
+            "finisher_message_creator":"The advertiser has marked this conversation as finished.",
             "btn_reject":"Reject",
             "input_placeholder":"Write your message",
             "btn_send":"Send",
-            "confirm_finish_text": "Are you sure you want to end the conversation? This will prevent you from continuing to send messages to the selected contact."
+            "confirm_finish_text": "Are you sure you want to end the conversation? This will prevent you from continuing to send messages to the selected contact.",
+            "finished":"Conversation finished",
+            "not_finished": "The creator has rejected the request to end the conversation"
         }
     }
 }

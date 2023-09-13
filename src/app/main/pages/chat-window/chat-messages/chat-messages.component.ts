@@ -25,6 +25,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   @Output() conversationChange: EventEmitter<null> = new EventEmitter();
 
   CONVERSATION_STATUS = CONVERSATION_STATUS;
+  MESSAGE_TYPE = MESSAGE_TYPE;
   messages: MessageModel[]|undefined;
   enabledChat: boolean = false;
   inputValue: string = '';
@@ -38,6 +39,11 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
       console.log(message)
       message.isReceived = message.senderUserId !=  this.userId;
       this.messages?.push(message);
+      if (message.type === MESSAGE_TYPE.FINISHER && this.conversation) {
+        this.conversation.status = CONVERSATION_STATUS.FINISH_APPROVAL_PENDING;
+        this.conversationChange.emit();
+      }
+      this.checkFinishConversation();
       setTimeout(() => {
         this.scrollToBottom();
       }, 0);
@@ -62,6 +68,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
           this.enabledChat = true;
         }
         this.messages?.sort((m1, m2) => m1.id - m2.id);
+        this.checkFinishConversation();
         setTimeout(() => {
           this.scrollToBottom();
         }, 0);
@@ -106,18 +113,44 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
       });
       const subs = dialogRef.componentInstance.response.subscribe(res => {
         if (res) {
-          this.confirmFinishConversation(message, dialogRef, subs);
-        } else {
-          subs.unsubscribe();
-          dialogRef.close();
+          const payload = {
+            id: this.conversation?.id,
+            status: CONVERSATION_STATUS.FINISH_APPROVAL_PENDING
+          }
+          this.chatRequestService.updateConversation$(payload).subscribe({
+            next: (v) => {
+              this.enabledChat = false;
+              if (this.conversation) {
+                this.conversation.status = CONVERSATION_STATUS.FINISH_APPROVAL_PENDING;
+                this.conversationChange.emit();
+              }
+              const message = {
+                conversationId: this.conversation?.id,
+                receiverUserId: this.userId == this.conversation?.advertiserUserId ? this.conversation?.creatorUserId : this.conversation?.advertiserUserId,
+                content: 'finisher_message',
+                type: MESSAGE_TYPE.FINISHER
+              }
+              this.socketService.emitMessage('sendMessage', message);
+              this.messages?.push({
+                ...message,
+                id: 0,
+                isReceived: false
+              });
+            },
+            error: (e) => {
+              //TODO: Flujo de error
+            }
+          });
         }
+        subs.unsubscribe();
+        dialogRef.close();
       });
     } else {
-      this.confirmFinishConversation(message, undefined, undefined);
+      this.confirmFinishConversation(message);
     }
   }
 
-  private confirmFinishConversation(message: MessageModel|undefined, dialogRef: any, subs: Subscription|undefined) {
+  confirmFinishConversation(message: MessageModel|undefined) {
     const payload = {
       id: this.conversation?.id,
       status: CONVERSATION_STATUS.FINISHED
@@ -137,13 +170,38 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
           this.conversation.status = CONVERSATION_STATUS.FINISHED;
           this.conversationChange.emit();
         }
-        if (subs) subs.unsubscribe();
-        if (dialogRef) dialogRef.close();
       },
       error: (e) => {
         //TODO: Flujo de error
       }
     });
+  }
+
+  cancelFinishConversation() {
+    const payload = {
+      id: this.conversation?.id,
+      status: CONVERSATION_STATUS.ACTIVE
+    }
+    this.chatRequestService.updateConversation$(payload).subscribe({
+      next: (v) => {
+        this.enabledChat = true;
+        if (this.conversation) {
+          this.conversation.status = CONVERSATION_STATUS.ACTIVE;
+          this.conversationChange.emit();
+        }
+      },
+      error: (e) => {
+        //TODO: Flujo de error
+      }
+    });
+  }
+
+  private checkFinishConversation() {
+    if (this.messages && this.messages[this.messages.length - 1].type === MESSAGE_TYPE.FINISHER && this.conversation?.status != CONVERSATION_STATUS.ACTIVE) {
+      this.enabledChat = false;
+    } else {
+      this.enabledChat = true;
+    }
   }
 
   sendMessage() {

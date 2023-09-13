@@ -100,7 +100,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
           data: {
             icon: 'check',
             title: this.translate.instant('profile.edit.success_title'),
-            textButtonClose: this.translate.instant('general.bnt_accept')
+            textButtonClose: this.translate.instant('general.btn_accept')
           }
         });
         this.dialogRef.close();
@@ -111,7 +111,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
           data: {
             icon: 'warning',
             title: this.translate.instant('profile.edit.error_title'),
-            textButtonClose: this.translate.instant('general.bnt_accept')
+            textButtonClose: this.translate.instant('general.btn_accept')
           }
         });
         //TODO: falla el save de los datos. Implementar lógica de reintento

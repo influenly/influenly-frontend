@@ -1,7 +1,7 @@
 {
     "general":{
         "btn_add":"Agregar",
-        "bnt_accept":"Aceptar",
+        "btn_accept":"Aceptar",
         "btn_continue":"Continuar",
         "btn_back":"Atrás",
         "btn_return":"Volver",
@@ -207,9 +207,14 @@
             "btn_init":"Iniciar conversación",
             "btn_reject":"Rechazar",
             "btn_yes_finish":"Si, finalizar",
+            "pending":"Pendiente",
+            "finisher_message_advertiser":"Esperando a que el creador finalice el chat.",
+            "finisher_message_creator":"El anunciante ha marcado como finalizada esta conversación.",
             "input_placeholder":"Escribe tu mensaje",
             "btn_send":"Enviar",
-            "confirm_finish_text":"Estas seguro que deseas finalizar la conversación? Esto hará que no puedas seguir enviando mensajes al contacto seleccionado."
+            "confirm_finish_text":"Estas seguro que deseas finalizar la conversación? Esto hará que no puedas seguir enviando mensajes al contacto seleccionado.",
+            "finished":"Conversación finalizada",
+            "not_finished":"El creador ha rechazado la solicitud de finalizar con la conversación"
         }
     }
 }
