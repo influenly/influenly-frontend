@@ -206,8 +206,10 @@
             "btn_finish":"Finalizar conversación",
             "btn_init":"Iniciar conversación",
             "btn_reject":"Rechazar",
+            "btn_yes_finish":"Si, finalizar",
             "input_placeholder":"Escribe tu mensaje",
-            "btn_send":"Enviar"
+            "btn_send":"Enviar",
+            "confirm_finish_text":"Estas seguro que deseas finalizar la conversación? Esto hará que no puedas seguir enviando mensajes al contacto seleccionado."
         }
     }
 }

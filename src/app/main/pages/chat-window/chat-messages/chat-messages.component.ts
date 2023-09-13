@@ -5,6 +5,10 @@ import { ConversationModel } from '../../profile/models/conversation.model';
 import { MessageModel } from '../../profile/models/message.model';
 import { ChatRequestService } from '../../profile/services/chat-request.service';
 import { SocketService } from 'src/app/shared/services/socket/socket.service';
+import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat-messages',
@@ -27,7 +31,9 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   enterRegex = /\r?\n/;
 
   constructor(private chatRequestService: ChatRequestService,
-              private socketService: SocketService) {
+              private socketService: SocketService,
+              private dialog: MatDialog,
+              private translate: TranslateService) {
     socketService.outEvent.subscribe(message => {
       console.log(message)
       message.isReceived = message.senderUserId !=  this.userId;
@@ -52,7 +58,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
       next: (v) => {
         this.messages = v.body ? v.body : undefined;
         this.messages?.forEach(message => message.isReceived = message.senderUserId !=  this.userId);
-        if (this.messages && this.messages.length > 1 || this.conversation?.status != CONVERSATION_STATUS.INIT_APPROVAL_PENDING) {
+        if ((this.messages && this.messages.length > 1 || this.conversation?.status != CONVERSATION_STATUS.INIT_APPROVAL_PENDING) && this.conversation?.status != CONVERSATION_STATUS.FINISHED) {
           this.enabledChat = true;
         }
         this.messages?.sort((m1, m2) => m1.id - m2.id);
@@ -86,7 +92,32 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     });
   }
 
-  rejectConversation(message: MessageModel) {
+  rejectConversation(message: MessageModel|undefined) {
+    if (!message) {
+      const dialogRef = this.dialog.open(InformationModalComponent, {
+        width: '600px',
+        data: {
+          text: this.translate.instant('chat.messages.confirm_finish_text'),
+          title: this.translate.instant('chat.messages.btn_finish'),
+          isTextLeft: true,
+          textButtonOk: this.translate.instant('chat.messages.btn_yes_finish'),
+          textButtonClose: this.translate.instant('general.btn_cancel')
+        }
+      });
+      const subs = dialogRef.componentInstance.response.subscribe(res => {
+        if (res) {
+          this.confirmFinishConversation(message, dialogRef, subs);
+        } else {
+          subs.unsubscribe();
+          dialogRef.close();
+        }
+      });
+    } else {
+      this.confirmFinishConversation(message, undefined, undefined);
+    }
+  }
+
+  private confirmFinishConversation(message: MessageModel|undefined, dialogRef: any, subs: Subscription|undefined) {
     const payload = {
       id: this.conversation?.id,
       status: CONVERSATION_STATUS.FINISHED
@@ -94,6 +125,20 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     this.chatRequestService.updateConversation$(payload).subscribe({
       next: (v) => {
         this.enabledChat = false;
+        if (!message) {
+          if (this.messages) {
+            message = this.messages[0];
+            message.type = MESSAGE_TYPE.REGULAR;
+          }
+        } else {
+          message.type = MESSAGE_TYPE.REGULAR;
+        }
+        if (this.conversation) {
+          this.conversation.status = CONVERSATION_STATUS.FINISHED;
+          this.conversationChange.emit();
+        }
+        if (subs) subs.unsubscribe();
+        if (dialogRef) dialogRef.close();
       },
       error: (e) => {
         //TODO: Flujo de error

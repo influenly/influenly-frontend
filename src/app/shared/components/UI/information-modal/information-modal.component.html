@@ -4,12 +4,20 @@
 	</div>
 	<div class="text-center mt-3">
 		<h2>{{ data.title }}</h2>
-		<span *ngIf="data.text">{{ data.text }}</span>
+		<div [ngClass]="{ 'text-left': data.isTextLeft }">
+			<span *ngIf="data.text">{{ data.text }}</span>
+		</div>
 	</div>
 	<div mat-dialog-actions class="mt-5">
-		<div>
-			<button *ngIf="data.textButtonOk" class="main-button w-100 p-3" (click)="accept()">{{ data.textButtonOk }}</button>
-			<button *ngIf="data.textButtonClose" class="main-button w-100 p-3" (click)="close()">{{ data.textButtonClose }}</button>
+		<div [ngClass]="{ 'd-flex justify-content-between': data.textButtonOk && data.textButtonClose }">
+			<button *ngIf="data.textButtonOk" class="main-button w-100 p-3" 
+					[ngClass]="{ 'margin-btn': data.textButtonClose }" (click)="accept()">
+				{{ data.textButtonOk }}
+			</button>
+			<button *ngIf="data.textButtonClose" class="main-button w-100 p-3"
+					[ngClass]="{ 'main-button-secondary': data.textButtonOk }" (click)="close()">
+				{{ data.textButtonClose }}
+			</button>
 		</div>
 	</div>
 </div>

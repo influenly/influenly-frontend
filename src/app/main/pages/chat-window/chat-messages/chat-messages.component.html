@@ -2,7 +2,10 @@
         <img *ngIf="conversation?.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
         <img *ngIf="conversation?.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
     
-        <button *ngIf="messages && messages.length > 1" class="main-button-secondary">{{ 'chat.messages.btn_finish' | translate }} <mat-icon class="material-icons-outlined">chat_close</mat-icon></button>
+        <button *ngIf="messages && messages.length > 1 && conversation?.status != CONVERSATION_STATUS.FINISHED" class="main-button-secondary" (click)="rejectConversation(undefined)">
+            {{ 'chat.messages.btn_finish' | translate }} 
+            <mat-icon class="material-icons-outlined">chat_close</mat-icon>
+        </button>
     </div>
     <div #messagesContainer class="messages-box">
         <div *ngFor="let message of messages" class="bubble" [ngClass]="{'bubble-received': message.isReceived, 'bubble-sended': !message.isReceived}">

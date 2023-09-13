@@ -21,3 +21,21 @@
     color: red;
     font-size: 70px;
 }
+
+.text-left {
+    text-align: left !important;
+}
+
+.main-button-secondary {
+    border: 1px solid black;
+    &:active {
+        &:after {
+            width: 0px;
+            height: 0px;
+        }
+    }
+}
+
+.margin-btn {
+    margin-right: 16px;
+}
