@@ -46,12 +46,15 @@
                 (keydown)="onKeyDown($event)"
                 (keyup)="onKeyUp($event)"
                 [placeholder]="'chat.messages.input_placeholder' | translate"
+                cdkTextareaAutosize
+                cdkAutosizeMinRows="1"
+                cdkAutosizeMaxRows="3"
                 [disabled]="!enabledChat">
             </textarea>
             <button class="main-button-secondary button-send"
                 [disabled]="!enabledChat"
                 (click)="sendMessage()">
-                    {{ 'chat.messages.btn_send' | translate }}
+                    {{ isHandset ? '' : ('chat.messages.btn_send' | translate) }}
                     <mat-icon>arrow_forward</mat-icon>
             </button>
         </div>

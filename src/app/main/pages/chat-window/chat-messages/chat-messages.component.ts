@@ -8,7 +8,6 @@ import { SocketService } from 'src/app/shared/services/socket/socket.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat-messages',
@@ -22,6 +21,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
 
   @Input() conversation: ConversationModel|undefined;
   @Input() userId: number|undefined;
+  @Input() isHandset: boolean = false;
   @Output() conversationChange: EventEmitter<null> = new EventEmitter();
 
   CONVERSATION_STATUS = CONVERSATION_STATUS;

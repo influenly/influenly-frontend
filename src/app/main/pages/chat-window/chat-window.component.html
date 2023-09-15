@@ -1,6 +1,7 @@
 <div class="container-chat">
-    <app-talks class="shadow bg-white" [conversations]="conversationsClassified" (selectedConversation)="openConversationMessages($event)" />
+    <app-talks class="shadow bg-white" [ngClass]="{'only-talks': isHandset && !isOnChat, 'd-none': isHandset && isOnChat}" [conversations]="conversationsClassified" (selectedConversation)="openConversationMessages($event)" />
     <div class="chat-box">
-        <app-chat-messages [conversation]="selectedConversation" [userId]="userId" (conversationChange)="classifyConversations()"/>
+        <app-chat-messages [ngClass]="{'only-chat': isHandset && isOnChat, 'd-none': isHandset && !isOnChat}" 
+                [conversation]="selectedConversation" [userId]="userId" [isHandset]="isHandset" (conversationChange)="classifyConversations()" />
     </div>
 </div>

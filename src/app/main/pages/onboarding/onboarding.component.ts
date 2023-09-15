@@ -9,6 +9,7 @@ import { OnboardingModel } from './models/onboarding.model';
 import { Router } from '@angular/router';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { ProfileService } from '../profile/services/profile.service';
+import { LocationUtilsService } from 'src/app/shared/services/utils/location-utils.service';
 
 
 export enum SLIDE {
@@ -73,22 +74,14 @@ export class OnboardingComponent implements OnInit {
     private sessionStorage: SessionStorageService,
     private onboardingService: OnboardingService,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private locationUtilsService: LocationUtilsService
   ) {
-    this.changePreviousPage(window, location);
+    this.locationUtilsService.changePreviousPage(window, location, '/app/onboarding');
   }
 
   ngOnInit() {
     this.getUserType();
-  }
-
-  private changePreviousPage(window: any, location: any) {
-    history.pushState(null, document.title, location.pathname);
-    window.addEventListener("popstate", function() {
-      if(location.pathname === "/app/onboarding") {
-        history.pushState(null, document.title, location.pathname);
-      }
-    }, false);
   }
 
   private async getUserType() {

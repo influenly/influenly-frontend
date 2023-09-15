@@ -1,10 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ChatService } from 'src/app/core/header/chat/services/chat.service';
 import { ChatRequestService } from '../profile/services/chat-request.service';
 import { CONVERSATION_STATUS, ConversationModel } from '../profile/models/conversation.model';
 import { SocketService, TOPIC } from 'src/app/shared/services/socket/socket.service';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
-import { firstValueFrom } from 'rxjs';
+import { Subscription, firstValueFrom, map } from 'rxjs';
+import { LocationUtilsService } from 'src/app/shared/services/utils/location-utils.service';
+import { TalksComponent } from './talks/talks.component';
 
 @Component({
   selector: 'app-chat-window',
@@ -12,6 +15,17 @@ import { firstValueFrom } from 'rxjs';
   styleUrls: ['./chat-window.component.scss']
 })
 export class ChatWindowComponent implements OnInit, OnDestroy {
+
+  @ViewChild(TalksComponent) talksComponent: TalksComponent | undefined = undefined;
+  @HostListener('window:popstate', ['$event'])
+  onPopState() {
+    if (location.pathname === "/app/chat") {
+      if (document.getElementById('cdk-overlay-0')) {
+        document.getElementById('cdk-overlay-0')!.innerHTML = ''; //close overlays of select, tooltips, etc
+      }
+      this.goBack();
+    }
+  }
 
   conversations: ConversationModel[]|null = null;
   selectedConversation: ConversationModel|undefined;
@@ -21,11 +35,25 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     finished: []
   }
   userId: number|undefined;
+  isOnChat: boolean = false;
+  isHandset: boolean = false;
+
+  isHandsetSubs: Subscription|undefined;
 
   constructor(private chatService: ChatService,
               private chatRequestService: ChatRequestService,
               private socketService: SocketService,
-              private sessionStorage: SessionStorageService) {}
+              private sessionStorage: SessionStorageService,
+              private breakpointObserver: BreakpointObserver,
+              private locationUtilsService: LocationUtilsService) {
+    
+    this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 768px)'])
+    .pipe(map(result => result.matches)).subscribe(match => {
+        this.isHandset = match;
+    });
+
+    this.locationUtilsService.changePreviousPage(window, location, '/app/chat');
+  }
 
   ngOnInit() {
     this.checkSocketConnection();
@@ -91,9 +119,22 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
 
   openConversationMessages(conversation: ConversationModel) {
     this.selectedConversation = conversation;
+    this.isOnChat = true;
+  }
+
+  private goBack() {
+    if (this.isOnChat) {
+      this.isOnChat = false;
+      if (this.talksComponent) {
+        this.talksComponent.selectedConversationId = 0;
+      }
+    } else {
+      history.back();
+    }
   }
 
   ngOnDestroy(): void {
+    if (this.isHandsetSubs) this.isHandsetSubs.unsubscribe();
       this.chatService.sendChatClosedEvent();
   }
   
