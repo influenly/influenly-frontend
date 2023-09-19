@@ -5,7 +5,7 @@
             <img *ngIf="!isCreatorUser" src="../../../../../assets/images/profile/default-picture-advertiser.svg" class="profile-picture" />
         </div>
 
-        <div class="primary-info">
+        <div class="primary-info" [ngClass]="{ 'creator': isCreatorUser }">
             <div class="username">
                 <span>{{ userData?.username }}</span>
             </div>
@@ -17,7 +17,7 @@
                     {{ 'onboarding.content.tag_list.' + tag | translate }}
                 </mat-chip>
             </div>
-            <div class="networks-button">
+            <div *ngIf="!isCreatorUser" class="networks-button">
                 <mat-chip [matMenuTriggerFor]="menu" aria-label="Social networks">{{ 'profile.networks_label' | translate }} <mat-icon [ngStyle]="{'font-size': '24px'}">expand_more</mat-icon></mat-chip>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngFor="let network of socialNetworks" (click)="openSocialMediaLink(network.link)">

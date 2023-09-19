@@ -21,6 +21,11 @@
     padding-left: 10px;
 }
 
+.primary-info.creator {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .username {
     font-size: 32px;
     font-weight: bold;
@@ -75,6 +80,10 @@
 
     .primary-info {
         text-align: center;
+        margin-top: 16px;
+    }
+
+    .primary-info.creator {
         margin-top: 16px;
     }
 

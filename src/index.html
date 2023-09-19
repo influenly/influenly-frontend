@@ -21,7 +21,7 @@
     function initTokenClient(callback) {
       client = google.accounts.oauth2.initCodeClient({
         client_id: '988507716791-ev1t2cfe2o1agb2upqa99i21f4a4afak.apps.googleusercontent.com',
-        scope: 'https://www.googleapis.com/auth/yt-analytics.readonly',
+        scope: 'https://www.googleapis.com/auth/yt-analytics.readonly https://www.googleapis.com/auth/youtube.readonly',
         ux_mode: 'popup',
         callback: callback
       });
