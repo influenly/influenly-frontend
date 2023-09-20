@@ -17,7 +17,10 @@ export interface IntegratedNetworkModel {
 }
 
 export interface ChannelAnalyticModel {
-    name: string;
+    channelName: string;
+    channelImg?: string;
+    link?: string;
+    verified: boolean;
     totalSubs: number;
     totalVideos: number;
     totalViews: number;

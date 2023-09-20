@@ -1,36 +1,47 @@
 <div class="networks-box">
     <app-network-selector [integratedNetworks]="userData?.integratedNetworks" (changeSelected)="changeSelectedNetwork($event)"/>
     <div class="card">
-        <div class="networks-button-box">
-            <div class="accounts-button" *ngFor="let channel of selectedNetwork?.channels">
-                <button class="main-button px-3"  [ngClass]="{ 'non-selected': channel != selectedChannel }" (click)="selectChannel(channel)">{{ channel.name }}</button>
+        <div class="channel-box" *ngFor="let channel of selectedNetwork?.channels; let i = index">
+            <div class="d-flex">
+                <img *ngIf="channel.channelImg" [src]="channel.channelImg" class="picture" />
+                <app-svg-icon *ngIf="!channel.channelImg" [class]="selectedNetwork?.network?.toLowerCase()" [path]="'assets/icons/' + selectedNetwork?.network?.toLowerCase() + '.svg'" />
+                <div class="channel-name">
+                    <span (click)="openNetworkPage(channel)">{{ channel.channelName }}</span>
+                </div>
+                <!-- <app-svg-icon *ngIf="channel.verified" class="verified" [path]="'assets/icons/verified.svg'" /> -->
             </div>
-        </div>
-        <div class="d-flex justify-content-between w-100">
-            <div class="data-box">
-                <div class="data-text">
-                    <span class="d-block data-number">{{ data.subs }}</span>
-                    <span class="data-label">{{ 'profile.networks.subscribers' | translate }}</span>
+            <div *ngIf="channel.verified && selectedNetwork?.network?.toLowerCase() == 'youtube'" class="data-container">
+                <div class="data-box">
+                    <div class="data">
+                        <span>{{ data[i].totalSubs }}</span>
+                    </div>
+                    <div class="label">
+                        <span>{{ 'profile.networks.subscribers' | translate }}</span>
+                    </div>
+                </div>
+                <div class="data-box">
+                    <div class="data">
+                        <span>{{ data[i].totalVideos }}</span>
+                    </div>
+                    <div class="label">
+                        <span>{{ 'profile.networks.videos' | translate }}</span>
+                    </div>
+                </div>
+                <div class="data-box">
+                    <div class="data">
+                        <span>{{ data[i].totalViews }}</span>
+                    </div>
+                    <div class="label">
+                        <span>{{ 'profile.networks.avg_visits' | translate }}</span>
+                    </div>
                 </div>
             </div>
-            <div class="data-box">
-                <div class="data-text">
-                    <span class="d-block data-number">{{ data.videos }}</span>
-                    <span class="data-label">{{ 'profile.networks.videos' | translate }}</span>
+            <div *ngIf="!channel.verified && selectedNetwork?.network?.toLowerCase() == 'youtube'" class="data-container">
+                <div class="label no-sync-desc">
+                    <span>{{ 'profile.networks.not_sync' | translate }}</span>
                 </div>
+                <button class="main-button-primary">{{ 'profile.networks.btn_sync' | translate }}</button>
             </div>
-            <div class="data-box">
-                <div class="data-text">
-                    <span class="d-block data-number">{{ data.visits }}</span>
-                    <span class="data-label">{{ 'profile.networks.avg_visits' | translate }}</span>
-                </div>
-            </div>
-            <!-- <div class="data-box">
-                <div class="data-text">
-                    <span class="d-block data-number">{{ data.likes }}</span>
-                    <span class="data-label">{{ 'profile.networks.avg_likes' | translate }}</span>
-                </div>
-            </div> -->
         </div>
     </div>
 </div>

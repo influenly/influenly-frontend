@@ -11,20 +11,24 @@ export class NetworkBasicInfoComponent implements OnInit {
   @Input() userData: UserDataModel|null = null;
 
   selectedNetwork: IntegratedNetworkModel|undefined;
-  selectedChannel: ChannelAnalyticModel|undefined;
-  data : any = {};
+  data: any[] = [];
 
   ngOnInit() {
     this.selectedNetwork = this.userData?.integratedNetworks ? this.userData.integratedNetworks[0] : undefined;
-    this.selectedChannel = this.selectedNetwork?.channels[0];
     this.setTransformedData();
   }
 
   private setTransformedData() {
-    if (this.selectedChannel) {
-      this.data.subs = this.transformNumbers(this.selectedChannel.totalSubs);
-      this.data.videos = this.transformNumbers(this.selectedChannel.totalVideos);
-      this.data.visits = this.transformNumbers(this.selectedChannel.totalViews);
+    this.data = [];
+    if (this.selectedNetwork) {
+      for (let channel of this.selectedNetwork?.channels) {
+        const dataRow = {
+          totalSubs: this.transformNumbers(channel.totalSubs),
+          totalVideos: this.transformNumbers(channel.totalVideos),
+          totalViews: this.transformNumbers(channel.totalViews)
+        }
+        this.data.push(dataRow);
+      }
     }
   }
 
@@ -37,14 +41,13 @@ export class NetworkBasicInfoComponent implements OnInit {
     return number + '';
   }
 
-  selectChannel(channel: ChannelAnalyticModel) {
-    this.selectedChannel = channel;
+  changeSelectedNetwork($event: IntegratedNetworkModel) {
+    this.selectedNetwork = $event;
     this.setTransformedData();
   }
 
-  changeSelectedNetwork($event: IntegratedNetworkModel) {
-    this.selectedNetwork = $event;
-    this.selectedChannel = this.selectedNetwork?.channels[0];
-    this.setTransformedData();
+  openNetworkPage(channel: ChannelAnalyticModel) {
+    window.open(channel.link?.includes('https://') ? channel.link : 'https://' + channel.link, '_blank');
   }
+
 }

@@ -207,3 +207,16 @@ app-svg-icon.twitter {
     background-color: #1d9bf0;
 }
 //social media icons
+
+//other-icons
+app-svg-icon.verified {
+    background-image: url(assets/icons/verified.svg);
+    display: inline-block;
+    mask-size: auto;
+    mask-position:inherit;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: auto;
+    -webkit-mask-position: inherit;
+    -webkit-mask-repeat: no-repeat;
+    vertical-align: middle;
+}

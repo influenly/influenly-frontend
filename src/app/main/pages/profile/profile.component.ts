@@ -26,13 +26,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
         network: 'YOUTUBE',
         channels: [
           {
-            name: 'pejeriders',
+            channelName: 'Peje Riders',
+            channelImg: 'https://yt3.googleusercontent.com/bL7P_zt4RcNdENRED979Ekqg4OXVC-7-o2LBZ25kKAXD8hz35pSc0UKnFmWuTgtuZdPW2Rqp=s176-c-k-c0x00ffffff-no-rj',
+            link: 'youtube.com/@pejeriders',
+            verified: true,
             totalSubs: 67991,
             totalVideos: 202,
             totalViews: 14995042
           },
           {
-            name: 'pampatech',
+            channelName: 'pampatech',
+            channelImg: 'https://assets.mofoprod.net/network/images/cover-picture_i4S5vbB.original.jpg',
+            verified: false,
             totalSubs: 2003,
             totalVideos: 29,
             totalViews: 100231
@@ -43,19 +48,22 @@ export class ProfileComponent implements OnInit, OnDestroy {
         network: 'INSTAGRAM',
         channels: [
           {
-            name: 'pejeriders',
+            channelName: 'pejeriders',
+            verified: false,
             totalSubs: 347991,
             totalVideos: 577,
             totalViews: 1499504234
           },
           {
-            name: 'electro_mov_original',
+            channelName: 'electro_mov_original',
+            verified: true,
             totalSubs: 34791,
             totalVideos: 517,
             totalViews: 19504234
           },
           {
-            name: 'pampatech',
+            channelName: 'pampatech',
+            verified: true,
             totalSubs: 20032,
             totalVideos: 104,
             totalViews: 10023122

@@ -181,6 +181,8 @@
             }
         },
         "networks":{
+            "not_sync":"Cuenta no integrada",
+            "btn_sync":"+ Integrar cuenta",
             "subscribers":"Suscriptores",
             "videos":"Videos",
             "avg_visits":"Visitas",
