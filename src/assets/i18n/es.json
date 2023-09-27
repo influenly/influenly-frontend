@@ -10,9 +10,25 @@
         "advertiser":"Anunciante",
         "countries":{
             "AR":"Argentina",
-            "CA":"Canadá",
+            "BO":"Bolivia",
+            "BR":"Brasil",
+            "CL":"Chile",
             "CO":"Colombia",
-            "PE":"Perú"
+            "CR":"Costa Rica",
+            "CU":"Cuba",
+            "EC":"Ecuador",
+            "SV":"El Salvador",
+            "GT":"Guatemala",
+            "HT":"Haití",
+            "HN":"Honduras",
+            "MX":"México",
+            "NI":"Nicaragua",
+            "PA":"Panamá",
+            "PY":"Paraguay",
+            "PE":"Perú",
+            "DO":"República Dominicana",
+            "UY":"Uruguay",
+            "VE":"Venezuela"
         },
         "networks":{
             "YOUTUBE":"Youtube",

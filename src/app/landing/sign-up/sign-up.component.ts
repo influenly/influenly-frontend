@@ -23,7 +23,7 @@ export class SignUpComponent {
   get password() { return this.signUpForm.get('password'); }
   get country() { return this.signUpForm.get('country'); }
 
-  countries: string[] = ['AR', 'CA', 'CO', 'PE'];
+  countries: string[] = ['AR','BO','BR','CL','CO','CR','CU','EC','SV','GT','HT','HN','MX','NI','PA','PY','PE','DO','UY','VE'];
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
