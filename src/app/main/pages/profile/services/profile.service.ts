@@ -61,7 +61,10 @@ export class ProfileService {
       if (network.includes('twitter')) {
         return 'twitter';
       }
-      return 'web';
+      if (network.includes('twitch')) {
+        return 'twitch';
+      }
+      return 'website';
   }
     
 }
