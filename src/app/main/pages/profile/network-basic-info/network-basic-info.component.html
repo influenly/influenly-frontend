@@ -27,14 +27,14 @@
                         <span>{{ 'profile.networks.videos' | translate }}</span>
                     </div>
                 </div>
-                <div class="data-box">
+                <!-- <div class="data-box">
                     <div class="data">
                         <span>{{ data[i].totalViews }}</span>
                     </div>
                     <div class="label">
                         <span>{{ 'profile.networks.avg_visits' | translate }}</span>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div *ngIf="!channel.verified && selectedNetwork?.network?.toLowerCase() == 'youtube'" class="data-container">
                 <div class="label no-sync-desc">
