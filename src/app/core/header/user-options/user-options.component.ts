@@ -39,7 +39,7 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
     this.token = undefined;
     this.socketService.disconnectSocket();
     this.sessionStorage.clear();
-    this.router.navigate(['landing']);
+    this.router.navigate(['']);
   }
 
   ngOnDestroy() {

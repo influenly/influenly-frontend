@@ -13,6 +13,6 @@ export class LandingPageComponent {
   }
 
   goToSignUp(userType: string) {
-    this.router.navigate(['landing/sign-up/' + userType]);
+    this.router.navigate(['sign-up/' + userType]);
   }
 }

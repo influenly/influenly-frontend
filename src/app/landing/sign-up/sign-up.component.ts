@@ -44,7 +44,7 @@ export class SignUpComponent {
     }
     this.authService.signUp$(payload).subscribe({
       next: (v) => {
-        this.router.navigate(['landing/sign-in']);
+        this.router.navigate(['sign-in']);
         // let dialogRef = this.dialog.open(InformationModalComponent, {
         //   width: '600px',
         //   data: {
