@@ -14,61 +14,58 @@ import { ProfileRequestService } from './services/profile-request.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
-  userDataMock = {
+  userDataMock: UserDataModel = {
     username: "Pampa",
     profileImg: undefined,
     country: "AR",
-    socialNetworks: ["www.instagram.com/pampaibaceta", "www.youtube.com/channel/soytribu"],
     contentTags: ["sports", "business","others","creative"],
     description: "Descripción del perfil para ser usado en content y asi generar interacciones con distintas empresas a traves de la actividad en la plataforma. De manera tal de conseguir mejor remuneración.",
-    integratedNetworks: [
+    networks: [
       {
-        network: 'YOUTUBE',
-        channels: [
-          {
-            channelName: 'Peje Riders',
-            channelImg: 'https://yt3.googleusercontent.com/bL7P_zt4RcNdENRED979Ekqg4OXVC-7-o2LBZ25kKAXD8hz35pSc0UKnFmWuTgtuZdPW2Rqp=s176-c-k-c0x00ffffff-no-rj',
-            link: 'youtube.com/@pejeriders',
-            verified: true,
-            totalSubs: 67991,
-            totalVideos: 202,
-            totalViews: 14995042
-          },
-          {
-            channelName: 'pampatech',
-            channelImg: 'https://assets.mofoprod.net/network/images/cover-picture_i4S5vbB.original.jpg',
-            verified: false,
-            totalSubs: 2003,
-            totalVideos: 29,
-            totalViews: 100231
-          }
-        ]
+        platform: 'YOUTUBE',
+        name: 'Peje Riders',
+        profileImg: 'https://yt3.googleusercontent.com/bL7P_zt4RcNdENRED979Ekqg4OXVC-7-o2LBZ25kKAXD8hz35pSc0UKnFmWuTgtuZdPW2Rqp=s176-c-k-c0x00ffffff-no-rj',
+        url: 'youtube.com/@pejeriders',
+        basicAnalytics: {
+          totalSubs: 67991,
+          totalVideos: 202,
+        },
+        integrated: true,
       },
       {
-        network: 'INSTAGRAM',
-        channels: [
-          {
-            channelName: 'pejeriders',
-            verified: false,
-            totalSubs: 347991,
-            totalVideos: 577,
-            totalViews: 1499504234
-          },
-          {
-            channelName: 'electro_mov_original',
-            verified: true,
-            totalSubs: 34791,
-            totalVideos: 517,
-            totalViews: 19504234
-          },
-          {
-            channelName: 'pampatech',
-            verified: true,
-            totalSubs: 20032,
-            totalVideos: 104,
-            totalViews: 10023122
-          }
-        ]
+        platform: 'YOUTUBE',
+        name: 'pampatech',
+        profileImg: 'https://assets.mofoprod.net/network/images/cover-picture_i4S5vbB.original.jpg',
+        url: 'https://www.youtube.com/@Leandro',
+        integrated: false,
+      },
+      {
+        platform: 'INSTAGRAM',
+        name: 'pejeriders',
+        url: 'https://www.instagram.com/pampaibaceta',
+        integrated: false
+      },
+      {
+        platform: 'INSTAGRAM',
+        name: 'electro_mov_original',
+        url: 'https://www.instagram.com/electro_mov',
+        integrated: false,
+      },
+      {
+        platform: 'INSTAGRAM',
+        name: 'pampatech',
+        url: 'https://www.instagram.com/pampatech',
+        integrated: true,
+        basicAnalytics: {
+          totalSubs: 20032,
+          totalVideos: 104
+        }
+      },
+      {
+        platform: 'TIKTOK',
+        name: 'Pampa tiktok',
+        url: 'https://www.tiktok.com/pampa',
+        integrated: false,
       }
     ],
     type: USER_TYPE.CREATOR
@@ -110,7 +107,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     } else {
       const userId = href.substring(href.lastIndexOf('/') + 1);
       this.profileRequestService.getProfileData$(userId).subscribe(async (userProfile) => {
-        this.loadUserData(userProfile.body);
+        let userData = userProfile.body ? {
+          ...userProfile.body.user,
+          networks: userProfile.body?.networks
+        } : null;
+        this.loadUserData(userData);
       });
     }
 
@@ -132,7 +133,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }
     }
     if (this.userData) {
-      this.userData.integratedNetworks = this.userDataMock.integratedNetworks;
+      this.userData.networks = this.userDataMock.networks;
       this.isCreatorUser = this.userData.type  == USER_TYPE.CREATOR;
     }
   }

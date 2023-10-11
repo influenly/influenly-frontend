@@ -1,27 +1,26 @@
 import { USER_TYPE } from "src/app/shared/models/user-type.enum";
+import { NetworkObjectModel } from "../../onboarding/models/onboarding.model";
 
 export interface UserDataModel {
     username: string,
     profileImg?: string,
     country: string,
-    socialNetworks: string[],
     contentTags: string[],
     description: string,
-    integratedNetworks?: IntegratedNetworkModel[];
+    networks?: NetworkProfileModel[];
     type: USER_TYPE
 }
 
-export interface IntegratedNetworkModel {
-    network: string;
-    channels: ChannelAnalyticModel[];
+export interface NetworkProfileModel {
+    platform: string;
+    name: string;
+    profileImg?: string;
+    url: string;
+    integrated: boolean;
+    basicAnalytics?: BasicAnalyticsModel;
 }
 
-export interface ChannelAnalyticModel {
-    channelName: string;
-    channelImg?: string;
-    link?: string;
-    verified: boolean;
+export interface BasicAnalyticsModel {
     totalSubs: number;
     totalVideos: number;
-    totalViews: number;
 }

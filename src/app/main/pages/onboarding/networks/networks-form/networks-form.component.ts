@@ -11,7 +11,7 @@ export class NetworksFormComponent {
   @Output() atLeastOne: EventEmitter<boolean> = new EventEmitter();
 
   icons: string[] = ['youtube', 'instagram', 'twitter','tiktok','twitch','website'];
-  networks: any = [];
+  networks: { url: string, icon: string, integrated: boolean }[]|undefined = [];
 
   networksForm: FormGroup = this.fb.group({
     icon: ['youtube'],
@@ -26,19 +26,20 @@ export class NetworksFormComponent {
   add() {
     const network = {
       icon: this.icon?.value,
-      url: this.formatUrl(this.url?.value)
+      url: this.formatUrl(this.url?.value),
+      integrated: false
     }
-    this.networks.push(network);
+    this.networks?.push(network);
     this.url?.setValue('');
     this.atLeastOne.emit(true);
   }
 
   remove(network: any) {
-    var index = this.networks.indexOf(network);
-    if (index > -1) {
-      this.networks.splice(index, 1);
+    var index = this.networks?.indexOf(network);
+    if (index && index > -1) {
+      this.networks?.splice(index, 1);
     }
-    if (this.networks.length === 0) {
+    if (this.networks?.length === 0) {
       this.atLeastOne.emit(false);
     } else {
       this.atLeastOne.emit(true);

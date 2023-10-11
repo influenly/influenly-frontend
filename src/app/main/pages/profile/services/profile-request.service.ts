@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { RestApiClient } from "src/app/shared/services/rest-api/rest-api.client";
-import { UserDataModel } from "../models/user-data.model";
+import { NetworkProfileModel, UserDataModel } from "../models/user-data.model";
 import { HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 
@@ -9,8 +9,8 @@ export class ProfileRequestService {
 
     constructor(private restApiClient: RestApiClient) {}
 
-    public getProfileData$(userId: string): Observable<HttpResponse<UserDataModel>> {
-        return this.restApiClient.get<UserDataModel>({
+    public getProfileData$(userId: string): Observable<HttpResponse<{user: UserDataModel, networks: NetworkProfileModel[]}>> {
+        return this.restApiClient.get<{user: UserDataModel, networks: NetworkProfileModel[]}>({
             endPoint: '/user/' + userId + '/profile'
         });
     };

@@ -32,7 +32,12 @@
         },
         "networks":{
             "YOUTUBE":"Youtube",
-            "INSTAGRAM":"Instagram"
+            "TIKTOK":"Tiktok",
+            "INSTAGRAM":"Instagram",
+            "TWITTER":"Twitter",
+            "TWITCH":"Twitch",
+            "FACEBOOK":"Facebook",
+            "WEBSITE":"Website"
         },
         "comming_soon":"Comming soon..."
     },

@@ -5,7 +5,9 @@ import { take } from 'rxjs/operators';
 import StorageService from './storage.service';
 
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
 export class SessionStorageService extends StorageService {
 
 	private _storage = sessionStorage;

@@ -1,16 +1,16 @@
 <div class="networks-box">
-    <app-network-selector [integratedNetworks]="userData?.integratedNetworks" (changeSelected)="changeSelectedNetwork($event)"/>
+    <app-network-selector [networks]="networksTransformed" (changeSelected)="changeSelectedNetwork($event)"/>
     <div class="card">
-        <div class="channel-box" *ngFor="let channel of selectedNetwork?.channels; let i = index">
+        <div class="channel-box" *ngFor="let network of selectedNetwork?.networks; let i = index">
             <div class="d-flex">
-                <img *ngIf="channel.channelImg" [src]="channel.channelImg" class="picture" />
-                <app-svg-icon *ngIf="!channel.channelImg" [class]="selectedNetwork?.network?.toLowerCase()" [path]="'assets/icons/' + selectedNetwork?.network?.toLowerCase() + '.svg'" />
+                <img *ngIf="network.profileImg" [src]="network.profileImg" class="picture" />
+                <app-svg-icon *ngIf="!network.profileImg" [class]="selectedNetwork?.platform?.toLowerCase()" [path]="'assets/icons/' + selectedNetwork?.platform?.toLowerCase() + '.svg'" />
                 <div class="channel-name">
-                    <span (click)="openNetworkPage(channel)">{{ channel.channelName }}</span>
+                    <span (click)="openNetworkPage(network)">{{ network.name }}</span>
                 </div>
                 <!-- <app-svg-icon *ngIf="channel.verified" class="verified" [path]="'assets/icons/verified.svg'" /> -->
             </div>
-            <div *ngIf="channel.verified && selectedNetwork?.network?.toLowerCase() == 'youtube'" class="data-container">
+            <div *ngIf="network.integrated && selectedNetwork?.platform?.toLowerCase() == 'youtube'" class="data-container">
                 <div class="data-box">
                     <div class="data">
                         <span>{{ data[i].totalSubs }}</span>
@@ -36,7 +36,7 @@
                     </div>
                 </div> -->
             </div>
-            <div *ngIf="!channel.verified && selectedNetwork?.network?.toLowerCase() == 'youtube'" class="data-container">
+            <div *ngIf="!network.integrated && selectedNetwork?.platform?.toLowerCase() == 'youtube'" class="data-container">
                 <div class="label no-sync-desc">
                     <span>{{ 'profile.networks.not_sync' | translate }}</span>
                 </div>

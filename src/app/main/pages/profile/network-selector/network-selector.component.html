@@ -1,9 +1,9 @@
 <div class="container-tags">
-    <div class="box-tag" *ngFor="let network of integratedNetworks; let i = index" (click)="changeNetwork(network, i)" [ngClass]="{ 'non-selected': i != selectedIndex }">
+    <div class="box-tag" *ngFor="let network of networks" (click)="changeNetwork(network)" [ngClass]="{ 'non-selected': network.platform != selectedPlatform }">
         <div class="d-flex">
-            <app-svg-icon [class]="network.network.toLowerCase()" [path]="'assets/icons/' + network.network.toLocaleLowerCase() + '.svg'"></app-svg-icon>
+            <app-svg-icon [class]="network.platform.toLowerCase()" [path]="'assets/icons/' + network.platform.toLowerCase() + '.svg'"></app-svg-icon>
         </div>
-        <span *ngIf="i == selectedIndex">{{ 'general.networks.' + network.network | translate }}</span>
+        <span *ngIf="network.platform == selectedPlatform">{{ 'general.networks.' + network.platform | translate }}</span>
     </div>
     <div class="box-tag add-tag" [matTooltip]="'general.comming_soon' | translate" matTooltipPosition="right">
         <mat-icon>add</mat-icon>

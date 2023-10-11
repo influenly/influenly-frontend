@@ -23,7 +23,8 @@ export class YoutubeIntegrationComponent {
       this.loading = true;
       let integrationData = {
         slide: SLIDE.YOUTUBE_INTEGRATION,
-        state: 'loading'
+        state: 'loading',
+        networkIntegratedId: 0
       }
       this.continue.emit(integrationData);
 
@@ -34,14 +35,16 @@ export class YoutubeIntegrationComponent {
       this.onboardingService.integration$(payload).subscribe({
         next: (v) => {
           integrationData.state = 'completed';
+          integrationData.networkIntegratedId = v.body.networkIntegratedId;
           this.continue.emit(integrationData);
         },
         error: (e) => {
-          if (e.error?.message === 'User already has integration for YOUTUBE') {
+          if (e.error?.message === 'Network already integrated') {
             integrationData.state = 'completed';
             this.continue.emit(integrationData);
+          } else {
+            //TODO: falla el save de la integracion. Notificar el error
           }
-          //TODO: falla el save de la integracion. Notificar el error
         }
       });
     });

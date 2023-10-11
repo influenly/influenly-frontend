@@ -1,3 +1,4 @@
+import { SessionUtilsService } from './../services/session-utils.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,7 +30,8 @@ export class SignUpComponent {
               private authService: AuthService,
               private dialog: MatDialog,
               private translate: TranslateService,
-              private router: Router) { }
+              private router: Router,
+              private sessionUtils: SessionUtilsService) { }
 
   submit() {
     if (!this.signUpForm.valid) {
@@ -44,7 +46,7 @@ export class SignUpComponent {
     }
     this.authService.signUp$(payload).subscribe({
       next: (v) => {
-        this.router.navigate(['sign-in']);
+        this.sessionUtils.onSignIn(v.body);
         // let dialogRef = this.dialog.open(InformationModalComponent, {
         //   width: '600px',
         //   data: {

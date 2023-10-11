@@ -140,13 +140,14 @@ export class OnboardingComponent implements OnInit {
       this.stepsVisualizer?.setFirstStepCompleted(true);
     }
     if ($event.slide === SLIDE.NETWORKS) {
-      this.data = {...$event, ...this.data};
+      this.data = {...this.data, ...$event};
       this.networksSlide = 'out';
       this.contentSlide = 'in';
       this.slide = SLIDE.CONTENT;
       this.stepsVisualizer?.setSecondStepCompleted(true);
     }
     if ($event.slide === SLIDE.CONTENT) {
+      //TODO if integration ok do onboarding
       this.data = {...$event, ...this.data};
       if (this.userType === USER_TYPE.CREATOR) {
         this.contentSlide = 'out';
@@ -158,11 +159,15 @@ export class OnboardingComponent implements OnInit {
           description: this.data.description,
           username: this.data.username,
           contentTags: this.data.tags,
-          socialNetworks: this.data.networks.map((network: any) => network.url)
+          networks: this.profileService.generateNetworksObject(this.data.networks)
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
-            this.profileService.setProfileData(v.body);
+            let userData = {
+              ...v.body.updatedUser,
+              networks: v.body.networks
+            }
+            this.profileService.setProfileData(userData);
             this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.userId);
             this.router.navigate(['app/profile']);
           },
@@ -182,11 +187,16 @@ export class OnboardingComponent implements OnInit {
           description: this.data.description,
           username: this.data.username,
           contentTags: this.data.tags,
-          socialNetworks: this.data.networks.map((network: any) => network.url)
+          networks: this.profileService.generateNetworksObject(this.data.networks),
+          networkIntegratedId: $event.networkIntegratedId
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
-            this.profileService.setProfileData(v.body);
+            let userData = {
+              ...v.body.updatedUser,
+              networks: v.body.networks
+            }
+            this.profileService.setProfileData(userData);
             this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.userId);
             this.router.navigate(['app/profile']);
           },

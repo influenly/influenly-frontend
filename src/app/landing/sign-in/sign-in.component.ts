@@ -3,10 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
-import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
-import { SocketService, TOPIC } from 'src/app/shared/services/socket/socket.service';
+import { SessionUtilsService } from '../services/session-utils.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -27,9 +25,7 @@ export class SignInComponent {
               private authService: AuthService,
               private dialog: MatDialog,
               private translate: TranslateService,
-              private router: Router,
-              private sessionStorage: SessionStorageService,
-              private socketService: SocketService) { }
+              private sessionUtils: SessionUtilsService) { }
 
   submit() {
     if (!this.signInForm.valid) {
@@ -42,16 +38,7 @@ export class SignInComponent {
     }
     this.authService.signIn$(payload).subscribe({
       next: async (v) => {
-        this.sessionStorage.set(SESSION_STORAGE_KEYS.token, v.body.token);
-        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, v.body.type);
-        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.id);
-        await this.socketService.connectSocket();
-        this.socketService.subscribeTopic(TOPIC.RECEIVE + v.body.id);
-        if (!v.body.onboardingCompleted) {
-          this.router.navigate(['app/onboarding']);
-        } else {
-          this.router.navigate(['app/profile']);
-        }
+        this.sessionUtils.onSignIn(v.body);
       },
       error: (e) => {
         if (e.error.message === 'INVALID_PASSWORD') {

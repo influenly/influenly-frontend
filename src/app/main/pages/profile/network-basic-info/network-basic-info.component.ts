@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChannelAnalyticModel, IntegratedNetworkModel, UserDataModel } from '../models/user-data.model';
+import { NetworkProfileModel, UserDataModel } from '../models/user-data.model';
 
 @Component({
   selector: 'app-network-basic-info',
@@ -10,26 +10,45 @@ export class NetworkBasicInfoComponent implements OnInit {
 
   @Input() userData: UserDataModel|null = null;
 
-  selectedNetwork: IntegratedNetworkModel|undefined;
+  networksTransformed: { platform: string, networks: NetworkProfileModel[] }[] = [];
+  selectedNetwork: { platform: string, networks: NetworkProfileModel[] }|undefined;
   data: any[] = [];
 
   ngOnInit() {
-    this.selectedNetwork = this.userData?.integratedNetworks ? this.userData.integratedNetworks[0] : undefined;
     this.setTransformedData();
   }
 
   private setTransformedData() {
     this.data = [];
+    this.groupNetworks();
+    this.selectedNetwork = this.selectedNetwork ? this.selectedNetwork : this.networksTransformed[0];
     if (this.selectedNetwork) {
-      for (let channel of this.selectedNetwork?.channels) {
+      for (let network of this.selectedNetwork.networks) {
+        let totalSubs = '';
+        let totalVideos = '';
+        if (network.basicAnalytics) {
+          totalSubs = this.transformNumbers(network.basicAnalytics.totalSubs);
+          totalVideos = this.transformNumbers(network.basicAnalytics.totalVideos);
+        }
         const dataRow = {
-          totalSubs: this.transformNumbers(channel.totalSubs),
-          totalVideos: this.transformNumbers(channel.totalVideos),
-          totalViews: this.transformNumbers(channel.totalViews)
+          totalSubs: totalSubs,
+          totalVideos: totalVideos
         }
         this.data.push(dataRow);
       }
     }
+  }
+
+  private groupNetworks() {
+    this.networksTransformed = [];
+    this.userData?.networks?.forEach(network => {
+      let platformNetworks = this.networksTransformed.filter (n => n.platform === network.platform);
+      if (platformNetworks && platformNetworks.length > 0) {
+        platformNetworks[0].networks.push(network);
+      } else {
+        this.networksTransformed.push({ platform: network.platform, networks: [network] });
+      }
+    });
   }
 
   private transformNumbers(number: number): string {
@@ -41,13 +60,13 @@ export class NetworkBasicInfoComponent implements OnInit {
     return number + '';
   }
 
-  changeSelectedNetwork($event: IntegratedNetworkModel) {
+  changeSelectedNetwork($event: { platform: string, networks: NetworkProfileModel[] }) {
     this.selectedNetwork = $event;
     this.setTransformedData();
   }
 
-  openNetworkPage(channel: ChannelAnalyticModel) {
-    window.open(channel.link?.includes('https://') ? channel.link : 'https://' + channel.link, '_blank');
+  openNetworkPage(network: NetworkProfileModel) {
+    window.open(network.url?.includes('https://') ? network.url : 'https://' + network.url, '_blank');
   }
 
 }

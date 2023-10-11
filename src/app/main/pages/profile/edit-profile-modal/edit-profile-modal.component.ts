@@ -8,6 +8,7 @@ import { ProfileService } from '../services/profile.service';
 import { Subscription } from 'rxjs';
 import { ProfileRequestService } from '../services/profile-request.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
+import { OnboardingModel } from '../../onboarding/models/onboarding.model';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -72,9 +73,9 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
         this.disabledButton = false;
       }));
     }, 0);
-    let socialNetworks = this.profileService.loadSocialNetworks(this.data?.socialNetworks);
-    socialNetworks.forEach(network => {
-      this.networksForm?.networks.push({ url: network.link, icon: network.icon });
+    let networks = this.profileService.loadSocialNetworks(this.data?.networks);
+    networks.forEach(network => {
+      this.networksForm?.networks?.push({ url: network.link, icon: network.icon, integrated: network.integrated });
     });
     this.formOnChangesSubs.push(this.userDataForm.valueChanges.subscribe(() => {
       this.disabledButton = false;
@@ -86,10 +87,12 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   public save() {
-    let data = {
+    const newNetworksArray = this.getNewArrayIfExistsChanges(this.data.networks.map((net: any) => net.url), this.networksForm?.networks?.map((net: any) => net.url));
+    const networks = newNetworksArray ? this.profileService.generateNetworksObject(this.networksForm?.networks) : undefined;
+    let data: OnboardingModel = {
       username: this.data.username != this.username?.value ? this.username?.value : undefined,
       description: this.data.description != this.description?.value ? this.description?.value : undefined,
-      socialNetworks: this.getNewArrayIfExistsChanges(this.data.socialNetworks, this.networksForm?.networks.map((net: any) => net.url)),
+      networks: networks,
       contentTags: this.data.contentTags != this.contentForm?.tags?.value ? this.contentForm?.tags?.value : undefined
     }
     this.profileRequestService.updateProfileData$(data).subscribe({
@@ -120,10 +123,10 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
     console.log(data)
   }
 
-  private getNewArrayIfExistsChanges(arr1: any[], arr2: any[]): any[]|undefined {
+  private getNewArrayIfExistsChanges(arr1: any[], arr2?: any[]): any[]|undefined {
     arr1.sort();
-    arr2.sort();
-    if (arr1.length == arr2.length && arr1.every(function(v,i) { return v === arr2[i] } )) {
+    arr2?.sort();
+    if (arr1.length == arr2?.length && arr1.every(function(v,i) { return v === arr2[i] } )) {
       return undefined;
     }
     return arr2;
