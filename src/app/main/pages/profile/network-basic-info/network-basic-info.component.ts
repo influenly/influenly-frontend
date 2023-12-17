@@ -41,7 +41,7 @@ export class NetworkBasicInfoComponent implements OnInit {
 
   private groupNetworks() {
     this.networksTransformed = [];
-    this.userData?.networks?.forEach(network => {
+    this.userData?.user?.networks?.forEach(network => {
       let platformNetworks = this.networksTransformed.filter (n => n.platform === network.platform);
       if (platformNetworks && platformNetworks.length > 0) {
         platformNetworks[0].networks.push(network);

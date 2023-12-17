@@ -26,7 +26,7 @@ export class UserDataComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.isCreatorUser = this.userData?.type === USER_TYPE.CREATOR;
+    this.isCreatorUser = this.userData?.user?.type === USER_TYPE.CREATOR;
     // this.socialNetworks = this.profileService.loadSocialNetworks(this.userData?.networks);
   }
 

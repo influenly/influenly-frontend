@@ -23,7 +23,7 @@ export class ProfileService {
     if (!this.userProfileData.getValue()) {
 
       let userProfileDataObs = this.profileRequestService.getProfileData$(userId).pipe(
-        map(res => res.body ? { ...res.body.user, networks: res.body.networks} : null ),
+        map(res => res.body),
         shareReplay(1)
       );
       userProfileDataObs.pipe(take(1)).subscribe(res => this.userProfileData.next(res));

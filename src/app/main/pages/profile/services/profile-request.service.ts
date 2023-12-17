@@ -9,15 +9,15 @@ export class ProfileRequestService {
 
     constructor(private restApiClient: RestApiClient) {}
 
-    public getProfileData$(userId: string): Observable<HttpResponse<{user: UserDataModel, networks: NetworkProfileModel[]}>> {
-        return this.restApiClient.get<{user: UserDataModel, networks: NetworkProfileModel[]}>({
+    public getProfileData$(userId: string): Observable<HttpResponse<UserDataModel>> {
+        return this.restApiClient.get<UserDataModel>({
             endPoint: '/user/' + userId + '/profile'
         });
     };
 
     public updateProfileData$(payload: any): Observable<HttpResponse<UserDataModel>> {
         return this.restApiClient.patch<UserDataModel>(payload, {
-            endPoint: '/user/profile'
+            endPoint: '/user'
         });
     }
 
