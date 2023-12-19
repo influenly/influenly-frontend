@@ -36,7 +36,7 @@ export class NetworksFormComponent {
 
   remove(network: any) {
     var index = this.networks?.indexOf(network);
-    if (index && index > -1) {
+    if (typeof index == 'number' && index > -1) {
       this.networks?.splice(index, 1);
     }
     if (this.networks?.length === 0) {
