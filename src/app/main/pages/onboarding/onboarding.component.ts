@@ -181,6 +181,9 @@ export class OnboardingComponent implements OnInit {
       if ($event.state === 'loading') {
         this.integrationLoading = true;
       }
+      if ($event.state === 'init') {
+        this.integrationLoading = false;
+      }
       if ($event.state === 'completed') {
         const payload: OnboardingModel = {
           birthDate: this.data.birthdate?.toISOString().substring(0, 10),

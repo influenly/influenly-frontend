@@ -137,7 +137,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
     if (this.userData && this.userData.user) {
       this.isCreatorUser = this.userData.user.type == USER_TYPE.CREATOR;
-      this.userData.user.networks = this.userDataMock.user.networks; // TODO: Borrar cuando ande el servicio
     }
   }
 

@@ -1,4 +1,4 @@
-<div *ngIf="!loading"class="container d-flex flex-column h-100">
+<div *ngIf="state === 'init'"class="container d-flex flex-column h-100">
     <h3>{{ 'onboarding.youtube_integration.title' | translate }}</h3>
     <span class="paragraph">{{ 'onboarding.youtube_integration.paragraph' | translate }}</span>
     
@@ -10,7 +10,19 @@
     </div>
 </div>
 
-<div *ngIf="loading" class="d-grid justify-content-center w-100">
+<div *ngIf="state === 'loading'" class="d-grid justify-content-center w-100">
     <h3 class="my-5">{{ 'onboarding.youtube_integration.loading_text' | translate }}</h3>
     <img src="../../../../../assets/images/onboarding-loading-image.svg" />
+</div>
+
+<div *ngIf="state === 'error'" class="d-grid justify-content-center w-100">
+    <div class="d-flex justify-content-center mt-4">
+		<mat-icon class="icon" ngClass="error" fontIcon="error"></mat-icon>
+	</div>
+    <h3 class="my-5">{{ 'onboarding.youtube_integration.error_text' | translate }}</h3>
+    <div class="d-flex justify-content-center">
+        <button class="main-button retry p-3" (click)="retry()">
+            {{ 'onboarding.youtube_integration.button_retry' | translate }}
+        </button>
+    </div>
 </div>

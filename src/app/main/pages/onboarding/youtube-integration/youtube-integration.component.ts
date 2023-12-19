@@ -14,16 +14,16 @@ export class YoutubeIntegrationComponent {
 
   @Output() continue: EventEmitter<any> = new EventEmitter();
 
-  loading: boolean = false;
+  state: string = 'init';
 
   constructor(private onboardingService: OnboardingService) {}
   
   async submit() {
     await initTokenClient(async (response: any) => {
-      this.loading = true;
+      this.state = 'loading';
       let integrationData = {
         slide: SLIDE.YOUTUBE_INTEGRATION,
-        state: 'loading',
+        state: this.state,
         networkIntegratedId: 0
       }
       this.continue.emit(integrationData);
@@ -44,11 +44,22 @@ export class YoutubeIntegrationComponent {
             this.continue.emit(integrationData);
           } else {
             //TODO: falla el save de la integracion. Notificar el error
+            this.state = 'error';
           }
         }
       });
     });
     getToken();
+  }
+
+  retry() {
+    this.state = 'init';
+    let integrationData = {
+      slide: SLIDE.YOUTUBE_INTEGRATION,
+      state: this.state,
+      networkIntegratedId: 0
+    }
+    this.continue.emit(integrationData);
   }
     
 }

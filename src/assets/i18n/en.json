@@ -174,7 +174,9 @@
             "title":"You are just one step away from joining Content...",
             "paragraph":"To finish with the creation of your account, we need you to integrate at least one of the platforms where you upload your content. In this way, we will be able to access the necessary information to generate the analytics that brands want to know about you. ",
             "button_connect":"Connect with YouTube",
-            "loading_text":"We are preparing everithing for you"
+            "loading_text":"We are preparing everithing for you",
+            "error_text": "An error occurred while integrating the network",
+            "button_retry":"Retry"
         }
     },
     "profile":{
