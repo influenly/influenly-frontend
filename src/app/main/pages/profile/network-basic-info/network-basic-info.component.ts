@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NetworkProfileModel, UserDataModel } from '../models/user-data.model';
+import { ProfileService } from '../services/profile.service';
 
 @Component({
   selector: 'app-network-basic-info',
@@ -14,6 +15,10 @@ export class NetworkBasicInfoComponent implements OnInit {
   selectedNetwork: { platform: string, networks: NetworkProfileModel[] }|undefined;
   data: any[] = [];
 
+  constructor(private profileService: ProfileService) {
+
+  }
+
   ngOnInit() {
     this.setTransformedData();
   }
@@ -27,8 +32,8 @@ export class NetworkBasicInfoComponent implements OnInit {
         let totalSubs = '';
         let totalVideos = '';
         if (network.basicAnalytics) {
-          totalSubs = this.transformNumbers(network.basicAnalytics.totalSubs);
-          totalVideos = this.transformNumbers(network.basicAnalytics.totalVideos);
+          totalSubs = this.profileService.transformFollowersNumber(network.basicAnalytics.totalSubs);
+          totalVideos = this.profileService.transformFollowersNumber(network.basicAnalytics.totalVideos);
         }
         const dataRow = {
           totalSubs: totalSubs,
@@ -49,15 +54,6 @@ export class NetworkBasicInfoComponent implements OnInit {
         this.networksTransformed.push({ platform: network.platform, networks: [network] });
       }
     });
-  }
-
-  private transformNumbers(number: number): string {
-    if (number > 1000000) {
-      return `${Math.round((number / 1000000))}M`;
-    } else if (number > 1000) {
-      return `${Math.round((number / 1000))}K`;
-    }
-    return number + '';
   }
 
   changeSelectedNetwork($event: { platform: string, networks: NetworkProfileModel[] }) {

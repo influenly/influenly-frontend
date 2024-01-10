@@ -1,0 +1,33 @@
+.discovery-box-top {
+    margin-top: 3rem;
+    min-height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    color: #222;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.order-by-button {
+    background-color: #393939;
+    border-radius: 1rem;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+}
+
+.cards-container {
+    padding: 0 auto;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    justify-content: center;
+    flex-flow: row wrap;
+    overflow-y: auto;
+}

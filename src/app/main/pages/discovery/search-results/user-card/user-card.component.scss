@@ -1,0 +1,44 @@
+.card {
+    max-width: 210px;
+    height: 300px;
+    background-color: #222;
+    padding: 5px;
+    border-radius: 8px;
+    color: white;
+    // margin-bottom: 1rem;
+    margin: 0.5rem;
+}
+
+.top {
+    height: 100%;
+}
+
+.profile-picture {
+    border-radius: 8px;
+    height: 200px;
+    width: 200px;
+    background-color: white;
+}
+
+.username {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.followers {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.content-tags {
+    position: absolute;
+    bottom: 0;
+    padding: 5px 0;
+}
+
+.mat-mdc-standard-chip {
+    background-color: #393939 !important;
+    --mdc-chip-label-text-color: #fff;
+    --mdc-chip-label-text-size: 10px;
+    --mdc-chip-container-height: 26px;
+}

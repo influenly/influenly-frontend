@@ -1,0 +1,15 @@
+<div class="discovery-box-top">
+    <span class="title">{{ 'discovery.title' | translate }}</span>
+    <button mat-button [matMenuTriggerFor]="menu" class="order-by-button">
+        {{ 'discovery.order_by' | translate }}
+        <mat-icon class="material-icons-outlined tune-icon">expand_more</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>{{ 'discovery.order_by_key.name' | translate }}</button>
+        <button mat-menu-item>{{ 'discovery.order_by_key.followers' | translate }}</button>
+    </mat-menu>
+</div>
+
+<div class="cards-container">
+    <app-user-card *ngFor="let user of users" [userData]="user"/>
+</div>

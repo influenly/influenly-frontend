@@ -43,6 +43,8 @@ import { ChatRequestService } from './pages/profile/services/chat-request.servic
 import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-messages.component';
 import { DiscoveryComponent } from './pages/discovery/discovery.component';
 import { DiscoveryFiltersComponent } from './pages/discovery/discovery-filters/discovery-filters.component';
+import { SearchResultsComponent } from './pages/discovery/search-results/search-results.component';
+import { UserCardComponent } from './pages/discovery/search-results/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { DiscoveryFiltersComponent } from './pages/discovery/discovery-filters/d
     TalksComponent,
     ChatMessagesComponent,
     DiscoveryComponent,
-    DiscoveryFiltersComponent
+    DiscoveryFiltersComponent,
+    SearchResultsComponent,
+    UserCardComponent
   ],
   imports: [
     CommonModule,

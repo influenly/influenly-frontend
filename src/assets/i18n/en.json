@@ -243,6 +243,12 @@
         }
     },
     "discovery":{
+        "title":"Discovery",
+        "order_by":"Order by",
+        "order_by_key":{
+            "name":"Name",
+            "followers":"Number of followers"
+        },
         "filters":"Filters",
         "content_type":"Content type",
         "followers":"Followers",

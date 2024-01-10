@@ -1,0 +1,22 @@
+<div class="card">
+    <div class="top">
+        <div class="d-flex justify-content-center">
+            <img *ngIf="picture" [src]="picture" class="profile-picture" />
+            <img *ngIf="!picture" src="../../../../../../assets/images/profile/default-picture-creator.svg" class="profile-picture" />
+        </div>
+
+        <div class="primary-info">
+            <div class="username">
+                <span>{{ userData?.username }}</span>
+            </div>
+            <div class="followers">
+                <span>{{ followers  + ' ' + ('discovery.followers' | translate) }}</span>
+            </div>
+            <div class="content-tags">
+                <mat-chip *ngFor="let tag of userData?.contentTags" class="tag">
+                    {{ 'onboarding.content.tag_list.' + tag | translate }}
+                </mat-chip>
+            </div>
+        </div>
+    </div>
+</div>
