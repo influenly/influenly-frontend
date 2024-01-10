@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MainRoutingModule } from './main-routing.module';
@@ -40,6 +41,8 @@ import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
 import { TalksComponent } from './pages/chat-window/talks/talks.component';
 import { ChatRequestService } from './pages/profile/services/chat-request.service';
 import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-messages.component';
+import { DiscoveryComponent } from './pages/discovery/discovery.component';
+import { DiscoveryFiltersComponent } from './pages/discovery/discovery-filters/discovery-filters.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,9 @@ import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-me
     InitTalkModalComponent,
     ChatWindowComponent,
     TalksComponent,
-    ChatMessagesComponent
+    ChatMessagesComponent,
+    DiscoveryComponent,
+    DiscoveryFiltersComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +84,8 @@ import { ChatMessagesComponent } from './pages/chat-window/chat-messages/chat-me
     MatMenuModule,
     MatTooltipModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    MatDividerModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },

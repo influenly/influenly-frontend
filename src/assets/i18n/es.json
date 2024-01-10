@@ -241,5 +241,12 @@
             "finished":"Conversación finalizada",
             "not_finished":"El creador ha rechazado la solicitud de finalizar con la conversación"
         }
+    },
+    "discovery":{
+        "filters":"Filtros",
+        "content_type":"Tipo de contenido",
+        "followers":"Seguidores",
+        "min_followers":"Min",
+        "max_followers":"Max"
     }
 }

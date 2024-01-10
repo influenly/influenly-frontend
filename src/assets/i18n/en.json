@@ -241,5 +241,12 @@
             "finished":"Conversation finished",
             "not_finished": "The creator has rejected the request to end the conversation"
         }
+    },
+    "discovery":{
+        "filters":"Filters",
+        "content_type":"Content type",
+        "followers":"Followers",
+        "min_followers":"Min",
+        "max_followers":"Max"
     }
 }

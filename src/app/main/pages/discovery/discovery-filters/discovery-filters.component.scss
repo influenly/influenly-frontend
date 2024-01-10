@@ -1,0 +1,55 @@
+.framework {
+    width: 20rem;
+    padding: 0 1rem;
+    color: white;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.tune-icon {
+    height: 16px;
+    width: 16px;
+    font-size: 16px;
+    margin: auto 5px;
+}
+
+.mat-divider {
+    border-top-color: #393939;
+}
+
+.mat-mdc-standard-chip {
+    background-color: #393939 !important;
+    --mdc-chip-label-text-color: #fff;
+}
+
+.mat-mdc-standard-chip.tag-added {
+    background-color: var(--primary-color) !important;
+    --mdc-chip-label-text-color: #fff;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid #CBD2E0;
+    border-radius: 5px;
+    width: 33%;
+    color: #CBD2E0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.confirm-button {
+    background-color: #393939;
+}

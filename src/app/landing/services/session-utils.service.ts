@@ -12,11 +12,11 @@ export class SessionUtilsService {
 
     public async onSignIn(response: any) {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.token, response.token);
-        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, response.type);
-        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, response.id);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, response.user.type);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, response.user.id);
         await this.socketService.connectSocket();
-        this.socketService.subscribeTopic(TOPIC.RECEIVE + response.id);
-        if (!response.onboardingCompleted) {
+        this.socketService.subscribeTopic(TOPIC.RECEIVE + response.user.id);
+        if (!response.user.onboardingCompleted) {
             this.router.navigate(['app/onboarding']);
         } else {
             this.router.navigate(['app/profile']);

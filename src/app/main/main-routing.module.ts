@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OnboardingComponent } from './pages/onboarding/onboarding.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
+import { DiscoveryComponent } from './pages/discovery/discovery.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,10 @@ const routes: Routes = [
     {
         path: 'chat',
         component: ChatWindowComponent
+    },
+    {
+        path: 'discovery',
+        component: DiscoveryComponent
     }
 ];
 

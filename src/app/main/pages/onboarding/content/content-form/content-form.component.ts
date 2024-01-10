@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AppConstants } from 'src/app/core/constants/app.constants';
 
 @Component({
   selector: 'app-content-form',
@@ -11,23 +12,7 @@ export class ContentFormComponent {
   @Input() otherLabel: string|undefined;
   @Output() atLeastOne: EventEmitter<boolean> = new EventEmitter();
 
-  tagList: string[] = [
-    'gaming',
-    'music',
-    'education',
-    'comedy',
-    'sports',
-    'cooking',
-    'art',
-    'news',
-    'trips',
-    'finances',
-    'culture',
-    'business',
-    'tech',
-    'creative',
-    'others'
-  ]
+  tagList: string[] = AppConstants.contentTags
 
   contentForm: FormGroup = this.fb.group({
     tags: [[], Validators.required]

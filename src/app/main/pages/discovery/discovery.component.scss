@@ -1,0 +1,25 @@
+.container-discovery {
+    margin-top: -3rem;
+    min-height: 100vh;
+    display: flex;
+}
+
+.search-results {
+    height: 100vh;
+    width: 100%;
+    background-color: #EAEDF2;
+}
+
+app-discovery-filters {
+    background-color: #222;
+}
+
+// app-chat-messages {
+//     display: flex;
+//     flex-flow: column;
+//     height: 100%;
+// }
+
+.only-filters {
+    min-width: 100%;
+}
