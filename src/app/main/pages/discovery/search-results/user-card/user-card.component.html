@@ -12,9 +12,14 @@
             <div class="followers">
                 <span>{{ followers  + ' ' + ('discovery.followers' | translate) }}</span>
             </div>
+            <div class="d-flex">
+                <div *ngFor="let icon of networkIcons">
+                    <app-svg-icon [class]="icon" [path]="'assets/icons/' + icon + '.svg'"></app-svg-icon>
+                </div>
+            </div>
             <div class="content-tags">
-                <mat-chip *ngFor="let tag of userData?.contentTags" class="tag">
-                    {{ 'onboarding.content.tag_list.' + tag | translate }}
+                <mat-chip *ngFor="let tag of tags" class="tag">
+                    {{ tag }}
                 </mat-chip>
             </div>
         </div>

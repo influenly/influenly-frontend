@@ -85,9 +85,9 @@ export class ProfileService {
 
   public transformFollowersNumber(number: number): string {
     if (number > 1000000) {
-      return `${Math.round((number / 1000000))}M`;
+      return `${Math.round((number / 1000000) * 10) / 10}M`;
     } else if (number > 1000) {
-      return `${Math.round((number / 1000))}K`;
+      return `${Math.round((number / 1000) * 10) / 10}K`;
     }
     return number + '';
   }

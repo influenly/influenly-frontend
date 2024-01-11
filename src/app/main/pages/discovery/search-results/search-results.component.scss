@@ -24,10 +24,9 @@
 }
 
 .cards-container {
-    padding: 0 auto;
     display: flex;
     -webkit-flex-flow: row wrap;
-    justify-content: center;
+    justify-content: flex-start;
     flex-flow: row wrap;
     overflow-y: auto;
 }
