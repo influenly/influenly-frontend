@@ -163,12 +163,9 @@ export class OnboardingComponent implements OnInit {
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
-            let userData = {
-              ...v.body.updatedUser,
-              networks: v.body.networks
-            }
+            let userData = v.body.user;
             this.profileService.setProfileData(userData);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.userId);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData.user.id);
             this.router.navigate(['app/profile']);
           },
           error: (e) => {
@@ -195,12 +192,9 @@ export class OnboardingComponent implements OnInit {
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
-            let userData = {
-              ...v.body.updatedUser,
-              networks: v.body.networks
-            }
+            let userData = v.body;
             this.profileService.setProfileData(userData);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, v.body.userId);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData.user.id);
             this.router.navigate(['app/profile']);
           },
           error: (e) => {

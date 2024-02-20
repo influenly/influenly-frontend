@@ -35,11 +35,11 @@ export class YoutubeIntegrationComponent {
       this.onboardingService.integration$(payload).subscribe({
         next: (v) => {
           integrationData.state = 'completed';
-          integrationData.networkIntegratedId = v.body.networkIntegratedId;
+          integrationData.networkIntegratedId = v.body.integration.networkId;
           this.continue.emit(integrationData);
         },
         error: (e) => {
-          if (e.error?.message === 'Network already integrated') {
+          if (e.error?.error === 'Network already integrated') {
             integrationData.state = 'completed';
             this.continue.emit(integrationData);
           } else {
