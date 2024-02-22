@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
+import { DiscoveryService } from '../services/discovery.service';
+import { Filter } from '../discovery-filters/discovery-filters.component';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnInit {
 
   users = [
     {
@@ -224,4 +226,26 @@ export class SearchResultsComponent {
       ]
     }
   ];
+
+  @Input() filters: Filter | undefined = undefined;
+
+  constructor(private discoveryService: DiscoveryService) {}
+
+  ngOnInit() {
+    this.onChangeFilters();
+  }
+
+  private onChangeFilters() {
+    this.discoveryService.getFilters().subscribe((filters) => {
+        this.discoveryService.getCreators$(filters.tags, filters.minFollowers ? filters.minFollowers : 0, filters.maxFollowers ? filters.maxFollowers : 0).subscribe({
+            next: (v) => {
+                this.users = v.body;
+            },
+            error: (e) => {
+                //TODO: mostrar error al cargar usuarios
+            }
+        });
+    });
+  }
+
 }

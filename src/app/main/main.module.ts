@@ -45,6 +45,7 @@ import { DiscoveryComponent } from './pages/discovery/discovery.component';
 import { DiscoveryFiltersComponent } from './pages/discovery/discovery-filters/discovery-filters.component';
 import { SearchResultsComponent } from './pages/discovery/search-results/search-results.component';
 import { UserCardComponent } from './pages/discovery/search-results/user-card/user-card.component';
+import { DiscoveryService } from './pages/discovery/services/discovery.service';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { UserCardComponent } from './pages/discovery/search-results/user-card/us
     OnboardingService,
     ProfileService,
     ProfileRequestService,
-    ChatRequestService
+    ChatRequestService,
+    DiscoveryService
   ]
 })
 export class MainModule { }

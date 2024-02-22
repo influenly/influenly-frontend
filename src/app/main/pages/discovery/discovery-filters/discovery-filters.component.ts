@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppConstants } from 'src/app/core/constants/app.constants';
+import { DiscoveryService } from '../services/discovery.service';
 
 @Component({
   selector: 'app-discovery-filters',
@@ -15,6 +16,8 @@ export class DiscoveryFiltersComponent {
     maxFollowers: undefined
   }
 
+  constructor(private discoveryService: DiscoveryService) {}
+
   manageTagFilter(tag: string) {
     const index = this.filters.tags.indexOf(tag);
     if (index >= 0) {
@@ -25,7 +28,7 @@ export class DiscoveryFiltersComponent {
   }
 
   applyFilters() {
-    console.log(this.filters);
+    this.discoveryService.setFilters(this.filters);
   }
 
 }
