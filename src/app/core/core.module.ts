@@ -10,13 +10,15 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChatComponent } from './header/chat/chat.component';
+import { DiscoveryButtonComponent } from './header/discovery-button/discovery-button.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     MainLayoutComponent,
     UserOptionsComponent,
-    ChatComponent
+    ChatComponent,
+    DiscoveryButtonComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,6 @@
-<button *ngIf="token" mat-icon-button class="icon-container" (click)="openChat()">
+<button *ngIf="token && isHandset" mat-icon-button class="icon-container" (click)="openChat()">
     <i class="icon" [ngClass]="{ 'material-icons-outlined': !isChatOpened, 'material-icons-round': isChatOpened }">chat</i>
 </button>
+<div *ngIf="token && !isHandset" class="header-button-container">
+    <button class="header-button" (click)="openChat()">{{ 'chat.conversation.title' | translate }}</button>
+</div>

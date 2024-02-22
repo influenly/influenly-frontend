@@ -9,3 +9,29 @@ img {
     margin: auto 1.3rem;
     height: 1.3rem;
 }
+
+.icon-container {
+    width: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.icon {
+    color: white;
+    font-size: 2rem;
+}
+
+.header-button-container {
+    display: flex;
+    height: -webkit-fill-available;
+}
+
+.header-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}

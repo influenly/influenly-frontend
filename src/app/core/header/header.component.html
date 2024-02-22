@@ -1,7 +1,8 @@
 <div class="header d-flex justify-content-between">
     <img src="../../../assets/logo/influenly.svg" />
     <div class="d-flex">
-        <app-chat />
+        <app-discovery-button [isHandset]="isHandset" />
+        <app-chat [isHandset]="isHandset" />
         <app-user-options />
     </div>
 </div>
