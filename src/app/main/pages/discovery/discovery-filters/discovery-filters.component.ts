@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppConstants } from 'src/app/core/constants/app.constants';
 import { DiscoveryService } from '../services/discovery.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-discovery-filters',
@@ -15,8 +16,11 @@ export class DiscoveryFiltersComponent {
     minFollowers: undefined,
     maxFollowers: undefined
   }
+  tagFilterInput: string = '';
+  filteredTags: string [] = this.contentTags;
 
-  constructor(private discoveryService: DiscoveryService) {}
+  constructor(private discoveryService: DiscoveryService,
+              private translate: TranslateService) {}
 
   manageTagFilter(tag: string) {
     const index = this.filters.tags.indexOf(tag);
@@ -29,6 +33,19 @@ export class DiscoveryFiltersComponent {
 
   applyFilters() {
     this.discoveryService.setFilters(this.filters);
+  }
+
+  filterTags() {
+    this.filteredTags = this.contentTags.filter(tag => 
+      this.translate.instant('onboarding.content.tag_list.' + tag).normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+      .includes(this.tagFilterInput.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase())
+    );
+  }
+
+  resetTagFilter() {
+    this.filters.tags = [];
+    this.tagFilterInput = '';
+    this.filteredTags = this.contentTags;
   }
 
 }

@@ -6,6 +6,7 @@
         "btn_back":"Back",
         "btn_return":"Return",
         "btn_cancel":"Cancel",
+        "search":"Search",
         "creator":"Creator",
         "advertiser":"Advertiser",
         "country":{
@@ -253,6 +254,8 @@
         "content_type":"Content type",
         "followers":"Followers",
         "min_followers":"Min",
-        "max_followers":"Max"
+        "max_followers":"Max",
+        "btn_apply_filters":"Filter selection",
+        "btn_reset_tag_filter":"Delete all"
     }
 }

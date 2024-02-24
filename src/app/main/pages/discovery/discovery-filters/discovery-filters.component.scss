@@ -1,7 +1,6 @@
 .framework {
     width: 20rem;
-    padding: 0 1rem;
-    color: white;
+    padding: 0 2rem;
 }
 
 .title {
@@ -22,13 +21,9 @@ span {
     margin: auto 5px;
 }
 
-.mat-divider {
-    border-top-color: #393939;
-}
-
 .mat-mdc-standard-chip {
-    background-color: #393939 !important;
-    --mdc-chip-label-text-color: #fff;
+    background-color: #EAEDF2 !important;
+    --mdc-chip-label-text-color: black;
 }
 
 .mat-mdc-standard-chip.tag-added {
@@ -40,8 +35,12 @@ input {
     background-color: transparent;
     border: 1px solid #CBD2E0;
     border-radius: 5px;
-    width: 33%;
-    color: #CBD2E0;
+    width: 45%;
+    color: black;
+}
+
+.input-tag {
+    width: 100%;
 }
 
 input::-webkit-outer-spin-button,
@@ -51,5 +50,24 @@ input::-webkit-inner-spin-button {
 }
 
 .confirm-button {
-    background-color: #393939;
+    width: 100%;
+}
+
+.close-icon {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+}
+
+.reset-tag-button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.reset-tag-button:hover {
+    font-weight: 600;
+    text-decoration: underline;
 }
