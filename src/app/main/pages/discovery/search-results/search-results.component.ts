@@ -227,7 +227,7 @@ export class SearchResultsComponent implements OnInit {
     }
   ];
 
-  @Input() filters: Filter | undefined = undefined;
+  filters: Filter | undefined = undefined;
 
   constructor(private discoveryService: DiscoveryService) {}
 

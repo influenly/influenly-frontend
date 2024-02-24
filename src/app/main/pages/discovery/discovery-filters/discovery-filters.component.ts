@@ -17,6 +17,8 @@ export class DiscoveryFiltersComponent {
     maxFollowers: undefined
   }
   tagFilterInput: string = '';
+  minFollowersInput: number | undefined = undefined;
+  maxFollowersInput: number | undefined = undefined;
   filteredTags: string [] = this.contentTags;
 
   constructor(private discoveryService: DiscoveryService,
@@ -32,6 +34,10 @@ export class DiscoveryFiltersComponent {
   }
 
   applyFilters() {
+    this.filters.minFollowers = this.minFollowersInput;
+    this.filters.maxFollowers = this.maxFollowersInput;
+    this.minFollowersInput  = undefined;
+    this.maxFollowersInput = undefined;
     this.discoveryService.setFilters(this.filters);
   }
 
@@ -42,8 +48,15 @@ export class DiscoveryFiltersComponent {
     );
   }
 
+  removeFollowersFilter() {
+    this.filters.minFollowers = undefined;
+    this.filters.maxFollowers = undefined;
+  }
+
   resetTagFilter() {
     this.filters.tags = [];
+    this.filters.minFollowers = undefined;
+    this.filters.maxFollowers = undefined;
     this.tagFilterInput = '';
     this.filteredTags = this.contentTags;
   }

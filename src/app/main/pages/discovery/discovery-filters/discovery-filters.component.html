@@ -11,6 +11,12 @@
                 <mat-icon class="material-icons-outlined close-icon">close</mat-icon>
             </mat-chip>
         </mat-chip-listbox>
+        <mat-chip *ngIf="filters.minFollowers || filters.maxFollowers" (click)="removeFollowersFilter()" class="tag-added">
+            <span *ngIf="filters.minFollowers && filters.maxFollowers" class="chip-followers">{{ 'discovery.followers_filter.between' | translate: { minFollowers: filters.minFollowers, maxFollowers: filters.maxFollowers } }}</span>
+            <span *ngIf="filters.minFollowers && !filters.maxFollowers" class="chip-followers">{{ 'discovery.followers_filter.more_than' | translate: { minFollowers: filters.minFollowers } }}</span>
+            <span *ngIf="!filters.minFollowers && filters.maxFollowers" class="chip-followers">{{ 'discovery.followers_filter.less_than' | translate: { maxFollowers: filters.maxFollowers } }}</span>
+            <mat-icon class="material-icons-outlined close-icon">close</mat-icon>
+        </mat-chip>
         <div class="d-flex justify-content-center">
             <button *ngIf="filters.tags.length > 0" class="reset-tag-button" (click)="resetTagFilter()">{{ 'discovery.btn_reset_tag_filter' | translate}}</button>
         </div>
@@ -35,13 +41,13 @@
             <input 
                 matInput
                 type="number"
-                [(ngModel)]="filters.minFollowers"
+                [(ngModel)]="minFollowersInput"
                 [placeholder]="'discovery.min_followers' | translate"
             />
             <input
                 matInput
                 type="number"
-                [(ngModel)]="filters.maxFollowers"
+                [(ngModel)]="maxFollowersInput"
                 [placeholder]="'discovery.max_followers' | translate"
             />
         </div>

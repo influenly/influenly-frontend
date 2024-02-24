@@ -256,6 +256,11 @@
         "min_followers":"Min",
         "max_followers":"Max",
         "btn_apply_filters":"Filtrar selección",
-        "btn_reset_tag_filter":"Borrar todos"
+        "btn_reset_tag_filter":"Borrar todos",
+        "followers_filter":{
+            "between":"De {{minFollowers}} a {{maxFollowers}} seguidores",
+            "more_than":"Más de {{minFollowers}} seguidores",
+            "less_than":"Menos de {{maxFollowers}} seguidores"
+        }
     }
 }
