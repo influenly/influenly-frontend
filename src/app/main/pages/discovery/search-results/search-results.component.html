@@ -16,7 +16,10 @@
             </mat-menu>
         </div>
     </div>
-    
+    <button *ngIf="isHandset" class="main-button btn-filter" (click)="showFilter()">
+        <mat-icon class="material-icons-outlined tune-icon">tune</mat-icon>
+        <span>{{ 'discovery.filters' | translate }}</span>
+    </button>
     <div class="d-flex justify-content-center box-cards">
         <div class="cards-container">
             <app-user-card *ngFor="let user of users" [userData]="user"/>

@@ -1,7 +1,8 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, signal } from '@angular/core';
 import { Subscription, map } from 'rxjs';
 
+export const showFilter = signal<boolean>(false);
 @Component({
   selector: 'app-discovery',
   templateUrl: './discovery.component.html',
@@ -10,6 +11,7 @@ import { Subscription, map } from 'rxjs';
 export class DiscoveryComponent implements OnDestroy {
 
   isHandset: boolean = false;
+  showFilter = showFilter;
 
   isHandsetSubs: Subscription;
 

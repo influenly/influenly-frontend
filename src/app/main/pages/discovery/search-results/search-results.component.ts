@@ -1,14 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { DiscoveryService } from '../services/discovery.service';
 import { Filter } from '../discovery-filters/discovery-filters.component';
+import { showFilter } from '../discovery.component';
+import { Subscription, map } from 'rxjs';
 
 @Component({
   selector: 'app-search-results',
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent implements OnInit, OnDestroy {
 
   users = [
     {
@@ -229,8 +232,17 @@ export class SearchResultsComponent implements OnInit {
 
   filters: Filter | undefined = undefined;
   orderByOption: string = 'more_relevant';
+  isHandset: boolean = false;
 
-  constructor(private discoveryService: DiscoveryService) {}
+  isHandsetSubs: Subscription;
+
+  constructor(private discoveryService: DiscoveryService,
+            private breakpointObserver: BreakpointObserver) {
+    this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 768px)'])
+    .pipe(map(result => result.matches)).subscribe(match => {
+        this.isHandset = match;
+    });
+  }
 
   ngOnInit() {
     this.onChangeFilters();
@@ -247,6 +259,14 @@ export class SearchResultsComponent implements OnInit {
             }
         });
     });
+  }
+
+  showFilter() {
+    showFilter.set(true);
+  }
+
+  ngOnDestroy() {
+    if (this.isHandsetSubs) this.isHandsetSubs.unsubscribe();
   }
 
 }

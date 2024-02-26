@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { AppConstants } from 'src/app/core/constants/app.constants';
 import { DiscoveryService } from '../services/discovery.service';
 import { TranslateService } from '@ngx-translate/core';
+import { showFilter } from '../discovery.component';
 
 @Component({
   selector: 'app-discovery-filters',
@@ -9,6 +10,18 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./discovery-filters.component.scss']
 })
 export class DiscoveryFiltersComponent {
+
+  @HostListener('document:click', ['$event'])
+  clickout(event: any) {
+    if(!this.eRef.nativeElement.contains(event.target)) {
+      if (this.firstClick) {
+        this.firstClick = false;
+      }  else {
+        this.firstClick = true;
+        showFilter.set(false);
+      }
+    }
+  }
 
   contentTags: string[] = AppConstants.contentTags;
   filters: Filter = {
@@ -20,9 +33,11 @@ export class DiscoveryFiltersComponent {
   minFollowersInput: number | undefined = undefined;
   maxFollowersInput: number | undefined = undefined;
   filteredTags: string [] = this.contentTags;
+  firstClick: boolean = true;
 
   constructor(private discoveryService: DiscoveryService,
-              private translate: TranslateService) {}
+              private translate: TranslateService,
+              private eRef: ElementRef) {}
 
   manageTagFilter(tag: string) {
     const index = this.filters.tags.indexOf(tag);

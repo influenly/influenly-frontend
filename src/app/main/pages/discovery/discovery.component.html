@@ -1,5 +1,5 @@
 <div class="container-discovery">
-    <app-discovery-filters class="shadow" [ngClass]="{'only-filters': isHandset, 'd-none': isHandset}" />
+    <app-discovery-filters class="shadow" [ngClass]="{'only-filters': isHandset, 'd-none': isHandset && !showFilter()}" />
     <div class="search-results">
         <app-search-results />
     </div>
