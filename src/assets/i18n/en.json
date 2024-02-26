@@ -247,6 +247,7 @@
         "title":"Discovery",
         "order_by":"Order by",
         "order_by_key":{
+            "more_relevant":"More relevant",
             "name":"Name",
             "followers":"Number of followers"
         },

@@ -228,6 +228,7 @@ export class SearchResultsComponent implements OnInit {
   ];
 
   filters: Filter | undefined = undefined;
+  orderByOption: string = 'more_relevant';
 
   constructor(private discoveryService: DiscoveryService) {}
 
