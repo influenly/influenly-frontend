@@ -50,8 +50,8 @@ export class SignInComponent {
             width: '600px',
             data: {
               icon: 'warning',
-              text: this.translate.instant('landing.sign_up.modal_messages.error_desc'),
-              title: this.translate.instant('landing.sign_up.modal_messages.error'),
+              text: this.translate.instant('landing.sign_in.modal_messages.error_desc'),
+              title: this.translate.instant('landing.sign_in.modal_messages.error'),
               textButtonClose: this.translate.instant('general.btn_return')
             }
           });
