@@ -33,19 +33,13 @@
 }
 
 .cards-container {
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    justify-content: flex-start;
-    flex-flow: row wrap;
-    overflow-y: auto;
+    display: grid;
+    grid-template-columns: 256px 256px;
+    gap: 20px;
 }
 
 .results-container {
     padding: 0 2rem;
-}
-
-.box-cards {
-    padding: 0 -0.5rem;
 }
 
 .btn-filter {
@@ -71,5 +65,29 @@
 
     .results-container {
         padding: 0 1rem;
+    }
+}
+
+@media (max-width: 920px) {
+    .cards-container {
+        grid-template-columns: 256px;
+    }
+}
+
+@media (min-width: 920px) and (max-width: 1250px) {
+    .cards-container {
+        grid-template-columns: 256px 256px;
+    }
+}
+
+@media (min-width: 1251px) and (max-width: 1500px) {
+    .cards-container {
+        grid-template-columns: 256px 256px 256px;
+    }
+}
+
+@media (min-width: 1501px) {
+    .cards-container {
+        grid-template-columns: 256px 256px 256px 256px;
     }
 }
