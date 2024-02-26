@@ -24,3 +24,9 @@ app-search-results {
 .only-filters {
     min-width: 100%;
 }
+
+@media (max-width: 900px) {
+    .search-results {
+        height: 100%;
+    }
+}

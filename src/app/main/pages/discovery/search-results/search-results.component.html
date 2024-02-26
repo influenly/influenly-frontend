@@ -1,21 +1,25 @@
-<div class="discovery-box-top">
-    <span class="title">{{ 'discovery.title' | translate }}</span>
-    <div class="d-flex justify-content-between">
-        <span class="lbl-order-by">{{ 'discovery.order_by' | translate }}</span>
-        <button mat-button [matMenuTriggerFor]="menu" class="order-by-button">
-            {{ 'discovery.order_by_key.' + orderByOption | translate }}
-            <mat-icon class="material-icons-outlined tune-icon">expand_more</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="orderByOption = 'more_relevant'">{{ 'discovery.order_by_key.more_relevant' | translate }}</button>
-            <button mat-menu-item (click)="orderByOption = 'name'">{{ 'discovery.order_by_key.name' | translate }}</button>
-            <button mat-menu-item (click)="orderByOption = 'followers'">{{ 'discovery.order_by_key.followers' | translate }}</button>
-        </mat-menu>
+<div class="results-container">
+    <div class="discovery-box-top">
+        <span class="title">{{ 'discovery.title' | translate }}</span>
+        <div class="box-order-by">
+            <div>
+                <span class="lbl-order-by">{{ 'discovery.order_by' | translate }}</span>
+            </div>
+            <button mat-button [matMenuTriggerFor]="menu" class="btn-order-by">
+                {{ 'discovery.order_by_key.' + orderByOption | translate }}
+                <mat-icon class="material-icons-outlined tune-icon">expand_more</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="orderByOption = 'more_relevant'">{{ 'discovery.order_by_key.more_relevant' | translate }}</button>
+                <button mat-menu-item (click)="orderByOption = 'name'">{{ 'discovery.order_by_key.name' | translate }}</button>
+                <button mat-menu-item (click)="orderByOption = 'followers'">{{ 'discovery.order_by_key.followers' | translate }}</button>
+            </mat-menu>
+        </div>
     </div>
-</div>
-
-<div class="d-flex justify-content-center">
-    <div class="cards-container">
-        <app-user-card *ngFor="let user of users" [userData]="user"/>
+    
+    <div class="d-flex justify-content-center box-cards">
+        <div class="cards-container">
+            <app-user-card *ngFor="let user of users" [userData]="user"/>
+        </div>
     </div>
 </div>

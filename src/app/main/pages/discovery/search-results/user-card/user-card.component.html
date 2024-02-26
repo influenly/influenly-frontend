@@ -3,6 +3,11 @@
         <div class="d-flex justify-content-center">
             <img *ngIf="picture" [src]="picture" class="profile-picture" />
             <img *ngIf="!picture" src="../../../../../../assets/images/profile/default-picture-creator.svg" class="profile-picture" />
+            <div class="network-icons">
+                <div *ngFor="let icon of networkIcons" class="icon">
+                    <app-svg-icon [class]="icon" [path]="'assets/icons/' + icon + '.svg'"></app-svg-icon>
+                </div>
+            </div>
         </div>
 
         <div class="primary-info">
@@ -11,11 +16,6 @@
             </div>
             <div class="followers">
                 <span>{{ followers  + ' ' + ('discovery.followers' | translate) }}</span>
-            </div>
-            <div class="d-flex">
-                <div *ngFor="let icon of networkIcons">
-                    <app-svg-icon [class]="icon" [path]="'assets/icons/' + icon + '.svg'"></app-svg-icon>
-                </div>
             </div>
             <div class="content-tags">
                 <mat-chip *ngFor="let tag of tags" class="tag">

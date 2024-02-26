@@ -4,7 +4,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 1rem;
     color: #222;
 }
 
@@ -19,7 +18,12 @@
     color: black;
 }
 
-.order-by-button {
+.box-order-by {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-order-by {
     background-color: transparent;
     border: none;
     color: var(--primary-color);
@@ -34,4 +38,34 @@
     justify-content: flex-start;
     flex-flow: row wrap;
     overflow-y: auto;
+}
+
+.results-container {
+    padding: 0 2rem;
+}
+
+.box-cards {
+    padding: 0 -0.5rem;
+}
+
+@media (max-width: 768px) {
+    .box-order-by {
+        display: block;
+        justify-content: end;
+    }
+
+    .lbl-order-by {
+        float: right;
+        padding-right: 5px;
+    }
+
+    .btn-order-by {
+        min-width: 0px;
+        float: right;
+        padding: 0px;
+    }
+
+    .results-container {
+        padding: 0 1rem;
+    }
 }
