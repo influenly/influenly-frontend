@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-user-card',
   templateUrl: './user-card.component.html',
-  styleUrls: ['./user-card.component.scss']
+  styleUrls: ['./user-card.component.scss', '../search-results.component.scss']
 })
 export class UserCardComponent implements OnInit {
 
