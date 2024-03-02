@@ -202,7 +202,9 @@
             "btn_send":"Send",
             "message":{
                 "required_error":"You must enter a message"
-            }
+            },
+            "message_sended_ok":"Message sended",
+            "message_sended_error":"Could not send message, please try again."
         },
         "networks":{
             "not_sync":"Non-integrated account",

@@ -1,9 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ChatRequestService } from '../../services/chat-request.service';
 import { firstValueFrom } from 'rxjs';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
+import { UserDataModel } from '../../models/user-data.model';
+import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-init-talk-modal',
@@ -21,10 +24,12 @@ export class InitTalkModalComponent implements OnInit {
   get message() { return this.talkForm.get('message'); }
 
   constructor(private fb: FormBuilder,
+              private dialog: MatDialog,
               private dialogRef: MatDialogRef<InitTalkModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
+              @Inject(MAT_DIALOG_DATA) public data: UserDataModel,
               private chatRequestService: ChatRequestService,
-              private sessionStorage: SessionStorageService) {}
+              private sessionStorage: SessionStorageService,
+              private translate: TranslateService) {}
 
   ngOnInit() {
     this.getUserId();
@@ -39,16 +44,31 @@ export class InitTalkModalComponent implements OnInit {
 
   onSubmit() {
     const message = {
-      creatorUserId: this.data.userId,
+      creatorUserId: this.data.user.id,
       message: this.message?.value
     }
     console.log(message)
     this.chatRequestService.newConversation$(message).subscribe({
       next: (v) => {
+        this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'check',
+            text: this.translate.instant('profile.init_talk.message_sended_ok'),
+            textButtonClose: this.translate.instant('general.btn_return')
+          }
+        });
         this.dialogRef.close();
       },
       error: (e) => {
-        //TODO: Flujo de error
+        this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'warning',
+            text: this.translate.instant('profile.init_talk.message_sended_error'),
+            textButtonClose: this.translate.instant('general.btn_return')
+          }
+        });
       }
     });
   }
