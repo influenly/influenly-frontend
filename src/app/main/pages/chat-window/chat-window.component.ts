@@ -8,6 +8,9 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 import { Subscription, firstValueFrom, map } from 'rxjs';
 import { LocationUtilsService } from 'src/app/shared/services/utils/location-utils.service';
 import { TalksComponent } from './talks/talks.component';
+import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chat-window',
@@ -45,7 +48,9 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
               private socketService: SocketService,
               private sessionStorage: SessionStorageService,
               private breakpointObserver: BreakpointObserver,
-              private locationUtilsService: LocationUtilsService) {
+              private locationUtilsService: LocationUtilsService,
+              private dialog: MatDialog,
+              private translate: TranslateService) {
     
     this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 768px)'])
     .pipe(map(result => result.matches)).subscribe(match => {
@@ -82,7 +87,14 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
         this.classifyConversations();
       },
       error: (e) => {
-        //TODO: Flujo de error
+        this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'warning',
+            text: this.translate.instant('chat.conversation.popup_getting_conversations_error'),
+            textButtonClose: this.translate.instant('general.btn_return')
+          }
+        });
       }
     });
   }

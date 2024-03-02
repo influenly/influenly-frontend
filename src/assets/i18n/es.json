@@ -228,7 +228,8 @@
             "pending":"Pendientes",
             "in_progress":"En curso",
             "finished":"Finalizadas",
-            "none":"Nada para mostrar aquí"
+            "none":"Nada para mostrar aquí",
+            "popup_getting_conversations_error":"Ocurrió un error al buscar las conversaciones, intente más tarde"
         },
         "messages":{
             "btn_finish":"Finalizar conversación",
