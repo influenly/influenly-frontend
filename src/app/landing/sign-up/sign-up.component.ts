@@ -46,7 +46,7 @@ export class SignUpComponent {
     }
     this.authService.signUp$(payload).subscribe({
       next: (v) => {
-        this.sessionUtils.onSignIn(v.body);
+        this.sessionUtils.onLogin(v.body);
         // let dialogRef = this.dialog.open(InformationModalComponent, {
         //   width: '600px',
         //   data: {

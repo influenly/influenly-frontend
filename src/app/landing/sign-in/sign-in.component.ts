@@ -36,9 +36,9 @@ export class SignInComponent {
       email: this.email?.value,
       password: this.password?.value
     }
-    this.authService.signIn$(payload).subscribe({
+    this.authService.login$(payload).subscribe({
       next: async (v) => {
-        this.sessionUtils.onSignIn(v.body);
+        this.sessionUtils.onLogin(v.body);
       },
       error: (e) => {
         if (e.error.message === 'INVALID_PASSWORD') {

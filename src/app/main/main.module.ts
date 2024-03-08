@@ -19,8 +19,6 @@ import { MatChipsModule } from '@angular/material/chips';
 import { ContentComponent } from './pages/onboarding/content/content.component';
 import { YoutubeIntegrationComponent } from './pages/onboarding/youtube-integration/youtube-integration.component';
 import { SharedModule } from '../shared/shared.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TokenInterceptor } from '../shared/services/rest-api/http-auth-interceptor';
 import { OnboardingService } from './pages/onboarding/services/onboarding.service';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserDataComponent } from './pages/profile/user-data/user-data.component';
@@ -94,7 +92,6 @@ import { DiscoveryService } from './pages/discovery/services/discovery.service';
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     OnboardingService,
     ProfileService,
     ProfileRequestService,

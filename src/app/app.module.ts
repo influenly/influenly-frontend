@@ -11,6 +11,7 @@ import { SessionStorageService } from './shared/services/storages/session-storag
 import { MatMenuModule } from '@angular/material/menu';
 import { ChatService } from './core/header/chat/services/chat.service';
 import { SocketService } from './shared/services/socket/socket.service';
+import { httpInterceptorProviders } from './shared/services/rest-api/http-auth-interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -36,7 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     SessionStorageService,
     ChatService,
-    SocketService
+    SocketService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

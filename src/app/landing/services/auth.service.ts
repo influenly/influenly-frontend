@@ -14,9 +14,9 @@ export class AuthService {
         });
     }
 
-    public signIn$(payload: any): Observable<HttpResponse<any>>{
+    public login$(payload: any): Observable<HttpResponse<any>>{
         return this.restApiClient.post<any>(payload, {
-            endPoint: '/auth/sign-in'
+            endPoint: '/auth/login'
         });
     }
 }

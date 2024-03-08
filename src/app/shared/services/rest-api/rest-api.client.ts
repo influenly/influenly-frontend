@@ -22,6 +22,7 @@ export class RestApiClient {
 			};
 			useLocal?:boolean;
 			microservice?: string;
+			withCredentials?: boolean;
 		}) {
         return this.http.get<T>(
             env.hostname + options.endPoint, {
@@ -29,7 +30,8 @@ export class RestApiClient {
                 'Accept': 'application/json'
             }),
             params: options.params ? options.params : undefined,
-            observe: 'response'
+            observe: 'response',
+			withCredentials: options.withCredentials
         }).pipe(
             retry(0),
             catchError(this.handleError)
@@ -47,6 +49,7 @@ export class RestApiClient {
 			};
 			useLocal?:boolean;
 			microservice?: string;
+			withCredentials?: boolean;
 		}): Observable<HttpResponse<Blob>> {
 		return this.http.get(
 			env.hostname + options.endPoint, {
@@ -55,7 +58,8 @@ export class RestApiClient {
 			}),
 			params: options.params ? options.params : undefined,
 			observe: 'response',
-			responseType: 'blob'
+			responseType: 'blob',
+			withCredentials: options.withCredentials
 		}).pipe(
 			retry(0),
 			catchError(this.handleError)
@@ -73,6 +77,7 @@ export class RestApiClient {
 			};
 			useLocal?:boolean;
 			microservice?: string;
+			withCredentials?: boolean;
 		}): Observable<HttpResponse<Blob>> {
 		return this.http.get(
 			env.hostname + options.endPoint, {
@@ -81,7 +86,8 @@ export class RestApiClient {
 			}),
 			params: options.params ? options.params : undefined,
 			observe: 'response',
-			responseType: 'blob'
+			responseType: 'blob',
+			withCredentials: options.withCredentials
 		}).pipe(
 			retry(0),
 			catchError(this.handleError)
@@ -101,6 +107,7 @@ export class RestApiClient {
 			useLocal?:boolean;
 			microservice?: string;
 			responseType?: string;
+			withCredentials?: boolean
 		}) {
 		return this.http.post<T>(
 			env.hostname + options.endPoint, body, {
@@ -108,7 +115,8 @@ export class RestApiClient {
 				'Content-Type': 'application/json'
 			}),
 			params: options.params ? options.params : undefined,
-			observe: 'response'
+			observe: 'response',
+			withCredentials: options.withCredentials
 		}).pipe(
 			retry(0),
 			catchError(this.handleError)
@@ -128,13 +136,15 @@ export class RestApiClient {
 			useLocal?:boolean;
 			microservice?: string;
 			responseType?: string;
+			withCredentials?: boolean;
 		}) {
 		return this.http.post<T>(
 			env.hostname + options.endPoint, body, {
 			headers: options.headers ? options.headers : new HttpHeaders({
 			}),
 			params: options.params ? options.params : undefined,
-			observe: 'response'
+			observe: 'response',
+			withCredentials: options.withCredentials
 		}).pipe(
 			retry(0),
 			catchError(this.handleError)
@@ -154,6 +164,7 @@ export class RestApiClient {
 			useLocal?:boolean;
 			microservice?: string;
 			responseType?: string;
+			withCredentials?: boolean;
 		}) {
 		return this.http.put<T>(
 			env.hostname + options.endPoint, body, {
@@ -161,7 +172,8 @@ export class RestApiClient {
 				'Content-Type': 'application/json'
 			}),
 			params: options.params ? options.params : undefined,
-			observe: 'response'
+			observe: 'response',
+			withCredentials: options.withCredentials
 		}).pipe(
 			retry(0),
 			catchError(this.handleError)
@@ -180,6 +192,7 @@ export class RestApiClient {
 			useLocal?:boolean;
 			microservice?: string;
 			responseType?: string;
+			withCredentials?: boolean;
 		}) {
 		return this.http.delete<T>(
 			env.hostname + options.endPoint, {
@@ -187,7 +200,8 @@ export class RestApiClient {
 				'Content-Type': 'application/json'
 			}),
 			params: options.params ? options.params : undefined,
-			observe: 'response'
+			observe: 'response',
+			withCredentials: options.withCredentials
 		}).pipe(
 			retry(0),
 			catchError(this.handleError)
@@ -207,6 +221,7 @@ export class RestApiClient {
 			useLocal?:boolean;
 			microservice?: string;
 			responseType?: string;
+			withCredentials?: boolean;
 		}) {
 		return this.http.patch<T>(
 			env.hostname + options.endPoint, body, {
@@ -214,7 +229,8 @@ export class RestApiClient {
 				'Content-Type': 'application/json'
 			}),
 			params: options.params ? options.params : undefined,
-			observe: 'response'
+			observe: 'response',
+			withCredentials: options.withCredentials
 		}).pipe(
 			retry(0),
 			catchError(this.handleError)
