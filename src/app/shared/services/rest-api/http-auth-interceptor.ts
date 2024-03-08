@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthInterceptor implements HttpInterceptor {
 
-    skipUrls = ['/login'];
+    skipUrls = ['/login','/signup'];
     setPanelData: boolean = true;
 
     constructor() { }

@@ -10,7 +10,7 @@ export class AuthService {
 
     public signUp$(payload: any): Observable<HttpResponse<any>>{
         return this.restApiClient.post<any>(payload, {
-            endPoint: '/auth/sign-up'
+            endPoint: '/auth/signup'
         });
     }
 
