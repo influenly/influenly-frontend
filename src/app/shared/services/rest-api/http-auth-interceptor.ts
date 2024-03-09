@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Provider } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -13,24 +13,23 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let withCredentials = true;
-        for (let path of this.skipUrls) {
-            if (request.url.includes(path)) {
-                withCredentials = false;
-                break;
-            }
-        }
+        // let withCredentials = true;
+        // for (let path of this.skipUrls) {
+        //     if (request.url.includes(path)) {
+        //         withCredentials = false;
+        //         break;
+        //     }
+        // } este codigo hacia que no se guarden las cookies en el navegador
         request = request.clone({
-            withCredentials: withCredentials
+            withCredentials: true
         });
         return next.handle(request);
     }
 }
 
-export const httpInterceptorProviders = [
-    {
-        provide: HTTP_INTERCEPTORS,
-        useClass: AuthInterceptor,
-        multi: true 
-    }
-];
+export const httpInterceptorProviders: Provider = 
+{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true 
+};

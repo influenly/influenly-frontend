@@ -5,11 +5,18 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 // Environment
 import { environment as env } from '../../../../environments/environment';
+import { MatDialog } from '@angular/material/dialog';
+import { InformationModalComponent } from '../../components/UI/information-modal/information-modal.component';
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class RestApiClient {
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient,
+				private dialog: MatDialog,
+				private translate: TranslateService,
+				private router: Router) { }
 
 	get<T>(
 		options: {
@@ -237,19 +244,38 @@ export class RestApiClient {
 		);
 	}
 
-    private handleError(error: HttpErrorResponse) {
+    handleError = (error: HttpErrorResponse) => {
         if (error.status === 0) {
-          // A client-side or network error occurred. Handle it accordingly.
-          console.error('An error occurred:', error.error);
+			// A client-side or network error occurred. Handle it accordingly.
+			console.error('An error occurred:', error.error);
         } else {
-          // The backend returned an unsuccessful response code.
-          // The response body may contain clues as to what went wrong.
-          console.error(
-            `Backend returned code ${error.status}, body was: `, error.error);
-			throw error;
+			// The backend returned an unsuccessful response code.
+			// The response body may contain clues as to what went wrong.
+			console.error(`Backend returned code ${error.status}, body was: `, error.error);
+			if (error.status === 401) {
+				this.showSessionExpiredModal();
+			} else {
+				throw error;
+			}
         }
         // Return an observable with a user-facing error message.
         return throwError(() => new Error('Something bad happened; please try again later.'));
       }
+
+	  private showSessionExpiredModal() {
+		let dialogRef = this.dialog.open(InformationModalComponent, {
+            width: '600px',
+            data: {
+              icon: 'warning',
+              text: this.translate.instant('core.auth.session_closed_msg'),
+              textButtonClose: this.translate.instant('general.btn_accept')
+            }
+          });
+          const subs = dialogRef.componentInstance.response.subscribe(res => {
+				this.router.navigate(['/']);
+              subs.unsubscribe();
+              this.dialog.closeAll();
+          });
+	  }
 
 }

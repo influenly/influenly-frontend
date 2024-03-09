@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { UserDataModel } from '../models/user-data.model';
+import { UserModel } from '../models/user-data.model';
 import { EditProfileModalComponent } from '../edit-profile-modal/edit-profile-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ProfileService } from '../services/profile.service';
@@ -13,7 +13,7 @@ import { InitTalkModalComponent } from './init-talk-modal/init-talk-modal.compon
 })
 export class UserDataComponent implements OnInit, OnChanges {
 
-  @Input() userData: UserDataModel|null = null;
+  @Input() userData: UserModel|undefined;
   @Input() isOwnView: boolean|undefined;
 
   socialNetworks: any[] = [];
@@ -26,7 +26,7 @@ export class UserDataComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.isCreatorUser = this.userData?.user?.type === USER_TYPE.CREATOR;
+    this.isCreatorUser = this.userData?.type === USER_TYPE.CREATOR;
     // this.socialNetworks = this.profileService.loadSocialNetworks(this.userData?.networks);
   }
 

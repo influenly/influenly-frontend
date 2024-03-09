@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div mat-dialog-actions class="mt-5">
-		<div [ngClass]="{ 'd-flex justify-content-between': data.textButtonOk && data.textButtonClose }">
+		<div class="w-100" [ngClass]="{ 'd-flex justify-content-between': data.textButtonOk && data.textButtonClose }">
 			<button *ngIf="data.textButtonOk" class="main-button w-100 p-3" 
 					[ngClass]="{ 'margin-btn': data.textButtonClose }" (click)="accept()">
 				{{ data.textButtonOk }}

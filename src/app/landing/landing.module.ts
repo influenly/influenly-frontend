@@ -9,7 +9,6 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/mat
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from './services/auth.service';
-import { MatDialogModule } from '@angular/material/dialog';
 import { TranslateModule } from '@ngx-translate/core';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { LocalStorageService } from '../shared/services/storages/local-storage.service';
@@ -31,7 +30,6 @@ import { SessionUtilsService } from './services/session-utils.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatDialogModule,
     TranslateModule
   ],
   providers: [

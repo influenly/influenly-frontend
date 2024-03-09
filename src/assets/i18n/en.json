@@ -43,6 +43,9 @@
         "comming_soon":"Comming soon..."
     },
     "core":{
+        "auth":{
+            "session_closed_msg":"Session is closed"
+        },
         "user_options":{
             "account_info":"Account info",
             "logout":"Logout"

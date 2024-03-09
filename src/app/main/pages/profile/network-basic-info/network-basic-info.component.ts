@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NetworkProfileModel, UserDataModel } from '../models/user-data.model';
+import { NetworkProfileModel, UserModel } from '../models/user-data.model';
 import { ProfileService } from '../services/profile.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ProfileService } from '../services/profile.service';
 })
 export class NetworkBasicInfoComponent implements OnInit {
 
-  @Input() userData: UserDataModel|null = null;
+  @Input() userData: UserModel|undefined;
 
   networksTransformed: { platform: string, networks: NetworkProfileModel[] }[] = [];
   selectedNetwork: { platform: string, networks: NetworkProfileModel[] }|undefined;
@@ -31,9 +31,9 @@ export class NetworkBasicInfoComponent implements OnInit {
       for (let network of this.selectedNetwork.networks) {
         let totalSubs = '';
         let totalVideos = '';
-        if (network.basicAnalytics) {
-          totalSubs = this.profileService.transformFollowersNumber(network.basicAnalytics.totalSubs);
-          totalVideos = this.profileService.transformFollowersNumber(network.basicAnalytics.totalVideos);
+        if (network.integration) {
+          totalSubs = this.profileService.transformFollowersNumber(network.integration.analyticsYoutube.totalSubs);
+          totalVideos = this.profileService.transformFollowersNumber(network.integration.analyticsYoutube.totalVideos);
         }
         const dataRow = {
           totalSubs: totalSubs,
@@ -46,7 +46,7 @@ export class NetworkBasicInfoComponent implements OnInit {
 
   private groupNetworks() {
     this.networksTransformed = [];
-    this.userData?.user?.networks?.forEach(network => {
+    this.userData?.networks?.forEach(network => {
       let platformNetworks = this.networksTransformed.filter (n => n.platform === network.platform);
       if (platformNetworks && platformNetworks.length > 0) {
         platformNetworks[0].networks.push(network);

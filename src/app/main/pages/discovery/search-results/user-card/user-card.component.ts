@@ -26,7 +26,7 @@ export class UserCardComponent implements OnInit {
   ngOnInit() {
     this.network = this.userData?.networks[0];
     this.picture = this.userData?.networks[0].profileImg;
-    const followers = this.userData?.networks[0].basicAnalytics?.totalSubs ? this.userData?.networks[0].basicAnalytics?.totalSubs : 0;
+    const followers = this.userData?.networks[0].integration?.analyticsYoutube.totalSubs ? this.userData?.networks[0].integration.analyticsYoutube?.totalSubs : 0;
     this.followers = this.profileService.transformFollowersNumber(followers);
     this.getNetworkIcons(this.userData?.networks);
     this.refactorTags(this.userData?.contentTags);

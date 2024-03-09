@@ -6,7 +6,7 @@
         <div *ngIf="!isCreatorUser" class="card tags">
             <span style="font-weight: 500;">{{ 'profile.content_advertiser_label' | translate }}</span>
             <div class="d-flex justify-content-right">
-                <mat-chip *ngFor="let tag of userData?.user?.contentTags" class="tag">
+                <mat-chip *ngFor="let tag of userData?.contentTags" class="tag">
                     {{ 'onboarding.content.tag_list.' + tag | translate }}
                 </mat-chip>
             </div>

@@ -29,7 +29,6 @@ import { NetworkSelectorComponent } from './pages/profile/network-selector/netwo
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AdvancedAnalyticsComponent } from './pages/profile/advanced-analytics/advanced-analytics.component';
 import { EditProfileModalComponent } from './pages/profile/edit-profile-modal/edit-profile-modal.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { NetworksFormComponent } from './pages/onboarding/networks/networks-form/networks-form.component';
 import { ContentFormComponent } from './pages/onboarding/content/content-form/content-form.component';
 import { ProfileService } from './pages/profile/services/profile.service';
@@ -86,7 +85,6 @@ import { DiscoveryService } from './pages/discovery/services/discovery.service';
     SharedModule,
     MatMenuModule,
     MatTooltipModule,
-    MatDialogModule,
     FormsModule,
     MatDividerModule
   ],

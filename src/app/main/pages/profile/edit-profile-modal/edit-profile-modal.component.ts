@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 import { ProfileRequestService } from '../services/profile-request.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { OnboardingModel } from '../../onboarding/models/onboarding.model';
-import { UserDataModel } from '../models/user-data.model';
+import { UserModel } from '../models/user-data.model';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -32,9 +32,9 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   formOnChangesSubs: (Subscription|undefined)[] = [];
 
   userDataForm: FormGroup = this.fb.group({
-    username: [this.data.user.username, [Validators.required, Validators.pattern('^[a-zA-Z0-9\']+$')]],
+    username: [this.data.username, [Validators.required, Validators.pattern('^[a-zA-Z0-9\']+$')]],
     birthdate: ['', [Validators.required]],
-    description: [this.data.user.description, [Validators.required]]
+    description: [this.data.description, [Validators.required]]
   });
 
   get username() { return this.userDataForm.get('username'); }
@@ -44,7 +44,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   constructor(private fb: FormBuilder,
               private translate: TranslateService,
               public dialogRef: MatDialogRef<EditProfileModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: UserDataModel,
+              @Inject(MAT_DIALOG_DATA) public data: UserModel,
               private profileService: ProfileService,
               private profileRequestService: ProfileRequestService,
               private dialog: MatDialog) {}
@@ -69,12 +69,12 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   
   private loadUserDataToForm() {
     setTimeout(() => {
-      this.contentForm?.tags?.setValue(this.data.user.contentTags);
+      this.contentForm?.tags?.setValue(this.data.contentTags);
       this.formOnChangesSubs.push(this.contentForm?.contentForm.valueChanges.subscribe(() => {
         this.disabledButton = false;
       }));
     }, 0);
-    let networks = this.profileService.loadSocialNetworks(this.data?.user?.networks);
+    let networks = this.profileService.loadSocialNetworks(this.data?.networks);
     networks.forEach(network => {
       this.networksForm?.networks?.push({ url: network.link, icon: network.icon, integrated: network.integrated });
     });
@@ -88,13 +88,13 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   public save() {
-    const newNetworksArray = this.getNewArrayIfExistsChanges(this.data.user.networks.map((net: any) => net.url), this.networksForm?.networks?.map((net: any) => net.url));
+    const newNetworksArray = this.getNewArrayIfExistsChanges(this.data.networks.map((net: any) => net.url), this.networksForm?.networks?.map((net: any) => net.url));
     const networks = newNetworksArray ? this.profileService.generateNetworksObject(this.networksForm?.networks) : undefined;
     let data: OnboardingModel = {
-      username: this.data.user.username != this.username?.value ? this.username?.value : undefined,
-      description: this.data.user.description != this.description?.value ? this.description?.value : undefined,
+      username: this.data.username != this.username?.value ? this.username?.value : undefined,
+      description: this.data.description != this.description?.value ? this.description?.value : undefined,
       networks: networks,
-      contentTags: this.data.user.contentTags != this.contentForm?.tags?.value ? this.contentForm?.tags?.value : undefined
+      contentTags: this.data.contentTags != this.contentForm?.tags?.value ? this.contentForm?.tags?.value : undefined
     }
     this.profileRequestService.updateProfileData$(data).subscribe({
       next: (v) => {

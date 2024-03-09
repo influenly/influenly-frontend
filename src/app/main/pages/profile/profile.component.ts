@@ -4,7 +4,7 @@ import { Subscription, firstValueFrom } from 'rxjs';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 import { ProfileService } from './services/profile.service';
-import { UserDataModel } from './models/user-data.model';
+import { UserDataModel, UserModel } from './models/user-data.model';
 import { ProfileRequestService } from './services/profile-request.service';
 
 @Component({
@@ -16,65 +16,71 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   userDataMock: UserDataModel = {
     ok: true,
-    user: {
-      id: 1,
-      username: "Pampa",
-      email: "pampa@bird.com",
-      country: "AR",
-      contentTags: ["sports", "business","others","creative"],
-      description: "Descripción del perfil para ser usado en content y asi generar interacciones con distintas empresas a traves de la actividad en la plataforma. De manera tal de conseguir mejor remuneración.",
-      profileImg: undefined,
-      type: USER_TYPE.CREATOR,
-      role: 'REGULAR',
-      onboardingCompleted: true,
-      networks: [
-        {
-          platform: 'YOUTUBE',
-          name: 'Peje Riders',
-          profileImg: 'https://yt3.googleusercontent.com/bL7P_zt4RcNdENRED979Ekqg4OXVC-7-o2LBZ25kKAXD8hz35pSc0UKnFmWuTgtuZdPW2Rqp=s176-c-k-c0x00ffffff-no-rj',
-          url: 'youtube.com/@pejeriders',
-          basicAnalytics: {
-            totalSubs: 67991,
-            totalVideos: 202,
+    data: {
+      user: {
+        id: 1,
+        username: "Pampa",
+        email: "pampa@bird.com",
+        country: "AR",
+        contentTags: ["sports", "business","others","creative"],
+        description: "Descripción del perfil para ser usado en content y asi generar interacciones con distintas empresas a traves de la actividad en la plataforma. De manera tal de conseguir mejor remuneración.",
+        profileImg: undefined,
+        type: USER_TYPE.CREATOR,
+        role: 'REGULAR',
+        onboardingCompleted: true,
+        networks: [
+          {
+            platform: 'YOUTUBE',
+            name: 'Peje Riders',
+            profileImg: 'https://yt3.googleusercontent.com/bL7P_zt4RcNdENRED979Ekqg4OXVC-7-o2LBZ25kKAXD8hz35pSc0UKnFmWuTgtuZdPW2Rqp=s176-c-k-c0x00ffffff-no-rj',
+            url: 'youtube.com/@pejeriders',
+            integration: {
+              analyticsYoutube: {
+                totalSubs: 67991,
+                totalVideos: 202,
+              }
+            },
+            integrated: true,
           },
-          integrated: true,
-        },
-        {
-          platform: 'YOUTUBE',
-          name: 'pampatech',
-          profileImg: 'https://assets.mofoprod.net/network/images/cover-picture_i4S5vbB.original.jpg',
-          url: 'https://www.youtube.com/@Leandro',
-          integrated: false,
-        },
-        {
-          platform: 'INSTAGRAM',
-          name: 'pejeriders',
-          url: 'https://www.instagram.com/pampaibaceta',
-          integrated: false
-        },
-        {
-          platform: 'INSTAGRAM',
-          name: 'electro_mov_original',
-          url: 'https://www.instagram.com/electro_mov',
-          integrated: false,
-        },
-        {
-          platform: 'INSTAGRAM',
-          name: 'pampatech',
-          url: 'https://www.instagram.com/pampatech',
-          integrated: true,
-          basicAnalytics: {
-            totalSubs: 20032,
-            totalVideos: 104
+          {
+            platform: 'YOUTUBE',
+            name: 'pampatech',
+            profileImg: 'https://assets.mofoprod.net/network/images/cover-picture_i4S5vbB.original.jpg',
+            url: 'https://www.youtube.com/@Leandro',
+            integrated: false,
+          },
+          {
+            platform: 'INSTAGRAM',
+            name: 'pejeriders',
+            url: 'https://www.instagram.com/pampaibaceta',
+            integrated: false
+          },
+          {
+            platform: 'INSTAGRAM',
+            name: 'electro_mov_original',
+            url: 'https://www.instagram.com/electro_mov',
+            integrated: false,
+          },
+          {
+            platform: 'INSTAGRAM',
+            name: 'pampatech',
+            url: 'https://www.instagram.com/pampatech',
+            integrated: true,
+            integration: {
+              analyticsYoutube: {
+                totalSubs: 20032,
+                totalVideos: 104,
+              }
+            }
+          },
+          {
+            platform: 'TIKTOK',
+            name: 'Pampa tiktok',
+            url: 'https://www.tiktok.com/pampa',
+            integrated: false,
           }
-        },
-        {
-          platform: 'TIKTOK',
-          name: 'Pampa tiktok',
-          url: 'https://www.tiktok.com/pampa',
-          integrated: false,
-        }
-      ]
+        ]
+      }
     }
   }
 
@@ -88,7 +94,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   //   type: USER_TYPE.ADVERTISER
   // }
 
-  userData: UserDataModel | null = null;
+  userData: UserModel | undefined;
   isOwnView: boolean = false;
   isCreatorUser: boolean = false;
 
@@ -108,35 +114,35 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.isOwnView = href.includes('profile');
     if (this.isOwnView) {
       const userId = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_id);
-      this.profileService.getCachedProfileData(userId).subscribe(async (userProfile) => {
-        this.loadUserData(userProfile);
+      this.profileService.getCachedProfileData(userId).subscribe(async (userResponse) => {
+        this.loadUserData(userResponse?.data.user);
       });
     } else {
       const userId = href.substring(href.lastIndexOf('/') + 1);
-      this.profileRequestService.getProfileData$(userId).subscribe(async (userProfile) => {
-        this.loadUserData(userProfile.body);
+      this.profileRequestService.getProfileData$(userId).subscribe(async (userResponse) => {
+        this.loadUserData(userResponse.body?.data.user);
       });
     }
 
-    this.profileDataSubs = this.profileService.getProfileData().subscribe(data => {
-      this.loadUserData(data);
+    this.profileDataSubs = this.profileService.getProfileData().subscribe(newUserData => {
+      this.loadUserData(newUserData?.data.user);
     });
   }
 
-  private async loadUserData(data: UserDataModel | null) {
+  private async loadUserData(data: UserModel | undefined) {
     this.userData = data;
-    if (typeof this.userData?.user?.type == 'undefined') {
+    if (typeof this.userData?.type == 'undefined') {
       if (this.isOwnView) {
         const userTypeObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_type);
         if (userTypeObs) {
           let userTypeString = await firstValueFrom(userTypeObs);
           let userType = USER_TYPE[userTypeString as keyof typeof USER_TYPE];
-          if (this.userData && this.userData.user) this.userData.user.type = userType;
+          if (this.userData && this.userData) this.userData.type = userType;
         }
       }
     }
-    if (this.userData && this.userData.user) {
-      this.isCreatorUser = this.userData.user.type == USER_TYPE.CREATOR;
+    if (this.userData) {
+      this.isCreatorUser = this.userData.type == USER_TYPE.CREATOR;
     }
   }
 

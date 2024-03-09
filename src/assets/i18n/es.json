@@ -43,6 +43,9 @@
         "comming_soon":"Muy pronto..."
     },
     "core":{
+        "auth":{
+            "session_closed_msg":"La sesión ha terminado, vuelva a ingresar a la aplicación"
+        },
         "user_options":{
             "account_info":"Mi perfil",
             "logout":"Cerrar sesión"

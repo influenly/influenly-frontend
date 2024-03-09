@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { LocationUtilsService } from './services/utils/location-utils.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -17,7 +18,8 @@ import { LocationUtilsService } from './services/utils/location-utils.service';
   imports: [
     CommonModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [
     RestApiClient,

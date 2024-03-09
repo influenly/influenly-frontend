@@ -1,9 +1,10 @@
 import { USER_TYPE } from "src/app/shared/models/user-type.enum";
-import { NetworkObjectModel } from "../../onboarding/models/onboarding.model";
 
 export interface UserDataModel {
     ok: boolean,
-    user: UserModel
+    data: {
+        user: UserModel
+    }
 }
 
 export interface UserModel {
@@ -29,10 +30,12 @@ export interface NetworkProfileModel {
     profileImg?: string;
     url: string;
     integrated: boolean;
-    basicAnalytics?: BasicAnalyticsModel;
+    integration?: BasicAnalyticsModel;
 }
 
 export interface BasicAnalyticsModel {
-    totalSubs: number;
-    totalVideos: number;
+    analyticsYoutube: {
+        totalSubs: number;
+        totalVideos: number;
+    }
 }

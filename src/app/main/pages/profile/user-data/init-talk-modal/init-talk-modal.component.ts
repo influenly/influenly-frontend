@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { ChatRequestService } from '../../services/chat-request.service';
 import { firstValueFrom } from 'rxjs';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
-import { UserDataModel } from '../../models/user-data.model';
+import { UserModel } from '../../models/user-data.model';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -26,7 +26,7 @@ export class InitTalkModalComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private dialog: MatDialog,
               private dialogRef: MatDialogRef<InitTalkModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: UserDataModel,
+              @Inject(MAT_DIALOG_DATA) public data: UserModel,
               private chatRequestService: ChatRequestService,
               private sessionStorage: SessionStorageService,
               private translate: TranslateService) {}
@@ -44,7 +44,7 @@ export class InitTalkModalComponent implements OnInit {
 
   onSubmit() {
     const message = {
-      creatorUserId: this.data.user.id,
+      creatorUserId: this.data.id,
       message: this.message?.value
     }
     console.log(message)
