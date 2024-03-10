@@ -8,11 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { AuthService } from './services/auth.service';
+import { AuthService } from '../core/services/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { LocalStorageService } from '../shared/services/storages/local-storage.service';
-import { SessionUtilsService } from './services/session-utils.service';
+import { SessionUtilsService } from '../core/services/session-utils.service';
 
 
 @NgModule({

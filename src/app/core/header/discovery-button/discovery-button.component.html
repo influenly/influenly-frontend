@@ -1,6 +1,6 @@
-<button *ngIf="token && isHandset" mat-icon-button class="icon-container" (click)="goToDiscovery()">
+<button *ngIf="userId && isHandset" mat-icon-button class="icon-container" (click)="goToDiscovery()">
     <i class="icon material-icons-outlined">explore</i>
 </button>
-<div *ngIf="token && !isHandset" class="header-button-container">
+<div *ngIf="userId && !isHandset" class="header-button-container">
     <button class="header-button" (click)="goToDiscovery()">{{ 'discovery.title' | translate}}</button>
 </div>

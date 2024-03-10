@@ -1,8 +1,8 @@
-import { SessionUtilsService } from './../services/session-utils.service';
+import { SessionUtilsService } from '../../core/services/session-utils.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';

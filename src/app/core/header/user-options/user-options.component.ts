@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SocketService } from 'src/app/shared/services/socket/socket.service';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-options',
@@ -12,13 +13,14 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 export class UserOptionsComponent implements OnInit, OnDestroy {
 
   isMenuOpened: boolean = false;
-  token: string|undefined = undefined;
+  userId: string|undefined = undefined;
 
-  tokenSubs: Subscription|undefined;
+  userIdSubs: Subscription|undefined;
 
   constructor(private sessionStorage: SessionStorageService,
               private router: Router,
-              private socketService: SocketService) {
+              private socketService: SocketService,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -27,7 +29,7 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
   }
 
   private async getToken() {
-    this.tokenSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token)?.subscribe(token => this.token = token);
+    this.userIdSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id)?.subscribe(userId => this.userId = userId);
   }
 
   goToProfile() {
@@ -35,15 +37,20 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-    //TODO: send logout to backend to expire token
-    this.token = undefined;
-    this.socketService.disconnectSocket();
-    this.sessionStorage.clear();
-    this.router.navigate(['']);
-  }
+    this.authService.logout$().subscribe({
+      next: async (v) => {
+        this.socketService.disconnectSocket();
+        this.sessionStorage.clear();
+        this.router.navigate(['']);
+        },
+        error: (e) => {
+          this.router.navigate(['']);
+        }
+    });
+}
 
   ngOnDestroy() {
     console.info('user-option destroy')
-    if (this.tokenSubs) this.tokenSubs.unsubscribe();
+    if (this.userIdSubs) this.userIdSubs.unsubscribe();
   }
 }

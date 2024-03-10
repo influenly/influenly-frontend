@@ -8,15 +8,21 @@ export class AuthService {
 
     constructor(private restApiClient: RestApiClient) {}
 
-    public signUp$(payload: any): Observable<HttpResponse<any>>{
+    public signUp$(payload: any): Observable<HttpResponse<any>> {
         return this.restApiClient.post<any>(payload, {
             endPoint: '/auth/signup'
         });
     }
 
-    public login$(payload: any): Observable<HttpResponse<any>>{
+    public login$(payload: any): Observable<HttpResponse<any>> {
         return this.restApiClient.post<any>(payload, {
             endPoint: '/auth/login'
+        });
+    }
+
+    public logout$(): Observable<HttpResponse<any>> {
+        return this.restApiClient.post<any>(undefined, {
+            endPoint: '/auth/logout'
         });
     }
 }

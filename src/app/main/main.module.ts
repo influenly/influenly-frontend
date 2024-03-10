@@ -43,6 +43,7 @@ import { DiscoveryFiltersComponent } from './pages/discovery/discovery-filters/d
 import { SearchResultsComponent } from './pages/discovery/search-results/search-results.component';
 import { UserCardComponent } from './pages/discovery/search-results/user-card/user-card.component';
 import { DiscoveryService } from './pages/discovery/services/discovery.service';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { DiscoveryService } from './pages/discovery/services/discovery.service';
     MatMenuModule,
     MatTooltipModule,
     FormsModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'} },

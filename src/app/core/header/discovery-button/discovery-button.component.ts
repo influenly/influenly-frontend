@@ -1,7 +1,6 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 
 @Component({
@@ -9,13 +8,12 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
   templateUrl: './discovery-button.component.html',
   styleUrls: ['./discovery-button.component.scss', '../header.component.scss']
 })
-export class DiscoveryButtonComponent implements OnInit { 
+export class DiscoveryButtonComponent implements OnInit, OnDestroy { 
 
-  token: string|undefined;
   @Input() isHandset: boolean = false;
+  userId: string|undefined;
 
-  tokenSubs: Subscription|undefined;
-  isHandsetSubs: Subscription|undefined;
+  userIdSubs: Subscription|undefined;
 
   constructor(private sessionStorage: SessionStorageService,
               private router: Router) {
@@ -27,11 +25,15 @@ export class DiscoveryButtonComponent implements OnInit {
   }
 
   private async getToken() {
-    this.tokenSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token)?.subscribe(token => this.token = token);
+    this.userIdSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id)?.subscribe(userId => this.userId = userId);
   }
 
   goToDiscovery() {
     this.router.navigate(['app/discovery']);
+  }
+
+  ngOnDestroy() {
+    if (this.userIdSubs) this.userIdSubs.unsubscribe();
   }
 
 }

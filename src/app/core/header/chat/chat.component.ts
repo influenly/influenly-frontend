@@ -13,9 +13,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   @Input() isHandset: boolean = false;
   isChatOpened: boolean = false
-  token: string|undefined;
+  userId: string|undefined;
 
-  tokenSubs: Subscription|undefined;
+  userIdSubs: Subscription|undefined;
   chatClosedEventSubs: Subscription|undefined;
 
   constructor(private sessionStorage: SessionStorageService,
@@ -32,7 +32,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   private async getToken() {
-    this.tokenSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token)?.subscribe(token => this.token = token);
+    this.userIdSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id)?.subscribe(userId => this.userId = userId);
   }
 
   openChat() {
@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.info('chat-option destroy');
-    if (this.tokenSubs) this.tokenSubs.unsubscribe();
+    if (this.userIdSubs) this.userIdSubs.unsubscribe();
     if (this.chatClosedEventSubs) this.chatClosedEventSubs.unsubscribe();
   }
 

@@ -11,6 +11,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChatComponent } from './header/chat/chat.component';
 import { DiscoveryButtonComponent } from './header/discovery-button/discovery-button.component';
+import { AuthService } from './services/auth.service';
+import { SessionUtilsService } from './services/session-utils.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,10 @@ import { DiscoveryButtonComponent } from './header/discovery-button/discovery-bu
     MatButtonModule,
     MatMenuModule,
     TranslateModule
+  ],
+  providers: [
+    AuthService,
+    SessionUtilsService
   ]
 })
 export class CoreModule { }
