@@ -252,7 +252,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     this.discoveryService.getFilters().subscribe((filters) => {
         this.discoveryService.getCreators$(filters.tags, filters.minFollowers ? filters.minFollowers : 0, filters.maxFollowers ? filters.maxFollowers : 0).subscribe({
             next: (v) => {
-                this.users = v.body;
+                this.users = v.body.data;
             },
             error: (e) => {
                 //TODO: mostrar error al cargar usuarios

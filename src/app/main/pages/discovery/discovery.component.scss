@@ -5,7 +5,7 @@
 }
 
 .search-results {
-    height: 100vh;
+    min-height: 100%;
     width: 100%;
     background-color: #EAEDF2;
 }
@@ -27,10 +27,4 @@ app-search-results {
     min-width: 80%;
     margin-top: 3rem;
     z-index: 1;
-}
-
-@media (max-width: 900px) {
-    .search-results {
-        height: 100%;
-    }
 }

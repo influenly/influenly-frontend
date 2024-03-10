@@ -1,9 +1,9 @@
 <div class="results-container">
     <div class="discovery-box-top">
         <span class="title">{{ 'discovery.title' | translate }}</span>
-        <div class="box-order-by">
-            <div>
-                <span class="lbl-order-by">{{ 'discovery.order_by' | translate }}</span>
+        <div class="box-order-by" [ngStyle]="{'display': isHandset ? 'block' : 'flex'}">
+            <div class="lbl-order-by">
+                <span>{{ 'discovery.order_by' | translate }}</span>
             </div>
             <button mat-button [matMenuTriggerFor]="menu" class="btn-order-by">
                 {{ 'discovery.order_by_key.' + orderByOption | translate }}
@@ -20,7 +20,7 @@
         <mat-icon class="material-icons-outlined tune-icon">tune</mat-icon>
         <span>{{ 'discovery.filters' | translate }}</span>
     </button>
-    <div class="d-flex justify-content-center">
+    <div class="cards-box">
         <div class="cards-container">
             <app-user-card *ngFor="let user of users" [userData]="user"/>
         </div>

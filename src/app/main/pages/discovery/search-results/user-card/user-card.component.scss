@@ -26,7 +26,7 @@
 }
 
 .icon {
-    margin: 2px;
+    margin: 5px;
     padding: 2px;
     background-color: white;
     border-radius: 16px;
@@ -62,4 +62,30 @@ app-svg-icon {
     --mdc-chip-label-text-color: black;
     --mdc-chip-label-text-size: 10px;
     --mdc-chip-container-height: 26px;
+}
+
+@media (max-width: 550px) {
+
+    .card {
+        margin: 0;
+    }
+
+    .username {
+        font-size: 14px;
+    }
+    
+    .followers {
+        font-size: 10px;
+    }
+
+    .mat-mdc-standard-chip {
+        --mdc-chip-label-text-size: 8px;
+        --mdc-chip-container-height: 18px;
+    }
+
+    app-svg-icon {
+        height: 20px !important;
+        width: 20px !important;
+    }
+    
 }
