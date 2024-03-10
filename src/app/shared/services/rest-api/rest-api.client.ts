@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InformationModalComponent } from '../../components/UI/information-modal/information-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { SessionStorageService } from '../storages/session-storage.service';
 
 @Injectable()
 export class RestApiClient {
@@ -16,7 +17,8 @@ export class RestApiClient {
 	constructor(private http: HttpClient,
 				private dialog: MatDialog,
 				private translate: TranslateService,
-				private router: Router) { }
+				private router: Router,
+				private sessionStorage: SessionStorageService) { }
 
 	get<T>(
 		options: {
@@ -272,9 +274,10 @@ export class RestApiClient {
             }
           });
           const subs = dialogRef.componentInstance.response.subscribe(res => {
+				this.sessionStorage.clear();
 				this.router.navigate(['/']);
-              subs.unsubscribe();
-              this.dialog.closeAll();
+				subs.unsubscribe();
+				this.dialog.closeAll();
           });
 	  }
 
