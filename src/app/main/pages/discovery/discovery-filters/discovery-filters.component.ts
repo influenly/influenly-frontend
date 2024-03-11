@@ -13,7 +13,7 @@ export class DiscoveryFiltersComponent {
 
   @HostListener('document:click', ['$event'])
   clickout(event: any) {
-    if(!this.eRef.nativeElement.contains(event.target)) {
+    if(event.target.id != 'btn_reset_filter' && event.target.tagName != 'MAT-ICON' && !this.eRef.nativeElement.contains(event.target) && showFilter()) {
       if (this.firstClick) {
         this.firstClick = false;
       }  else {
