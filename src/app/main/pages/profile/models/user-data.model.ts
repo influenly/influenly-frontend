@@ -19,6 +19,7 @@ export interface UserModel {
     description: string;
     contentTags: string[];
     networks: NetworkProfileModel[];
+    totalFollowers?: number;
     birthDate?: string;
     createdAt?: string;
     updatedAt?: string;
