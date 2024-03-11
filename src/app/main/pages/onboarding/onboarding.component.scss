@@ -41,6 +41,7 @@
 
 .back-btn {
     width: 100px;
+    z-index: 1;
 }
 
 .back-btn:hover {
@@ -60,9 +61,14 @@ img {
     margin-right: 3rem;
 }
 
+.progress-centered {
+    position: absolute;
+    margin: auto;
+}
+
 @media (max-width: 768px) {
     app-steps-visualizer {
-        display: none;
+        display: none !important;
     }
 
     img {

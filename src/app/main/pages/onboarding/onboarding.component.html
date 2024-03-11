@@ -11,12 +11,14 @@
                         <span>{{ 'general.btn_back' | translate }}</span>
                     </div>
                 </div>
-                <app-steps-visualizer />
+                <div class="progress-centered w-100">
+                    <app-steps-visualizer class="d-flex justify-content-center w-100" />
+                </div>
             </div>
 
             <div [@personalInfoSlide]="personalInfoSlide" (@personalInfoSlide.start)="animationStarted($event)"
             (@personalInfoSlide.done)="animationDone($event)">
-                <div *ngIf="slide === SLIDE.PERSONAL_INFO" class="d-flex justify-content-between p-4">
+                <div *ngIf="slide === SLIDE.PERSONAL_INFO" class="d-flex justify-content-between p-4" [ngStyle]="{'margin-top': slide == SLIDE.PERSONAL_INFO ? '3.5rem' : '0px' }">
                     <app-personal-information [userType]="userType" (continue)="submitEvent($event)" />
                     <img src="../../../../assets/images/onboarding-person-1.svg" />
                 </div>
