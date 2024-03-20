@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { NetworkProfileModel, UserModel } from '../models/user-data.model';
 import { ProfileService } from '../services/profile.service';
 import { Platform } from 'src/app/shared/constants/platforms.enum';
+import { NetworkSelectorComponent } from '../network-selector/network-selector.component';
 
 @Component({
   selector: 'app-network-basic-info',
@@ -11,14 +12,13 @@ import { Platform } from 'src/app/shared/constants/platforms.enum';
 export class NetworkBasicInfoComponent implements OnInit, OnChanges {
 
   @Input() userData: UserModel|undefined;
+  @ViewChild(NetworkSelectorComponent) networkSelector: NetworkSelectorComponent | undefined = undefined;
 
   networksTransformed: { platform: string, networks: NetworkProfileModel[] }[] = [];
   selectedNetwork: { platform: string, networks: NetworkProfileModel[] } | undefined;
   data: any[] = [];
 
-  constructor(private profileService: ProfileService) {
-
-  }
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
     this.setTransformedData();
@@ -26,15 +26,20 @@ export class NetworkBasicInfoComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['userData'].previousValue?.networks != changes['userData'].currentValue.networks) {
-      this.selectedNetwork = undefined;
-      this.setTransformedData();
+      this.setTransformedData(true);
     }
   }
 
-  private setTransformedData() {
+  private setTransformedData(onChanges?: boolean) {
     this.data = [];
     this.groupNetworks();
-    this.selectedNetwork = this.selectedNetwork ? this.selectedNetwork : this.networksTransformed[0];
+    if (onChanges) {
+      const selected = this.networksTransformed.filter(net => net.platform === this.selectedNetwork?.platform);
+      this.selectedNetwork = selected && selected.length > 0 ? selected[0] : this.networksTransformed[0];
+      if (this.networkSelector) this.networkSelector.selectedPlatform = this.selectedNetwork.platform;
+    } else {
+      this.selectedNetwork = this.selectedNetwork ? this.selectedNetwork : this.networksTransformed[0];
+    }
     if (this.selectedNetwork) {
       for (let network of this.selectedNetwork.networks) {
         let totalSubs = '';
