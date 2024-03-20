@@ -89,7 +89,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
 
   public save() {
     const newNetworksArray = this.getNewArrayIfExistsChanges(this.data.networks.map((net: any) => net.url), this.networksForm?.networks?.map((net: any) => net.url));
-    const networks = newNetworksArray ? this.profileService.generateNetworksObject(this.networksForm?.networks) : undefined;
+    const networks = newNetworksArray ? this.networksForm?.networks?.map((net: any) => { return { platform: net.icon.toUpperCase(), url: net.url }}) : undefined;
     let data: OnboardingModel = {
       username: this.data.username != this.username?.value ? this.username?.value : undefined,
       description: this.data.description != this.description?.value ? this.description?.value : undefined,

@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { NetworkProfileModel, UserDataModel } from "../models/user-data.model";
 import { BehaviorSubject, Observable, map, of, shareReplay, take } from "rxjs";
 import { ProfileRequestService } from "./profile-request.service";
-import { NetworkObjectModel } from "../../onboarding/models/onboarding.model";
 
 @Injectable()
 export class ProfileService {
@@ -67,20 +66,6 @@ export class ProfileService {
         return 'twitch';
       }
       return 'website';
-  }
-
-  public generateNetworksObject(networks: any): NetworkObjectModel {
-    let networksObject: any = {};
-
-    networks.forEach((network: any) => {
-      if (networksObject[network.icon]) {
-        networksObject[network.icon].push(network.url);
-      } else {
-        networksObject[network.icon] = [network.url];
-      }
-    });
-
-    return networksObject;
   }
 
   public transformFollowersNumber(number: number): string {

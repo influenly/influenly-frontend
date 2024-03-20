@@ -11,7 +11,7 @@ export class ProfileRequestService {
 
     public getProfileData$(userId: string): Observable<HttpResponse<UserDataModel>> {
         return this.restApiClient.get<UserDataModel>({
-            endPoint: '/user/' + userId + '/profile'
+            endPoint: '/user/' + userId
         });
     };
 

@@ -3,8 +3,8 @@
     <div class="card">
         <div class="channel-box" *ngFor="let network of selectedNetwork?.networks; let i = index">
             <div class="d-flex">
-                <img *ngIf="network.profileImg" [src]="network.profileImg" class="picture" />
-                <app-svg-icon *ngIf="!network.profileImg" [class]="selectedNetwork?.platform?.toLowerCase()" [path]="'assets/icons/' + selectedNetwork?.platform?.toLowerCase() + '.svg'" />
+                <img *ngIf="network.profileImg && network.profileImg != 'default'" [src]="network.profileImg" class="picture" />
+                <app-svg-icon *ngIf="!network.profileImg || network.profileImg === 'default'" [class]="selectedNetwork?.platform?.toLowerCase()" [path]="'assets/icons/' + selectedNetwork?.platform?.toLowerCase() + '.svg'" />
                 <div class="channel-name">
                     <span (click)="openNetworkPage(network)">{{ network.name }}</span>
                 </div>

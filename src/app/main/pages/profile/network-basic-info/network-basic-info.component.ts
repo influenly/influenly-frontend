@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NetworkProfileModel, UserModel } from '../models/user-data.model';
 import { ProfileService } from '../services/profile.service';
 
@@ -7,12 +7,12 @@ import { ProfileService } from '../services/profile.service';
   templateUrl: './network-basic-info.component.html',
   styleUrls: ['./network-basic-info.component.scss']
 })
-export class NetworkBasicInfoComponent implements OnInit {
+export class NetworkBasicInfoComponent implements OnInit, OnChanges {
 
   @Input() userData: UserModel|undefined;
 
   networksTransformed: { platform: string, networks: NetworkProfileModel[] }[] = [];
-  selectedNetwork: { platform: string, networks: NetworkProfileModel[] }|undefined;
+  selectedNetwork: { platform: string, networks: NetworkProfileModel[] } | undefined;
   data: any[] = [];
 
   constructor(private profileService: ProfileService) {
@@ -21,6 +21,13 @@ export class NetworkBasicInfoComponent implements OnInit {
 
   ngOnInit() {
     this.setTransformedData();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['userData'].previousValue.networks != changes['userData'].currentValue.networks) {
+      this.selectedNetwork = undefined;
+      this.setTransformedData();
+    }
   }
 
   private setTransformedData() {

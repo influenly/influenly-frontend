@@ -159,7 +159,7 @@ export class OnboardingComponent implements OnInit {
           description: this.data.description,
           username: this.data.username,
           contentTags: this.data.tags,
-          networks: this.profileService.generateNetworksObject(this.data.networks)
+          networks: this.data.networks?.map((net: any) => { return { platform: net.icon.toUpperCase(), url: net.url }})
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
@@ -187,7 +187,7 @@ export class OnboardingComponent implements OnInit {
           description: this.data.description,
           username: this.data.username,
           contentTags: this.data.tags,
-          networks: this.profileService.generateNetworksObject(this.data.networks),
+          networks: this.data.networks?.map((net: any) => { return { platform: net.icon.toUpperCase(), url: net.url }}),
           networkIntegratedId: $event.networkIntegratedId
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
