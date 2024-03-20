@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { NetworkProfileModel, UserModel } from '../models/user-data.model';
 import { ProfileService } from '../services/profile.service';
+import { Platform } from 'src/app/shared/constants/platforms.enum';
 
 @Component({
   selector: 'app-network-basic-info',
@@ -24,7 +25,7 @@ export class NetworkBasicInfoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['userData'].previousValue.networks != changes['userData'].currentValue.networks) {
+    if (changes['userData'].previousValue?.networks != changes['userData'].currentValue.networks) {
       this.selectedNetwork = undefined;
       this.setTransformedData();
     }
@@ -52,7 +53,7 @@ export class NetworkBasicInfoComponent implements OnInit, OnChanges {
   }
 
   private groupNetworks() {
-    this.networksTransformed = [];
+    this.networksTransformed = [{platform: Platform.Youtube, networks: []}];
     this.userData?.networks?.forEach(network => {
       let platformNetworks = this.networksTransformed.filter (n => n.platform === network.platform);
       if (platformNetworks && platformNetworks.length > 0) {

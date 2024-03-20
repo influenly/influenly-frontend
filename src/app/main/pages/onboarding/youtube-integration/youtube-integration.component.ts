@@ -1,3 +1,4 @@
+import { Platform } from 'src/app/shared/constants/platforms.enum';
 import { IntegrationModel } from '../models/integration.model';
 import { SLIDE } from '../onboarding.component';
 import { OnboardingService } from '../services/onboarding.service';
@@ -30,7 +31,7 @@ export class YoutubeIntegrationComponent {
 
       const payload: IntegrationModel = {
         authorizationCode : response.code,
-        platform: 'YOUTUBE'
+        platform: Platform.Youtube
       }
       this.onboardingService.integration$(payload).subscribe({
         next: (v) => {
