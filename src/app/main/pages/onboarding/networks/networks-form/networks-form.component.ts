@@ -24,14 +24,21 @@ export class NetworksFormComponent {
   constructor(private fb: FormBuilder) {}
 
   add() {
-    const network = {
-      icon: this.icon?.value,
-      url: this.formatUrl(this.url?.value),
-      integrated: false
+    const formattedUrl = this.formatUrl(this.url?.value);
+    const index = this.networks?.map(net => net.url).indexOf(formattedUrl);
+    if (index != -1) {
+      this.url?.setErrors({already_exists: true});
+      this.url?.markAllAsTouched();
+    } else {
+      const network = {
+        icon: this.icon?.value,
+        url: formattedUrl,
+        integrated: false
+      }
+      this.networks?.push(network);
+      this.url?.setValue('');
+      this.atLeastOne.emit(true);
     }
-    this.networks?.push(network);
-    this.url?.setValue('');
-    this.atLeastOne.emit(true);
   }
 
   remove(network: any) {

@@ -143,7 +143,8 @@
             "paragraph_advertiser":"Amplía tus oportunidades al conectar tus redes con nuestra plataforma. Potencia tu presencia en línea, conectándote y colaborando con creadores de contenido.",
             "url":{
                 "placeholder":"URL de tu canal",
-                "pattern_error":"URL inválida"
+                "pattern_error":"URL inválida",
+                "already_exists_error":"URL ya se encuentra agregada"
             }
         },
         "content":{

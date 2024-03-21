@@ -31,6 +31,9 @@
                 <mat-error *ngIf="url?.hasError('pattern')">
                     <mat-icon>warning</mat-icon>{{ 'onboarding.networks.url.pattern_error' | translate }}
                 </mat-error>
+                <mat-error *ngIf="url?.hasError('already_exists')">
+                    <mat-icon>warning</mat-icon>{{ 'onboarding.networks.url.already_exists_error' | translate }}
+                </mat-error>
             </mat-form-field>
         </div>
         <div class="">

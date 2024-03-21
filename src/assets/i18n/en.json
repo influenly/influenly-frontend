@@ -143,7 +143,8 @@
             "paragraph_advertiser":"Expand your opportunities by connecting your networks with our platform. Boost your online presence by connecting and collaborating with content creators.",
             "url":{
                 "placeholder":"URL of your channel",
-                "pattern_error":"Invalid URL"
+                "pattern_error":"Invalid URL",
+                "already_exists_error":"URL already exists"
             }
         },
         "content":{
