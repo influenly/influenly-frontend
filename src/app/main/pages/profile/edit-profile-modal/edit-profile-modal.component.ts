@@ -10,6 +10,7 @@ import { ProfileRequestService } from '../services/profile-request.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { OnboardingModel } from '../../onboarding/models/onboarding.model';
 import { UserModel } from '../models/user-data.model';
+import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -58,6 +59,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   private loadTranslations() {
+    this.isCreatorView = this.data?.type === USER_TYPE.CREATOR;
     if (this.isCreatorView) {
       this.textObject.username_label = this.translate.instant('onboarding.personal_information.username.label_creator');
       this.textObject.description_placeholder = this.translate.instant('onboarding.personal_information.description.placeholder_creator');
