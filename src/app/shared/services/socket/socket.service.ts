@@ -31,7 +31,7 @@ export class SocketService {
                 this.token = await firstValueFrom(tokenObs);
             }
         }
-        this.socket = io(env.socketHostname, {extraHeaders: {"Authorization": this.token ? this.token : ''}});
+        this.socket = io(env.socketHostname, { withCredentials: true });
         this.socket.on("connect_error", (err: any) => {
             console.log(`connect_error due to ${err.message}`);
             if (!this.reconected) {
