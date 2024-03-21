@@ -8,7 +8,7 @@
             <div *ngFor="let conversation of conversations?.pending" class="conversation-btn" (click)="selectConversation(conversation)" [ngClass]="{'selected': conversation.id === selectedConversationId}">
                 <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
                 <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
-                <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
+                <span>{{ conversation.creatorUser ? conversation.creatorUser.username : conversation.advertiserUser.username }}</span>
             </div>
             <span *ngIf="!conversations?.pending || conversations?.pending?.length == 0"  class="none-talks">{{ 'chat.conversation.none' | translate }}</span>
         </div>
@@ -17,7 +17,7 @@
             <div *ngFor="let conversation of conversations?.inProgress" class="conversation-btn" (click)="selectConversation(conversation)" [ngClass]="{'selected': conversation.id === selectedConversationId}">
                 <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
                 <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
-                <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
+                <span>{{ conversation.creatorUser ? conversation.creatorUser.username : conversation.advertiserUser.username }}</span>
             </div>
             <span *ngIf="!conversations?.inProgress || conversations?.inProgress?.length == 0" class="none-talks">{{ 'chat.conversation.none' | translate }}</span>
         </div>
@@ -26,7 +26,7 @@
             <div *ngFor="let conversation of conversations?.finished" class="conversation-btn" (click)="selectConversation(conversation)" [ngClass]="{'selected': conversation.id === selectedConversationId}">
                 <img *ngIf="conversation.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
                 <img *ngIf="conversation.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
-                <span>{{ conversation.creatorUser ? conversation.creatorUser.profile.username : conversation.advertiserUser.profile.username }}</span>
+                <span>{{ conversation.creatorUser ? conversation.creatorUser.username : conversation.advertiserUser.username }}</span>
             </div>
             <span *ngIf="!conversations?.finished || conversations?.finished?.length == 0" class="none-talks">{{ 'chat.conversation.none' | translate }}</span>
         </div>

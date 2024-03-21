@@ -62,7 +62,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   private getMessages(conversationId: number) {
     this.chatRequestService.getMessages$(conversationId.toString()).subscribe({
       next: (v) => {
-        this.messages = v.body ? v.body : undefined;
+        this.messages = v.body ? v.body.messages : undefined;
         this.messages?.forEach(message => message.isReceived = message.senderUserId !=  this.userId);
         if ((this.messages && this.messages.length > 1 || this.conversation?.status != CONVERSATION_STATUS.INIT_APPROVAL_PENDING) && this.conversation?.status != CONVERSATION_STATUS.FINISHED) {
           this.enabledChat = true;

@@ -30,8 +30,8 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     }
   }
 
-  conversations: ConversationModel[]|null = null;
-  selectedConversation: ConversationModel|undefined;
+  conversations: ConversationModel[] | undefined = undefined;
+  selectedConversation: ConversationModel | undefined;
   conversationsClassified: { pending: ConversationModel[], inProgress: ConversationModel[], finished: ConversationModel[] } = {
     pending: [],
     inProgress: [],
@@ -83,7 +83,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   private getConversations() {
     this.chatRequestService.getConversations$().subscribe({
       next: (v) => {
-        this.conversations = v.body;
+        this.conversations = v.body?.conversations;
         this.classifyConversations();
       },
       error: (e) => {

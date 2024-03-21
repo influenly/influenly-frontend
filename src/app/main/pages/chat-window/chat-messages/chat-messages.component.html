@@ -2,7 +2,7 @@
         <div>
             <img *ngIf="conversation?.creatorUser" class="picture" src="../../../../../assets/images/profile/default-picture-creator.svg" />
             <img *ngIf="conversation?.advertiserUser" class="picture" src="../../../../../assets/images/profile/default-picture-advertiser.svg" />
-            <span class="username">{{ conversation?.creatorUser ? conversation?.creatorUser?.profile?.username : conversation?.advertiserUser?.profile?.username }}</span>
+            <span class="username">{{ conversation?.creatorUser ? conversation?.creatorUser?.username : conversation?.advertiserUser?.username }}</span>
         </div>
     
         <button *ngIf="messages && messages.length > 1 && conversation?.status != CONVERSATION_STATUS.FINISHED && conversation?.creatorUser" class="main-button-secondary" (click)="rejectConversation(undefined)">

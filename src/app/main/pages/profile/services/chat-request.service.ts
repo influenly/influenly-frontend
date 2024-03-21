@@ -10,8 +10,8 @@ export class ChatRequestService {
 
     constructor(private restApiClient: RestApiClient) {}
 
-    public getConversations$(): Observable<HttpResponse<ConversationModel[]>> {
-        return this.restApiClient.get<ConversationModel[]>({
+    public getConversations$(): Observable<HttpResponse<{ conversations: ConversationModel[] }>> {
+        return this.restApiClient.get<{conversations: ConversationModel[]}>({
             endPoint: '/chat/conversation'
         });
     }
@@ -28,8 +28,8 @@ export class ChatRequestService {
         });
     };
 
-    public getMessages$(conversationId: string): Observable<HttpResponse<MessageModel[]>> {
-        return this.restApiClient.get<MessageModel[]>({
+    public getMessages$(conversationId: string): Observable<HttpResponse<{ messages: MessageModel[] }>> {
+        return this.restApiClient.get<{ messages: MessageModel[] }>({
             endPoint: '/chat/conversation/' + conversationId + '/message'
         });
     };

@@ -2,8 +2,8 @@ export interface ConversationModel {
     id: number;
     creatorUserId: number;
     advertiserUserId: number;
-    creatorUser: { id: number, profile: { username: string, profileImg: string } };
-    advertiserUser: { id: number, profile: { username: string, profileImg: string } };
+    creatorUser: { id: number, username: string, profileImg: string };
+    advertiserUser: { id: number, username: string, profileImg: string };
     status: CONVERSATION_STATUS;
     updatedAt: string;
 }
