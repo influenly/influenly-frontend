@@ -69,7 +69,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   
   private loadUserDataToForm() {
     setTimeout(() => {
-      this.contentForm?.tags?.setValue(this.data.contentTags);
+      this.contentForm?.setTagsValue(this.data.contentTags);
       this.formOnChangesSubs.push(this.contentForm?.contentForm.valueChanges.subscribe(() => {
         this.disabledButton = false;
       }));

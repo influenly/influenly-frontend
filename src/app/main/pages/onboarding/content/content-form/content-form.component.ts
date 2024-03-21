@@ -12,7 +12,7 @@ export class ContentFormComponent {
   @Input() otherLabel: string|undefined;
   @Output() atLeastOne: EventEmitter<boolean> = new EventEmitter();
 
-  tagList: string[] = AppConstants.contentTags
+  tagList: string[] = [...AppConstants.contentTags];
 
   contentForm: FormGroup = this.fb.group({
     tags: [[], Validators.required]
@@ -22,11 +22,21 @@ export class ContentFormComponent {
 
   constructor(private fb: FormBuilder) {}
 
+  setTagsValue(tags: string[]) {
+    if (tags && tags.length > 0) {
+      tags.forEach((tag: string) => {
+        this.add(tag);
+      });
+    }
+  }
+
   add(tag: string) {
     const index = this.tagList.indexOf(tag);
-    this.tagList.splice(index, 1);
-    this.tags?.setValue(this.tags.value.concat(tag));
-    this.atLeastOne.emit(true);
+    if (index !== -1) {
+      this.tagList.splice(index, 1);
+      this.tags?.setValue(this.tags.value.concat(tag));
+      this.atLeastOne.emit(true);
+    }
   }
 
   remove(tag: string) {
