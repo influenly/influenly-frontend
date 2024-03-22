@@ -5,6 +5,7 @@ import { DiscoveryService } from '../services/discovery.service';
 import { Filter } from '../discovery-filters/discovery-filters.component';
 import { showFilter } from '../discovery.component';
 import { Subscription, map } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-results',
@@ -237,7 +238,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   isHandsetSubs: Subscription;
 
   constructor(private discoveryService: DiscoveryService,
-            private breakpointObserver: BreakpointObserver) {
+            private breakpointObserver: BreakpointObserver,
+            private router: Router) {
     this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 768px)'])
     .pipe(map(result => result.matches)).subscribe(match => {
         this.isHandset = match;
@@ -263,6 +265,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   showFilter() {
     showFilter.set(true);
+  }
+
+  openUserProfile(userId: number) {
+    this.router.navigate(['/app/user/' + userId]);
   }
 
   ngOnDestroy() {

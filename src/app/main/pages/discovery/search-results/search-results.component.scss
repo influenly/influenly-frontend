@@ -47,6 +47,10 @@
     width: 100%;
 }
 
+app-user-card:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 550px) {
     .cards-box {
         margin-top: 16px;
