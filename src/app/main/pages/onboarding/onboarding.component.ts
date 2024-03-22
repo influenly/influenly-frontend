@@ -163,9 +163,9 @@ export class OnboardingComponent implements OnInit {
         }
         this.onboardingService.completeOnboarding$(payload).subscribe({
           next: (v) => {
-            let userData = v.body.user;
+            let userData = v.body;
             this.profileService.setProfileData(userData);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData.user.id);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData?.data.user.id);
             this.router.navigate(['app/profile']);
           },
           error: (e) => {
@@ -194,7 +194,7 @@ export class OnboardingComponent implements OnInit {
           next: (v) => {
             let userData = v.body;
             this.profileService.setProfileData(userData);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData.user.id);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData?.data.user.id);
             this.router.navigate(['app/profile']);
           },
           error: (e) => {
