@@ -17,6 +17,7 @@
 }
 
 .primary-info {
+    min-width: 160px;
     position: relative;
     padding-left: 10px;
 }
@@ -47,7 +48,7 @@
     font-size: 16px;
 }
 
-.main-button-secondary {
+.btn-action {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -57,9 +58,24 @@
     font-size: 20px;
 }
 
-.networks-button {
+.networks-box {
     position: absolute;
     bottom: 0;
+}
+
+.networks-button {
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-button-secondary {
+    &:active {
+        &:after {
+            width: 0;
+            height: 0;
+        }
+    }
 }
 
 .description-box {
@@ -81,6 +97,7 @@
     .primary-info {
         text-align: center;
         margin-top: 16px;
+        padding-left: 0px;
     }
 
     .primary-info.creator {
@@ -96,11 +113,16 @@
         margin-bottom: 5px;
     }
 
-    .networks-button {
+    .networks-box {
         position: relative;
         display: flex;
         justify-content: center;
         margin-bottom: 16px;
+    }
+
+    .networks-button {
+        display: flex;
+        justify-content: center;
     }
 
     .main-button-secondary {

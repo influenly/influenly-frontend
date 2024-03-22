@@ -40,7 +40,7 @@ export class ProfileService {
           const networkElement = {
             link: network.url,
             icon: network.platform.toLowerCase(),//this.getPlatformOnLink(network),
-            name: network.url.substring(network.url.lastIndexOf('/') + 1),
+            name: network.name ? network.name : network.url.substring(network.url.lastIndexOf('/') + 1),
             integrated: network.integrated
           };
           transformedSocialNetworks.push(networkElement);

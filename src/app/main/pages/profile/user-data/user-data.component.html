@@ -17,8 +17,9 @@
                     {{ 'onboarding.content.tag_list.' + tag | translate }}
                 </mat-chip>
             </div>
-            <div *ngIf="!isCreatorUser" class="networks-button">
-                <mat-chip [matMenuTriggerFor]="menu" aria-label="Social networks">{{ 'profile.networks_label' | translate }} <mat-icon [ngStyle]="{'font-size': '24px'}">expand_more</mat-icon></mat-chip>
+            <div *ngIf="!isCreatorUser" class="networks-box">
+                <!-- <mat-chip [matMenuTriggerFor]="menu" aria-label="Social networks">{{ 'profile.networks_label' | translate }} <mat-icon [ngStyle]="{'font-size': '24px'}">expand_more</mat-icon></mat-chip> -->
+                <button class="networks-button main-button-secondary" [matMenuTriggerFor]="menu" aria-label="Social networks">{{ 'profile.networks_label' | translate }} <mat-icon [ngStyle]="{'font-size': '24px'}">expand_more</mat-icon></button>
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item *ngFor="let network of socialNetworks" (click)="openSocialMediaLink(network.link)">
                         <div class="d-flex">
@@ -31,13 +32,13 @@
         </div>
 
         <div *ngIf="isOwnView" class="position-relative flex-grow-1">
-            <button class="main-button-secondary" (click)="editProfile()">
+            <button class="main-button-secondary btn-action" (click)="editProfile()">
                 {{ 'profile.btn_edit' | translate }} 
                 <mat-icon>edit</mat-icon>
             </button>
         </div>
         <div *ngIf="!isOwnView" class="position-relative flex-grow-1">
-            <button class="main-button-secondary" (click)="initTalk()">
+            <button class="main-button-secondary btn-action" (click)="initTalk()">
                 {{ 'profile.btn_talk' | translate }}
                 <mat-icon>mail</mat-icon>
             </button>
