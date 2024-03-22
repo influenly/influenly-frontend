@@ -18,6 +18,7 @@
 
 .primary-info {
     min-width: 160px;
+    max-width: 400px;
     position: relative;
     padding-left: 10px;
 }
@@ -46,6 +47,7 @@
     --mdc-chip-label-text-color: white !important;
     margin-right: 6px;
     font-size: 16px;
+    margin-bottom: 5px;
 }
 
 .btn-action {
@@ -107,10 +109,6 @@
     .content-tags {
         margin-top: 5px;
         margin-bottom: 10px;
-    }
-
-    .tag {
-        margin-bottom: 5px;
     }
 
     .networks-box {
