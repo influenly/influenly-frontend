@@ -141,6 +141,21 @@ button[disabled] {
     }
 }
 
+.button-outlined {
+    background-color: transparent;
+    border-radius: 0.5rem;
+    border: 2px solid white;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+.button-outlined:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 .other-button {
     border: none;
     background-color: transparent;
