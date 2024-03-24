@@ -8,6 +8,7 @@ import { SocketService } from 'src/app/shared/services/socket/socket.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { InitTalkModalComponent } from '../../profile/user-data/init-talk-modal/init-talk-modal.component';
 
 @Component({
   selector: 'app-chat-messages',
@@ -202,6 +203,13 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     } else {
       this.enabledChat = true;
     }
+  }
+
+  initNewConversation() {
+    this.dialog.open(InitTalkModalComponent, {
+      width: '500px',
+      data: { id: this.conversation?.creatorUserId }
+    });
   }
 
   sendMessage() {

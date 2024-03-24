@@ -9,6 +9,10 @@
             {{ 'chat.messages.btn_finish' | translate }} 
             <mat-icon class="material-icons-outlined">chat_close</mat-icon>
         </button>
+        <button *ngIf="messages && messages.length > 1 && conversation?.status == CONVERSATION_STATUS.FINISHED && conversation?.creatorUser" class="main-button-secondary" (click)="initNewConversation()">
+            {{ 'chat.messages.btn_init' | translate }} 
+            <mat-icon class="material-icons-outlined">chat_close</mat-icon>
+        </button>
     </div>
     <div #messagesContainer class="messages-box">
         <div *ngFor="let message of messages; let i = index" class="bubble" [ngClass]="{'bubble-received': message.isReceived, 'bubble-sended': !message.isReceived}">
