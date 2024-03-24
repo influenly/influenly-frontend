@@ -15,7 +15,7 @@ export class NetworksFormComponent {
 
   networksForm: FormGroup = this.fb.group({
     icon: ['youtube'],
-    url: ['', Validators.pattern('^(?:https?:\/\/)?(www\.)?((instagram|twitter|twitch)\.com\/[A-z0-9_-]+\/?$)|(((youtube\.com\/(channel\/)?)|(tiktok\.com\/))@?([A-z0-9_-]+)$)|(([a-z]{3}\.)?[a-z_-]+\.[a-z]{2,4}(\.[a-z]{2})?$)')]
+    url: ['', Validators.pattern('^(?:(?:https?:\/\/)?(?:www\.)?(?:instagram\.com|twitter\.com|twitch\.tv)\/[A-Za-z0-9_-]+\/?)$|(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:channel\/)?|tiktok\.com\/)@?[A-Za-z0-9_-]+(?:\.[A-Za-z]{2,4})?$|^(?!.*(?:youtube|tiktok|twitch|instagram|twitter))(?![a-z]+$)([a-z]{3}\.)?[a-z_-]+\.[a-z]{2,4}(?:\.[a-z]{2})?$')]
   });
 
   get icon() { return this.networksForm.get('icon'); }
