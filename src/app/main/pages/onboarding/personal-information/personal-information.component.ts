@@ -4,6 +4,7 @@ import { SLIDE } from '../onboarding.component';
 import { TranslateService } from '@ngx-translate/core';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { Subscription } from 'rxjs';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-personal-information',
@@ -22,11 +23,12 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
     description_placeholder: ''
   }
   isCreator: boolean = false;
+  birthdatePrevInputValue = '';
 
   formStatusChangeSubs: Subscription|undefined;
 
   personalInfoForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\']+$')]],
+    username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\'\\s]+$')]],
     birthdate: ['', [Validators.required]],
     description: ['', [Validators.required]]
   });
@@ -36,7 +38,10 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
   get description() { return this.personalInfoForm.get('description'); }
 
   constructor(private fb: FormBuilder,
-              private translate: TranslateService) {}
+              private translate: TranslateService,
+              private dateAdapter: DateAdapter<Date>) {
+    this.dateAdapter.setLocale('fr-FR'); 
+  }
 
   ngOnInit() {
     this.formStatusChangeSubs = this.personalInfoForm.statusChanges.subscribe(status => {
@@ -79,6 +84,22 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
       description: this.description?.value
     }
     this.continue.emit(personalInfoData);
+  }
+
+  inputChange($event: any) {
+    let inputValue = $event.target.value;
+    if (inputValue && !/[0-9]/.test(inputValue.charAt(inputValue.length - 1))) {
+      inputValue = $event.target.value = inputValue.substr(0, inputValue.length - 1);
+    }
+    const regex = /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/;
+    if (regex.test(inputValue)) {
+      const [day, month, year] = inputValue.split('/');
+      const date = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+      this.birthdate?.setValue(date);
+    } else if (this.birthdatePrevInputValue.length < inputValue.length && (inputValue.length === 2 || inputValue.length === 5)) {
+      $event.target.value += '/';
+    }
+    this.birthdatePrevInputValue = $event.target.value;
   }
 
   ngOnDestroy() {

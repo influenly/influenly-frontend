@@ -33,7 +33,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   formOnChangesSubs: (Subscription|undefined)[] = [];
 
   userDataForm: FormGroup = this.fb.group({
-    username: [this.data.username, [Validators.required, Validators.pattern('^[a-zA-Z0-9\']+$')]],
+    username: [this.data.username, [Validators.required, Validators.pattern('^[a-zA-Z0-9\'\\s]+$')]],
     birthdate: ['', [Validators.required]],
     description: [this.data.description, [Validators.required]]
   });

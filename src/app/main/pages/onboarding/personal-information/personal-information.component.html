@@ -30,9 +30,12 @@
             <mat-form-field class="w-100">
                 <input 
                     matInput
+                    type="text"
                     [matDatepicker]="picker"
                     formControlName="birthdate"
                     [placeholder]="'onboarding.personal_information.birthdate.placeholder' | translate"
+                    (input)="inputChange($event)"
+                    maxlength="10"
                 >
                 <mat-datepicker-toggle matIconPrefix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
