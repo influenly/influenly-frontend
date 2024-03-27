@@ -7,13 +7,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { LocationUtilsService } from './services/utils/location-utils.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 
 
 @NgModule({
   declarations: [
     InformationModalComponent,
-    SvgIconComponent
+    SvgIconComponent,
+    NotFoundComponent
   ],
   imports: [
     CommonModule,
