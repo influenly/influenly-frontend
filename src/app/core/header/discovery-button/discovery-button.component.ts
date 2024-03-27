@@ -11,9 +11,9 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 export class DiscoveryButtonComponent implements OnInit, OnDestroy { 
 
   @Input() isHandset: boolean = false;
-  userId: string|undefined;
+  showComponent: string | undefined;
 
-  userIdSubs: Subscription|undefined;
+  isShowSubs: Subscription | undefined;
 
   constructor(private sessionStorage: SessionStorageService,
               private router: Router) {
@@ -21,11 +21,11 @@ export class DiscoveryButtonComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.info('discovery-option init');
-    this.getToken();
+    this.isShowComponent();
   }
 
-  private async getToken() {
-    this.userIdSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id)?.subscribe(userId => this.userId = userId);
+  private isShowComponent() {
+    this.isShowSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.show_header_actions)?.subscribe(value => this.showComponent = value);
   }
 
   goToDiscovery() {
@@ -33,7 +33,7 @@ export class DiscoveryButtonComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.userIdSubs) this.userIdSubs.unsubscribe();
+    if (this.isShowSubs) this.isShowSubs.unsubscribe();
   }
 
 }

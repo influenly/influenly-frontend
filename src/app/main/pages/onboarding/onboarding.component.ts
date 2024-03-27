@@ -165,8 +165,8 @@ export class OnboardingComponent implements OnInit {
           next: (v) => {
             let userData = v.body;
             this.profileService.setProfileData(userData);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData?.data.user.id);
             this.router.navigate(['app/profile']);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'FULL');
           },
           error: (e) => {
             //TODO: falla el save de los datos. Implementar lógica de reintento
@@ -194,8 +194,8 @@ export class OnboardingComponent implements OnInit {
           next: (v) => {
             let userData = v.body;
             this.profileService.setProfileData(userData);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, userData?.data.user.id);
             this.router.navigate(['app/profile']);
+            this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'FULL');
           },
           error: (e) => {
             //TODO: falla el save de los datos. Implementar lógica de reintento

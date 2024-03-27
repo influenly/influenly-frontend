@@ -1,6 +1,6 @@
-<button *ngIf="userId && isHandset" mat-icon-button class="icon-container" (click)="openChat()">
+<button *ngIf="showComponent == 'FULL' && isHandset" mat-icon-button class="icon-container" (click)="openChat()">
     <i class="icon" [ngClass]="{ 'material-icons-outlined': !isChatOpened, 'material-icons-round': isChatOpened }">chat</i>
 </button>
-<div *ngIf="userId && !isHandset" class="header-button-container">
+<div *ngIf="showComponent == 'FULL' && !isHandset" class="header-button-container">
     <button class="header-button" (click)="openChat()">{{ 'chat.conversation.title' | translate }}</button>
 </div>

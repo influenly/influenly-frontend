@@ -1,10 +1,10 @@
 
-<button *ngIf="userId" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User's options menu" 
+<button *ngIf="showComponent" mat-icon-button [matMenuTriggerFor]="menu" aria-label="User's options menu" 
 class="icon-container" (menuOpened)="isMenuOpened = true" (menuClosed)="isMenuOpened = false">
     <i class="icon" [ngClass]="{ 'material-icons-outlined': !isMenuOpened, 'material-icons-round': isMenuOpened }">account_circle</i>
 </button>
 <mat-menu #menu="matMenu">
-    <button mat-menu-item (click)="goToProfile()">
+    <button *ngIf="showComponent == 'FULL'" mat-menu-item (click)="goToProfile()">
         <mat-icon class="material-icons-outlined">person</mat-icon>
         <span>{{ 'core.user_options.account_info' | translate }}</span>
     </button>

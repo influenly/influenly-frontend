@@ -13,9 +13,9 @@ import { AuthService } from '../../services/auth.service';
 export class UserOptionsComponent implements OnInit, OnDestroy {
 
   isMenuOpened: boolean = false;
-  userId: string|undefined = undefined;
+  showComponent: string | undefined;
 
-  userIdSubs: Subscription|undefined;
+  isShowSubs: Subscription|undefined;
 
   constructor(private sessionStorage: SessionStorageService,
               private router: Router,
@@ -25,11 +25,11 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     console.info('user-option init')
-    this.getToken();
+    this.isShowComponent();
   }
 
-  private async getToken() {
-    this.userIdSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id)?.subscribe(userId => this.userId = userId);
+  private isShowComponent() {
+    this.isShowSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.show_header_actions)?.subscribe(value => this.showComponent = value);
   }
 
   goToProfile() {
@@ -51,6 +51,6 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.info('user-option destroy')
-    if (this.userIdSubs) this.userIdSubs.unsubscribe();
+    if (this.isShowSubs) this.isShowSubs.unsubscribe();
   }
 }

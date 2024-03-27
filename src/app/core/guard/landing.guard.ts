@@ -14,12 +14,21 @@ export class LandingGuard {
     async canActivate() {
         console.log('LandingGuard#canActivate called');
         let userId;
+        let show;
         const userIdObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.user_id);
         if (userIdObs) {
             userId = await firstValueFrom(userIdObs);
         }
         if (userId) {
-            this.router.navigate(['/app/profile']);
+            const showHeaderActionsObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.show_header_actions);
+            if (showHeaderActionsObs) {
+                show = await firstValueFrom(showHeaderActionsObs);
+            }
+            if (show == 'FULL') {
+                this.router.navigate(['/app/profile']);
+            } else if (show == 'ONBOARDING') {
+                this.router.navigate(['/app/onboarding']);
+            }
             return false;
         }
         return true;
