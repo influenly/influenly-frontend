@@ -1,5 +1,6 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription, map } from 'rxjs';
 
 @Component({
@@ -13,7 +14,9 @@ export class HeaderComponent implements OnDestroy {
 
   isHandsetSubs: Subscription | undefined;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver,
+    private router: Router
+  ) {
     this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 768px)'])
     .pipe(map(result => result.matches)).subscribe(match => {
         this.isHandset = match;
@@ -23,6 +26,10 @@ export class HeaderComponent implements OnDestroy {
   ngOnDestroy() {
     console.info('header destroy');
     if (this.isHandsetSubs) this.isHandsetSubs.unsubscribe();
+  }
+
+  goToMain() {
+    this.router.navigate(['/'])
   }
 
 }
