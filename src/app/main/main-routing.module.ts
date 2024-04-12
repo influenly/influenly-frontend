@@ -8,6 +8,11 @@ import { DiscoveryComponent } from './pages/discovery/discovery.component';
 
 const routes: Routes = [
     {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'profile'
+    },
+    {
         path: 'onboarding',
         component: OnboardingComponent
     },
