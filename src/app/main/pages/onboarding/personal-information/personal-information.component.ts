@@ -40,7 +40,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
   constructor(private fb: FormBuilder,
               private translate: TranslateService,
               private dateAdapter: DateAdapter<Date>) {
-    this.dateAdapter.setLocale('fr-FR'); 
+    this.dateAdapter.setLocale('en-GB');
   }
 
   ngOnInit() {
@@ -88,7 +88,13 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
 
   inputChange($event: any) {
     let inputValue = $event.target.value;
-    if (inputValue && !/[0-9]/.test(inputValue.charAt(inputValue.length - 1))) {
+    if (inputValue.length == 2 && inputValue.charAt(inputValue.length - 1) == '/') {
+      inputValue = $event.target.value = '0' + inputValue.substr(0, inputValue.length - 1);
+    } else if (inputValue.length == 5 && inputValue.charAt(inputValue.length - 1) == '/') {
+      inputValue = $event.target.value = inputValue.substr(0, inputValue.length - 2) + '0' + inputValue.substr(inputValue.length -2, inputValue.length -1);
+    } else if (this.birthdatePrevInputValue.length < inputValue.length && inputValue && !/[0-9]/.test(inputValue.charAt(inputValue.length - 1))) {
+      inputValue = $event.target.value = inputValue.substr(0, inputValue.length - 1);
+    } else if (this.birthdatePrevInputValue.length > inputValue.length && (inputValue.length === 2 || inputValue.length === 5)) {
       inputValue = $event.target.value = inputValue.substr(0, inputValue.length - 1);
     }
     const regex = /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/;
