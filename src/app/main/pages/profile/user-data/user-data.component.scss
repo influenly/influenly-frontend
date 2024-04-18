@@ -84,10 +84,10 @@
     padding: 1rem;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 512px) {
 
     .top {
-        display: block;
+        display: block !important;
     }
 
     .profile-picture {
@@ -128,4 +128,21 @@
         position: inherit;
         width: 100%;
     }
+}
+
+@media (max-width: 768px) {
+
+    .top {
+        display: grid;
+        grid-auto-flow: column;
+    }
+
+    .button-container {
+        align-content: center;
+    }
+
+    .button-outlined {
+        position: inherit;
+    }
+    
 }
