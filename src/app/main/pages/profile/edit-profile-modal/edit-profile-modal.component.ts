@@ -22,6 +22,8 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   @ViewChild(NetworksFormComponent) networksForm: NetworksFormComponent | undefined = undefined;
   @ViewChild(ContentFormComponent) contentForm: ContentFormComponent | undefined = undefined;
 
+  profileImage: string | ArrayBuffer | null = null;
+  file: File | undefined;
   isCreatorView: boolean|undefined;
   textObject = {
     title: '',
@@ -90,6 +92,16 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   }
 
   public save() {
+    if (this.file) {
+      const formData = new FormData();
+      formData.append("thumbnail", this.file);
+
+      // TODO: agregar post al backend para guardar imagen con await
+      // const upload$ = this.http.post("/api/thumbnail-upload", formData, {
+      //   reportProgress: true,
+      //   observe: 'events'
+      // })
+    }
     const newNetworksArray = this.getNewArrayIfExistsChanges(this.data.networks.map((net: any) => net.url), this.networksForm?.networks?.map((net: any) => net.url));
     const networks = newNetworksArray ? this.networksForm?.networks?.map((net: any) => { return { platform: net.icon.toUpperCase(), url: net.url }}) : undefined;
     let data: OnboardingModel = {
@@ -133,6 +145,15 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
       return undefined;
     }
     return arr2;
+  }
+
+  public onFileSelected(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file); 
+    reader.onload = (_event) => { 
+        this.profileImage = reader.result; 
+    }
   }
 
   public close() {

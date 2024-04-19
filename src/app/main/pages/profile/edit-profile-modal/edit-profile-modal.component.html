@@ -3,6 +3,13 @@
 </div>
 
 <mat-dialog-content>
+    <div class="d-flex justify-content-center">
+        <img *ngIf="isCreatorView && !profileImage" src="../../../../../assets/images/profile/default-picture-creator.svg" class="profile-picture" />
+        <img *ngIf="!isCreatorView && !profileImage" src="../../../../../assets/images/profile/default-picture-advertiser.svg" class="profile-picture" />
+        <img *ngIf="profileImage" [src]="profileImage" class="profile-picture" />
+        <mat-icon class="edit-icon" (click)="fileUpload.click()">edit</mat-icon>
+    </div>
+    <input type="file" class="d-none" [accept]="'image/png,image/jpg,image/jpeg'" (change)="onFileSelected($event)" #fileUpload />
     <form [formGroup]="userDataForm" class="form-box mt-4">
         <div>
             <label class="d-block">{{ textObject.username_label }}</label>
