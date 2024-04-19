@@ -1,3 +1,7 @@
+.picture-container {
+    position: relative;
+}
+
 .profile-picture {
     border: 1px solid gray;
     border-radius: 8px;
@@ -11,7 +15,7 @@
     height: 150px;
     width: 150px;
     background-color: rgba(0, 0, 0, 0.0);
-    color: rgba(0, 0, 0, 0.0);;
+    color: rgba(0, 0, 0, 0.0);
     text-align: center;
     align-content: center;
     font-size: 40px;
@@ -31,6 +35,11 @@
 }
 
 @media (max-width: 768px) {
+
+    .edit-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+    }
 
     .label-max-char {
         display: none;

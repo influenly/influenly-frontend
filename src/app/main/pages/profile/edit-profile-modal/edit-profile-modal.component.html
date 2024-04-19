@@ -3,7 +3,7 @@
 </div>
 
 <mat-dialog-content>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center picture-container">
         <img *ngIf="isCreatorView && !profileImage" src="../../../../../assets/images/profile/default-picture-creator.svg" class="profile-picture" />
         <img *ngIf="!isCreatorView && !profileImage" src="../../../../../assets/images/profile/default-picture-advertiser.svg" class="profile-picture" />
         <img *ngIf="profileImage" [src]="profileImage" class="profile-picture" />
