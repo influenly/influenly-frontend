@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../core/services/auth.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,13 +23,12 @@ export class SignUpComponent {
   get password() { return this.signUpForm.get('password'); }
   get country() { return this.signUpForm.get('country'); }
 
-  countries: string[] = ['AR','BO','BR','CL','CO','CR','CU','EC','SV','GT','HT','HN','MX','NI','PA','PY','PE','DO','UY','VE'];
+  countries: string[] = ['AR','BO','CL','CO','EC','MX','PY','PE','UY','VE'];
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private dialog: MatDialog,
               private translate: TranslateService,
-              private router: Router,
               private sessionUtils: SessionUtilsService) { }
 
   submit() {
