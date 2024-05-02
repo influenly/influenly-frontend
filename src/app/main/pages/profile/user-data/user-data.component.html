@@ -1,8 +1,9 @@
 <div class="card">
     <div class="top p-3">
         <div class="picture-container">
-            <img *ngIf="isCreatorUser" src="../../../../../assets/images/profile/default-picture-creator.svg" class="profile-picture" />
-            <img *ngIf="!isCreatorUser" src="../../../../../assets/images/profile/default-picture-advertiser.svg" class="profile-picture" />
+            <img *ngIf="!userData?.profileImg && isCreatorUser" src="../../../../../assets/images/profile/default-picture-creator.svg" class="profile-picture" />
+            <img *ngIf="!userData?.profileImg && !isCreatorUser" src="../../../../../assets/images/profile/default-picture-advertiser.svg" class="profile-picture" />
+            <img *ngIf="userData?.profileImg" [src]="userData?.profileImg" class="profile-picture" />
         </div>
 
         <div class="primary-info" [ngClass]="{ 'creator': isCreatorUser }">

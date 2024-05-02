@@ -132,7 +132,7 @@ export class RestApiClient {
 		);
 	}
 
-	sendCSV<T>(
+	sendFile<T>(
 		body: any,
 		options: {
 			endPoint: string,

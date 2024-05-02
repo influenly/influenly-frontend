@@ -5,6 +5,7 @@ export interface OnboardingModel {
     username: string;
     contentTags: string[];
     networkIntegratedId?: number;
+    profileImg?: string;
 }
 
 export interface NetworkModel {

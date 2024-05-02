@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NetworksFormComponent } from '../../onboarding/networks/networks-form/networks-form.component';
 import { ContentFormComponent } from '../../onboarding/content/content-form/content-form.component';
 import { ProfileService } from '../services/profile.service';
-import { Subscription } from 'rxjs';
+import { Subscription, lastValueFrom } from 'rxjs';
 import { ProfileRequestService } from '../services/profile-request.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { OnboardingModel } from '../../onboarding/models/onboarding.model';
@@ -91,16 +91,27 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
     this.disabledButton = false;
   }
 
-  public save() {
+  public async save() {
+    let imgUrl;
     if (this.file) {
       const formData = new FormData();
-      formData.append("thumbnail", this.file);
-
-      // TODO: agregar post al backend para guardar imagen con await
-      // const upload$ = this.http.post("/api/thumbnail-upload", formData, {
-      //   reportProgress: true,
-      //   observe: 'events'
-      // })
+      formData.append("file", this.file, this.file.name);
+      const imageSaveResponse$ = this.profileRequestService.saveProfileImg$(formData);
+      const res = await lastValueFrom(imageSaveResponse$);
+      if (res.body.ok) {
+        imgUrl = res.body.data?.url;
+        console.log(imgUrl);
+      } else {
+        this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'warning',
+            title: this.translate.instant('profile.edit.error_title'),
+            textButtonClose: this.translate.instant('general.btn_accept')
+          }
+        });
+        return;
+      }
     }
     const newNetworksArray = this.getNewArrayIfExistsChanges(this.data.networks.map((net: any) => net.url), this.networksForm?.networks?.map((net: any) => net.url));
     const networks = newNetworksArray ? this.networksForm?.networks?.map((net: any) => { return { platform: net.icon.toUpperCase(), url: net.url }}) : undefined;
@@ -108,7 +119,10 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
       username: this.data.username != this.username?.value ? this.username?.value : undefined,
       description: this.data.description != this.description?.value ? this.description?.value : undefined,
       networks: networks,
-      contentTags: this.data.contentTags != this.contentForm?.tags?.value ? this.contentForm?.tags?.value : undefined
+      contentTags: this.data.contentTags != this.contentForm?.tags?.value ? this.contentForm?.tags?.value : undefined,
+    }
+    if (imgUrl) {
+      data.profileImg = imgUrl;
     }
     this.profileRequestService.updateProfileData$(data).subscribe({
       next: (v) => {
@@ -149,11 +163,13 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
 
   public onFileSelected(event: any) {
     const file = event.target.files[0];
+    this.file = file;
     const reader = new FileReader();
     reader.readAsDataURL(file); 
     reader.onload = (_event) => { 
         this.profileImage = reader.result; 
     }
+    this.disabledButton = false;
   }
 
   public close() {
