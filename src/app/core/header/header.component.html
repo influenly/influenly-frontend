@@ -1,7 +1,7 @@
 <div class="header d-flex justify-content-between">
     <img src="../../../assets/logo/influenly.svg" (click)="goToMain()" />
     <div class="d-flex">
-        <app-discovery-button [isHandset]="isHandset" />
+        <app-discovery-button *ngIf="userType == 'ADVERTISER'" [isHandset]="isHandset" />
         <app-chat [isHandset]="isHandset" />
         <app-user-options />
     </div>
