@@ -1,7 +1,7 @@
 export const environment = {
-    production: false,
-    isMockEnabled: false,
-    hostname: 'https://api.influenly.app',
-    socketHostname: 'https://api.influenly.app:3001',
-    api: 'api'
-  };
+  production: false,
+  isMockEnabled: false,
+  hostname: 'http://localhost:3000',
+  socketHostname: 'http://localhost:3001',
+  api: 'api'
+};
