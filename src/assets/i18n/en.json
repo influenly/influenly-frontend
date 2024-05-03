@@ -150,8 +150,8 @@
         "content":{
             "title_creator":"Tell us what type of content you generate",
             "title_advertiser":"Tell us what type of content you are looking for",
-            "paragraph_creator":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
-            "paragraph_advertiser":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
+            "paragraph_creator":"Choose the tags that best define the content.",
+            "paragraph_advertiser":"Choose the tags that best define the content.",
             "tags":{
                 "label":"Tags",
                 "desc":"Choose at least 1",

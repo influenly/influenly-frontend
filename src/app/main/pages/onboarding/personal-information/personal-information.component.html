@@ -1,6 +1,8 @@
 <div class="container">
     <h3>{{ textObject.title }}</h3>
-    <span class="paragraph">{{ textObject.paragraph }}</span>
+    <div class="my-4">
+        <span class="paragraph">{{ textObject.paragraph }}</span>
+    </div>
     
     <form [formGroup]="personalInfoForm" class="form-box mt-4">
         <div>
@@ -68,7 +70,7 @@
         </div>
 
         <div class="mt-4">
-            <button class="main-button w-100 p-3" (click)="submit()" [disabled]="personalInfoForm.invalid">{{ 'general.btn_continue' | translate }}</button>
+            <button class="main-button-primary w-100 p-3" (click)="submit()" [disabled]="personalInfoForm.invalid">{{ 'general.btn_continue' | translate }}</button>
         </div>
     </form>
 </div>

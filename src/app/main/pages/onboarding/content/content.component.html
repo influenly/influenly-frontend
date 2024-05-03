@@ -1,10 +1,10 @@
 <div class="container d-flex flex-column h-100">
     <h3>{{ textObject.title }}</h3>
-    <span class="paragraph">{{ textObject.paragraph }}</span>
+    <span class="paragraph my-4">{{ textObject.paragraph }}</span>
     
     <app-content-form (atLeastOne)="contentEvent($event)" />
 
     <div class="mt-4">
-        <button class="main-button w-50 p-3" (click)="submit()" [disabled]="disabledButton">{{ 'general.btn_continue' | translate }}</button>
+        <button class="main-button-primary w-50 p-3" (click)="submit()" [disabled]="disabledButton">{{ 'general.btn_continue' | translate }}</button>
     </div>
 </div>

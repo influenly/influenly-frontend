@@ -114,8 +114,8 @@
         "personal_information":{
             "title_creator":"Queremos saber más sobre ti...",
             "title_advertiser":"Queremos saber más sobre tu marca...",
-            "paragraph_creator":"Necesitamos algunos datos tuyos para ayudarte a conseguir los anunciantes perfectos para tu contenido.",
-            "paragraph_advertiser":"Necesitamos algunos datos para poder ayudarte a conseguir los creadores de contenido que estás buscando.",
+            "paragraph_creator":"Necesitamos algunos datos tuyos para ayudarte a conseguir los anunciantes perfectos.",
+            "paragraph_advertiser":"Necesitamos algunos datos para poder ayudarte a conseguir los influencers que estas buscando.",
             "username":{
                 "label_creator":"Nombre de usuario",
                 "label_advertiser":"Nombre de la marca",
@@ -139,8 +139,8 @@
         },
         "networks":{
             "title":"Dejanos conocer tus redes!",
-            "paragraph_creator":"Amplía tu alcance como creador de contenido. Conecta tus redes a nuestra plataforma y descubre nuevas oportunidades para potenciar tu presencia en línea, conectar con audiencias más amplias y colaborar con otros anunciantes",
-            "paragraph_advertiser":"Amplía tus oportunidades al conectar tus redes con nuestra plataforma. Potencia tu presencia en línea, conectándote y colaborando con creadores de contenido.",
+            "paragraph_creator":"Amplía tu alcance como creador de contenido. Conecta tus redes a nuestra plataforma y colabora con anunciantes.",
+            "paragraph_advertiser":"Amplía tus oportunidades al conectar tus redes con nuestra plataforma. Potencia tu presencia en línea, conectándote y colaborando con influencers.",
             "url":{
                 "placeholder":"URL de tu canal",
                 "pattern_error":"URL inválida",
@@ -149,9 +149,9 @@
         },
         "content":{
             "title_creator":"Cuéntanos qué tipo de contenido generas",
-            "title_advertiser":"Cuéntanos qué tipo de contenido buscas",
-            "paragraph_creator":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
-            "paragraph_advertiser":"Lorem ipsum dolor sit amet consectetur. Etiam risus et semper et sed cursus risus. Massa proin at leo maecenas ipsum platea risus dui mi.",
+            "title_advertiser":"Cuéntanos qué tipo de influencer buscas",
+            "paragraph_creator":"Elige los tags que mejor definan el contenido.",
+            "paragraph_advertiser":"Elige los tags que mejor definan el contenido.",
             "tags":{
                 "label":"Tags",
                 "desc":"Elige mínimo 1",
