@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { RestApiClient } from "src/app/shared/services/rest-api/rest-api.client";
-import { NetworkProfileModel, UserDataModel } from "../models/user-data.model";
-import { HttpHeaders, HttpResponse } from "@angular/common/http";
+import { UserDataModel } from "../models/user-data.model";
+import { HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 @Injectable()

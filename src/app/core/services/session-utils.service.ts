@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { SocketService, TOPIC } from "src/app/shared/services/socket/socket.service";
 import { SESSION_STORAGE_KEYS, SessionStorageService } from "src/app/shared/services/storages/session-storage.service";
-import { BehaviorSubject } from "rxjs";
 
 @Injectable({
     providedIn: 'root'

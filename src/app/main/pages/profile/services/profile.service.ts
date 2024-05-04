@@ -1,12 +1,28 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnDestroy } from "@angular/core";
 import { NetworkProfileModel, UserDataModel } from "../models/user-data.model";
-import { BehaviorSubject, Observable, map, of, shareReplay, take } from "rxjs";
+import { BehaviorSubject, Observable, Subscription, map, of, shareReplay, take } from "rxjs";
 import { ProfileRequestService } from "./profile-request.service";
+import { SESSION_STORAGE_KEYS, SessionStorageService } from "src/app/shared/services/storages/session-storage.service";
 
 @Injectable()
-export class ProfileService {
+export class ProfileService implements OnDestroy {
 
-  constructor(private profileRequestService: ProfileRequestService) {}
+  showHeaderActionsSubs: Subscription | undefined;
+
+  constructor(
+    private profileRequestService: ProfileRequestService,
+    private sessionStorage: SessionStorageService
+  ) {
+    this.showHeaderActionsSubs = this.sessionStorage.get(SESSION_STORAGE_KEYS.show_header_actions)?.subscribe((value) => {
+      if (!value) {
+        this.clearProfileData();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    if (this.showHeaderActionsSubs)this.showHeaderActionsSubs.unsubscribe();
+  }
 
   private userProfileData: BehaviorSubject<UserDataModel|null> = new BehaviorSubject<UserDataModel|null>(null);
 
@@ -16,6 +32,11 @@ export class ProfileService {
 
   public setProfileData(profileData: UserDataModel|null) {
     this.userProfileData.next(profileData);
+  }
+
+  clearProfileData() {
+    this.userProfileData.next(null);
+    this.userProfileData.complete();
   }
 
   public getCachedProfileData(userId: string): Observable<UserDataModel|null> {
