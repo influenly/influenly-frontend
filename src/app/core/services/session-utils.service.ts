@@ -14,7 +14,6 @@ export class SessionUtilsService {
                 private router: Router) { }
 
     public async onLogin(response: any) {
-        this.sessionStorage.set(SESSION_STORAGE_KEYS.token, response.token);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, response.user.type);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, response.user.id);
         await this.socketService.connectSocket();

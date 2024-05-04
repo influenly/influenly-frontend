@@ -1,8 +1,6 @@
-import { SESSION_STORAGE_KEYS, SessionStorageService } from './../storages/session-storage.service';
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { io } from 'socket.io-client';
 import { environment as env } from '../../../../environments/environment';
-import { firstValueFrom } from 'rxjs';
 import { MessageModel } from 'src/app/main/pages/profile/models/message.model';
 
 export enum TOPIC {
@@ -18,19 +16,13 @@ export class SocketService {
     private token: string|undefined;
     reconected: boolean = false
 
-    constructor(private sessionStorage: SessionStorageService) {}
+    constructor() {}
 
     public socketConnected(): boolean {
         return this.socket;
     }
 
     public async connectSocket() {
-        if (!this.token) {
-            const tokenObs = this.sessionStorage.get(SESSION_STORAGE_KEYS.token);
-            if (tokenObs) {
-                this.token = await firstValueFrom(tokenObs);
-            }
-        }
         this.socket = io(env.socketHostname, { withCredentials: true });
         this.socket.on("connect_error", (err: any) => {
             console.log(`connect_error due to ${err.message}`);
