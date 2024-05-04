@@ -32,14 +32,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.loadSessionStorageValues();
   }
 
-  async loadSessionStorageValues() {
-    this.userType = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_type);
-    
+  loadSessionStorageValues() {
     this.isLanding = this.router.url == '/';
     this.navigationEndSubs = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
+    ).subscribe(async (event: any) => {
         this.isLanding = event.url == '/';
+        this.userType = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_type);
     });
   }
   

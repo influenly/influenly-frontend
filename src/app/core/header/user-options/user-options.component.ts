@@ -40,14 +40,20 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
     this.authService.logout$().subscribe({
       next: async (v) => {
         this.socketService.disconnectSocket();
-        this.sessionStorage.clear();
+        this.clearSessionStorage();
         this.router.navigate(['']);
         },
         error: (e) => {
           this.router.navigate(['']);
         }
     });
-}
+  }
+
+  private clearSessionStorage() {
+    this.sessionStorage.remove(SESSION_STORAGE_KEYS.user_type);
+    this.sessionStorage.remove(SESSION_STORAGE_KEYS.user_id);
+    this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, undefined);
+  }
 
   ngOnDestroy() {
     console.info('user-option destroy')
