@@ -52,10 +52,12 @@
         }
     },
     "landing":{
-        "title_1":"Contenido",
-        "title_2":" para cada audiencia",
-        "paragraph_1":"Una plataforma donde creadores y anunciantes se encuentran.",
-        "paragraph_2":"Consigue visivilidad ante miles de anunciantes. Encuentra al creador de contenido indicado utilizando nuestras analíticas avanzadas.",
+        "title_1":"El puente entre",
+        "title_2":" Influencers",
+        "title_3":" y",
+        "title_4":" Marcas",
+        "paragraph_1":"Una plataforma donde influencers y anunciantes se encuentran.",
+        "paragraph_2":"Consigue visibilidad ante miles de anunciantes o encuentra al influencer indicado utilizando nuestras analíticas avanzadas.",
         "btn_creator":"Soy creador ",
         "btn_advertiser":"Busco creadores",
         "sign_up":{

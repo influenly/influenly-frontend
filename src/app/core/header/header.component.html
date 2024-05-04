@@ -4,5 +4,6 @@
         <app-discovery-button *ngIf="userType == 'ADVERTISER'" [isHandset]="isHandset" />
         <app-chat [isHandset]="isHandset" />
         <app-user-options />
+        <button *ngIf="isLanding" mat-button class="main-button-primary" (click)="goToLogin()">{{ 'landing.sign_in.title' | translate}}</button>
     </div>
 </div>

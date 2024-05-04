@@ -6,6 +6,7 @@
 	--secondary-color: black;
     --ternary-color: #FFF;
     --disabled-color: #bfbfbf;
+    --gradient-color-1: #4A1FF6;
 }
 
 html {
@@ -32,6 +33,10 @@ h1 {
     font-size: 3.5rem;
     font-weight: bold;
     line-height: 1.4;
+}
+
+.gradient-color-1 {
+    color: var(--gradient-color-1);
 }
 
 .paragraph {
@@ -93,13 +98,14 @@ button[disabled] {
 }
 
 .main-button-primary {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color) !important;
     border-radius: 0.5rem;
     border: none;
-    color: white;
+    color: white !important;
     font-weight: 600;
     font-size: 1rem;
     padding: 0.5rem;
+    letter-spacing: normal !important;
 }
 
 .main-button-secondary {

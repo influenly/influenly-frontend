@@ -1,7 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subscription, filter, map } from 'rxjs';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 
 @Component({
@@ -12,9 +12,11 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 export class HeaderComponent implements OnInit, OnDestroy {
 
   isHandset: boolean = false;
+  isLanding: boolean = false;
   userType: string | undefined;
 
   isHandsetSubs: Subscription | undefined;
+  navigationEndSubs: Subscription | undefined;
 
   constructor(private breakpointObserver: BreakpointObserver,
     private router: Router,
@@ -32,16 +34,28 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   async loadSessionStorageValues() {
     this.userType = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_type);
+    
+    this.isLanding = this.router.url == '/';
+    this.navigationEndSubs = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+        this.isLanding = event.url == '/';
+    });
   }
   
 
   ngOnDestroy() {
     console.info('header destroy');
     if (this.isHandsetSubs) this.isHandsetSubs.unsubscribe();
+    if (this.navigationEndSubs) this.navigationEndSubs.unsubscribe();
   }
 
   goToMain() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
+  }
+
+  goToLogin() {
+    this.router.navigate(['/login']);
   }
 
 }
