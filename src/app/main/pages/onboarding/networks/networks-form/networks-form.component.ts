@@ -11,7 +11,7 @@ export class NetworksFormComponent {
   @Output() atLeastOne: EventEmitter<boolean> = new EventEmitter();
 
   icons: string[] = ['youtube', 'instagram', 'twitter','tiktok','twitch','website'];
-  networks: { url: string, icon: string, integrated: boolean }[]|undefined = [];
+  networks: { url: string, icon: string, integrated: boolean, name?: string }[] | undefined = [];
 
   networksForm: FormGroup = this.fb.group({
     icon: ['youtube'],

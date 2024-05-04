@@ -80,7 +80,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
     }, 0);
     let networks = this.profileService.loadSocialNetworks(this.data?.networks);
     networks.forEach(network => {
-      this.networksForm?.networks?.push({ url: network.link, icon: network.icon, integrated: network.integrated });
+      this.networksForm?.networks?.push({ url: network.link, icon: network.icon, integrated: network.integrated, name: network.name });
     });
     this.formOnChangesSubs.push(this.userDataForm.valueChanges.subscribe(() => {
       this.disabledButton = false;
@@ -119,7 +119,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
       username: this.data.username != this.username?.value ? this.username?.value : undefined,
       description: this.data.description != this.description?.value ? this.description?.value : undefined,
       networks: networks,
-      contentTags: this.data.contentTags != this.contentForm?.tags?.value ? this.contentForm?.tags?.value : undefined,
+      contentTags: JSON.stringify(this.data.contentTags) != JSON.stringify(this.contentForm?.tags?.value) ? this.contentForm?.tags?.value : undefined,
     }
     if (imgUrl) {
       data.profileImg = imgUrl;

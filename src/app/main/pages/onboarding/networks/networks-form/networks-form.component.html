@@ -47,7 +47,7 @@
         <mat-chip *ngFor="let network of networks">
             <div class="d-flex justify-content-between align-items-center">
                 <app-svg-icon class="{{ network.icon }}" [path]="'assets/icons/' + network.icon + '.svg'"></app-svg-icon>
-                <span class="align-middle">{{ network.url.substring(network.url.lastIndexOf('/') + 1) }}</span>
+                <span class="align-middle">{{ network.name ? network.name : network.url.substring(network.url.lastIndexOf('/') + 1) }}</span>
             </div>
             <button *ngIf="!network.integrated" matChipRemove [attr.aria-label]="'Remove' + network.url" (click)="remove(network)">
                 <mat-icon>cancel</mat-icon>
