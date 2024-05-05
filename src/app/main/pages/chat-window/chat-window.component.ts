@@ -26,7 +26,11 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
       if (document.getElementById('cdk-overlay-0')) {
         document.getElementById('cdk-overlay-0')!.innerHTML = ''; //close overlays of select, tooltips, etc
       }
-      this.goBack();
+      if (!this.historyTriggered) {
+        this.goBack();
+      } else {
+        this.historyTriggered = false;
+      }
     }
   }
 
@@ -40,6 +44,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
   userId: number|undefined;
   isOnChat: boolean = false;
   isHandset: boolean = false;
+  historyTriggered: boolean = false;
 
   isHandsetSubs: Subscription|undefined;
 
@@ -55,9 +60,10 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
     this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 768px)'])
     .pipe(map(result => result.matches)).subscribe(match => {
         this.isHandset = match;
+        if (this.isHandset) {
+          this.locationUtilsService.changePreviousPage(window, location, '/app/chat');
+        }
     });
-
-    this.locationUtilsService.changePreviousPage(window, location, '/app/chat');
   }
 
   ngOnInit() {
@@ -141,6 +147,7 @@ export class ChatWindowComponent implements OnInit, OnDestroy {
         this.talksComponent.selectedConversationId = 0;
       }
     } else {
+      this.historyTriggered = true;
       history.back();
     }
   }
