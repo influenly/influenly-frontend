@@ -5,40 +5,46 @@
             <span class="username">{{ conversation?.creatorUser ? conversation?.creatorUser?.username : conversation?.advertiserUser?.username }}</span>
         </div>
     
-        <button *ngIf="messages && messages.length > 1 && conversation?.status != CONVERSATION_STATUS.FINISHED && conversation?.creatorUser" class="main-button-secondary" (click)="rejectConversation(undefined)">
+        <button *ngIf="messages && messages.length > 1 && conversation?.status != CONVERSATION_STATUS.FINISHED && conversation?.creatorUser"
+            class="main-button-secondary"
+            (click)="rejectConversation(undefined)"
+            [disabled]="conversation?.status == CONVERSATION_STATUS.FINISH_APPROVAL_PENDING"
+        >
             {{ 'chat.messages.btn_finish' | translate }} 
             <mat-icon class="material-icons-outlined">chat_close</mat-icon>
         </button>
-        <button *ngIf="messages && messages.length > 1 && conversation?.status == CONVERSATION_STATUS.FINISHED && conversation?.creatorUser" class="main-button-secondary" (click)="initNewConversation()">
+        <button *ngIf="messages && messages.length > 1 && conversation?.status == CONVERSATION_STATUS.FINISHED && conversation?.creatorUser"
+            class="main-button-secondary"
+            (click)="initNewConversation()"
+        >
             {{ 'chat.messages.btn_init' | translate }} 
             <mat-icon class="material-icons-outlined">chat_close</mat-icon>
         </button>
     </div>
     <div #messagesContainer class="messages-box">
         <div *ngFor="let message of messages; let i = index" class="bubble" [ngClass]="{'bubble-received': message.isReceived, 'bubble-sended': !message.isReceived}">
-            <div *ngIf="message.type != MESSAGE_TYPE.FINISHER" >
+            <div *ngIf="message.type != MESSAGE_TYPE.FINISHER_APPROVAL_PENDING && message.type != MESSAGE_TYPE.FINISHER_APPROVED && message.type != MESSAGE_TYPE.FINISHER_REJECTED" >
                 <span *ngFor="let msg of message.content.split(enterRegex)">{{ msg }} <br></span>
             </div>
-            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER" >
+            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER_APPROVAL_PENDING || message.type == MESSAGE_TYPE.FINISHER_APPROVED || message.type == MESSAGE_TYPE.FINISHER_REJECTED" >
                 <span>{{ (conversation?.creatorUser ? 'chat.messages.finisher_message_advertiser' : 'chat.messages.finisher_message_creator') | translate }} <br></span>
             </div>
             <div *ngIf="message.type == MESSAGE_TYPE.INITIALIZER && conversation?.status == CONVERSATION_STATUS.INIT_APPROVAL_PENDING && message.isReceived" class="mt-3">
                 <button class="main-button" (click)="initConversation(message)">{{ 'chat.messages.btn_init' | translate }}</button>
                 <button class="other-button" (click)="rejectConversation(message)">{{ 'chat.messages.btn_reject' | translate }}</button>
             </div>
-            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER && conversation?.status == CONVERSATION_STATUS.FINISH_APPROVAL_PENDING && message.isReceived && i + 1 == messages?.length" class="mt-3">
-                <button class="main-button" (click)="confirmFinishConversation(undefined)">{{ 'general.btn_accept' | translate }}</button>
-                <button class="other-button" (click)="cancelFinishConversation()">{{ 'chat.messages.btn_reject' | translate }}</button>
+            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER_APPROVAL_PENDING && message.isReceived" class="mt-3">
+                <button class="main-button" (click)="confirmFinishConversation(message)">{{ 'general.btn_accept' | translate }}</button>
+                <button class="other-button" (click)="cancelFinishConversation(message)">{{ 'chat.messages.btn_reject' | translate }}</button>
             </div>
             <div *ngIf="(message.type == MESSAGE_TYPE.INITIALIZER && conversation?.status == CONVERSATION_STATUS.INIT_APPROVAL_PENDING && !message.isReceived) ||
-                    (message.type == MESSAGE_TYPE.FINISHER && conversation?.status == CONVERSATION_STATUS.FINISH_APPROVAL_PENDING && !message.isReceived && i + 1 == messages?.length)" class="mt-1">
+                    (message.type == MESSAGE_TYPE.FINISHER_APPROVAL_PENDING && conversation?.status == CONVERSATION_STATUS.FINISH_APPROVAL_PENDING && !message.isReceived && i + 1 == messages?.length)" class="mt-1">
                 <span class="info-message">{{ 'chat.messages.pending' | translate }} <mat-icon>info_outline</mat-icon></span>
             </div>
-            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER && (conversation?.status == CONVERSATION_STATUS.ACTIVE || 
-                    (conversation?.status == CONVERSATION_STATUS.FINISH_APPROVAL_PENDING || conversation?.status == CONVERSATION_STATUS.FINISHED) && i + 1 != messages?.length)" class="mt-1">
+            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER_REJECTED" class="mt-1">
                 <span class="info-message">{{ 'chat.messages.not_finished' | translate }} <mat-icon>info_outline</mat-icon></span>
             </div>
-            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER && conversation?.status == CONVERSATION_STATUS.FINISHED && i + 1 == messages?.length" class="mt-1">
+            <div *ngIf="message.type == MESSAGE_TYPE.FINISHER_APPROVED" class="mt-1">
                 <span class="info-message">{{ 'chat.messages.finished' | translate }} <mat-icon>info_outline</mat-icon></span>
             </div>
         </div>

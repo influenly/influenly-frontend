@@ -27,7 +27,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
 
   CONVERSATION_STATUS = CONVERSATION_STATUS;
   MESSAGE_TYPE = MESSAGE_TYPE;
-  messages: MessageModel[]|undefined;
+  messages: MessageModel[] | undefined;
   enabledChat: boolean = false;
   inputValue: string = '';
   enterRegex = /\r?\n/;
@@ -40,7 +40,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
       console.log(message)
       message.isReceived = message.senderUserId !=  this.userId;
       this.messages?.push(message);
-      if (message.type === MESSAGE_TYPE.FINISHER && this.conversation) {
+      if (message.type === MESSAGE_TYPE.FINISHER_APPROVAL_PENDING && this.conversation) {
         this.conversation.status = CONVERSATION_STATUS.FINISH_APPROVAL_PENDING;
         this.conversationChange.emit();
       }
@@ -88,6 +88,11 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     this.chatRequestService.updateConversation$(payload).subscribe({
       next: (v) => {
         this.enabledChat = true;
+        const messageInitApproved = {
+          id: message.id,
+          type: MESSAGE_TYPE.REGULAR
+        }
+        this.socketService.emitMessage('editMessage', messageInitApproved);
         message.type = MESSAGE_TYPE.REGULAR;
         if (this.conversation) {
           this.conversation.status = CONVERSATION_STATUS.ACTIVE;
@@ -129,7 +134,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
                 conversationId: this.conversation?.id,
                 receiverUserId: this.userId == this.conversation?.advertiserUserId ? this.conversation?.creatorUserId : this.conversation?.advertiserUserId,
                 content: 'finisher_message',
-                type: MESSAGE_TYPE.FINISHER
+                type: MESSAGE_TYPE.FINISHER_APPROVAL_PENDING
               }
               this.socketService.emitMessage('sendMessage', message);
               this.messages?.push({
@@ -151,7 +156,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     }
   }
 
-  confirmFinishConversation(message: MessageModel|undefined) {
+  confirmFinishConversation(message: MessageModel) {
     const payload = {
       id: this.conversation?.id,
       status: CONVERSATION_STATUS.FINISHED
@@ -159,12 +164,19 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     this.chatRequestService.updateConversation$(payload).subscribe({
       next: (v) => {
         this.enabledChat = false;
-        if (!message) {
-          if (this.messages) {
-            message = this.messages[0];
-            message.type = MESSAGE_TYPE.REGULAR;
+        if (message.type === MESSAGE_TYPE.FINISHER_APPROVAL_PENDING) {
+          const messageFinisherApproved = {
+            id: message.id,
+            type: MESSAGE_TYPE.FINISHER_APPROVED
           }
+          this.socketService.emitMessage('editMessage', messageFinisherApproved);
+          message.type = MESSAGE_TYPE.FINISHER_APPROVED;
         } else {
+          const messageInitRejected = {
+            id: message.id,
+            type: MESSAGE_TYPE.REGULAR
+          }
+          this.socketService.emitMessage('editMessage', messageInitRejected);
           message.type = MESSAGE_TYPE.REGULAR;
         }
         if (this.conversation) {
@@ -178,7 +190,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     });
   }
 
-  cancelFinishConversation() {
+  cancelFinishConversation(message: MessageModel) {
     const payload = {
       id: this.conversation?.id,
       status: CONVERSATION_STATUS.ACTIVE
@@ -186,6 +198,12 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     this.chatRequestService.updateConversation$(payload).subscribe({
       next: (v) => {
         this.enabledChat = true;
+        const messageFinisherRejected = {
+          id: message.id,
+          type: MESSAGE_TYPE.FINISHER_REJECTED
+        }
+        this.socketService.emitMessage('editMessage', messageFinisherRejected);
+        message.type = MESSAGE_TYPE.FINISHER_REJECTED;
         if (this.conversation) {
           this.conversation.status = CONVERSATION_STATUS.ACTIVE;
           this.conversationChange.emit();
@@ -198,10 +216,12 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
   }
 
   private checkFinishConversation() {
-    if (this.messages && this.messages[this.messages.length - 1].type === MESSAGE_TYPE.FINISHER && this.conversation?.status != CONVERSATION_STATUS.ACTIVE) {
-      this.enabledChat = false;
-    } else {
-      this.enabledChat = true;
+    if (this.messages) {
+      if (this.conversation?.status != CONVERSATION_STATUS.ACTIVE) {
+        this.enabledChat = false;
+      } else {
+        this.enabledChat = true;
+      }
     }
   }
 
