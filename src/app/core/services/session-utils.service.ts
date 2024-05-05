@@ -26,4 +26,10 @@ export class SessionUtilsService {
         }
     }
 
+    public clearSessionStorage() {
+        this.sessionStorage.remove(SESSION_STORAGE_KEYS.user_type);
+        this.sessionStorage.remove(SESSION_STORAGE_KEYS.user_id);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, '');
+    }
+
 }

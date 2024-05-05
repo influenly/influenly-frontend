@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { SocketService } from 'src/app/shared/services/socket/socket.service';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 import { AuthService } from '../../services/auth.service';
+import { SessionUtilsService } from '../../services/session-utils.service';
 
 @Component({
   selector: 'app-user-options',
@@ -18,6 +19,7 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
   isShowSubs: Subscription|undefined;
 
   constructor(private sessionStorage: SessionStorageService,
+              private sessionUtils: SessionUtilsService,
               private router: Router,
               private socketService: SocketService,
               private authService: AuthService) {
@@ -40,19 +42,13 @@ export class UserOptionsComponent implements OnInit, OnDestroy {
     this.authService.logout$().subscribe({
       next: async (v) => {
         this.socketService.disconnectSocket();
-        this.clearSessionStorage();
+        this.sessionUtils.clearSessionStorage();
         this.router.navigate(['']);
         },
         error: (e) => {
           this.router.navigate(['']);
         }
     });
-  }
-
-  private clearSessionStorage() {
-    this.sessionStorage.remove(SESSION_STORAGE_KEYS.user_type);
-    this.sessionStorage.remove(SESSION_STORAGE_KEYS.user_id);
-    this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, '');
   }
 
   ngOnDestroy() {

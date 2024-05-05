@@ -9,7 +9,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InformationModalComponent } from '../../components/UI/information-modal/information-modal.component';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { SessionStorageService } from '../storages/session-storage.service';
+import { SessionUtilsService } from 'src/app/core/services/session-utils.service';
 
 @Injectable()
 export class RestApiClient {
@@ -18,7 +18,7 @@ export class RestApiClient {
 				private dialog: MatDialog,
 				private translate: TranslateService,
 				private router: Router,
-				private sessionStorage: SessionStorageService) { }
+				private sessionUtils: SessionUtilsService) { }
 
 	get<T>(
 		options: {
@@ -256,6 +256,7 @@ export class RestApiClient {
 			console.error(`Backend returned code ${error.status}, body was: `, error.error);
 			if (error.status === 401) {
 				this.showSessionExpiredModal();
+				throw error;
 			} else {
 				throw error;
 			}
@@ -265,6 +266,8 @@ export class RestApiClient {
       }
 
 	  private showSessionExpiredModal() {
+		this.sessionUtils.clearSessionStorage();
+		this.router.navigate(['/']);
 		let dialogRef = this.dialog.open(InformationModalComponent, {
             width: '600px',
             data: {
@@ -274,8 +277,6 @@ export class RestApiClient {
             }
           });
           const subs = dialogRef.componentInstance.response.subscribe(res => {
-				this.sessionStorage.clear();
-				this.router.navigate(['/']);
 				subs.unsubscribe();
 				this.dialog.closeAll();
           });
