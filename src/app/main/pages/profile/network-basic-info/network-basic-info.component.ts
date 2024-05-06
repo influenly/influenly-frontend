@@ -12,6 +12,7 @@ import { NetworkSelectorComponent } from '../network-selector/network-selector.c
 export class NetworkBasicInfoComponent implements OnInit, OnChanges {
 
   @Input() userData: UserModel|undefined;
+  @Input() isOwnView: boolean = false;
   @ViewChild(NetworkSelectorComponent) networkSelector: NetworkSelectorComponent | undefined = undefined;
 
   networksTransformed: { platform: string, networks: NetworkProfileModel[] }[] = [];

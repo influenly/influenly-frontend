@@ -1,7 +1,7 @@
 <div class="container-box">
     <div class="profile-delimiter">
         <app-user-data [userData]="userData" [isOwnView]="isOwnView"/>
-        <app-network-basic-info *ngIf="isCreatorUser" [userData]="userData" />
+        <app-network-basic-info *ngIf="isCreatorUser" [userData]="userData" [isOwnView]="isOwnView" />
         <app-advanced-analytics *ngIf="!isOwnView && isCreatorUser"/>
         <div *ngIf="!isCreatorUser" class="card tags">
             <span style="font-weight: 500;">{{ 'profile.content_advertiser_label' | translate }}</span>
