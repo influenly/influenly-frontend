@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { SLIDE } from '../onboarding.component';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,11 +9,12 @@ import { ContentFormComponent } from './content-form/content-form.component';
   templateUrl: './content.component.html',
   styleUrls: ['./content.component.scss']
 })
-export class ContentComponent implements OnInit {
+export class ContentComponent implements OnInit, AfterViewInit {
 
   @ViewChild(ContentFormComponent) contentForm: ContentFormComponent | undefined = undefined;
 
   @Input() userType: USER_TYPE|undefined;
+  @Input() data: any = {};
   @Output() continue: EventEmitter<any> = new EventEmitter();
 
   textObject = {
@@ -26,6 +27,16 @@ export class ContentComponent implements OnInit {
 
   ngOnInit() {
     this.loadTextByUserType();
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => { // to avoid ExpressionChangedAfterItHasBeenCheckedError
+      this.data.tags?.forEach((tag: string) => {
+        if (this.contentForm) {
+          this.contentForm.add(tag);
+        }
+      });
+    }, 0);
   }
 
   private loadTextByUserType() {

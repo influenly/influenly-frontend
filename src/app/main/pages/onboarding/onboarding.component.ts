@@ -133,7 +133,7 @@ export class OnboardingComponent implements OnInit {
       return;
     }
     if ($event.slide === SLIDE.PERSONAL_INFO) {
-      this.data = {...$event};
+      this.data = {...this.data, ...$event};
       this.personalInfoSlide = 'out';
       this.networksSlide = 'in';
       this.slide = SLIDE.NETWORKS;
@@ -147,8 +147,7 @@ export class OnboardingComponent implements OnInit {
       this.stepsVisualizer?.setSecondStepCompleted(true);
     }
     if ($event.slide === SLIDE.CONTENT) {
-      //TODO if integration ok do onboarding
-      this.data = {...$event, ...this.data};
+      this.data = {...this.data, ...$event};
       if (this.userType === USER_TYPE.CREATOR) {
         this.contentSlide = 'out';
         this.youtubeSlide = 'in';

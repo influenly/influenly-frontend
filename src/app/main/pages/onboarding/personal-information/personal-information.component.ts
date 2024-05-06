@@ -14,6 +14,7 @@ import { DateAdapter } from '@angular/material/core';
 export class PersonalInformationComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() userType: USER_TYPE|undefined;
+  @Input() data: any = {};
   @Output() continue: EventEmitter<any> = new EventEmitter();
 
   textObject = {
@@ -44,6 +45,11 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
   }
 
   ngOnInit() {
+    console.log('on init')
+    this.username?.setValue(this.data.username);
+    this.birthdate?.setValue(this.data.birthdate);
+    this.description?.setValue(this.data.description);
+    
     this.formStatusChangeSubs = this.personalInfoForm.statusChanges.subscribe(status => {
       if (status === 'VALID') {
         this.continue.emit({ isStepCompleteOnly: true, slide: SLIDE.PERSONAL_INFO, valid: true});
@@ -109,6 +115,7 @@ export class PersonalInformationComponent implements OnInit, OnChanges, OnDestro
   }
 
   ngOnDestroy() {
+    console.log('on destroy')
     if (this.formStatusChangeSubs) this.formStatusChangeSubs.unsubscribe();
   }
 }
