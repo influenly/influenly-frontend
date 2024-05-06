@@ -45,7 +45,7 @@ export class InitTalkModalComponent implements OnInit {
   onSubmit() {
     const message = {
       creatorUserId: this.data.id,
-      message: this.message?.value
+      message: this.message?.value.trim()
     }
     console.log(message)
     this.chatRequestService.newConversation$(message).subscribe({

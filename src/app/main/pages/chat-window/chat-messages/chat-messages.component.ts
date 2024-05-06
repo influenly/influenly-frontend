@@ -240,7 +240,7 @@ export class ChatMessagesComponent implements OnInit,  OnChanges {
     const message = {
       conversationId: this.conversation?.id,
       receiverUserId: this.userId == this.conversation?.advertiserUserId ? this.conversation?.creatorUserId : this.conversation?.advertiserUserId,
-      content: this.inputValue,
+      content: this.inputValue.trim(),
       type: MESSAGE_TYPE.REGULAR
     }
     this.socketService.emitMessage('sendMessage', message);
