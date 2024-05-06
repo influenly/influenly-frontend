@@ -41,9 +41,9 @@ export class SignInComponent {
         this.sessionUtils.onLogin(v.body);
       },
       error: (e) => {
-        if (e.error.message === 'INVALID_PASSWORD') {
+        if (e.error.error === 'INVALID_PASSWORD') {
           this.password?.setErrors({invalid: true});
-        } else if (e.error.message === 'INVALID_EMAIL') {
+        } else if (e.error.error === 'INVALID_EMAIL') {
           this.email?.setErrors({invalid: true});
         } else {
           this.dialog.open(InformationModalComponent, {
