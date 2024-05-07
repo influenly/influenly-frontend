@@ -231,7 +231,12 @@
             "subscribers":"Suscriptores",
             "videos":"Videos",
             "avg_visits":"Visitas",
-            "avg_likes":"Promedio de Likes"
+            "avg_likes":"Promedio de Likes",
+            "integration":{
+                "ok":"Red integrada exitosamente",
+                "error":"Error al integrar la red",
+                "already_integrated":"La red ya se encuentra integrada en otra cuenta"
+            }
         },
         "advanced_analytics":{
             "title":"Analíticas avanzadas"

@@ -229,7 +229,12 @@
             "subscribers":"Subscribers",
             "videos":"Videos",
             "avg_visits":"Views",
-            "avg_likes":"Average Likes"
+            "avg_likes":"Average Likes",
+            "integration":{
+                "ok":"Network successfully integrated",
+                "error": "Error integrating network",
+                "already_integrated":"The network is already integrated into another account"
+            }
         },
         "advanced_analytics":{
             "title":"Advanced analytics"
