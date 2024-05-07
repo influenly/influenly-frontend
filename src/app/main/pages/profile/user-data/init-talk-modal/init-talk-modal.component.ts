@@ -61,11 +61,15 @@ export class InitTalkModalComponent implements OnInit {
         this.dialogRef.close();
       },
       error: (e) => {
+        let msgKey = 'profile.init_talk.message_sended_error';
+        if (e.error.error === 'EXISTING_CONVERSATION_NOT_FINISHED') {
+          msgKey = 'profile.init_talk.already_initialized_error';
+        }
         this.dialog.open(InformationModalComponent, {
           width: '600px',
           data: {
             icon: 'warning',
-            text: this.translate.instant('profile.init_talk.message_sended_error'),
+            text: this.translate.instant(msgKey),
             textButtonClose: this.translate.instant('general.btn_return')
           }
         });

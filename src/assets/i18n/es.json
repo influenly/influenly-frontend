@@ -224,6 +224,7 @@
                 "required_error":"Debe ingresar un mensaje"
             },
             "message_sended_ok":"Mensaje enviado",
+            "already_initialized_error":"Ya se ha enviado un mensaje para iniciar la conversación",
             "message_sended_error":"No se pudo enviar el mensaje, intente de nuevo."
         },
         "networks":{

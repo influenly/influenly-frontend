@@ -222,6 +222,7 @@
                 "required_error":"You must enter a message"
             },
             "message_sended_ok":"Message sended",
+            "already_initialized_error":"A message has already been sent to start the conversation",
             "message_sended_error":"Could not send message, please try again."
         },
         "networks":{
