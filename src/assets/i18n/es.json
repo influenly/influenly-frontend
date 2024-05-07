@@ -44,7 +44,8 @@
     },
     "core":{
         "auth":{
-            "session_closed_msg":"La sesión ha terminado, vuelva a ingresar a la aplicación"
+            "session_closed_msg":"La sesión ha terminado, vuelva a ingresar a la aplicación",
+            "too_many_req_msg":"Se han registrado demaciadas peticiones juntas, espere un momento para seguir utilizando Influenly"
         },
         "user_options":{
             "account_info":"Mi perfil",

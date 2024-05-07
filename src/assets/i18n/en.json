@@ -44,7 +44,8 @@
     },
     "core":{
         "auth":{
-            "session_closed_msg":"Session is closed"
+            "session_closed_msg":"Session is closed",
+            "too_many_req_msg":"Too many requests have been registered together, please wait a moment to continue using Influenly"
         },
         "user_options":{
             "account_info":"Account info",

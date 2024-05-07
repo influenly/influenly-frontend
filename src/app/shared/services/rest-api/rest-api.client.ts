@@ -257,6 +257,9 @@ export class RestApiClient {
 			if (error.status === 401) {
 				this.showSessionExpiredModal();
 				throw error;
+			} else if(error.status === 429) {
+				this.showTooManyRequestsModal();
+				throw error;
 			} else {
 				throw error;
 			}
@@ -273,6 +276,23 @@ export class RestApiClient {
             data: {
               icon: 'warning',
               text: this.translate.instant('core.auth.session_closed_msg'),
+              textButtonClose: this.translate.instant('general.btn_accept')
+            }
+          });
+          const subs = dialogRef.componentInstance.response.subscribe(res => {
+				subs.unsubscribe();
+				this.dialog.closeAll();
+          });
+	  }
+
+	  private showTooManyRequestsModal() {
+		this.sessionUtils.clearSessionStorage();
+		this.router.navigate(['/']);
+		let dialogRef = this.dialog.open(InformationModalComponent, {
+            width: '600px',
+            data: {
+              icon: 'warning',
+              text: this.translate.instant('core.auth.too_many_req_msg'),
               textButtonClose: this.translate.instant('general.btn_accept')
             }
           });
