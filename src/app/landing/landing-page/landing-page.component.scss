@@ -24,6 +24,22 @@ button {
     width: 630px;
 }
 
+.img-leaf {
+    width: 8rem;
+    position: absolute;
+    z-index: -1;
+}
+
+.left {
+    left: 0;
+    top: 30%
+}
+
+.right {
+    right: 0;
+    top: 20%;
+}
+
 @media (max-width: 768px) {
     .home-image {
         display: none;

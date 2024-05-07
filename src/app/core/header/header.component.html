@@ -1,5 +1,9 @@
-<div class="header d-flex justify-content-between">
-    <img src="../../../assets/logo/influenly.svg" (click)="goToMain()" />
+<div class="header d-flex justify-content-between" [ngStyle]="{'background-color': isLanding ? 'white' : 'black'}">
+    <img
+        [src]="isLanding ? '../../../assets/logo/influenly-logo-word.svg' : '../../../assets/logo/influenly.svg'" 
+        [ngStyle]="{'height': isLanding ? '1.5rem' : '1.3rem'}" 
+        (click)="goToMain()"
+    />
     <div class="d-flex">
         <app-discovery-button *ngIf="userType == 'ADVERTISER'" [isHandset]="isHandset" />
         <app-chat [isHandset]="isHandset" />
