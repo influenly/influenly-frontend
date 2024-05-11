@@ -23,6 +23,7 @@ export class NetworkBasicInfoComponent implements OnInit, OnChanges {
   @Input() isOwnView: boolean = false;
   @ViewChild(NetworkSelectorComponent) networkSelector: NetworkSelectorComponent | undefined = undefined;
 
+  Platform = Platform;
   networksTransformed: { platform: string, networks: NetworkProfileModel[] }[] = [];
   selectedNetwork: { platform: string, networks: NetworkProfileModel[] } | undefined;
   data: any[] = [];
@@ -92,7 +93,7 @@ export class NetworkBasicInfoComponent implements OnInit, OnChanges {
     window.open(network.url?.includes('https://') ? network.url : 'https://' + network.url, '_blank');
   }
 
-  async integrateNetwork(network: NetworkProfileModel) {
+  async integrateNetwork() {
     await initTokenClient(async (response: any) => {
       const payload: IntegrationModel = {
         authorizationCode : response.code,
@@ -100,6 +101,7 @@ export class NetworkBasicInfoComponent implements OnInit, OnChanges {
       }
       this.onboardingService.integration$(payload).subscribe({
         next: (v) => {
+          if (this.userData) this.profileService.reloadProfileData(this.userData.id.toString());
           this.dialog.open(InformationModalComponent, {
             width: '600px',
             data: {

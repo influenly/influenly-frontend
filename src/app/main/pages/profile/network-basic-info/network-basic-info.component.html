@@ -40,8 +40,9 @@
                 <div class="label no-sync-desc">
                     <span>{{ 'profile.networks.not_sync' | translate }}</span>
                 </div>
-                <button *ngIf="isOwnView" class="main-button-primary" (click)="integrateNetwork(network)">{{ 'profile.networks.btn_sync' | translate }}</button>
+                <button mat-button *ngIf="isOwnView" class="main-button-primary" (click)="integrateNetwork()">{{ 'profile.networks.btn_sync' | translate }}</button>
             </div>
         </div>
+        <button mat-button *ngIf="isOwnView && selectedNetwork?.platform === Platform.Youtube" class="main-button-primary" (click)="integrateNetwork()">{{ 'profile.networks.btn_sync' | translate }}</button>
     </div>
 </div>
