@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Platform } from 'src/app/shared/constants/platforms.enum';
 
 @Component({
   selector: 'app-networks-form',
@@ -8,14 +9,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NetworksFormComponent {
 
+  @Input() isOnEditModal: boolean = false;
   @Output() atLeastOne: EventEmitter<boolean> = new EventEmitter();
 
-  icons: string[] = ['youtube', 'instagram', 'twitter','tiktok','twitch','website'];
+  icons: string[] = ['instagram', 'twitter','tiktok','twitch','website'];
   networks: { url: string, icon: string, integrated: boolean, name?: string }[] | undefined = [];
 
   networksForm: FormGroup = this.fb.group({
     icon: ['youtube'],
-    url: ['', Validators.pattern('^(?:(?:https?:\/\/)?(?:www\.)?(?:instagram\.com|twitter\.com|twitch\.tv)\/[A-Za-z0-9_-]+\/?)$|(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:channel\/)?|tiktok\.com\/)@?[A-Za-z0-9_-]+(?:\.[A-Za-z]{2,4})?$|^(?!.*(?:youtube|tiktok|twitch|instagram|twitter))(?![a-z]+$)([a-z]{3}\.)?[a-z_-]+\.[a-z]{2,4}(?:\.[a-z]{2})?$')]
+    url: ['', Validators.pattern('^(?:(?:https?:\/\/)?(?:www\.)?(?:instagram\.com|twitter\.com|x\.com|twitch\.tv)\/[A-Za-z0-9_-]+\/?)$|(?:https?:\/\/)?(?:www\.)?(?:tiktok\.com\/)@?[A-Za-z0-9_-]+(?:\.[A-Za-z]{2,4})?$|^(?!.*(?:tiktok|twitch|instagram|twitter|x))(?![a-z]+$)([a-z]{3}\.)?[a-z_-]+\.[a-z]{2,4}(?:\.[a-z]{2})?$')]
   });
 
   get icon() { return this.networksForm.get('icon'); }
@@ -54,6 +56,10 @@ export class NetworksFormComponent {
     return network;
   }
 
+  autocompleteUrl(platform: string) {
+    this.url?.setValue('https://www.' + platform + (platform == Platform.Twitch.toLowerCase() ? '.tv/' : '.com/'));
+  }
+
   private formatUrl(url: string) : string{
     if (url.charAt(url.length - 1) === '/') {
       url = url.slice(0, url.length - 1);
@@ -69,7 +75,7 @@ export class NetworksFormComponent {
       this.icon?.setValue('youtube');
     } else if ((event.target as HTMLInputElement).value.includes('instagram')) {
       this.icon?.setValue('instagram');
-    } else if ((event.target as HTMLInputElement).value.includes('twitter')) {
+    } else if ((event.target as HTMLInputElement).value.includes('twitter') || (event.target as HTMLInputElement).value.includes('.x.')) {
       this.icon?.setValue('twitter');
     } else if ((event.target as HTMLInputElement).value.includes('twitch')) {
       this.icon?.setValue('twitch');

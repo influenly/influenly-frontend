@@ -145,6 +145,7 @@
             "url":{
                 "placeholder":"URL of your channel",
                 "pattern_error":"Invalid URL",
+                "youtube_error":"Youtube networks are assigned in the last step of onboarding",
                 "already_exists_error":"URL already exists"
             }
         },

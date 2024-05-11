@@ -2,7 +2,7 @@
     <div class="d-flex flex-row justify-content-between row-box">
         <div class="select-icons mr-2">
             <mat-form-field class="w-100">
-                <mat-select formControlName="icon">
+                <mat-select formControlName="icon" (selectionChange)="autocompleteUrl($event.value)">
                     <mat-select-trigger>
                         <div class="d-flex">
                             <app-svg-icon class="{{ icon?.value }}" [path]="'assets/icons/' + icon?.value + '.svg'"></app-svg-icon>
@@ -28,8 +28,11 @@
                     [placeholder]="'onboarding.networks.url.placeholder' | translate"
                     (input)="selectNetworkIcon($event)"
                 />
-                <mat-error *ngIf="url?.hasError('pattern')">
+                <mat-error *ngIf="url?.hasError('pattern') && (!url?.value.includes('youtube.com') || isOnEditModal)">
                     <mat-icon>warning</mat-icon>{{ 'onboarding.networks.url.pattern_error' | translate }}
+                </mat-error>
+                <mat-error *ngIf="!isOnEditModal && url?.value.includes('youtube.com')">
+                    <mat-icon>warning</mat-icon> {{ 'onboarding.networks.url.youtube_error' | translate }}
                 </mat-error>
                 <mat-error *ngIf="url?.hasError('already_exists')">
                     <mat-icon>warning</mat-icon>{{ 'onboarding.networks.url.already_exists_error' | translate }}
