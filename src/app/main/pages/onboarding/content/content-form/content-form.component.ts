@@ -31,6 +31,9 @@ export class ContentFormComponent {
   }
 
   add(tag: string) {
+    if (this.tags?.value.length === 5) {
+      return;
+    }
     const index = this.tagList.indexOf(tag);
     if (index !== -1) {
       this.tagList.splice(index, 1);
