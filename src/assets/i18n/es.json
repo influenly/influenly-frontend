@@ -54,11 +54,11 @@
     },
     "landing":{
         "title_1":"El puente entre",
-        "title_2":" Influencers",
+        "title_2":" Creadores",
         "title_3":" y",
         "title_4":" Marcas",
-        "paragraph_1":"Una plataforma donde influencers y anunciantes se encuentran.",
-        "paragraph_2":"Consigue visibilidad ante miles de anunciantes o encuentra al influencer indicado utilizando nuestras analíticas avanzadas.",
+        "paragraph_1":"Una plataforma donde creadores y anunciantes se encuentran.",
+        "paragraph_2":"Consigue visibilidad ante miles de anunciantes o encuentra al creador indicado utilizando nuestras analíticas avanzadas.",
         "btn_creator":"Soy creador ",
         "btn_advertiser":"Busco creadores",
         "sign_up":{
@@ -118,7 +118,7 @@
             "title_creator":"Queremos saber más sobre ti...",
             "title_advertiser":"Queremos saber más sobre tu marca...",
             "paragraph_creator":"Necesitamos algunos datos tuyos para ayudarte a conseguir los anunciantes perfectos.",
-            "paragraph_advertiser":"Necesitamos algunos datos para poder ayudarte a conseguir los influencers que estas buscando.",
+            "paragraph_advertiser":"Necesitamos algunos datos para poder ayudarte a conseguir los creadores que estas buscando.",
             "username":{
                 "label_creator":"Nombre de usuario",
                 "label_advertiser":"Nombre de la marca",
@@ -143,7 +143,7 @@
         "networks":{
             "title":"Dejanos conocer tus redes!",
             "paragraph_creator":"Amplía tu alcance como creador de contenido. Conecta tus redes a nuestra plataforma y colabora con anunciantes.",
-            "paragraph_advertiser":"Amplía tus oportunidades al conectar tus redes con nuestra plataforma. Potencia tu presencia en línea, conectándote y colaborando con influencers.",
+            "paragraph_advertiser":"Amplía tus oportunidades al conectar tus redes con nuestra plataforma. Potencia tu presencia en línea, conectándote y colaborando con creadores.",
             "url":{
                 "placeholder":"URL de tu canal",
                 "pattern_error":"URL inválida",
@@ -152,7 +152,7 @@
         },
         "content":{
             "title_creator":"Cuéntanos qué tipo de contenido generas",
-            "title_advertiser":"Cuéntanos qué tipo de influencer buscas",
+            "title_advertiser":"Cuéntanos qué tipo de creador buscas",
             "paragraph_creator":"Elige los tags que mejor definan el contenido.",
             "paragraph_advertiser":"Elige los tags que mejor definan el contenido.",
             "tags":{
