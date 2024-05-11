@@ -73,7 +73,7 @@
         </div>
 
         <label class="d-block">{{ 'onboarding.steps.social_media' | translate }}</label>
-        <app-networks-form (atLeastOne)="networksEvent()" />
+        <app-networks-form [isOnEditModal]="true" (atLeastOne)="networksEvent()" />
 
         <app-content-form [otherLabel]="(isCreatorView ? 'profile.edit.content_you_make' : 'profile.edit.content_you_are_looking_for') | translate"/>
     </form>

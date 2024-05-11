@@ -54,6 +54,14 @@ export class ProfileService implements OnDestroy {
     }
   }
 
+  public reloadProfileData(userId: string) {
+    let userProfileDataObs = this.profileRequestService.getProfileData$(userId).pipe(
+      map(res => res.body),
+      shareReplay(1)
+    );
+    userProfileDataObs.pipe(take(1)).subscribe(res => this.userProfileData.next(res));
+  }
+
   public loadSocialNetworks(networks: NetworkProfileModel[] | undefined) {
       let transformedSocialNetworks = [];
       if (networks) {

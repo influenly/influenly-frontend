@@ -147,6 +147,7 @@
             "url":{
                 "placeholder":"URL de tu canal",
                 "pattern_error":"URL inválida",
+                "youtube_error":"Las redes de youtube se asignan en el último paso del onboarding",
                 "already_exists_error":"URL ya se encuentra agregada"
             }
         },
