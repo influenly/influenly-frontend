@@ -44,6 +44,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.loadUserData(userResponse.body?.data.user);
       });
     }
+
+    this.profileDataSubs = this.profileService.getProfileData().subscribe(newUserData => {
+      this.loadUserData(newUserData?.data.user);
+    });
   }
 
   private async loadUserData(data: UserModel | undefined) {
