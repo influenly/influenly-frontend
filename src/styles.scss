@@ -249,3 +249,9 @@ app-svg-icon.verified {
     -webkit-mask-repeat: no-repeat;
     vertical-align: middle;
 }
+
+.spinner-container {
+    display: flex;
+    height: 100vh !important;
+    margin-top: -3rem;
+}

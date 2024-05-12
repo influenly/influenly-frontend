@@ -4,7 +4,7 @@ import { Subscription, firstValueFrom } from 'rxjs';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 import { ProfileService } from './services/profile.service';
-import { UserDataModel, UserModel } from './models/user-data.model';
+import { UserModel } from './models/user-data.model';
 import { ProfileRequestService } from './services/profile-request.service';
 
 @Component({
@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userData: UserModel | undefined;
   isOwnView: boolean = false;
   isCreatorUser: boolean = false;
+  loadingData: boolean = true;
 
   profileDataSubs: Subscription | undefined;
 
@@ -43,10 +44,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.loadUserData(userResponse.body?.data.user);
       });
     }
-
-    this.profileDataSubs = this.profileService.getProfileData().subscribe(newUserData => {
-      this.loadUserData(newUserData?.data.user);
-    });
   }
 
   private async loadUserData(data: UserModel | undefined) {
@@ -64,6 +61,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if (this.userData) {
       this.isCreatorUser = this.userData.type == USER_TYPE.CREATOR;
     }
+    this.loadingData = false;
   }
 
   ngOnDestroy() {

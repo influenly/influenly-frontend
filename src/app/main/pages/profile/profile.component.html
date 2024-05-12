@@ -1,4 +1,5 @@
-<div class="container-box">
+<app-spinner *ngIf="loadingData" class="spinner-container"></app-spinner>
+<div *ngIf="!loadingData" class="container-box">
     <div class="profile-delimiter">
         <app-user-data [userData]="userData" [isOwnView]="isOwnView"/>
         <app-network-basic-info *ngIf="isCreatorUser" [userData]="userData" [isOwnView]="isOwnView" />

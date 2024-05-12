@@ -8,6 +8,8 @@ import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 import { LocationUtilsService } from './services/utils/location-utils.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -15,13 +17,15 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   declarations: [
     InformationModalComponent,
     SvgIconComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     RestApiClient,
@@ -29,7 +33,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   exports: [
     InformationModalComponent,
-    SvgIconComponent
+    SvgIconComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }
