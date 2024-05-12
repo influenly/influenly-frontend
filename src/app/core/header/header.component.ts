@@ -32,7 +32,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.loadSessionStorageValues();
   }
 
-  loadSessionStorageValues() {
+  async loadSessionStorageValues() {
+    this.userType = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_type);
     this.isLanding = this.router.url == '/';
     this.navigationEndSubs = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -44,7 +45,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   
 
   ngOnDestroy() {
-    console.info('header destroy');
     if (this.isHandsetSubs) this.isHandsetSubs.unsubscribe();
     if (this.navigationEndSubs) this.navigationEndSubs.unsubscribe();
   }
