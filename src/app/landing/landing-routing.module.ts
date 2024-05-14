@@ -7,6 +7,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HowItWorksComponent } from './info/how-it-works/how-it-works.component';
 import { AboutUsComponent } from './info/about-us/about-us.component';
+import { PrivatePolicyComponent } from './info/private-policy/private-policy.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,10 @@ const routes: Routes = [
     {
         path: 'about-us',
         component: AboutUsComponent
+    },
+    {
+        path: 'private-policy',
+        component: PrivatePolicyComponent
     }
 ];
 

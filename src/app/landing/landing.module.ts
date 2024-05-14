@@ -15,6 +15,7 @@ import { LocalStorageService } from '../shared/services/storages/local-storage.s
 import { SessionUtilsService } from '../core/services/session-utils.service';
 import { HowItWorksComponent } from './info/how-it-works/how-it-works.component';
 import { AboutUsComponent } from './info/about-us/about-us.component';
+import { PrivatePolicyComponent } from './info/private-policy/private-policy.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AboutUsComponent } from './info/about-us/about-us.component';
     SignUpComponent,
     SignInComponent,
     HowItWorksComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    PrivatePolicyComponent
   ],
   imports: [
     CommonModule,
