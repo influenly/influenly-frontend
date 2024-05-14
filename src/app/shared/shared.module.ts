@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EncryptionService } from './services/encryption.service';
 
 
 
@@ -29,7 +30,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   ],
   providers: [
     RestApiClient,
-    LocationUtilsService
+    LocationUtilsService,
+    EncryptionService
   ],
   exports: [
     InformationModalComponent,

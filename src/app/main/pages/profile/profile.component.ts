@@ -1,5 +1,6 @@
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, firstValueFrom } from 'rxjs';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
@@ -21,10 +22,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   profileDataSubs: Subscription | undefined;
 
-  constructor(private router: Router,
-              private sessionStorage: SessionStorageService,
-              private profileService: ProfileService,
-              private profileRequestService: ProfileRequestService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private sessionStorage: SessionStorageService,
+    private profileService: ProfileService,
+    private profileRequestService: ProfileRequestService,
+    private encryptionService: EncryptionService
+  ) {}
 
   ngOnInit() {
     this.getComponentView();
@@ -40,14 +45,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
       });
     } else {
       const userId = href.substring(href.lastIndexOf('/') + 1);
-      this.profileRequestService.getProfileData$(userId).subscribe(async (userResponse) => {
-        this.loadUserData(userResponse.body?.data.user);
+      this.route.queryParams.forEach(async (params) => {
+        const userId = await this.encryptionService.decrypt(params['trackingId']);
+        this.profileRequestService.getProfileData$(userId).subscribe(async (userResponse) => {
+          this.loadUserData(userResponse.body?.data.user);
+        });
       });
     }
 
-    this.profileDataSubs = this.profileService.getProfileData().subscribe(newUserData => {
-      this.loadUserData(newUserData?.data.user);
-    });
+    if (!this.loadingData) {
+      this.profileDataSubs = this.profileService.getProfileData().subscribe(newUserData => {
+        this.loadUserData(newUserData?.data.user);
+      });
+    }
   }
 
   private async loadUserData(data: UserModel | undefined) {

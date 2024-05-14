@@ -5,6 +5,7 @@ import { Filter } from '../discovery-filters/discovery-filters.component';
 import { showFilter } from '../discovery.component';
 import { Subscription, map } from 'rxjs';
 import { Router } from '@angular/router';
+import { EncryptionService } from 'src/app/shared/services/encryption.service';
 
 @Component({
   selector: 'app-search-results',
@@ -22,7 +23,8 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   constructor(private discoveryService: DiscoveryService,
             private breakpointObserver: BreakpointObserver,
-            private router: Router) {
+            private router: Router,
+            private encryptionService: EncryptionService) {
     this.isHandsetSubs = this.breakpointObserver.observe(['(max-width: 768px)'])
     .pipe(map(result => result.matches)).subscribe(match => {
         this.isHandset = match;
@@ -50,8 +52,12 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     showFilter.set(true);
   }
 
-  openUserProfile(userId: number) {
-    this.router.navigate(['/app/user/' + userId]);
+  async openUserProfile(userId: number) {
+    const encryptedUserId = await this.encryptionService.encrypt(userId.toString());
+    this.router.navigate(
+      ['/app/user'],
+      { queryParams: { trackingId: encryptedUserId }
+    });
   }
 
   ngOnDestroy() {
