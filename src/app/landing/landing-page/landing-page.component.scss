@@ -1,9 +1,13 @@
 .page {
-    min-height: calc(100vh - 3rem - 4.668rem);
+    min-height: calc(100vh - 3rem);
 }
 
 .primary-color {
     color: var(--primary-color);
+}
+
+.container-text {
+    width: 50%;
 }
 
 .home-image {
@@ -13,6 +17,7 @@
 button {
     min-width: 11rem;
     height: 3rem;
+    margin-bottom: 1rem;
 }
 
 .main-button-primary {
@@ -40,11 +45,23 @@ button {
 }
 
 @media (max-width: 768px) {
+    .container-text {
+        width: 100%;
+    }
+
     .home-image {
         display: none;
     }
 
     button {
-        margin-bottom: 1rem;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .home-image {
+        height: auto;
+        width: 100%;
+        max-width: 450px;
     }
 }
