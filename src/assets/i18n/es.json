@@ -113,6 +113,18 @@
             },
             "btn_signin":"Iniciar sesión",
             "not_registered":"¿Todavía no tienes cuenta? "
+        },
+        "how_it_works":{
+            "title_1":"Cómo funciona ",
+            "title_2":"influenly",
+            "subtitle_creator":"Para Creadores",
+            "creator_paragraph_1":"Influenly proporciona a los creadores de contenido una plataforma dinámica para aumentar su visibilidad ante anunciantes potenciales interesados en promover sus productos o servicios. Con perfiles personalizables y completos, los creadores pueden destacar su estilo único, nicho específico y audiencia, posicionándose como la opción ideal para colaboraciones con marcas. Esta personalización permite a cada creador expresar su identidad de marca de manera efectiva, asegurando que las oportunidades de colaboración que reciban estén perfectamente alineadas con su visión y enfoque creativo.",
+            "creator_paragraph_2":"La plataforma también ofrece acceso a analíticas detalladas de la audiencia y contenido a partir de la posibilidad de conectar tus plataformas de contenido favoritas. Esto no solo permite a los creadores mostrar de manera transparente el alcance y compromiso de su audiencia, sino que también refuerza su propuesta de valor frente a los anunciantes, demostrando con datos concretos el impacto potencial de sus campañas. Al proporcionar estadísticas precisas sobre las características demográficas de la audiencia, influenly empodera a los creadores para negociar colaboraciones que realmente se beneficien de su influencia y engagement específico.",
+            "creator_paragraph_3":"Adicionalmente, influenly simplifica la gestión de relaciones con anunciantes mediante la centralización de todas las comunicaciones y colaboraciones en un solo lugar. Esta funcionalidad asegura una coordinación eficaz y profesional, permitiendo a los creadores de contenido gestionar sus proyectos y asociaciones de manera más eficiente y con mayor control sobre cada etapa del proceso de colaboración. Esta integración de herramientas y servicios hace de influenly el aliado perfecto para los creadores que buscan optimizar su interacción con marcas y maximizar las oportunidades en el mundo del marketing digital.",
+            "subtitle_advertiser":"Para Anunciantes",
+            "advertiser_paragraph_1":"Influenly ofrece una solución integral para los anunciantes que necesitan encontrar al creador de contenido  ideal  para su próxima campaña o promoción de su producto/servicio.",
+            "advertiser_paragraph_2":"La robustez de influenly no solo se manifiesta en su interfaz intuitiva y su amplia base de creadores, sino también en la transparencia de las analíticas tanto de contenido como de audiencia. Los anunciantes tienen acceso a datos detallados sobre el rendimiento y alcance de los creadores, incluyendo métricas sobre las características demográficas y el nivel de compromiso de la audiencia. Esta información crítica permite a los anunciantes formular estrategias de campaña basadas en datos reales, optimizando la selección de colaboradores para maximizar el impacto de sus esfuerzos de marketing.",
+            "advertiser_paragraph_3":"Además, influenly se compromete a mantener un entorno seguro y confiable para todos los usuarios. Con un sistema de reputación integrado, nuestra plataforma garantiza la autenticidad de los perfiles y proporciona valiosas evaluaciones de las experiencias de colaboración anteriores. Este enfoque asegura que los anunciantes puedan tomar decisiones informadas, respaldadas por un historial comprobado de éxito y fiabilidad de los creadores de contenido."
         }
     },
     "onboarding":{

@@ -26,4 +26,8 @@ export class FooterComponent implements OnInit {
   ngOnDestroy() {
     if (this.navigationEndSubs) this.navigationEndSubs.unsubscribe();
   }
+
+  navigate(path: string) {
+    this.router.navigate([path]);
+  }
 }

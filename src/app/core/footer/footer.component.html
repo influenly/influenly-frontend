@@ -1,7 +1,7 @@
 <div *ngIf="isLanding" class="footer-container">
     <div class="d-flex justify-content-between align-items-center px-5">
         <img src="../../../assets/logo/influenly-logo.svg" class="logo width-to-align" />
-        <span class="link text-1">{{ 'core.footer.how_it_works' | translate }}</span>
+        <span class="link text-1" (click)="navigate('how-it-works')">{{ 'core.footer.how_it_works' | translate }}</span>
         <span class="link text-1">{{ 'core.footer.about_us' | translate }}</span>
     </div>
     <mat-divider></mat-divider>

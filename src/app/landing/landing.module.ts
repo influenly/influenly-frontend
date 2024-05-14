@@ -13,13 +13,15 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { LocalStorageService } from '../shared/services/storages/local-storage.service';
 import { SessionUtilsService } from '../core/services/session-utils.service';
+import { HowItWorksComponent } from './info/how-it-works/how-it-works.component';
 
 
 @NgModule({
   declarations: [
     LandingPageComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    HowItWorksComponent
   ],
   imports: [
     CommonModule,
