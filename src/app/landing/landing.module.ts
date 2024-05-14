@@ -16,6 +16,7 @@ import { SessionUtilsService } from '../core/services/session-utils.service';
 import { HowItWorksComponent } from './info/how-it-works/how-it-works.component';
 import { AboutUsComponent } from './info/about-us/about-us.component';
 import { PrivatePolicyComponent } from './info/private-policy/private-policy.component';
+import { TermsOfServiceComponent } from './info/terms-of-service/terms-of-service.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { PrivatePolicyComponent } from './info/private-policy/private-policy.com
     SignInComponent,
     HowItWorksComponent,
     AboutUsComponent,
-    PrivatePolicyComponent
+    PrivatePolicyComponent,
+    TermsOfServiceComponent
   ],
   imports: [
     CommonModule,
