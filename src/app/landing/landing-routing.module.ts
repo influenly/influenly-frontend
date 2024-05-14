@@ -40,7 +40,7 @@ const routes: Routes = [
         component: TermsOfServiceComponent
     },
     {
-        path: 'private-policy',
+        path: 'privacy-policy',
         component: PrivatePolicyComponent
     }
 ];

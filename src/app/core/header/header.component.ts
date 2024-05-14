@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isHandset: boolean = false;
   isLanding: boolean = false;
   userType: string | undefined;
+  pathsToShowLoginBtn: string[] = ['/', '/how-it-works', '/about-us', '/terms-of-service', '/privacy-policy'];
 
   isHandsetSubs: Subscription | undefined;
   navigationEndSubs: Subscription | undefined;
@@ -34,11 +35,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   async loadSessionStorageValues() {
     this.userType = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_type);
-    this.isLanding = this.router.url == '/';
+    this.isLanding = this.pathsToShowLoginBtn.includes(this.router.url);
     this.navigationEndSubs = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(async (event: any) => {
-        this.isLanding = event.url == '/';
+        this.isLanding = this.pathsToShowLoginBtn.includes(event.url);
         this.userType = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_type);
     });
   }
