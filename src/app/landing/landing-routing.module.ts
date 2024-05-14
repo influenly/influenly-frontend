@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HowItWorksComponent } from './info/how-it-works/how-it-works.component';
+import { AboutUsComponent } from './info/about-us/about-us.component';
 
 const routes: Routes = [
     {
@@ -27,6 +28,10 @@ const routes: Routes = [
     {
         path: 'how-it-works',
         component: HowItWorksComponent
+    },
+    {
+        path: 'about-us',
+        component: AboutUsComponent
     }
 ];
 

@@ -1,0 +1,31 @@
+h1 {
+    font-size: 70px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.primary-color {
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.paragraph {
+    color: var(--Black-B-85, #222);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 768px){
+    h1 {
+        font-size: 40px;
+    }
+}
