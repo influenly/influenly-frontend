@@ -6,13 +6,15 @@ import { CoreRoutingModule } from './core-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserOptionsComponent } from './header/user-options/user-options.component';
 import { MatIconModule } from '@angular/material/icon';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatButtonModule} from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider'
 import { TranslateModule } from '@ngx-translate/core';
 import { ChatComponent } from './header/chat/chat.component';
 import { DiscoveryButtonComponent } from './header/discovery-button/discovery-button.component';
 import { AuthService } from './services/auth.service';
 import { SessionUtilsService } from './services/session-utils.service';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { SessionUtilsService } from './services/session-utils.service';
     MainLayoutComponent,
     UserOptionsComponent,
     ChatComponent,
-    DiscoveryButtonComponent
+    DiscoveryButtonComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +32,8 @@ import { SessionUtilsService } from './services/session-utils.service';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    TranslateModule
+    TranslateModule,
+    MatDividerModule
   ],
   providers: [
     AuthService,

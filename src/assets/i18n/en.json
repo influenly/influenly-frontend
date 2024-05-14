@@ -50,6 +50,13 @@
         "user_options":{
             "account_info":"Account info",
             "logout":"Logout"
+        },
+        "footer":{
+            "how_it_works":"How it works",
+            "about_us":"About us",
+            "influenly_copyright":"influenly © 2024",
+            "terms_of_service":"Terms of Service",
+            "privacy_policy":"Privacy Policy"
         }
     },
     "landing":{

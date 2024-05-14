@@ -1,6 +1,5 @@
 .page {
-    height: 100vh;
-    margin-top: -3rem;
+    min-height: calc(100vh - 3rem - 4.668rem);
 }
 
 .primary-color {

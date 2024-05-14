@@ -1,0 +1,43 @@
+.footer-container {
+    background-color: black;
+    padding: 0 1rem;
+}
+
+.w-95 {
+    width: 95%;
+}
+
+.logo {
+    height: 40px;
+}
+
+.text-1 {
+    color: var(--Whites-W-100, #FFF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.text-2 {
+    color: var(--Black-B-50, #808080);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 2rem;
+}
+
+.link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.width-to-align {
+    width: 100px;
+}
+
+mat-divider {
+    border-top-color: var(--Black-B-50, #808080);
+    ;
+}
