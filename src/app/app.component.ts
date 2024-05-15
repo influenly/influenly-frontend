@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'content-frontend';
+  title = 'influenly-frontend';
 
   constructor(private translate: TranslateService) {
     this.translate.setDefaultLang('es');
@@ -18,7 +18,7 @@ export class AppComponent {
     document.addEventListener('mousemove', evt => {
         let x = evt.clientX / innerWidth;
         let y = evt.clientY / innerHeight;
-    
+
         root.style.setProperty('--mouse-x', x.toString());
         root.style.setProperty('--mouse-y', y.toString());
     });
