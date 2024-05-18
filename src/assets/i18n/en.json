@@ -163,18 +163,21 @@
             "paragraph_3":"1.1. Registration information: When you register to use our Services, we may collect personal information, such as your name, email address, contact information, and other information that you voluntarily provide to us.",
             "paragraph_4":"1.2. Usage Information: We collect information about how you interact with our Services, including the pages you visit, the features you use, and other actions you take while using the platform.",
             "paragraph_5":"2. Use of information",
-            "paragraph_6":"We use the information we collect to:",
+            "paragraph_6":"2.1. We use the information we collect to:",
             "paragraph_7":"Provide and maintain our Services.",
             "paragraph_8":"Personalize and improve your experience on our platform.",
             "paragraph_9":"Understand and analyze how you interact with our Services.",
             "paragraph_10":"Detect, prevent and address technical and security issues.",
             "paragraph_11":"Comply with our legal and regulatory obligations.",
-            "paragraph_12":"3. Access to your information",
-            "paragraph_13":"3.1. Service Providers: We may share your information with service providers who perform services on our behalf, such as payment processing, data analysis, website hosting, and other similar services.",
-            "paragraph_14":"3.2. Affiliates and Business Partners: We may share your information with our affiliates and business partners for legitimate business purposes, such as marketing and promotions.",
-            "paragraph_15":"3.3. Legal compliance: We may disclose your information when we believe in good faith that it is necessary to comply with a legal obligation, protect our rights, or respond to requests from government authorities.",
-            "paragraph_16":"4. Information security",
-            "paragraph_17":"We implement physical, technical and administrative security measures to protect your information against unauthorized access, misuse or disclosure."
+            "paragraph_12_a":"2.2. Influenly use and transfer of information received from Google APIs to any other app will adhere to ",
+            "paragraph_12_b":"Google API Services User Data Policy",
+            "paragraph_12_c":", including the Limited Use requirements.",
+            "paragraph_13":"3. Access to your information",
+            "paragraph_14":"3.1. Service Providers: We may share your information with service providers who perform services on our behalf, such as payment processing, data analysis, website hosting, and other similar services.",
+            "paragraph_15":"3.2. Affiliates and Business Partners: We may share your information with our affiliates and business partners for legitimate business purposes, such as marketing and promotions.",
+            "paragraph_16":"3.3. Legal compliance: We may disclose your information when we believe in good faith that it is necessary to comply with a legal obligation, protect our rights, or respond to requests from government authorities.",
+            "paragraph_17":"4. Information security",
+            "paragraph_18":"We implement physical, technical and administrative security measures to protect your information against unauthorized access, misuse or disclosure."
         }
     },
     "onboarding":{
