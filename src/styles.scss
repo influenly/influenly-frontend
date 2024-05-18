@@ -29,6 +29,10 @@ mat-icon {
     vertical-align: middle;
 }
 
+.full-height-with-header {
+    min-height: calc(100vh - 3rem);
+}
+
 h1 {
     font-size: 3.5rem;
     font-weight: bold;

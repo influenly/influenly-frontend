@@ -9,17 +9,18 @@ import { Subscription, filter } from 'rxjs';
 })
 export class FooterComponent implements OnInit {
 
-  isLanding: boolean = false;
+  showFooter: boolean = false;
+  pathsToShowFooter: string[] = ['/', '/how-it-works', '/about-us', '/terms-of-service', '/privacy-policy'];
   navigationEndSubs: Subscription | undefined;
 
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.isLanding = this.router.url == '/';
+    this.showFooter = this.pathsToShowFooter.includes(this.router.url);
     this.navigationEndSubs = this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(async (event: any) => {
-        this.isLanding = event.url == '/';
+        this.showFooter = this.pathsToShowFooter.includes(event.url);
     });
   }
 
