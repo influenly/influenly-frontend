@@ -163,18 +163,19 @@
             "paragraph_3":"1.1. Información de registro: Cuando te registras para utilizar nuestros Servicios, podemos recopilar información personal, como tu nombre, dirección de correo electrónico, información de contacto y otra información que nos proporciones voluntariamente.",
             "paragraph_4":"1.2. Información de uso: Recopilamos información sobre cómo interactúas con nuestros Servicios, incluidas las páginas que visitas, las funciones que utilizas y otras acciones que realizas mientras utilizas la plataforma.",
             "paragraph_5":"2. Uso de la información",
-            "paragraph_6":"Utilizamos la información que recopilamos para:",
+            "paragraph_6":"2.1. Utilizamos la información que recopilamos para:",
             "paragraph_7":"Proporcionar y mantener nuestros Servicios.",
             "paragraph_8":"Personalizar y mejorar tu experiencia en nuestra plataforma.",
             "paragraph_9":"Comprender y analizar cómo interactúas con nuestros Servicios.",
             "paragraph_10":"Detectar, prevenir y abordar problemas técnicos y de seguridad.",
             "paragraph_11":"Cumplir con nuestras obligaciones legales y regulatorias.",
-            "paragraph_12":"3. Acceso a tu información",
-            "paragraph_13":"3.1. Proveedores de Servicios: Podemos compartir tu información con proveedores de servicios que realizan servicios en nuestro nombre, como procesamiento de pagos, análisis de datos, alojamiento de sitios web y otros servicios similares.",
-            "paragraph_14":"3.2. Afiliados y Socios comerciales: Podemos compartir tu información con nuestros afiliados y socios comerciales para fines comerciales legítimos, como marketing y promociones.",
-            "paragraph_15":"3.3. Cumplimiento legal: Podemos divulgar tu información cuando creamos de buena fe que es necesario para cumplir con una obligación legal, proteger nuestros derechos o responder a solicitudes de autoridades gubernamentales.",
-            "paragraph_16":"4. Seguridad de la información",
-            "paragraph_17":"Implementamos medidas de seguridad físicas, técnicas y administrativas para proteger tu información contra accesos no autorizados, uso indebido o divulgación."
+												"paragraph_12":"2.2. El uso de influenly y la trasnferencia de información recibida de las APIs de Google a cualquier otra aplicación se adherirán a <a href='https://developers.google.com/terms/api-services-user-data-policy'>Google API Services User Data Policy</a>, incluyendo los requerimientos de uso limitado.",
+            "paragraph_13":"3. Acceso a tu información",
+            "paragraph_14":"3.1. Proveedores de Servicios: Podemos compartir tu información con proveedores de servicios que realizan servicios en nuestro nombre, como procesamiento de pagos, análisis de datos, alojamiento de sitios web y otros servicios similares.",
+            "paragraph_15":"3.2. Afiliados y Socios comerciales: Podemos compartir tu información con nuestros afiliados y socios comerciales para fines comerciales legítimos, como marketing y promociones.",
+            "paragraph_16":"3.3. Cumplimiento legal: Podemos divulgar tu información cuando creamos de buena fe que es necesario para cumplir con una obligación legal, proteger nuestros derechos o responder a solicitudes de autoridades gubernamentales.",
+            "paragraph_17":"4. Seguridad de la información",
+            "paragraph_18":"Implementamos medidas de seguridad físicas, técnicas y administrativas para proteger tu información contra accesos no autorizados, uso indebido o divulgación."
         }
     },
     "onboarding":{
