@@ -11,6 +11,7 @@ import { InformationModalComponent } from 'src/app/shared/components/UI/informat
 import { OnboardingModel } from '../../onboarding/models/onboarding.model';
 import { UserModel } from '../models/user-data.model';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
+import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -44,13 +45,16 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   get birthdate() { return this.userDataForm.get('birthdate'); }
   get description() { return this.userDataForm.get('description'); }
 
-  constructor(private fb: FormBuilder,
-              private translate: TranslateService,
-              public dialogRef: MatDialogRef<EditProfileModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: UserModel,
-              private profileService: ProfileService,
-              private profileRequestService: ProfileRequestService,
-              private dialog: MatDialog) {}
+  constructor(
+    private fb: FormBuilder,
+    private translate: TranslateService,
+    public dialogRef: MatDialogRef<EditProfileModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: UserModel,
+    private profileService: ProfileService,
+    private profileRequestService: ProfileRequestService,
+    private dialog: MatDialog,
+    private sessionStorage: SessionStorageService
+  ) {}
 
   ngOnInit() {
     this.loadTranslations();
@@ -125,7 +129,12 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
       data.profileImg = imgUrl;
     }
     this.profileRequestService.updateProfileData$(data).subscribe({
-      next: (v) => {
+      next: async (v) => {
+        const responseUsername = v.body?.data.user.username;
+        if (responseUsername != this.data.username) {
+          this.sessionStorage.set(SESSION_STORAGE_KEYS.username, responseUsername);
+        }
+        
         this.profileService.setProfileData(v.body);
         this.dialog.open(InformationModalComponent, {
           width: '600px',

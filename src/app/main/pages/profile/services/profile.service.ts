@@ -3,6 +3,8 @@ import { NetworkProfileModel, UserDataModel } from "../models/user-data.model";
 import { BehaviorSubject, Observable, Subscription, map, of, shareReplay, take } from "rxjs";
 import { ProfileRequestService } from "./profile-request.service";
 import { SESSION_STORAGE_KEYS, SessionStorageService } from "src/app/shared/services/storages/session-storage.service";
+import { MatDialog } from "@angular/material/dialog";
+import { TranslateService } from "@ngx-translate/core";
 
 @Injectable()
 export class ProfileService implements OnDestroy {
@@ -39,14 +41,16 @@ export class ProfileService implements OnDestroy {
     this.userProfileData.complete();
   }
 
-  public getCachedProfileData(userId: string): Observable<UserDataModel|null> {
+  public getCachedProfileData(username: string): Observable<UserDataModel|null> {
     if (!this.userProfileData.getValue()) {
 
-      let userProfileDataObs = this.profileRequestService.getProfileData$(userId).pipe(
+      let userProfileDataObs = this.profileRequestService.getProfileDataByUsername$(username).pipe(
         map(res => res.body),
         shareReplay(1)
       );
-      userProfileDataObs.pipe(take(1)).subscribe(res => this.userProfileData.next(res));
+      userProfileDataObs.pipe(take(1)).subscribe({
+        next: (v) => this.userProfileData.next(v)
+      });
 
       return userProfileDataObs;
     } else {
@@ -54,8 +58,8 @@ export class ProfileService implements OnDestroy {
     }
   }
 
-  public reloadProfileData(userId: string) {
-    let userProfileDataObs = this.profileRequestService.getProfileData$(userId).pipe(
+  public reloadProfileData(username: string) {
+    let userProfileDataObs = this.profileRequestService.getProfileDataByUsername$(username).pipe(
       map(res => res.body),
       shareReplay(1)
     );

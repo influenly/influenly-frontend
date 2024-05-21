@@ -15,6 +15,7 @@ export class SessionUtilsService {
     public async onLogin(response: any) {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, response.user.type);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, response.user.id);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.username, response.user.username);
         await this.socketService.connectSocket();
         this.socketService.subscribeTopic(TOPIC.RECEIVE + response.user.id);
         if (!response.user.onboardingCompleted) {

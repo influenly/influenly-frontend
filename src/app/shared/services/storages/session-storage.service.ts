@@ -59,5 +59,6 @@ export class SessionStorageService extends StorageService {
 export const SESSION_STORAGE_KEYS = {
 	user_type: 'user_type',
 	user_id: 'user_id',
+	username: 'username',
 	show_header_actions: 'show_header_actions'
 };

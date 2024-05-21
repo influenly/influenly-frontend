@@ -22,7 +22,7 @@ const routes: Routes = [
         component: ProfileComponent
     },
     {
-        path: 'user',
+        path: 'user/:username',
         component: ProfileComponent
     },
     {
