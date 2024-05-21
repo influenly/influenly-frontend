@@ -1,6 +1,16 @@
 .footer-container {
+    position: relative;
     background-color: black;
-    padding: 0 1rem;
+    padding: 0 32px;
+}
+
+.footer-top {
+    height: 64px;
+    padding: 0px 32px;
+}
+
+.footer-bottom {
+    padding: 16px 32px;
 }
 
 .w-95 {
@@ -17,6 +27,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    padding: 0 8px;
 }
 
 .text-2 {
@@ -34,10 +45,57 @@
 }
 
 .width-to-align {
-    width: 100px;
+    width: 108px;
 }
 
 mat-divider {
     border-top-color: var(--Black-B-50, #808080);
-    ;
+}
+
+.footer-container::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    bottom: 115px;
+    left: 0;
+    height: 50px;
+    width: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0 24px 0 0 #001f3f;
+}
+
+.footer-container::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    bottom: 115px;
+    right: 0;
+    height: 50px;
+    width: 100%;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 25px 0 0 black;
+}
+
+@media (max-width: 512px) {
+    .footer-top {
+        padding: 0px 0px;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        justify-content: space-between;
+        padding: 16px 0px;
+    }
+
+    .text-2 {
+        margin-right: 0;
+    }
+
+    .width-to-align {
+        width: 30%;
+    }
+
+    .footer-container::before {
+        display: none;
+    }
 }

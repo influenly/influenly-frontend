@@ -54,7 +54,6 @@
         "footer":{
             "how_it_works":"How it works",
             "about_us":"About us",
-            "influenly_copyright":"influenly © 2024",
             "terms_of_service":"Terms of Service",
             "privacy_policy":"Privacy Policy"
         }
@@ -280,6 +279,7 @@
         "content_advertiser_label":"Content we are looking for",
         "btn_edit":"Edit profile",
         "btn_talk":"Talk",
+        "get_profile_error":"Error getting user data",
         "edit":{
             "title":"Edit profile",
             "content_you_make":"Content you make",
