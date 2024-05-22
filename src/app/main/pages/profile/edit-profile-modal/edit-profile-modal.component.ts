@@ -2,7 +2,6 @@ import { AfterViewInit, Component, Inject, OnDestroy, OnInit, ViewChild } from '
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
-import { NetworksFormComponent } from '../../onboarding/networks/networks-form/networks-form.component';
 import { ContentFormComponent } from '../../onboarding/content/content-form/content-form.component';
 import { ProfileService } from '../services/profile.service';
 import { Subscription, lastValueFrom } from 'rxjs';
@@ -20,7 +19,6 @@ import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/serv
 })
 export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  @ViewChild(NetworksFormComponent) networksForm: NetworksFormComponent | undefined = undefined;
   @ViewChild(ContentFormComponent) contentForm: ContentFormComponent | undefined = undefined;
 
   profileImage: string | ArrayBuffer | null = null;
@@ -82,17 +80,9 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
         this.disabledButton = false;
       }));
     }, 0);
-    let networks = this.profileService.loadSocialNetworks(this.data?.networks);
-    networks.forEach(network => {
-      this.networksForm?.networks?.push({ url: network.link, icon: network.icon, integrated: network.integrated, name: network.name });
-    });
     this.formOnChangesSubs.push(this.userDataForm.valueChanges.subscribe(() => {
       this.disabledButton = false;
     }));
-  }
-
-  networksEvent() {
-    this.disabledButton = false;
   }
 
   public async save() {
@@ -117,12 +107,9 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
         return;
       }
     }
-    const newNetworksArray = this.getNewArrayIfExistsChanges(this.data.networks.map((net: any) => net.url), this.networksForm?.networks?.map((net: any) => net.url));
-    const networks = newNetworksArray ? this.networksForm?.networks?.map((net: any) => { return { platform: net.icon.toUpperCase(), url: net.url }}) : undefined;
     let data: OnboardingModel = {
       username: this.data.username != this.username?.value ? this.username?.value : undefined,
       description: this.data.description != this.description?.value ? this.description?.value : undefined,
-      networks: networks,
       contentTags: JSON.stringify(this.data.contentTags) != JSON.stringify(this.contentForm?.tags?.value) ? this.contentForm?.tags?.value : undefined,
     }
     if (imgUrl) {
@@ -159,15 +146,6 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
       }
     });
     console.log(data)
-  }
-
-  private getNewArrayIfExistsChanges(arr1: any[], arr2?: any[]): any[]|undefined {
-    arr1.sort();
-    arr2?.sort();
-    if (arr1.length == arr2?.length && arr1.every(function(v,i) { return v === arr2[i] } )) {
-      return undefined;
-    }
-    return arr2;
   }
 
   public onFileSelected(event: any) {
