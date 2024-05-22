@@ -74,6 +74,7 @@ export class EditProfileModalComponent implements OnInit, AfterViewInit, OnDestr
   }
   
   private loadUserDataToForm() {
+    this.profileImage = this.data.profileImg ? this.data.profileImg : null;
     setTimeout(() => {
       this.contentForm?.setTagsValue(this.data.contentTags);
       this.formOnChangesSubs.push(this.contentForm?.contentForm.valueChanges.subscribe(() => {
