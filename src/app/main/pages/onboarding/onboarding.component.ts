@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 import { ProfileService } from '../profile/services/profile.service';
 import { LocationUtilsService } from 'src/app/shared/services/utils/location-utils.service';
+import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
+import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 
 
 export enum SLIDE {
@@ -69,7 +72,9 @@ export class OnboardingComponent implements OnInit {
     private onboardingService: OnboardingService,
     private router: Router,
     private profileService: ProfileService,
-    private locationUtilsService: LocationUtilsService
+    private locationUtilsService: LocationUtilsService,
+    private dialog: MatDialog,
+    private translate: TranslateService
   ) {
     this.locationUtilsService.changePreviousPage(window, location, '/app/onboarding');
   }
@@ -147,8 +152,15 @@ export class OnboardingComponent implements OnInit {
             this.router.navigate(['app/profile']);
             this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'FULL');
           },
-          error: (e) => {
-            //TODO: falla el save de los datos. Implementar lógica de reintento
+          error: () => {
+            this.dialog.open(InformationModalComponent, {
+              width: '600px',
+              data: {
+                icon: 'warning',
+                text: this.translate.instant('onboarding.onboarding_error'),
+                textButtonClose: this.translate.instant('general.btn_return')
+              }
+            });
           }
         });
       }
@@ -176,7 +188,7 @@ export class OnboardingComponent implements OnInit {
             this.router.navigate(['app/profile']);
             this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'FULL');
           },
-          error: (e) => {
+          error: () => {
             //TODO: falla el save de los datos. Implementar lógica de reintento
           }
         });

@@ -180,6 +180,7 @@
         }
     },
     "onboarding":{
+        "onboarding_error":"Error al guardar los datos del usuario. Por favor intente más tarde.",
         "steps":{
             "personal_information":"Información personal",
             "social_media":"Redes",

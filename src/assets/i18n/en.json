@@ -180,6 +180,7 @@
         }
     },
     "onboarding":{
+        "onboarding_error":"Error saving your data. Please try again later.",
         "steps":{
             "personal_information":"Personal Information",
             "social_media":"Networks",
