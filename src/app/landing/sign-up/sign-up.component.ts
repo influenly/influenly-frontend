@@ -15,15 +15,12 @@ export class SignUpComponent {
 
   signUpForm: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.pattern('^[a-z0-9\\._%+-]+@([a-z0-9\\._-]+)\\.[a-z]{2,4}$')]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('[a-z0-9._%+-]+')]],
-    country: ['', Validators.required]
+    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('[a-z0-9._%+-]+')]]
   });
 
   get email() { return this.signUpForm.get('email'); }
   get password() { return this.signUpForm.get('password'); }
-  get country() { return this.signUpForm.get('country'); }
 
-  countries: string[] = ['AR','BO','CL','CO','EC','MX','PY','PE','UY','VE'];
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -39,29 +36,11 @@ export class SignUpComponent {
     const payload = {
       email: this.email?.value,
       password: this.password?.value,
-      country: this.country?.value,
       type: window.location.href.split('/').pop()?.toUpperCase()
     }
     this.authService.signUp$(payload).subscribe({
       next: (v) => {
         this.sessionUtils.onLogin(v.body);
-        // let dialogRef = this.dialog.open(InformationModalComponent, {
-        //   width: '600px',
-        //   data: {
-        //     icon: 'mail',
-        //     text: this.translate.instant('landing.sign_up.modal_messages.confirm_email'),
-        //     title: this.translate.instant('landing.sign_up.modal_messages.confirm_email_desc'),
-        //     textButtonOk: this.translate.instant('landing.sign_up.modal_messages.confirm_email_btn'),
-        //   }
-        // });
-        // const subs = dialogRef.componentInstance.response.subscribe(res => {
-        //   if (res) {
-        //     console.log('reenviar');
-        //   } else {
-        //     subs.unsubscribe();
-        //     dialogRef.close();
-        //   }
-        // });
       },
       error: (e) => {
         if (e.error.message === 'EMAIL_ALREADY_EXISTS') {
