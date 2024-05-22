@@ -26,11 +26,6 @@ export enum SLIDE {
       transition('* => *', animate(300)),
       transition('void => *', animate(0))
     ]),
-    trigger('networksSlide', [
-      state('in', style({ transform: 'translateX(0)' })),
-      state('out', style({ transform: 'translateX(-100%)' })),
-      transition('* => *', animate(300))
-    ]),
     trigger('contentSlide', [
       state('in', style({ transform: 'translateX(0)' })),
       state('out', style({ transform: 'translateX(-100%)' })),
@@ -64,7 +59,6 @@ export class OnboardingComponent implements OnInit {
   SLIDE = SLIDE;
 
   personalInfoSlide: string = 'in';
-  networksSlide: string = 'out';
   contentSlide: string = 'out';
   youtubeSlide: string = 'out'
   integrationLoading: boolean = false;
@@ -105,25 +99,18 @@ export class OnboardingComponent implements OnInit {
   }
 
   goBack() {
-    if (this.slide === SLIDE.NETWORKS) {
+    if (this.slide === SLIDE.CONTENT) {
       this.personalInfoSlide = 'in';
-      this.networksSlide = 'out';
+      this.contentSlide = 'out';
       this.slide = SLIDE.PERSONAL_INFO;
       this.stepsVisualizer?.setFirstStepCompleted(false);
       this.stepsVisualizer?.setSecondStepCompleted(false);
-    }
-    if (this.slide === SLIDE.CONTENT) {
-      this.networksSlide = 'in';
-      this.contentSlide = 'out';
-      this.slide = SLIDE.NETWORKS;
-      this.stepsVisualizer?.setSecondStepCompleted(false);
-      this.stepsVisualizer?.setThirdStepCompleted(false);
     }
     if (this.slide === SLIDE.YOUTUBE_INTEGRATION) {
       this.contentSlide = 'in';
       this.youtubeSlide = 'out';
       this.slide = SLIDE.CONTENT;
-      this.stepsVisualizer?.setThirdStepCompleted(false);
+      this.stepsVisualizer?.setSecondStepCompleted(false);
     }
   }
 
@@ -135,16 +122,9 @@ export class OnboardingComponent implements OnInit {
     if ($event.slide === SLIDE.PERSONAL_INFO) {
       this.data = {...this.data, ...$event};
       this.personalInfoSlide = 'out';
-      this.networksSlide = 'in';
-      this.slide = SLIDE.NETWORKS;
-      this.stepsVisualizer?.setFirstStepCompleted(true);
-    }
-    if ($event.slide === SLIDE.NETWORKS) {
-      this.data = {...this.data, ...$event};
-      this.networksSlide = 'out';
       this.contentSlide = 'in';
       this.slide = SLIDE.CONTENT;
-      this.stepsVisualizer?.setSecondStepCompleted(true);
+      this.stepsVisualizer?.setFirstStepCompleted(true);
     }
     if ($event.slide === SLIDE.CONTENT) {
       this.data = {...this.data, ...$event};
@@ -152,7 +132,7 @@ export class OnboardingComponent implements OnInit {
         this.contentSlide = 'out';
         this.youtubeSlide = 'in';
         this.slide = SLIDE.YOUTUBE_INTEGRATION;
-        this.stepsVisualizer?.setThirdStepCompleted(true);
+        this.stepsVisualizer?.setSecondStepCompleted(true);
       } else {
         const payload: OnboardingModel = {
           description: this.data.description,
@@ -208,11 +188,8 @@ export class OnboardingComponent implements OnInit {
     if ($event.slide === SLIDE.PERSONAL_INFO) {
       this.stepsVisualizer?.setFirstStepCompleted($event.valid);
     }
-    if ($event.slide === SLIDE.NETWORKS) {
-      this.stepsVisualizer?.setSecondStepCompleted($event.valid);
-    }
     if ($event.slide === SLIDE.CONTENT) {
-      this.stepsVisualizer?.setThirdStepCompleted($event.valid);
+      this.stepsVisualizer?.setSecondStepCompleted($event.valid);
     }
   }
 

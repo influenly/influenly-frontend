@@ -23,13 +23,6 @@
                     <img src="../../../../assets/images/onboarding-person-1.svg" />
                 </div>
             </div>
-            <div [@networksSlide]="networksSlide" (@networksSlide.start)="animationStarted($event)"
-            (@networksSlide.done)="animationDone($event)">
-                <div *ngIf="slide === SLIDE.NETWORKS" class="d-flex justify-content-between p-4">
-                    <app-networks [userType]="userType" [data]="data" (continue)="submitEvent($event)" />
-                    <img src="../../../../assets/images/onboarding-person-2.svg" />
-                </div>
-            </div>
             <div [@contentSlide]="contentSlide" (@contentSlide.start)="animationStarted($event)"
             (@contentSlide.done)="animationDone($event)">
                 <div *ngIf="slide === SLIDE.CONTENT" class="d-flex justify-content-between p-4">
