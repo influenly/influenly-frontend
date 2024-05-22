@@ -10,9 +10,6 @@
             <div class="username">
                 <span>{{ userData?.username }}</span>
             </div>
-            <div class="country">
-                <span>{{ 'general.countries.' + userData?.country | translate }}</span>
-            </div>
             <div *ngIf="isCreatorUser" class="content-tags">
                 <mat-chip *ngFor="let tag of userData?.contentTags" class="tag">
                     {{ 'onboarding.content.tag_list.' + tag | translate }}
