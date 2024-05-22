@@ -34,6 +34,12 @@
     color: black;
 }
 
+@media (max-width: 512px) {
+    mat-dialog-content {
+        padding: 0 0 !important;
+    }
+}
+
 @media (max-width: 768px) {
 
     .edit-icon {
