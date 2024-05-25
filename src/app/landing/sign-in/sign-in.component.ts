@@ -7,56 +7,73 @@ import { InformationModalComponent } from 'src/app/shared/components/UI/informat
 import { SessionUtilsService } from '../../core/services/session-utils.service';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss']
+	selector: 'app-sign-in',
+	templateUrl: './sign-in.component.html',
+	styleUrls: ['./sign-in.component.scss'],
 })
 export class SignInComponent {
+	signInForm: FormGroup = this.fb.group({
+		email: [
+			'',
+			[
+				Validators.required,
+				Validators.pattern('^[a-z0-9\\._%+-]+@([a-z0-9\\._-]+)\\.[a-z]{2,4}$'),
+			],
+		],
+		password: ['', [Validators.required, Validators.minLength(8)]],
+	});
 
-  signInForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required, Validators.pattern('^[a-z0-9\\._%+-]+@([a-z0-9\\._-]+)\\.[a-z]{2,4}$')]],
-    password: ['', [Validators.required, Validators.minLength(8)]]
-  });
+	get email() {
+		return this.signInForm.get('email');
+	}
+	get password() {
+		return this.signInForm.get('password');
+	}
 
-  get email() { return this.signInForm.get('email'); }
-  get password() { return this.signInForm.get('password'); }
+	constructor(
+		private fb: FormBuilder,
+		private authService: AuthService,
+		private dialog: MatDialog,
+		private translate: TranslateService,
+		private sessionUtils: SessionUtilsService
+	) {}
 
-  constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private dialog: MatDialog,
-              private translate: TranslateService,
-              private sessionUtils: SessionUtilsService) { }
+	submitted = false;
 
-  submit() {
-    if (!this.signInForm.valid) {
-      return;
-    }
+	submit() {
+		this.submitted = true;
+		if (!this.signInForm.valid) {
+			this.signInForm.markAllAsTouched();
+			return;
+		}
 
-    const payload = {
-      email: this.email?.value,
-      password: this.password?.value
-    }
-    this.authService.login$(payload).subscribe({
-      next: async (v) => {
-        this.sessionUtils.onLogin(v.body);
-      },
-      error: (e) => {
-        if (e.error.error === 'INVALID_PASSWORD') {
-          this.password?.setErrors({invalid: true});
-        } else if (e.error.error === 'INVALID_EMAIL') {
-          this.email?.setErrors({invalid: true});
-        } else {
-          this.dialog.open(InformationModalComponent, {
-            width: '600px',
-            data: {
-              icon: 'warning',
-              text: this.translate.instant('landing.sign_in.modal_messages.error_desc'),
-              title: this.translate.instant('landing.sign_in.modal_messages.error'),
-              textButtonClose: this.translate.instant('general.btn_return')
-            }
-          });
-        }
-      }
-    });
-  }
+		const payload = {
+			email: this.email?.value,
+			password: this.password?.value,
+		};
+		this.authService.login$(payload).subscribe({
+			next: async (v) => {
+				this.sessionUtils.onLogin(v.body);
+			},
+			error: (e) => {
+				if (e.error.error === 'INVALID_PASSWORD') {
+					this.password?.setErrors({ invalid: true });
+				} else if (e.error.error === 'INVALID_EMAIL') {
+					this.email?.setErrors({ invalid: true });
+				} else {
+					this.dialog.open(InformationModalComponent, {
+						width: '600px',
+						data: {
+							icon: 'warning',
+							text: this.translate.instant(
+								'landing.sign_in.modal_messages.error_desc'
+							),
+							title: this.translate.instant('landing.sign_in.modal_messages.error'),
+							textButtonClose: this.translate.instant('general.btn_return'),
+						},
+					});
+				}
+			},
+		});
+	}
 }

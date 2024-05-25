@@ -1,58 +1,101 @@
 <div class="container-box">
 	<div class="d-flex justify-content-center card">
-		<div class="text-center mt-4">
-			<h2>{{ 'landing.sign_in.title' | translate }}</h2>
-		</div>
-		<form [formGroup]="signInForm" class="pt-3 px-5 pb-5">
-			<div>
-				<label class="d-block">{{ 'landing.sign_up.email.label' | translate }}</label>
-				<mat-form-field class="w-100">
-					<input
-						matInput
-						[type]="'email'"
-						autocomplete="off"
-						formControlName="email"
-						[placeholder]="'landing.sign_up.email.placeholder' | translate"
-					/>
-					<mat-error *ngIf="email?.hasError('required')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.required_error' | translate }}
-					</mat-error>
-					<mat-error *ngIf="email?.hasError('pattern')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.pattern_error' | translate }}
-					</mat-error>
-					<mat-error *ngIf="email?.hasError('invalid')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.invalid_error' | translate }}
-					</mat-error>
-				</mat-form-field>
-			</div>
-			<div>
-				<label class="d-block">{{ 'landing.sign_up.password.label' | translate }}</label>
-				<mat-form-field class="w-100">
-					<input
-						matInput
-						[type]="'password'"
-						autocomplete="off"
-						formControlName="password"
-						[placeholder]="'landing.sign_up.password.placeholder' | translate"
-					/>
-					<mat-error *ngIf="password?.hasError('required')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.required_error' | translate }}
-					</mat-error>
-					<mat-error *ngIf="password?.hasError('minlength')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.minlength_error' | translate }}
-					</mat-error>
-					<mat-error *ngIf="password?.hasError('invalid')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.invalid_error' | translate }}
-					</mat-error>
-				</mat-form-field>
+		<form [formGroup]="signInForm" class="">
+			<div class="form__container">
+				<h2 class="form__title">{{ "landing.sign_in.title" | translate }}</h2>
+				<div>
+					<label class="d-block">{{
+						"landing.sign_up.email.label" | translate
+					}}</label>
+					<div class="input-wrapper w-100">
+						<input
+							type="email"
+							autocomplete="off"
+							formControlName="email"
+							[placeholder]="'landing.sign_up.email.placeholder' | translate"
+							class="form__input"
+						/>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								active: submitted && email?.hasError('required')
+							}"
+						>
+							<mat-icon>warning</mat-icon
+							>{{ "landing.sign_up.email.required_error" | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								active: submitted && email?.hasError('pattern')
+							}"
+						>
+							<mat-icon>warning</mat-icon
+							>{{ "landing.sign_up.email.pattern_error" | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								active: submitted && email?.hasError('invalid')
+							}"
+						>
+							<mat-icon>warning</mat-icon
+							>{{ "landing.sign_up.email.invalid_error" | translate }}
+						</div>
+					</div>
+				</div>
+				<div>
+					<label class="d-block">{{
+						"landing.sign_up.password.label" | translate
+					}}</label>
+					<div class="input-wrapper w-100">
+						<input
+							type="password"
+							autocomplete="off"
+							formControlName="password"
+							[placeholder]="'landing.sign_up.password.placeholder' | translate"
+							class="form__input"
+						/>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								active: submitted && email?.hasError('required')
+							}"
+						>
+							<mat-icon>warning</mat-icon
+							>{{ "landing.sign_up.password.required_error" | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								active: submitted && email?.hasError('minlength')
+							}"
+						>
+							<mat-icon>warning</mat-icon
+							>{{ "landing.sign_up.password.minlength_error" | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								active: submitted && email?.hasError('invalid')
+							}"
+						>
+							<mat-icon>warning</mat-icon
+							>{{ "landing.sign_up.password.invalid_error" | translate }}
+						</div>
+					</div>
+				</div>
 			</div>
 
-			<div class="mt-4">
-				<button class="main-button w-100 p-3" (click)="submit()">{{ 'landing.sign_in.btn_signin' | translate }}</button>
-			</div>
+			<button class="form__button w-100" (click)="submit()">
+				{{ "landing.sign_in.btn_signin" | translate }}
+			</button>
 
-			<div class="text-center mt-3">
-				<p class="login-text">{{ 'landing.sign_in.not_registered' | translate }}<a href="">{{ 'landing.sign_up.btn_signup' | translate }}</a></p>
+			<div class="text-center">
+				<p class="login-text">
+					{{ "landing.sign_in.not_registered" | translate
+					}}<a href="">{{ "landing.sign_up.btn_signup" | translate }}</a>
+				</p>
 			</div>
 		</form>
 	</div>
