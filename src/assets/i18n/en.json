@@ -177,6 +177,18 @@
             "paragraph_16":"3.3. Legal compliance: We may disclose your information when we believe in good faith that it is necessary to comply with a legal obligation, protect our rights, or respond to requests from government authorities.",
             "paragraph_17":"4. Information security",
             "paragraph_18":"We implement physical, technical and administrative security measures to protect your information against unauthorized access, misuse or disclosure."
+        },
+        "email_verification":{
+            "title":"Verify Your Email",
+            "description_1":"Enter the 6-digit code we sent you to",
+            "description_2":" to finish the registration. Remember not to share the code with anyone.",
+            "validate_code":"Validate code",
+            "not_received_code":"Did you not receive the code?",
+            "resend_code":"Request a new code",
+            "invalid_code":"Please check the code and try again.",
+            "validation_ok":"Email validation was successful",
+            "error_validate":"There was an error submitting the validation code, please try again",
+            "error_resend":"There was an error resending the validation code, please try again"
         }
     },
     "onboarding":{

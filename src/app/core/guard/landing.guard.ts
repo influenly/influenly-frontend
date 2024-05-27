@@ -28,6 +28,8 @@ export class LandingGuard {
                 this.router.navigate(['/app/profile']);
             } else if (show == 'ONBOARDING') {
                 this.router.navigate(['/app/onboarding']);
+            } else {
+                return true;
             }
             return false;
         }

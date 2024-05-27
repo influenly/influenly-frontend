@@ -16,14 +16,20 @@ export class SessionUtilsService {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_type, response.user.type);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.user_id, response.user.id);
         this.sessionStorage.set(SESSION_STORAGE_KEYS.username, response.user.username);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.email, response.user.email);
         await this.socketService.connectSocket();
         this.socketService.subscribeTopic(TOPIC.RECEIVE + response.user.id);
-        if (!response.user.onboardingCompleted) {
-            this.router.navigate(['app/onboarding']);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'ONBOARDING');
+        this.socketService.subscribeTopic(TOPIC.CHANGES + response.user.id);
+        if (!response.user.emailVerified) {
+            this.router.navigate(['email-verification']);
         } else {
-            this.router.navigate(['app/profile']);
-            this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'FULL');
+            if (!response.user.onboardingCompleted) {
+                this.router.navigate(['app/onboarding']);
+                this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'ONBOARDING');
+            } else {
+                this.router.navigate(['app/profile']);
+                this.sessionStorage.set(SESSION_STORAGE_KEYS.show_header_actions, 'FULL');
+            }
         }
     }
 

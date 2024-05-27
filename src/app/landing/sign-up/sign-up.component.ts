@@ -1,10 +1,12 @@
-import { SessionUtilsService } from '../../core/services/session-utils.service';
+import { SESSION_STORAGE_KEYS } from './../../shared/services/storages/session-storage.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../core/services/auth.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
+import { SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,11 +24,14 @@ export class SignUpComponent {
   get password() { return this.signUpForm.get('password'); }
 
 
-  constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private dialog: MatDialog,
-              private translate: TranslateService,
-              private sessionUtils: SessionUtilsService) { }
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private dialog: MatDialog,
+    private translate: TranslateService,
+    private router: Router,
+    private sessionStorage: SessionStorageService
+  ) { }
 
   submit() {
     if (!this.signUpForm.valid) {
@@ -40,7 +45,9 @@ export class SignUpComponent {
     }
     this.authService.signUp$(payload).subscribe({
       next: (v) => {
-        this.sessionUtils.onLogin(v.body);
+        // this.sessionUtils.onLogin(v.body);
+        this.sessionStorage.set(SESSION_STORAGE_KEYS.email, v.body.user.email);
+        this.router.navigate(['/email-verification']);
       },
       error: (e) => {
         if (e.error.message === 'EMAIL_ALREADY_EXISTS') {

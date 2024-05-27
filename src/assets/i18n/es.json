@@ -177,6 +177,18 @@
             "paragraph_16":"3.3. Cumplimiento legal: Podemos divulgar tu información cuando creamos de buena fe que es necesario para cumplir con una obligación legal, proteger nuestros derechos o responder a solicitudes de autoridades gubernamentales.",
             "paragraph_17":"4. Seguridad de la información",
             "paragraph_18":"Implementamos medidas de seguridad físicas, técnicas y administrativas para proteger tu información contra accesos no autorizados, uso indebido o divulgación."
+        },
+        "email_verification":{
+            "title":"Verifica Tu Correo Electrónico",
+            "description_1":"Ingresa el código de 6 dígitos que te hemos enviado a ",
+            "description_2":" para finalizar con el registro. Recuerda no compartirle el código a nadie.",
+            "validate_code":"Validar código",
+            "not_received_code":"¿No recibiste el código? ",
+            "resend_code":"Solicitar un nuevo código",
+            "invalid_code":"Por favor, verifica el código e inténtalo nuevamente.",
+            "validation_ok":"La validación del correo electrónico fue exitosa",
+            "error_validate":"Hubo un error al enviar el código de validación, por favor intente nuevamente",
+            "error_resend":"Hubo un error al reenviar el código de validación, por favor intente nuevamente"
         }
     },
     "onboarding":{
