@@ -378,5 +378,41 @@
             "more_than":"Más de {{minFollowers}} seguidores",
             "less_than":"Menos de {{maxFollowers}} seguidores"
         }
+    },
+    "campaigns":{
+        "applicants":"Postulantes",
+        "remaining_days":" días restantes",
+        "not_exists":"No existen campañas para mostrar",
+        "banner":{
+            "title":"Campañas",
+            "text":"Lorem ipsum dolor sit amet consectetur. Duis in viverra aliquet massa. Mattis blandit sed sagittis at tincidunt tincidunt. Pharetra libero vitae at habitasse fames. Auctor porttitor ac nunc donec.",
+            "button":"Crea una Campaña +"
+        },
+        "selector":{
+            "searching":"En búsqueda",
+            "finished":"Finalizadas"
+        },
+        "modal":{
+            "title":"Nueva campaña",
+            "name":{
+                "label":"Título",
+                "placeholder":"Título",
+                "error_required":"El título es obligatorio",
+                "error_pattern":"El título no puede contener caracteres especiales"
+            },
+            "description":{
+                "placeholder":"Ingresa la descripción de la campaña",
+                "error_required":"La descripción es obligatoria"
+            },
+            "end_date":{
+                "label":"Fecha de finalización de la búsqueda",
+                "placeholder":"dd/mm/aaaa",
+                "error_required":"La fecha de finalización es requerida"
+            }
+        },
+        "info":{
+            "success_title":"Campaña creada con éxito",
+            "error_title":"Ocurrió un error al crear la campaña"
+        }
     }
 }

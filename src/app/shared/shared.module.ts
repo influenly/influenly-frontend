@@ -11,6 +11,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EncryptionService } from './services/encryption.service';
+import { BannerComponent } from './components/banner/banner.component';
+import { SelectorComponent } from './components/selector/selector.component';
 
 
 
@@ -19,7 +21,9 @@ import { EncryptionService } from './services/encryption.service';
     InformationModalComponent,
     SvgIconComponent,
     NotFoundComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    BannerComponent,
+    SelectorComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,9 @@ import { EncryptionService } from './services/encryption.service';
   exports: [
     InformationModalComponent,
     SvgIconComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    BannerComponent,
+    SelectorComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,5 @@
+<div class="container-tags">
+    <div class="box-tag" *ngFor="let option of options" (click)="changeOption(option)" [ngClass]="{ 'non-selected': option.key != selected }">
+        <span>{{ option.label }}</span>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container-box">
+    <div class="align-card">
+        <app-banner [title]="bannerTitle" [text]="bannerText" [buttonLabel]="bannerButtonLabel" [buttonAction]="createCampaign.bind(this)"></app-banner>
+    </div>
+    
+    <div class="campaigns-box align-card">
+        <app-selector [options]="selectorOptions" (changeSelected)="changeSelected($event)"/>
+        <div class="card">
+            <div class="campaign-box" *ngFor="let campaign of campaignsToShow; let i = index">
+                <div class="campaign-name">
+                    <span >{{ campaign.name }}</span>
+                </div>
+                <div class="content-tags">
+                    <mat-chip *ngFor="let tag of campaign.contentTags" class="tag">
+                        {{ 'onboarding.content.tag_list.' + tag | translate }}
+                    </mat-chip>
+                </div>
+                <div class="data-box">
+                    <div class="label">
+                        <span>{{ 'campaigns.applicants' | translate }}</span>
+                    </div>
+                    <div class="data">
+                        <span>{{ 0 }}</span>
+                    </div>
+                </div>
+                <div class="campaign-remaining">
+                    <mat-icon>schedule</mat-icon>
+                    <span>{{ campaign.endDate }}</span>
+                </div>
+            </div>
+            <div *ngIf="campaignsToShow.length == 0" class="campaign-box">
+                <span class="d-flex justify-content-center campaign-name w-100">{{ 'campaigns.not_exists' | translate }}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -378,5 +378,41 @@
             "more_than":"More than {{minFollowers}} followers",
             "less_than":"Less than {{maxFollowers}} followers"
         }
+    },
+    "campaigns":{
+        "applicants":"Applicants",
+        "remaining_days":" remaining days",
+        "not_exists":"There are no campaigns to display",
+        "banner":{
+            "title":"Campaigns",
+            "text":"Lorem ipsum dolor sit amet consectetur. Duis in viverra aliquet massa. Mattis blandit sed sagittis at tincidunt tincidunt. Pharetra libero vitae at habitasse fames. Auctor porttitor ac nunc donec.",
+            "button":"Create a Campaign +"
+        },
+        "selector":{
+            "searching":"In search",
+            "finished":"Finished"
+        },
+        "modal":{
+            "title":"New campaign",
+            "yam":{
+                "label":"Title",
+                "placeholder":"Title",
+                "error_required":"The title is required",
+                "error_pattern":"The title cannot contain special characters"
+            },
+            "description":{
+                "placeholder":"Enter the campaign description",
+                "error_required":"The description is required"
+            },
+            "end_date":{
+                "label":"Search end date",
+                "placeholder":"dd/mm/yyyy",
+                "error_required":"The end date is required"
+            }
+        },
+        "info":{
+            "success_title":"Campaign created successfully",
+            "error_title":"An error occurred while creating the campaign"
+        }
     }
 }

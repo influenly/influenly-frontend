@@ -44,6 +44,9 @@ import { SearchResultsComponent } from './pages/discovery/search-results/search-
 import { UserCardComponent } from './pages/discovery/search-results/user-card/user-card.component';
 import { DiscoveryService } from './pages/discovery/services/discovery.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CampaignsComponent } from './pages/campaigns/campaigns.component';
+import { NewCampaignModalComponent } from './pages/campaigns/new-campaign-modal/new-campaign-modal.component';
+import { CampaignService } from './pages/campaigns/services/campaign.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +72,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     DiscoveryComponent,
     DiscoveryFiltersComponent,
     SearchResultsComponent,
-    UserCardComponent
+    UserCardComponent,
+    CampaignsComponent,
+    NewCampaignModalComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +101,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProfileService,
     ProfileRequestService,
     ChatRequestService,
-    DiscoveryService
+    DiscoveryService,
+    CampaignService
   ]
 })
 export class MainModule { }

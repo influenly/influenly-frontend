@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ChatWindowComponent } from './pages/chat-window/chat-window.component';
 import { DiscoveryComponent } from './pages/discovery/discovery.component';
 import { AuthGuard } from '../core/guard/auth.guard';
+import { CampaignsComponent } from './pages/campaigns/campaigns.component';
 
 const routes: Routes = [
     {
@@ -34,6 +35,10 @@ const routes: Routes = [
         component: DiscoveryComponent,
         canActivate: [AuthGuard],
         data: { admitedUserType: 'ADVERTISER' }
+    },
+    {
+        path: 'campaigns',
+        component: CampaignsComponent
     }
 ];
 
