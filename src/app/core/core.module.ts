@@ -15,6 +15,7 @@ import { DiscoveryButtonComponent } from './header/discovery-button/discovery-bu
 import { AuthService } from './services/auth.service';
 import { SessionUtilsService } from './services/session-utils.service';
 import { FooterComponent } from './footer/footer.component';
+import { CampaignsButtonComponent } from './header/campaigns-button/campaigns-button.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     UserOptionsComponent,
     ChatComponent,
     DiscoveryButtonComponent,
-    FooterComponent
+    FooterComponent,
+    CampaignsButtonComponent
   ],
   imports: [
     CommonModule,
