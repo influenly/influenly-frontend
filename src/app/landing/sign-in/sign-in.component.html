@@ -1,6 +1,6 @@
-<div class="container-box">
-	<div class="d-flex justify-content-center card">
-		<form [formGroup]="signInForm" class="">
+<div class="signIn__container">
+	<div class="form__card">
+		<form [formGroup]="signInForm" class="form__form">
 			<div class="form__container">
 				<h2 class="form__title">{{ "landing.sign_in.title" | translate }}</h2>
 				<div>
@@ -18,7 +18,7 @@
 						<div
 							[ngClass]="{
 								'error-message': true,
-								active: submitted && email?.hasError('required')
+								'active': submitted && email?.hasError('required')
 							}"
 						>
 							<mat-icon>warning</mat-icon
@@ -27,7 +27,7 @@
 						<div
 							[ngClass]="{
 								'error-message': true,
-								active: submitted && email?.hasError('pattern')
+								'active': submitted && email?.hasError('pattern')
 							}"
 						>
 							<mat-icon>warning</mat-icon
@@ -36,7 +36,7 @@
 						<div
 							[ngClass]="{
 								'error-message': true,
-								active: submitted && email?.hasError('invalid')
+								'active': submitted && email?.hasError('invalid')
 							}"
 						>
 							<mat-icon>warning</mat-icon
@@ -59,7 +59,7 @@
 						<div
 							[ngClass]="{
 								'error-message': true,
-								active: submitted && email?.hasError('required')
+								'active': submitted && password?.hasError('required')
 							}"
 						>
 							<mat-icon>warning</mat-icon
@@ -68,7 +68,7 @@
 						<div
 							[ngClass]="{
 								'error-message': true,
-								active: submitted && email?.hasError('minlength')
+								'active': submitted && password?.hasError('minlength')
 							}"
 						>
 							<mat-icon>warning</mat-icon
@@ -77,7 +77,7 @@
 						<div
 							[ngClass]="{
 								'error-message': true,
-								active: submitted && email?.hasError('invalid')
+								'active': submitted && password?.hasError('invalid')
 							}"
 						>
 							<mat-icon>warning</mat-icon
@@ -98,5 +98,8 @@
 				</p>
 			</div>
 		</form>
+	</div>
+	<div class="image__container">
+		<img src="../../../assets/images/sign-in-person-1.svg" alt="sign-in" class="image__signIn"  />
 	</div>
 </div>

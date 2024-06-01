@@ -1,79 +1,117 @@
-<div class="container-box">
-	<div class="d-flex justify-content-center card">
-		<div class="text-center mt-4">
-			<h2>{{ 'landing.sign_up.title' | translate }}</h2>
-		</div>
-		<form [formGroup]="signUpForm" class="pt-3 px-5 pb-5">
-			<div>
-				<label class="d-block">{{ 'landing.sign_up.email.label' | translate }}</label>
-				<mat-form-field class="w-100">
-					<input
-						matInput
-						[type]="'email'"
-						autocomplete="off"
-						formControlName="email"
-						[placeholder]="'landing.sign_up.email.placeholder' | translate"
-					/>
-					<mat-error *ngIf="email?.hasError('required')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.required_error' | translate }}
-					</mat-error>
-					<mat-error *ngIf="email?.hasError('pattern')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.pattern_error' | translate }}
-					</mat-error>
-					<mat-error *ngIf="email?.hasError('already_exists')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.already_exists_error' | translate }}
-					</mat-error>
-				</mat-form-field>
-			</div>
-			<div>
-				<label class="d-block">{{ 'landing.sign_up.password.label' | translate }}</label>
-				<mat-form-field class="w-100">
-					<input
-						matInput
-						[type]="'password'"
-						autocomplete="off"
-						formControlName="password"
-						[placeholder]="'landing.sign_up.password.placeholder' | translate"
-					/>
-					<mat-error *ngIf="password?.hasError('required')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.required_error' | translate }}
-					</mat-error>
-					<mat-error *ngIf="password?.hasError('minlength')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.minlength_error' | translate }}
-					</mat-error>
-				</mat-form-field>
-			</div>
-			<div>
-				<label class="d-block">{{ 'landing.sign_up.country.label' | translate }}</label>
-				<mat-form-field class="w-100">
-					<mat-select formControlName="country" [placeholder]="'landing.sign_up.country.placeholder' | translate">
-						<mat-select-trigger>
-							<div>
-								<span class="fi" [ngClass]="'fi-' + country?.value.toLowerCase()"></span>
-								{{ 'general.countries.' + country?.value | translate }}
-							</div>
-						</mat-select-trigger>
-						<div *ngFor="let country of countries">
-							<mat-option [value]="country">
-								<span class="fi" [ngClass]="'fi-' + country.toLowerCase()"></span>
-								{{ 'general.countries.' + country | translate }}
-							</mat-option>
+<div class="signUp__container">
+	<div class="form__card">
+		<form [formGroup]="signUpForm" class="form__form">
+			<div class="form__container">
+				<h2 class="form__title">{{ 'landing.sign_up.title' | translate }}</h2>
+				<div>
+					<label class="d-block">{{ 'landing.sign_up.username.label' | translate }}</label>
+					<div class="input-wrapper w-100">
+						<input
+							type="text"
+							autocomplete="off"
+							formControlName="username"
+							[placeholder]="'landing.sign_up.username.placeholder' | translate"
+							class="form__input"
+						/>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && username?.hasError('required')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.username.required_error' | translate }}
 						</div>
-					</mat-select>
-					<mat-error *ngIf="country?.hasError('required')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.country.required_error' | translate }}
-					</mat-error>
-				</mat-form-field>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && username?.hasError('pattern')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.username.pattern_error' | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && username?.hasError('already_exists')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.username.already_exists_error' | translate }}
+						</div>
+					</div>
+				</div>
+				<div>
+					<label class="d-block">{{ 'landing.sign_up.email.label' | translate }}</label>
+					<div class="input-wrapper w-100">
+						<input
+							type="email"
+							autocomplete="off"
+							formControlName="email"
+							[placeholder]="'landing.sign_up.email.placeholder' | translate"
+							class="form__input"
+						/>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && email?.hasError('required')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.required_error' | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && email?.hasError('pattern')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.pattern_error' | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && email?.hasError('already_exists')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.email.already_exists_error' | translate }}
+						</div>
+					</div>
+				</div>
+				<div>
+					<label class="d-block">{{ 'landing.sign_up.password.label' | translate }}</label>
+					<div class="input-wrapper w-100">
+						<input
+							type="password"
+							autocomplete="off"
+							formControlName="password"
+							[placeholder]="'landing.sign_up.password.placeholder' | translate"
+							class="form__input"
+						/>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && password?.hasError('required')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.required_error' | translate }}
+						</div>
+						<div
+							[ngClass]="{
+								'error-message': true,
+								'active': submitted && password?.hasError('minlength')
+							}"
+						>
+							<mat-icon>warning</mat-icon>{{ 'landing.sign_up.password.minlength_error' | translate }}
+						</div>
+					</div>
+				</div>
 			</div>
-
-			<div class="mt-4">
-				<button class="main-button w-100 p-3" (click)="submit()">{{ 'landing.sign_up.btn_signup' | translate }}</button>
-			</div>
-
-			<div class="text-center mt-3">
+			<button class="form__button w-100" (click)="submit()">{{ 'landing.sign_up.btn_signup' | translate }}</button>
+			<div class="text-center">
 				<p class="terms-cond-text">{{ 'landing.sign_up.text_1' | translate }}<a href="terms-of-service">{{ 'landing.sign_up.terms_conditions' | translate }}</a>{{ 'landing.sign_up.text_2' | translate }} <a href="privacy-policy">{{ 'landing.sign_up.privacy_policies' | translate }}</a>.</p>
 				<p class="login-text">{{ 'landing.sign_up.already_registered' | translate }}<a href="login">{{ 'landing.sign_up.login' | translate }}</a></p>
 			</div>
 		</form>
+	</div>
+	<div class="image__container">
+		<img src="../../../assets/images/sign-up-person-1.svg" alt="sign-up" class="image__signUp" />
 	</div>
 </div>

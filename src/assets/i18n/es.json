@@ -77,6 +77,14 @@
                 "already_exists_error":"Email ya en uso, inicia sesión o recupera tu contraseña",
                 "invalid_error":"Email incorrecto"
             },
+            "username":{
+                "label":"Nombre de usuario",
+                "placeholder":"Ingresa tu nombre de usuario",
+                "required_error":"Nombre de usuario es requerido",
+                "pattern_error":"Solo debe contener letras y números",
+                "already_exists_error":"Nombre de usuario ya en uso",
+                "invalid_error":"Nombre de usuario incorrecto"
+            },
             "password":{
                 "label":"Contraseña",
                 "placeholder":"Ingresa tu contraseña",
