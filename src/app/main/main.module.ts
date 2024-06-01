@@ -47,6 +47,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CampaignsComponent } from './pages/campaigns/campaigns.component';
 import { NewCampaignModalComponent } from './pages/campaigns/new-campaign-modal/new-campaign-modal.component';
 import { CampaignService } from './pages/campaigns/services/campaign.service';
+import { CampaignsAdvertiserViewComponent } from './pages/campaigns/campaigns-advertiser-view/campaigns-advertiser-view.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { CampaignService } from './pages/campaigns/services/campaign.service';
     SearchResultsComponent,
     UserCardComponent,
     CampaignsComponent,
-    NewCampaignModalComponent
+    NewCampaignModalComponent,
+    CampaignsAdvertiserViewComponent
   ],
   imports: [
     CommonModule,

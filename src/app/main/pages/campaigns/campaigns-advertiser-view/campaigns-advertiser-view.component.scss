@@ -1,0 +1,83 @@
+.campaigns-box {
+    position: relative;
+}
+
+.card {
+    margin-top: 5rem;
+    padding: 16px;
+    border-radius: 1rem;
+    border: none;
+}
+
+.campaign-box {
+    padding: 8px;
+    width: 100%;
+    background-color: #EAEDF2;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.campaign-name {
+    width: 150px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: auto 5px;
+    height: fit-content;
+}
+
+.campaign-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.content-tags {
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+
+.tag {
+    background-color: var(--primary-color) !important;
+    --mdc-chip-label-text-color: white !important;
+    --mdc-chip-label-text-size: 12px !important;
+    margin-right: 4px;
+}
+
+.campaign-remaining {
+    width: 190px;
+    font-size: 16px;
+    font-weight: 600;
+    margin: auto 5px;
+    height: fit-content;
+}
+
+.data-box {
+    width: 100px;
+    text-align: center;
+    height: fit-content;
+}
+
+.label {
+    font-size: 12px;
+    color: #808080;
+    height: fit-content;
+    margin: auto;
+}
+
+.data {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.mat-icon {
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    .campaign-box {
+        display: block;
+    }
+}
