@@ -390,7 +390,9 @@
         },
         "selector":{
             "searching":"En búsqueda",
-            "finished":"Finalizadas"
+            "finished":"Finalizadas",
+            "campaigns":"Campañas",
+            "applied":"Campañas aplicadas"
         },
         "modal":{
             "title":"Nueva campaña",

@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class SelectorComponent {
 
   @Input() options: {key: string, label: string }[] | undefined;
+  @Input() isFloat: boolean = false;
 
   @Output() changeSelected: EventEmitter<{key: string, label: string }> = new EventEmitter();
 

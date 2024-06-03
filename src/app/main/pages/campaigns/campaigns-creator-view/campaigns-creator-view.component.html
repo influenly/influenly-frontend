@@ -1,0 +1,6 @@
+<div class="campaigns-box align-card">
+    <app-selector [options]="selectorOptions" [isFloat]="true" (changeSelected)="changeSelected($event)"/>
+    <div class="campaigns-container">
+        <app-campaign-card *ngFor="let campaign of campaignsToShow" [campaign]="campaign"/>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="d-flex justify-content-between">
+        <div class="d-flex">
+            <img class="profile-img" src="../../../../../../assets/images/profile/default-picture-advertiser.svg" />
+            <div class="d-block name-box">
+                <div class="campaign-name">
+                    <span>{{ campaign?.name }}</span>
+                </div>
+                <div class="advertiser-name">
+                    <span>{{ campaign?.advertiserId }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="campaign-remaining">
+            <mat-icon>schedule</mat-icon>
+            <span class="days">{{ campaign?.endDate }}</span>
+        </div>
+    </div>
+    <div class="description">
+        <span>{{ campaign?.description }}</span>
+    </div>
+    <div class="content-tags">
+        <mat-chip *ngFor="let tag of campaign?.contentTags" class="tag">
+            {{ 'onboarding.content.tag_list.' + tag | translate }}
+        </mat-chip>
+    </div>
+</div>

@@ -3,5 +3,6 @@
         <app-banner [title]="bannerTitle" [text]="bannerText" [buttonLabel]="bannerButtonLabel" [buttonAction]="createCampaign.bind(this)"></app-banner>
     </div>
     
-    <app-campaigns-advertiser-view />
+    <app-campaigns-advertiser-view *ngIf="isCreator != undefined && !isCreator" />
+    <app-campaigns-creator-view *ngIf="isCreator != undefined && isCreator" />
 </div>

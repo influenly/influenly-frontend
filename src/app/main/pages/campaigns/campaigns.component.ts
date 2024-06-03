@@ -4,6 +4,8 @@ import { NewCampaignModalComponent } from './new-campaign-modal/new-campaign-mod
 import { MatDialog } from '@angular/material/dialog';
 import { finalize } from 'rxjs';
 import { CampaignsAdvertiserViewComponent } from './campaigns-advertiser-view/campaigns-advertiser-view.component';
+import { SESSION_STORAGE_KEYS, SessionStorageService } from 'src/app/shared/services/storages/session-storage.service';
+import { USER_TYPE } from 'src/app/shared/models/user-type.enum';
 
 @Component({
   selector: 'app-campaigns',
@@ -17,21 +19,27 @@ export class CampaignsComponent implements OnInit {
   bannerTitle: string = '';
   bannerText: string = '';
   bannerButtonLabel: string = '';
+  isCreator: boolean | undefined;
   
 
   constructor(
     private translate: TranslateService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private sessionStorage: SessionStorageService
   ) { }
 
   ngOnInit() {
-    this.loadTranslations();
+    this.init();
   }
 
-  private loadTranslations() {
+  private async init() {
+    const userType = await this.sessionStorage.getFirst(SESSION_STORAGE_KEYS.user_type);
+    this.isCreator = userType === USER_TYPE.CREATOR;
     this.bannerTitle = this.translate.instant('campaigns.banner.title');
     this.bannerText = this.translate.instant('campaigns.banner.text');
-    this.bannerButtonLabel = this.translate.instant('campaigns.banner.button');
+    if (!this.isCreator) {
+      this.bannerButtonLabel = this.translate.instant('campaigns.banner.button');
+    }
   }
 
   createCampaign() {

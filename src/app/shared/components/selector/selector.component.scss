@@ -16,3 +16,32 @@
 .box-tag.non-selected {
     background-color: #ededed;
 }
+
+.float-tag {
+    position: relative;
+    left: 0;
+    transform: translate(0px, -55px);
+    height: 3.5rem;
+    width: auto;
+    display: flex;
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: center;
+    font-weight: 500;
+    border: none;
+    margin-right: 4px;
+    color: #222;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.float-tag:hover {
+    cursor: pointer;
+}
+
+.float-tag.non-selected {
+    color: #BFBFBF;
+}

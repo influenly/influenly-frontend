@@ -48,6 +48,8 @@ import { CampaignsComponent } from './pages/campaigns/campaigns.component';
 import { NewCampaignModalComponent } from './pages/campaigns/new-campaign-modal/new-campaign-modal.component';
 import { CampaignService } from './pages/campaigns/services/campaign.service';
 import { CampaignsAdvertiserViewComponent } from './pages/campaigns/campaigns-advertiser-view/campaigns-advertiser-view.component';
+import { CampaignsCreatorViewComponent } from './pages/campaigns/campaigns-creator-view/campaigns-creator-view.component';
+import { CampaignCardComponent } from './pages/campaigns/campaigns-creator-view/campaign-card/campaign-card.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { CampaignsAdvertiserViewComponent } from './pages/campaigns/campaigns-ad
     UserCardComponent,
     CampaignsComponent,
     NewCampaignModalComponent,
-    CampaignsAdvertiserViewComponent
+    CampaignsAdvertiserViewComponent,
+    CampaignsCreatorViewComponent,
+    CampaignCardComponent,
   ],
   imports: [
     CommonModule,
