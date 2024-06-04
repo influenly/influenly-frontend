@@ -1,0 +1,101 @@
+.profile-img {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.name-box {
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.advertiser-name {
+    color: #222;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 0.16px;
+}
+
+.campaign-name {
+    color: #000;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%
+}
+
+.campaign-remaining {
+    border-radius: 8px;
+    background-color: #EAEDF2;
+    height: fit-content;
+    padding: 4px 8px 4px 4px;
+    color: #222;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0.12px;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.mat-icon {
+    margin-right: 8px;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+}
+
+.description {
+    margin-top: 16px;
+    margin-bottom: 24px;
+    color: #222;
+    font-feature-settings: 'calt' off;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.14px;
+}
+
+.content-tags {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.tag {
+    background-color: var(--primary-color) !important;
+    --mdc-chip-label-text-color: white !important;
+    --mdc-chip-label-text-size: 14px !important;
+    --mdc-chip-label-text-weight: 400 !important;
+    --mdc-chip-container-height: 32px;
+    margin-right: 8px;
+}
+
+::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__action--primary {
+    padding: 8px 12px !important;
+}
+
+.tags-label {
+    display: block;
+    color: #000;
+    font-feature-settings: 'calt' off;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: -0.14px;
+}
+
+.button-outlined {
+    border: 2px solid black;
+    color: black;
+    padding: 12px 16px !important;
+}

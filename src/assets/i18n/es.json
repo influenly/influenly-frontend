@@ -6,6 +6,7 @@
         "btn_back":"Atrás",
         "btn_return":"Volver",
         "btn_cancel":"Cancelar",
+        "btn_close":"Cerrar",
         "search":"Buscar",
         "creator":"Creador",
         "advertiser":"Anunciante",
@@ -410,6 +411,14 @@
                 "label":"Fecha de finalización de la búsqueda",
                 "placeholder":"dd/mm/aaaa",
                 "error_required":"La fecha de finalización es requerida"
+            },
+            "apply":{
+                "tags_label":"Contenido que se busca",
+                "button_label":"Postularme",
+                "success_title":"Te has postulado con éxito!",
+                "success_text":"El anunciante te contactará en caso de que le interese tu perfil.",
+                "error_title":"Error",
+                "error_text":"Ha surgido un error."
             }
         },
         "info":{

@@ -6,6 +6,7 @@
         "btn_back":"Back",
         "btn_return":"Return",
         "btn_cancel":"Cancel",
+        "btn_close":"Close",
         "search":"Search",
         "creator":"Creator",
         "advertiser":"Advertiser",
@@ -410,6 +411,14 @@
                 "label":"Search end date",
                 "placeholder":"dd/mm/yyyy",
                 "error_required":"The end date is required"
+            },
+            "apply":{
+                "tags_label":"Searched content",
+                "button_label":"Apply",
+                "success_title":"You have successfully applied!",
+                "success_text":"The advertiser will contact you if they are interested in your profile.",
+                "error_title":"Error",
+                "error_text":"An error has occurred."
             }
         },
         "info":{

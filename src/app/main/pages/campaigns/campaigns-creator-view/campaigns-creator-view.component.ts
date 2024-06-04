@@ -4,6 +4,7 @@ import { CampaignService } from '../services/campaign.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
+import { ApplyToCampaignModalComponent } from './apply-to-campaign-modal/apply-to-campaign-modal.component';
 
 @Component({
   selector: 'app-campaigns-creator-view',
@@ -70,5 +71,14 @@ export class CampaignsCreatorViewComponent implements OnInit {
       diffDays = 0
     }
     return diffDays + 'd';
+  }
+
+  viewCampaign(campaign: CampaignModel) {
+    this.dialog.open(ApplyToCampaignModalComponent, {
+      width: '500px',
+      data: {
+        campaign
+      }
+    });
   }
 }

@@ -21,4 +21,10 @@ export class CampaignService {
         });
     }
 
+    public applyToCampaign$(payload: any): Observable<HttpResponse<any>> {
+        return this.restApiClient.post<any>(payload, {
+            endPoint: '/campaign/creator'
+        });
+    }
+
 }

@@ -1,3 +1,5 @@
+import { UserModel } from "../../profile/models/user-data.model";
+
 export interface CampaignModel {
     id?: number;
     name: string;
@@ -6,4 +8,5 @@ export interface CampaignModel {
     endDate: string;
     advertiserId?: number;
     status?: string;
+    advertiser?: UserModel
 }
