@@ -19,7 +19,6 @@ export class SessionUtilsService {
         this.sessionStorage.set(SESSION_STORAGE_KEYS.email, response.user.email);
         await this.socketService.connectSocket();
         this.socketService.subscribeTopic(TOPIC.RECEIVE + response.user.id);
-        this.socketService.subscribeTopic(TOPIC.CHANGES + response.user.id);
         if (!response.user.emailVerified) {
             this.router.navigate(['email-verification']);
         } else {
