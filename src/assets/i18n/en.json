@@ -419,6 +419,11 @@
                 "success_text":"The advertiser will contact you if they are interested in your profile.",
                 "error_title":"Error",
                 "error_text":"An error has occurred."
+            },
+            "detail":{
+                "applicants_label":"Applicants",
+                "no_applicants":"They have not applied yet",
+                "followers":"Followers"
             }
         },
         "info":{

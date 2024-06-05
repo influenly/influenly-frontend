@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CampaignService } from '../services/campaign.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CampaignDetailModalComponent } from './campaign-detail-modal/campaign-detail-modal.component';
 
 @Component({
   selector: 'app-campaigns-advertiser-view',
@@ -71,4 +72,14 @@ export class CampaignsAdvertiserViewComponent implements OnInit {
     }
     return diffDays + this.translate.instant('campaigns.remaining_days');
   }
+
+  openCampaignDetail(campaign: CampaignModel) {
+    this.dialog.open(CampaignDetailModalComponent, {
+      width: '600px',
+      data: {
+        campaign
+      }
+    });
+  }
+
 }

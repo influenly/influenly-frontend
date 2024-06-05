@@ -419,6 +419,11 @@
                 "success_text":"El anunciante te contactará en caso de que le interese tu perfil.",
                 "error_title":"Error",
                 "error_text":"Ha surgido un error."
+            },
+            "detail":{
+                "applicants_label":"Postulantes",
+                "no_applicants":"No se han postulando aún",
+                "followers":"Seguidores"
             }
         },
         "info":{

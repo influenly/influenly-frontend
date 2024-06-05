@@ -1,0 +1,50 @@
+<div>
+    <div class="d-flex">
+        <span class="advertiser-name">{{ data.campaign.name }}</span>
+        <div class="campaign-remaining">
+            <mat-icon>schedule</mat-icon>
+            <span class="days">{{ data.campaign.endDate }}</span>
+        </div>
+    </div>
+    <div class="description">
+        <span>{{ data.campaign.description }}</span>
+    </div>
+    <div class="d-block content-tags">
+        <span class="label mb-2">{{ 'campaigns.modal.apply.tags_label' | translate }}</span>
+        <mat-chip *ngFor="let tag of data.campaign.contentTags" class="tag">
+            {{ 'onboarding.content.tag_list.' + tag | translate }}
+        </mat-chip>
+    </div>
+    <div class="applicants">
+        <span class="label mb-2">{{ 'campaigns.modal.detail.applicants_label' | translate }}</span>
+        <div class="channel-box" *ngFor="let creator of applicants">
+            <div class="d-flex">
+                <img *ngIf="creator.profileImg && creator.profileImg != 'default'" [src]="creator.profileImg" class="picture" />
+                <img *ngIf="!creator.profileImg || creator.profileImg == 'default'" class="picture" src="../../../../../../assets/images/profile/default-picture-creator.svg" />
+                <div class="channel-name">
+                    <span (click)="openUserProfile(creator)">{{ creator.username }}</span>
+                </div>
+            </div>
+            <div class="data-container">
+                <div class="data-box">
+                    <div class="data">
+                        <span>{{ creator.totalFollowers }}</span>
+                    </div>
+                    <div class="label-followers">
+                        <span>{{ 'campaigns.modal.detail.followers' | translate }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="channel-box" *ngIf="applicants.length == 0">
+            <div class="w-100 text-center">
+                <span>{{ 'campaigns.modal.detail.no_applicants' | translate }}</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="button-outlined w-100 p-3 mt-3" (click)="close()">
+            {{ 'general.btn_close' | translate }}
+        </button>
+    </div>
+</div>

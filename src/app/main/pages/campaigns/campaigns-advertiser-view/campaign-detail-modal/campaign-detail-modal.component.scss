@@ -1,0 +1,139 @@
+.advertiser-name {
+    color: #000;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 125%;
+}
+
+.campaign-remaining {
+    border-radius: 8px;
+    background-color: #EAEDF2;
+    height: fit-content;
+    padding: 4px 8px 4px 4px;
+    color: #222;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0.12px;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.mat-icon {
+    margin-right: 8px;
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+}
+
+.description {
+    color: #222;
+    font-feature-settings: 'calt' off;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.14px;
+    margin-top: 16px;
+}
+
+.content-tags {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    margin-top: 24px;
+}
+
+.tag {
+    background-color: var(--primary-color) !important;
+    --mdc-chip-label-text-color: white !important;
+    --mdc-chip-label-text-size: 14px !important;
+    --mdc-chip-label-text-weight: 400 !important;
+    --mdc-chip-container-height: 32px;
+    margin-right: 8px;
+}
+
+::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__action--primary {
+    padding: 8px 12px !important;
+}
+
+.label {
+    display: block;
+    color: #000;
+    font-feature-settings: 'calt' off;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: -0.14px;
+}
+
+.applicants {
+    margin-top: 24px;
+}
+
+.channel-box {
+    padding: 8px;
+    width: 100%;
+    background-color: #EAEDF2;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.picture {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.channel-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin: auto 5px;
+    height: fit-content;
+}
+
+.channel-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.data-container {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    padding: 0 1rem;
+}
+
+.data-box {
+    width: 20%;
+    text-align: center;
+    height: fit-content;
+    margin: auto;
+}
+
+.label-followers {
+    font-size: 12px;
+    color: #808080;
+    height: fit-content;
+    margin: auto;
+}
+
+.data {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.button-outlined {
+    border: 2px solid black;
+    color: black;
+    padding: 12px 16px !important;
+}

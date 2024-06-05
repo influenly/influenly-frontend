@@ -27,4 +27,10 @@ export class CampaignService {
         });
     }
 
+    public getApplicants$(campaignId: any): Observable<HttpResponse<any>> {
+        return this.restApiClient.get<any>({
+            endPoint: '/campaign/' + campaignId
+        });
+    }
+
 }

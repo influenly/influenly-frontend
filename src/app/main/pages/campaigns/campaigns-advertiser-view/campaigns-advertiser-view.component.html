@@ -2,7 +2,7 @@
     <app-selector [options]="selectorOptions" (changeSelected)="changeSelected($event)"/>
     <div class="card">
         <div class="campaign-box" *ngFor="let campaign of campaignsToShow; let i = index">
-            <div class="campaign-name">
+            <div class="campaign-name" (click)="openCampaignDetail(campaign)">
                 <span >{{ campaign.name }}</span>
             </div>
             <div class="content-tags">
