@@ -34,4 +34,10 @@ export class CampaignService {
         });
     }
 
+    public delete$(id: number | undefined): Observable<HttpResponse<any>> {
+        return this.restApiClient.delete<any>({
+            endPoint: '/campaign/' + id
+        });
+    }
+
 }

@@ -72,6 +72,10 @@
     font-size: 20px;
 }
 
+.action:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .campaign-box {
         display: block;

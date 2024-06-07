@@ -5,6 +5,8 @@ import { CampaignService } from '../services/campaign.service';
 import { InformationModalComponent } from 'src/app/shared/components/UI/information-modal/information-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CampaignDetailModalComponent } from './campaign-detail-modal/campaign-detail-modal.component';
+import { NewCampaignModalComponent } from '../new-campaign-modal/new-campaign-modal.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-campaigns-advertiser-view',
@@ -78,6 +80,65 @@ export class CampaignsAdvertiserViewComponent implements OnInit {
       width: '600px',
       data: {
         campaign
+      }
+    });
+  }
+
+  edit(campaign: CampaignModel) {
+    const dialogRef = this.dialog.open(NewCampaignModalComponent, {
+      width: '500px',
+      data: {
+        campaign
+      }
+    });
+    const subs = dialogRef.componentInstance.result.pipe(
+      finalize(() => {
+        subs.unsubscribe();
+      })
+    ).subscribe(result => {
+      if (result) {
+        this.loadCampaigns();
+      }
+    });
+  }
+
+  delete(campaign: CampaignModel) {
+    const dialogRef = this.dialog.open(InformationModalComponent, {
+      width: '500px',
+      data: {
+        title: this.translate.instant('campaigns.delete_title'),
+        text: this.translate.instant('campaigns.delete_text'),
+        textButtonOk: this.translate.instant('campaigns.option_delete'),
+        textButtonClose: this.translate.instant('general.btn_cancel')
+      }
+    });
+    const subs = dialogRef.componentInstance.response.pipe(
+      finalize(() => {
+        subs.unsubscribe();
+      })
+    ).subscribe(result => {
+      if (result) {
+        this.deleteCampaign(campaign.id);
+      }
+      dialogRef.close();
+    });
+  }
+
+  private deleteCampaign(id: number | undefined) {
+    this.campaignService.delete$(id).subscribe({
+      next: async (v) => {
+        if (v.body?.ok) {
+        }
+      },
+      error: () => {
+        this.dialog.open(InformationModalComponent, {
+          width: '600px',
+          data: {
+            icon: 'warning',
+            title: this.translate.instant('campaigns.info.error_delete_title'),
+            textButtonClose: this.translate.instant('general.btn_accept')
+          }
+        });
       }
     });
   }

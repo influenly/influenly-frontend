@@ -384,6 +384,10 @@
         "applicants":"Postulantes",
         "remaining_days":" días restantes",
         "not_exists":"No existen campañas para mostrar",
+        "option_edit":"Editar",
+        "option_delete":"Eliminar",
+        "delete_title":"Eliminar Campaña",
+        "delete_text":"¿Estás seguro que quieres eliminar la campaña?",
         "banner":{
             "title":"Campañas",
             "text":"Lorem ipsum dolor sit amet consectetur. Duis in viverra aliquet massa. Mattis blandit sed sagittis at tincidunt tincidunt. Pharetra libero vitae at habitasse fames. Auctor porttitor ac nunc donec.",
@@ -428,7 +432,8 @@
         },
         "info":{
             "success_title":"Campaña creada con éxito",
-            "error_title":"Ocurrió un error al crear la campaña"
+            "error_title":"Ocurrió un error al crear la campaña",
+            "error_delete_title":"Ocurrió un error al eliminar la campaña"
         }
     }
 }
