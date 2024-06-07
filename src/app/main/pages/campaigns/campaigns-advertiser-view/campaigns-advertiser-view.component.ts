@@ -41,7 +41,7 @@ export class CampaignsAdvertiserViewComponent implements OnInit {
       next: async (v) => {
         if (v.body?.ok) {
           this.campaigns = v.body?.campaigns;
-          this.campaigns.forEach(campaign => campaign.endDate = this.remainingDays(campaign.endDate));
+          this.campaigns.forEach(campaign => campaign.remainingDays = this.remainingDays(campaign.endDate));
           this.campaignsToShow = this.campaigns.filter(campaign => campaign.status == 'ACTIVE');
         }
       },
@@ -65,6 +65,7 @@ export class CampaignsAdvertiserViewComponent implements OnInit {
     } else {
       this.campaignsToShow = this.campaigns.filter(campaign => campaign.status != 'ACTIVE');
     }
+    this.campaignsToShow.forEach(campaign => campaign.remainingDays = this.remainingDays(campaign.endDate));
   }
 
   remainingDays(endDate: string) {
@@ -87,9 +88,7 @@ export class CampaignsAdvertiserViewComponent implements OnInit {
   edit(campaign: CampaignModel) {
     const dialogRef = this.dialog.open(NewCampaignModalComponent, {
       width: '500px',
-      data: {
-        campaign
-      }
+      data: campaign
     });
     const subs = dialogRef.componentInstance.result.pipe(
       finalize(() => {

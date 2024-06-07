@@ -8,5 +8,6 @@ export interface CampaignModel {
     endDate: string;
     advertiserId?: number;
     status?: string;
-    advertiser?: UserModel
+    advertiser?: UserModel;
+    remainingDays?: string;
 }

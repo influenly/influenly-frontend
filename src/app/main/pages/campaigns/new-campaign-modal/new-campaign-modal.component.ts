@@ -54,6 +54,9 @@ export class NewCampaignModalComponent implements AfterViewInit, OnDestroy {
 
   private loadTagsForm() {
     setTimeout(() => {
+      if (this.data) {
+        this.contentForm?.setTagsValue(this.data.contentTags);
+      }
       this.formOnChangesSubs.push(this.contentForm?.contentForm.valueChanges.subscribe(() => {
         this.tags?.setValue(this.contentForm?.tags?.value);
       }));
@@ -84,37 +87,41 @@ export class NewCampaignModalComponent implements AfterViewInit, OnDestroy {
   }
 
   save() {
-    let data: CampaignModel = {
-      name: this.name?.value,
-      description: this.description?.value,
-      contentTags: this.contentForm?.tags?.value,
-      endDate: this.endDate?.value.toISOString().substring(0, 10)
-    }
-    this.campaignService.createCampaign$(data).subscribe({
-      next: async (v) => {
-        console.log(v)
-        this.dialog.open(InformationModalComponent, {
-          width: '600px',
-          data: {
-            icon: 'check',
-            title: this.translate.instant('campaigns.info.success_title'),
-            textButtonClose: this.translate.instant('general.btn_accept')
-          }
-        });
-        this.result.emit(true);
-        this.dialogRef.close();
-      },
-      error: () => {
-        this.dialog.open(InformationModalComponent, {
-          width: '600px',
-          data: {
-            icon: 'warning',
-            title: this.translate.instant('campaigns.info.error_title'),
-            textButtonClose: this.translate.instant('general.btn_accept')
-          }
-        });
+    if (this.data) {
+      //TODO: PATCH para edit
+    } else {
+      let data: CampaignModel = {
+        name: this.name?.value,
+        description: this.description?.value,
+        contentTags: this.contentForm?.tags?.value,
+        endDate: this.endDate?.value.toISOString().substring(0, 10)
       }
-    });
+      this.campaignService.createCampaign$(data).subscribe({
+        next: async (v) => {
+          console.log(v)
+          this.dialog.open(InformationModalComponent, {
+            width: '600px',
+            data: {
+              icon: 'check',
+              title: this.translate.instant('campaigns.info.success_title'),
+              textButtonClose: this.translate.instant('general.btn_accept')
+            }
+          });
+          this.result.emit(true);
+          this.dialogRef.close();
+        },
+        error: () => {
+          this.dialog.open(InformationModalComponent, {
+            width: '600px',
+            data: {
+              icon: 'warning',
+              title: this.translate.instant('campaigns.info.error_title'),
+              textButtonClose: this.translate.instant('general.btn_accept')
+            }
+          });
+        }
+      });
+    }
   }
 
   public close() {
