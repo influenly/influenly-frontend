@@ -85,6 +85,10 @@ export class CampaignsAdvertiserViewComponent implements OnInit {
     });
   }
 
+  view(campaign: CampaignModel) {
+    this.openCampaignDetail(campaign);
+  }
+
   edit(campaign: CampaignModel) {
     const dialogRef = this.dialog.open(NewCampaignModalComponent, {
       width: '500px',

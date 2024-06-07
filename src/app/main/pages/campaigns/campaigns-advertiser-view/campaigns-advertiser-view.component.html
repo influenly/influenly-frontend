@@ -1,6 +1,7 @@
 <div class="campaigns-box align-card">
     <app-selector [options]="selectorOptions" (changeSelected)="changeSelected($event)"/>
     <div class="card">
+        <!-- TODO: responsive styling-->
         <div class="campaign-box" *ngFor="let campaign of campaignsToShow; let i = index">
             <div class="campaign-name" (click)="openCampaignDetail(campaign)">
                 <span >{{ campaign.name }}</span>
@@ -26,6 +27,10 @@
                 <mat-icon>more_horiz</mat-icon>
             </div>
             <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="view(campaign)">
+                    <mat-icon class="material-icons-outlined">visibility</mat-icon>
+                    <span>{{ 'campaigns.option_view' | translate }}</span>
+                </button>
                 <button mat-menu-item (click)="edit(campaign)">
                     <mat-icon class="material-icons-outlined">edit</mat-icon>
                     <span>{{ 'campaigns.option_edit' | translate }}</span>

@@ -384,6 +384,7 @@
         "applicants":"Postulantes",
         "remaining_days":" días restantes",
         "not_exists":"No existen campañas para mostrar",
+        "option_view":"Ver",
         "option_edit":"Editar",
         "option_delete":"Eliminar",
         "delete_title":"Eliminar Campaña",

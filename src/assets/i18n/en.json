@@ -384,6 +384,7 @@
         "applicants":"Applicants",
         "remaining_days":" remaining days",
         "not_exists":"There are no campaigns to display",
+        "option_view":"View",
         "option_edit":"Edit",
         "option_delete":"Delete",
         "delete_title":"Delete campaing",
