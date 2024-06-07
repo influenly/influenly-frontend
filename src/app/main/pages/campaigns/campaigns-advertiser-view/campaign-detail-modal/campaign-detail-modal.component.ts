@@ -3,6 +3,7 @@ import { CampaignModel } from '../../models/campaign.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CampaignService } from '../../services/campaign.service';
 import { UserModel } from '../../../profile/models/user-data.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaign-detail-modal',
@@ -18,7 +19,8 @@ export class CampaignDetailModalComponent implements OnInit {
       campaign: CampaignModel
     },
     private dialogRef: MatDialogRef<CampaignDetailModalComponent>,
-    private campaignService: CampaignService
+    private campaignService: CampaignService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,8 @@ export class CampaignDetailModalComponent implements OnInit {
   }
 
   openUserProfile(creator: UserModel) {
-
+    this.router.navigate(['/app/user/' + creator.username]);
+    this.dialogRef.close();
   }
 
   close() {
