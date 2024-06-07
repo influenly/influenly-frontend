@@ -45,3 +45,9 @@
 .float-tag.non-selected {
     color: #BFBFBF;
 }
+
+@media (max-width: 512px) {
+    .float-tag {
+        font-size: 16px !important;
+    }
+}
