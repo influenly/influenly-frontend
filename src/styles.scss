@@ -7,6 +7,8 @@
     --ternary-color: #FFF;
     --disabled-color: #bfbfbf;
     --gradient-color-1: #4A1FF6;
+
+    --error-color: #EA2A2A;
 }
 
 html {
@@ -27,6 +29,14 @@ app-root {
 
 mat-icon {
     vertical-align: middle;
+}
+
+mat-error {
+    color: var(--error-color) !important;
+}
+
+.full-height-with-header {
+    min-height: calc(100vh - 3rem);
 }
 
 h1 {
@@ -158,7 +168,7 @@ button[disabled] {
 
 .button-outlined:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .other-button {
@@ -254,4 +264,12 @@ app-svg-icon.verified {
     display: flex;
     height: 100vh !important;
     margin-top: -3rem;
+}
+
+.cdk-overlay-pane {
+    max-width: 90vw !important;
+}
+
+.line-break {
+    white-space: break-spaces;
 }

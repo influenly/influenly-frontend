@@ -1,0 +1,6 @@
+<button *ngIf="showComponent == 'FULL' && isHandset" mat-icon-button class="icon-container" (click)="openCampaigns()">
+    <mat-icon class="icon">campaign</mat-icon>
+</button>
+<div *ngIf="showComponent == 'FULL' && !isHandset" class="header-button-container">
+    <button class="header-button" (click)="openCampaigns()">{{ 'campaigns.banner.title' | translate }}</button>
+</div>

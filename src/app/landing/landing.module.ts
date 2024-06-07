@@ -17,6 +17,8 @@ import { HowItWorksComponent } from './info/how-it-works/how-it-works.component'
 import { AboutUsComponent } from './info/about-us/about-us.component';
 import { PrivatePolicyComponent } from './info/private-policy/private-policy.component';
 import { TermsOfServiceComponent } from './info/terms-of-service/terms-of-service.component';
+import { EmailVerificationPageComponent } from './email-verification-page/email-verification-page.component';
+import { EmailValidationService } from './email-verification-page/services/email-validation.service';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { TermsOfServiceComponent } from './info/terms-of-service/terms-of-servic
     HowItWorksComponent,
     AboutUsComponent,
     PrivatePolicyComponent,
-    TermsOfServiceComponent
+    TermsOfServiceComponent,
+    EmailVerificationPageComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +47,8 @@ import { TermsOfServiceComponent } from './info/terms-of-service/terms-of-servic
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}},
     AuthService,
     LocalStorageService,
-    SessionUtilsService
+    SessionUtilsService,
+    EmailValidationService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

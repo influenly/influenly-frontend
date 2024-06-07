@@ -1,0 +1,86 @@
+.card {
+    padding: 8px;
+    border-radius: 16px;
+    height: 185px;
+}
+
+.profile-img {
+    height: 48px;
+    width: 48px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.name-box {
+    margin-left: 8px;
+}
+
+.campaign-name {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 0.18px;
+}
+
+.advertiser-name {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 0.14px;
+}
+
+.campaign-remaining {
+    border-radius: 8px;
+    background-color: #EAEDF2;
+    height: fit-content;
+    padding: 4px 8px 4px 4px;
+}
+
+.mat-icon {
+    margin-right: 4px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.days {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0.12px;
+    margin: auto 0;
+}
+
+.description {
+    color: #808080;
+    font-feature-settings: 'calt' off;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    max-height: 70px;
+}
+
+.content-tags {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.tag {
+    background-color: var(--primary-color) !important;
+    --mdc-chip-label-text-color: white !important;
+    --mdc-chip-label-text-size: 10px !important;
+    --mdc-chip-label-text-weight: 600 !important;
+    --mdc-chip-container-height: 24px;
+    margin-right: 4px;
+}
+
+::ng-deep .mat-mdc-standard-chip .mdc-evolution-chip__action--primary {
+    padding: 0px 8px !important;
+}

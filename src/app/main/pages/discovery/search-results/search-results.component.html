@@ -22,7 +22,7 @@
     </button>
     <div class="cards-box">
         <div class="cards-container">
-            <app-user-card *ngFor="let user of users" [userData]="user" (click)="openUserProfile(user.id)" />
+            <app-user-card *ngFor="let user of users" [userData]="user" (click)="openUserProfile(user.username)" />
         </div>
     </div>
 </div>

@@ -52,12 +52,13 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     showFilter.set(true);
   }
 
-  async openUserProfile(userId: number) {
-    const encryptedUserId = await this.encryptionService.encrypt(userId.toString());
-    this.router.navigate(
-      ['/app/user'],
-      { queryParams: { trackingId: encryptedUserId }
-    });
+  async openUserProfile(username: string) {
+    // const encryptedUserId = await this.encryptionService.encrypt(userId.toString());
+    // this.router.navigate(
+    //   ['/app/user'],
+    //   { queryParams: { trackingId: encryptedUserId }
+    // });
+    this.router.navigate(['/app/user/' + username]);
   }
 
   ngOnDestroy() {

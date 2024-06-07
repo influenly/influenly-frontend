@@ -1,0 +1,48 @@
+<div class="campaigns-box align-card">
+    <app-selector [options]="selectorOptions" (changeSelected)="changeSelected($event)"/>
+    <div class="card">
+        <!-- TODO: responsive styling-->
+        <div class="campaign-box" *ngFor="let campaign of campaignsToShow; let i = index">
+            <div class="campaign-name" (click)="openCampaignDetail(campaign)">
+                <span >{{ campaign.name }}</span>
+            </div>
+            <div class="content-tags">
+                <mat-chip *ngFor="let tag of campaign.contentTags" class="tag">
+                    {{ 'onboarding.content.tag_list.' + tag | translate }}
+                </mat-chip>
+            </div>
+            <div class="data-box">
+                <div class="label">
+                    <span>{{ 'campaigns.applicants' | translate }}</span>
+                </div>
+                <div class="data">
+                    <span>{{ 0 }}</span>
+                </div>
+            </div>
+            <div class="campaign-remaining">
+                <mat-icon>schedule</mat-icon>
+                <span>{{ campaign.remainingDays }}</span>
+            </div>
+            <div [matMenuTriggerFor]="menu" class="d-flex align-items-center action">
+                <mat-icon>more_horiz</mat-icon>
+            </div>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="view(campaign)">
+                    <mat-icon class="material-icons-outlined">visibility</mat-icon>
+                    <span>{{ 'campaigns.option_view' | translate }}</span>
+                </button>
+                <button mat-menu-item (click)="edit(campaign)">
+                    <mat-icon class="material-icons-outlined">edit</mat-icon>
+                    <span>{{ 'campaigns.option_edit' | translate }}</span>
+                </button>
+                <button mat-menu-item (click)="delete(campaign)">
+                    <mat-icon class="material-icons-outlined">delete</mat-icon>
+                    <span>{{ 'campaigns.option_delete' | translate }}</span>
+                </button>
+            </mat-menu>
+        </div>
+        <div *ngIf="campaignsToShow.length == 0" class="campaign-box">
+            <span class="d-flex justify-content-center campaign-name w-100">{{ 'campaigns.not_exists' | translate }}</span>
+        </div>
+    </div>
+</div>

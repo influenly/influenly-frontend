@@ -1,0 +1,46 @@
+<div class="container-fluid d-flex justify-content-space-between full-height-with-header">
+    <div class="d-flex justify-content-center align-items-center form-box">
+        
+        <form [formGroup]="formValidation">
+            <div class="d-grid text-center">
+                <span class="title">{{ 'landing.email_verification.title' | translate }}</span>
+                <div class="mt-3">
+                    <span>{{ 'landing.email_verification.description_1' | translate }}</span>
+                    <span class="primary-color">{{ hidenEmail }}</span>
+                    <span>{{ 'landing.email_verification.description_2' | translate }}</span>
+                </div>
+            </div>
+            <div class="d-flex mt-4" formArrayName="codeArray">
+                <ng-container *ngFor="let control of codeControls.controls; let i = index">
+                    <input
+                        #input
+                        type="tel"
+                        maxlength="1"
+                        pattern="[0-9]"
+                        class="form-control"
+                        [formControlName]="i"
+                        [ngClass]="{ 'input-error': control.invalid && (control.dirty || control.touched) }"
+                        (input)="onInput($event, i)"
+                        (focus)="onFocus($event)"
+                        (keydown)="onKeyDown($event, i)"
+                        (paste)="onPaste($event)"
+                    />
+                </ng-container>
+            </div>
+            <mat-error *ngIf="codeControls?.hasError('invalid')">
+                <mat-icon>warning</mat-icon>{{ 'landing.email_verification.invalid_code' | translate }}
+            </mat-error>
+            <div class="d-grid w-100 mt-4">
+                <button mat-button class="main-button-primary w-100" [disabled]="!isValid" (click)="validate()">{{ 'landing.email_verification.validate_code' | translate }}</button>
+                <button mat-button class="other-button mt-3" (click)="cancel()">{{ 'general.btn_cancel' | translate }}</button>
+            </div>
+            <!-- <div class="text-center mt-3">
+				<p class="login-text">{{ 'landing.email_verification.not_received_code' | translate }}<a (click)="resend()">{{ 'landing.email_verification.resend_code' | translate }}</a></p>
+			</div> -->
+        </form>
+        
+    </div>
+    <div class="d-flex justify-content-end align-items img-box">
+        <img class="page-img" src="../../../assets/images/email-verification-image.svg" />
+    </div>
+</div>

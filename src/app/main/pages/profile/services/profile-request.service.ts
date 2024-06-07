@@ -13,7 +13,13 @@ export class ProfileRequestService {
         return this.restApiClient.get<UserDataModel>({
             endPoint: '/user/' + userId
         });
-    };
+    }
+
+    public getProfileDataByUsername$(username: string): Observable<HttpResponse<UserDataModel>> {
+        return this.restApiClient.get<UserDataModel>({
+            endPoint: '/user/' + username
+        });
+    }
 
     public updateProfileData$(payload: any): Observable<HttpResponse<UserDataModel>> {
         return this.restApiClient.patch<UserDataModel>(payload, {

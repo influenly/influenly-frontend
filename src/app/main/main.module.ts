@@ -44,6 +44,14 @@ import { SearchResultsComponent } from './pages/discovery/search-results/search-
 import { UserCardComponent } from './pages/discovery/search-results/user-card/user-card.component';
 import { DiscoveryService } from './pages/discovery/services/discovery.service';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CampaignsComponent } from './pages/campaigns/campaigns.component';
+import { NewCampaignModalComponent } from './pages/campaigns/new-campaign-modal/new-campaign-modal.component';
+import { CampaignService } from './pages/campaigns/services/campaign.service';
+import { CampaignsAdvertiserViewComponent } from './pages/campaigns/campaigns-advertiser-view/campaigns-advertiser-view.component';
+import { CampaignsCreatorViewComponent } from './pages/campaigns/campaigns-creator-view/campaigns-creator-view.component';
+import { CampaignCardComponent } from './pages/campaigns/campaigns-creator-view/campaign-card/campaign-card.component';
+import { ApplyToCampaignModalComponent } from './pages/campaigns/campaigns-creator-view/apply-to-campaign-modal/apply-to-campaign-modal.component';
+import { CampaignDetailModalComponent } from './pages/campaigns/campaigns-advertiser-view/campaign-detail-modal/campaign-detail-modal.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +77,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     DiscoveryComponent,
     DiscoveryFiltersComponent,
     SearchResultsComponent,
-    UserCardComponent
+    UserCardComponent,
+    CampaignsComponent,
+    NewCampaignModalComponent,
+    CampaignsAdvertiserViewComponent,
+    CampaignsCreatorViewComponent,
+    CampaignCardComponent,
+    ApplyToCampaignModalComponent,
+    CampaignDetailModalComponent,
   ],
   imports: [
     CommonModule,
@@ -96,7 +111,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ProfileService,
     ProfileRequestService,
     ChatRequestService,
-    DiscoveryService
+    DiscoveryService,
+    CampaignService
   ]
 })
 export class MainModule { }

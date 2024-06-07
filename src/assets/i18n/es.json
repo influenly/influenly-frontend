@@ -6,6 +6,7 @@
         "btn_back":"Atrás",
         "btn_return":"Volver",
         "btn_cancel":"Cancelar",
+        "btn_close":"Cerrar",
         "search":"Buscar",
         "creator":"Creador",
         "advertiser":"Anunciante",
@@ -54,7 +55,6 @@
         "footer":{
             "how_it_works":"Cómo funciona",
             "about_us":"Sobre nosotros",
-            "influenly_copyright":"influenly © 2024",
             "terms_of_service":"Términos del Servicio",
             "privacy_policy":"Política de Privacidad"
         }
@@ -178,9 +178,22 @@
             "paragraph_16":"3.3. Cumplimiento legal: Podemos divulgar tu información cuando creamos de buena fe que es necesario para cumplir con una obligación legal, proteger nuestros derechos o responder a solicitudes de autoridades gubernamentales.",
             "paragraph_17":"4. Seguridad de la información",
             "paragraph_18":"Implementamos medidas de seguridad físicas, técnicas y administrativas para proteger tu información contra accesos no autorizados, uso indebido o divulgación."
+        },
+        "email_verification":{
+            "title":"Verifica Tu Correo Electrónico",
+            "description_1":"Ingresa el código de 6 dígitos que te hemos enviado a ",
+            "description_2":" para finalizar con el registro. Recuerda no compartirle el código a nadie.",
+            "validate_code":"Validar código",
+            "not_received_code":"¿No recibiste el código? ",
+            "resend_code":"Solicitar un nuevo código",
+            "invalid_code":"Por favor, verifica el código e inténtalo nuevamente.",
+            "validation_ok":"La validación del correo electrónico fue exitosa",
+            "error_validate":"Hubo un error al enviar el código de validación, por favor intente nuevamente",
+            "error_resend":"Hubo un error al reenviar el código de validación, por favor intente nuevamente"
         }
     },
     "onboarding":{
+        "onboarding_error":"Error al guardar los datos del usuario. Por favor intente más tarde.",
         "steps":{
             "personal_information":"Información personal",
             "social_media":"Redes",
@@ -280,6 +293,7 @@
         "content_advertiser_label":"Contenido que buscamos",
         "btn_edit":"Editar perfil",
         "btn_talk":"Conversar",
+        "get_profile_error":"Error al obtener los datos del usuario",
         "edit":{
             "title":"Editar perfil",
             "content_you_make":"Contenido que generas",
@@ -364,6 +378,63 @@
             "between":"De {{minFollowers}} a {{maxFollowers}} seguidores",
             "more_than":"Más de {{minFollowers}} seguidores",
             "less_than":"Menos de {{maxFollowers}} seguidores"
+        }
+    },
+    "campaigns":{
+        "applicants":"Postulantes",
+        "remaining_days":" días restantes",
+        "not_exists":"No existen campañas para mostrar",
+        "option_view":"Ver",
+        "option_edit":"Editar",
+        "option_delete":"Eliminar",
+        "delete_title":"Eliminar Campaña",
+        "delete_text":"¿Estás seguro que quieres eliminar la campaña?",
+        "banner":{
+            "title":"Campañas",
+            "text":"Lorem ipsum dolor sit amet consectetur. Duis in viverra aliquet massa. Mattis blandit sed sagittis at tincidunt tincidunt. Pharetra libero vitae at habitasse fames. Auctor porttitor ac nunc donec.",
+            "button":"Crea una Campaña +"
+        },
+        "selector":{
+            "searching":"En búsqueda",
+            "finished":"Finalizadas",
+            "campaigns":"Campañas",
+            "applied":"Campañas aplicadas"
+        },
+        "modal":{
+            "title":"Nueva campaña",
+            "name":{
+                "label":"Título",
+                "placeholder":"Título",
+                "error_required":"El título es obligatorio",
+                "error_pattern":"El título no puede contener caracteres especiales"
+            },
+            "description":{
+                "placeholder":"Ingresa la descripción de la campaña",
+                "error_required":"La descripción es obligatoria"
+            },
+            "end_date":{
+                "label":"Fecha de finalización de la búsqueda",
+                "placeholder":"dd/mm/aaaa",
+                "error_required":"La fecha de finalización es requerida"
+            },
+            "apply":{
+                "tags_label":"Contenido que se busca",
+                "button_label":"Postularme",
+                "success_title":"Te has postulado con éxito!",
+                "success_text":"El anunciante te contactará en caso de que le interese tu perfil.",
+                "error_title":"Error",
+                "error_text":"Ha surgido un error."
+            },
+            "detail":{
+                "applicants_label":"Postulantes",
+                "no_applicants":"No se han postulando aún",
+                "followers":"Seguidores"
+            }
+        },
+        "info":{
+            "success_title":"Campaña creada con éxito",
+            "error_title":"Ocurrió un error al crear la campaña",
+            "error_delete_title":"Ocurrió un error al eliminar la campaña"
         }
     }
 }

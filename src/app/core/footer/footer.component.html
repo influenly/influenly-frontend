@@ -1,13 +1,21 @@
-<div *ngIf="isLanding" class="footer-container">
-    <div class="d-flex justify-content-between align-items-center px-5">
+<div *ngIf="showFooter" class="footer-container">
+    <div class="d-flex justify-content-between align-items-center footer-top">
         <img src="../../../assets/logo/influenly-logo.svg" class="logo width-to-align" />
         <span class="link text-1" (click)="navigate('how-it-works')">{{ 'core.footer.how_it_works' | translate }}</span>
         <span class="link text-1" (click)="navigate('about-us')">{{ 'core.footer.about_us' | translate }}</span>
     </div>
     <mat-divider></mat-divider>
-    <div class="d-flex text-center py-2 px-5">
-        <span class="text-2 width-to-align">{{ 'core.footer.influenly_copyright' | translate }}</span>
-        <span class="link text-2" (click)="navigate('terms-of-service')">{{ 'core.footer.terms_of_service' | translate }}</span>
-        <span class="link text-2" (click)="navigate('privacy-policy')">{{ 'core.footer.privacy_policy' | translate }}</span>
+    <div class="d-flex text-center footer-bottom">
+        <div class="text-2 width-to-align">
+            <span>influenly</span>
+            <span class="mx-2">©</span>
+            <span>2024</span>
+        </div>
+        <div class="link text-2">
+            <span (click)="navigate('terms-of-service')">{{ 'core.footer.terms_of_service' | translate }}</span>
+        </div>
+        <div class="link text-2">
+            <span (click)="navigate('privacy-policy')">{{ 'core.footer.privacy_policy' | translate }}</span>
+        </div>
     </div>
 </div>

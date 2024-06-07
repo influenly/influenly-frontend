@@ -43,28 +43,6 @@
 					</mat-error>
 				</mat-form-field>
 			</div>
-			<div>
-				<label class="d-block">{{ 'landing.sign_up.country.label' | translate }}</label>
-				<mat-form-field class="w-100">
-					<mat-select formControlName="country" [placeholder]="'landing.sign_up.country.placeholder' | translate">
-						<mat-select-trigger>
-							<div>
-								<span class="fi" [ngClass]="'fi-' + country?.value.toLowerCase()"></span>
-								{{ 'general.countries.' + country?.value | translate }}
-							</div>
-						</mat-select-trigger>
-						<div *ngFor="let country of countries">
-							<mat-option [value]="country">
-								<span class="fi" [ngClass]="'fi-' + country.toLowerCase()"></span>
-								{{ 'general.countries.' + country | translate }}
-							</mat-option>
-						</div>
-					</mat-select>
-					<mat-error *ngIf="country?.hasError('required')">
-						<mat-icon>warning</mat-icon>{{ 'landing.sign_up.country.required_error' | translate }}
-					</mat-error>
-				</mat-form-field>
-			</div>
 
 			<div class="mt-4">
 				<button class="main-button w-100 p-3" (click)="submit()">{{ 'landing.sign_up.btn_signup' | translate }}</button>

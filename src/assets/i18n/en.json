@@ -6,6 +6,7 @@
         "btn_back":"Back",
         "btn_return":"Return",
         "btn_cancel":"Cancel",
+        "btn_close":"Close",
         "search":"Search",
         "creator":"Creator",
         "advertiser":"Advertiser",
@@ -54,7 +55,6 @@
         "footer":{
             "how_it_works":"How it works",
             "about_us":"About us",
-            "influenly_copyright":"influenly © 2024",
             "terms_of_service":"Terms of Service",
             "privacy_policy":"Privacy Policy"
         }
@@ -178,9 +178,22 @@
             "paragraph_16":"3.3. Legal compliance: We may disclose your information when we believe in good faith that it is necessary to comply with a legal obligation, protect our rights, or respond to requests from government authorities.",
             "paragraph_17":"4. Information security",
             "paragraph_18":"We implement physical, technical and administrative security measures to protect your information against unauthorized access, misuse or disclosure."
+        },
+        "email_verification":{
+            "title":"Verify Your Email",
+            "description_1":"Enter the 6-digit code we sent you to",
+            "description_2":" to finish the registration. Remember not to share the code with anyone.",
+            "validate_code":"Validate code",
+            "not_received_code":"Did you not receive the code?",
+            "resend_code":"Request a new code",
+            "invalid_code":"Please check the code and try again.",
+            "validation_ok":"Email validation was successful",
+            "error_validate":"There was an error submitting the validation code, please try again",
+            "error_resend":"There was an error resending the validation code, please try again"
         }
     },
     "onboarding":{
+        "onboarding_error":"Error saving your data. Please try again later.",
         "steps":{
             "personal_information":"Personal Information",
             "social_media":"Networks",
@@ -280,6 +293,7 @@
         "content_advertiser_label":"Content we are looking for",
         "btn_edit":"Edit profile",
         "btn_talk":"Talk",
+        "get_profile_error":"Error getting user data",
         "edit":{
             "title":"Edit profile",
             "content_you_make":"Content you make",
@@ -364,6 +378,63 @@
             "between":"From {{minFollowers}} to {{maxFollowers}} followers",
             "more_than":"More than {{minFollowers}} followers",
             "less_than":"Less than {{maxFollowers}} followers"
+        }
+    },
+    "campaigns":{
+        "applicants":"Applicants",
+        "remaining_days":" remaining days",
+        "not_exists":"There are no campaigns to display",
+        "option_view":"View",
+        "option_edit":"Edit",
+        "option_delete":"Delete",
+        "delete_title":"Delete campaing",
+        "delete_text":"Do you want to delete this campaign?",
+        "banner":{
+            "title":"Campaigns",
+            "text":"Lorem ipsum dolor sit amet consectetur. Duis in viverra aliquet massa. Mattis blandit sed sagittis at tincidunt tincidunt. Pharetra libero vitae at habitasse fames. Auctor porttitor ac nunc donec.",
+            "button":"Create a Campaign +"
+        },
+        "selector":{
+            "searching":"In search",
+            "finished":"Finished",
+            "campaigns":"Campaigns",
+            "applied":"Applied campaigns"
+        },
+        "modal":{
+            "title":"New campaign",
+            "yam":{
+                "label":"Title",
+                "placeholder":"Title",
+                "error_required":"The title is required",
+                "error_pattern":"The title cannot contain special characters"
+            },
+            "description":{
+                "placeholder":"Enter the campaign description",
+                "error_required":"The description is required"
+            },
+            "end_date":{
+                "label":"Search end date",
+                "placeholder":"dd/mm/yyyy",
+                "error_required":"The end date is required"
+            },
+            "apply":{
+                "tags_label":"Searched content",
+                "button_label":"Apply",
+                "success_title":"You have successfully applied!",
+                "success_text":"The advertiser will contact you if they are interested in your profile.",
+                "error_title":"Error",
+                "error_text":"An error has occurred."
+            },
+            "detail":{
+                "applicants_label":"Applicants",
+                "no_applicants":"They have not applied yet",
+                "followers":"Followers"
+            }
+        },
+        "info":{
+            "success_title":"Campaign created successfully",
+            "error_title":"An error occurred while creating the campaign",
+            "error_delete_title":"An error occurred while deleting the campaign"
         }
     }
 }

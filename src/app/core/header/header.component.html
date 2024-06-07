@@ -5,6 +5,7 @@
         (click)="goToMain()"
     />
     <div class="d-flex">
+        <app-campaigns-button [isHandset]="isHandset" />
         <app-discovery-button *ngIf="userType == 'ADVERTISER'" [isHandset]="isHandset" />
         <app-chat [isHandset]="isHandset" />
         <app-user-options />

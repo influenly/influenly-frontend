@@ -1,0 +1,36 @@
+.card {
+    max-width: 950px;
+    height: auto;
+    border-radius: 16px;
+    background-color: #2F2E41;
+    overflow: hidden;
+}
+
+.title {
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.text {
+    color: #E6E6E6;
+    font-size: 14px;
+}
+
+img {
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+
+    img {
+        display: none;
+    }
+
+    .card {
+        background-image: url("../../../../assets/images/campaigns-banner.svg");
+        background-repeat: no-repeat;
+    }
+}
