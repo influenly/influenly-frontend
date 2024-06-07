@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { RestApiClient } from "src/app/shared/services/rest-api/rest-api.client";
-import { HttpResponse } from "@angular/common/http";
+import { HttpParams, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { CampaignModel } from "../models/campaign.model";
 
@@ -15,9 +15,10 @@ export class CampaignService {
         });
     }
 
-    public getCampaigns$(): Observable<HttpResponse<{ ok: boolean, campaigns: CampaignModel[] }>> {
+    public getCampaigns$(applied?: boolean): Observable<HttpResponse<{ ok: boolean, campaigns: CampaignModel[] }>> {
         return this.restApiClient.get<any>({
-            endPoint: '/campaign'
+            endPoint: '/campaign',
+            params: applied ? new HttpParams().set('applied', true) : undefined
         });
     }
 

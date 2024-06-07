@@ -39,7 +39,24 @@ export class CampaignsCreatorViewComponent implements OnInit {
     if (this.selectedOption.key == 'searching') {
       this.campaignsToShow = this.campaigns.filter(campaign => campaign.status == 'ACTIVE');
     } else {
-      this.campaignsToShow = this.campaigns.filter(campaign => campaign.status != 'ACTIVE');
+      this.campaignService.getCampaigns$(true).subscribe({
+        next: async (v) => {
+          if (v.body?.ok) {
+            this.campaignsToShow = v.body?.campaigns;
+            this.campaignsToShow.forEach(campaign => campaign.endDate = this.remainingDays(campaign.endDate));
+          }
+        },
+        error: () => {
+          this.dialog.open(InformationModalComponent, {
+            width: '600px',
+            data: {
+              icon: 'warning',
+              title: this.translate.instant('campaigns.info.error_title'),
+              textButtonClose: this.translate.instant('general.btn_accept')
+            }
+          });
+        }
+      });
     }
   }
 
